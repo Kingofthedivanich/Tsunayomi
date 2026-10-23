@@ -8,13 +8,16 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.outlined.MenuBook
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,6 +39,8 @@ data class MangaGridItem(
     val key: String,
     val title: String,
     val coverUrl: String?,
+    /** Small label in the corner of the cover, e.g. the unread chapter count. */
+    val badge: String? = null,
 )
 
 /** Adaptive grid of covers: more columns on wider screens. Calls [onLoadMore] near the end. */
@@ -46,6 +51,7 @@ fun MangaGrid(
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(12.dp),
     onLoadMore: (() -> Unit)? = null,
+    onContinue: ((MangaGridItem) -> Unit)? = null,
     footer: (LazyGridScope.() -> Unit)? = null,
 ) {
     val state = rememberLazyGridState()
@@ -66,26 +72,61 @@ fun MangaGrid(
     ) {
         items(items.size, key = { items[it].key }) { index ->
             val item = items[index]
-            MangaCover(item, onClick = { onClick(item) }, modifier = Modifier.padding(4.dp))
+            MangaCover(
+                item,
+                onClick = { onClick(item) },
+                onContinue = onContinue?.let { { it(item) } },
+                modifier = Modifier.padding(4.dp),
+            )
         }
         footer?.invoke(this)
     }
 }
 
 @Composable
-fun MangaCover(item: MangaGridItem, onClick: () -> Unit, modifier: Modifier = Modifier) {
+fun MangaCover(
+    item: MangaGridItem,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    onContinue: (() -> Unit)? = null,
+) {
     Column(
         modifier = modifier
             .clip(RoundedCornerShape(8.dp))
             .clickable(onClick = onClick),
     ) {
-        CoverImage(
-            url = item.coverUrl,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(COVER_ASPECT_RATIO)
-                .clip(RoundedCornerShape(8.dp)),
-        )
+        Box {
+            CoverImage(
+                url = item.coverUrl,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(COVER_ASPECT_RATIO)
+                    .clip(RoundedCornerShape(8.dp)),
+            )
+            if (item.badge != null) {
+                Text(
+                    text = item.badge,
+                    style = MaterialTheme.typography.labelSmall,
+                    color = MaterialTheme.colorScheme.onPrimary,
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        .padding(4.dp)
+                        .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(4.dp))
+                        .padding(horizontal = 6.dp, vertical = 2.dp),
+                )
+            }
+            if (onContinue != null) {
+                FilledIconButton(
+                    onClick = onContinue,
+                    modifier = Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(4.dp)
+                        .size(32.dp),
+                ) {
+                    Icon(Icons.Filled.PlayArrow, contentDescription = null, modifier = Modifier.size(20.dp))
+                }
+            }
+        }
         Text(
             text = item.title,
             style = MaterialTheme.typography.bodySmall,

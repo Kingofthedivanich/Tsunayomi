@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "app.tsunayomi.feature.history"
 }
+
+dependencies {
+    implementation(projects.data)
+}

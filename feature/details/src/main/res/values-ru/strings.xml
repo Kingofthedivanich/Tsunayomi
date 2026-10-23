@@ -20,4 +20,9 @@
     <string name="feature_details_status_completed">Завершён</string>
     <string name="feature_details_status_hiatus">Перерыв</string>
     <string name="feature_details_status_cancelled">Отменён</string>
+    <string name="feature_details_categories">Категории</string>
+    <string name="feature_details_ok">OK</string>
+    <string name="feature_details_cancel">Отмена</string>
+    <string name="feature_details_no_chapters">Доступных глав пока нет. Потяните вниз, чтобы обновить.</string>
+    <string name="feature_details_chapters_external_only">Главы на этом языке есть только на сайте издателя, поэтому читать их в приложении нельзя. Попробуйте другой язык в «Обзоре».</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import app.tsunayomi.core.model.LibrarySort
 import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
@@ -24,6 +25,8 @@ class UserPreferencesDataSource @Inject constructor(
             localLibraryUri = prefs[Keys.localLibraryUri],
             defaultReaderMode = prefs[Keys.defaultReaderMode].toEnum(defaults.defaultReaderMode),
             volumeKeysNavigation = prefs[Keys.volumeKeysNavigation] ?: defaults.volumeKeysNavigation,
+            librarySort = prefs[Keys.librarySort].toEnum(defaults.librarySort),
+            librarySortAscending = prefs[Keys.librarySortAscending] ?: defaults.librarySortAscending,
         )
     }
 
@@ -53,6 +56,13 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.volumeKeysNavigation] = enabled }
     }
 
+    suspend fun setLibrarySort(sort: LibrarySort, ascending: Boolean) {
+        dataStore.edit {
+            it[Keys.librarySort] = sort.name
+            it[Keys.librarySortAscending] = ascending
+        }
+    }
+
     private inline fun <reified E : Enum<E>> String?.toEnum(default: E): E =
         this?.let { name -> enumValues<E>().firstOrNull { it.name == name } } ?: default
 
@@ -63,5 +73,7 @@ class UserPreferencesDataSource @Inject constructor(
         val localLibraryUri = stringPreferencesKey("local_library_uri")
         val defaultReaderMode = stringPreferencesKey("default_reader_mode")
         val volumeKeysNavigation = booleanPreferencesKey("volume_keys_navigation")
+        val librarySort = stringPreferencesKey("library_sort")
+        val librarySortAscending = booleanPreferencesKey("library_sort_ascending")
     }
 }

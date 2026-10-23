@@ -4,11 +4,15 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
+import app.tsunayomi.core.model.Category
 import app.tsunayomi.core.model.Chapter
 import app.tsunayomi.core.model.Manga
+import app.tsunayomi.data.LibraryRepository
 import app.tsunayomi.data.MangaRepository
+import app.tsunayomi.data.ReadingOrder
 import app.tsunayomi.data.ReadingProgressRepository
 import app.tsunayomi.data.SourceManager
+import app.tsunayomi.source.api.ChaptersOnlyExternalException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -29,6 +33,10 @@ internal data class DetailsUiState(
     val hasProgress: Boolean = false,
     val refreshing: Boolean = false,
     val error: String? = null,
+    val categories: List<Category> = emptyList(),
+    val mangaCategoryIds: Set<Long> = emptySet(),
+    /** Set when the source has chapters, but only on external sites. */
+    val chaptersOnlyExternal: Boolean = false,
 )
 
 @HiltViewModel
@@ -37,17 +45,24 @@ internal class DetailsViewModel @Inject constructor(
     private val mangaRepository: MangaRepository,
     private val progressRepository: ReadingProgressRepository,
     private val sourceManager: SourceManager,
+    private val libraryRepository: LibraryRepository,
 ) : ViewModel() {
     private val mangaId = savedStateHandle.toRoute<DetailsRoute>().mangaId
     private val refresh = MutableStateFlow(RefreshState())
+
+    private val categoryState = combine(
+        libraryRepository.observeCategories(),
+        libraryRepository.observeCategoryIds(mangaId),
+    ) { categories, ids -> categories to ids }
 
     val state: StateFlow<DetailsUiState> = combine(
         mangaRepository.observeManga(mangaId),
         mangaRepository.observeChapters(mangaId),
         refresh,
-    ) { manga, chapters, refreshState ->
+        categoryState,
+    ) { manga, chapters, refreshState, (categories, categoryIds) ->
         // chapters arrive in reading order (source_order ascending).
-        val continueChapter = chapters.firstOrNull { !it.read } ?: chapters.firstOrNull()
+        val continueChapter = ReadingOrder.continueChapter(chapters)
         DetailsUiState(
             manga = manga,
             sourceName = manga?.let { sourceManager.get(it.sourceId)?.name },
@@ -56,6 +71,9 @@ internal class DetailsViewModel @Inject constructor(
             hasProgress = chapters.any { it.read || it.lastPageRead > 0 },
             refreshing = refreshState.running,
             error = refreshState.error,
+            categories = categories,
+            mangaCategoryIds = categoryIds,
+            chaptersOnlyExternal = refreshState.onlyExternal,
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), DetailsUiState())
 
@@ -74,6 +92,8 @@ internal class DetailsViewModel @Inject constructor(
                 refresh.value = RefreshState()
             } catch (e: CancellationException) {
                 throw e
+            } catch (e: ChaptersOnlyExternalException) {
+                refresh.value = RefreshState(onlyExternal = true)
             } catch (e: Exception) {
                 refresh.value = RefreshState(error = e.message ?: e.toString())
             }
@@ -87,6 +107,15 @@ internal class DetailsViewModel @Inject constructor(
         viewModelScope.launch { mangaRepository.setFavorite(manga.id, !manga.favorite) }
     }
 
+    /** Adds to the library (if needed) with exactly these categories. */
+    fun saveToLibrary(categoryIds: Set<Long>) {
+        val manga = state.value.manga ?: return
+        viewModelScope.launch {
+            libraryRepository.setMangaCategories(manga.id, categoryIds)
+            if (!manga.favorite) mangaRepository.setFavorite(manga.id, true)
+        }
+    }
+
     fun setRead(chapter: Chapter, read: Boolean) {
         viewModelScope.launch { progressRepository.setRead(listOf(chapter.id), read) }
     }
@@ -97,5 +126,9 @@ internal class DetailsViewModel @Inject constructor(
         viewModelScope.launch { progressRepository.setRead(ids, read = true) }
     }
 
-    private data class RefreshState(val running: Boolean = false, val error: String? = null)
+    private data class RefreshState(
+        val running: Boolean = false,
+        val error: String? = null,
+        val onlyExternal: Boolean = false,
+    )
 }

@@ -28,7 +28,9 @@ import app.tsunayomi.feature.details.navigateToDetails
 import app.tsunayomi.feature.history.HistoryRoute
 import app.tsunayomi.feature.history.historyScreen
 import app.tsunayomi.feature.library.LibraryRoute
+import app.tsunayomi.feature.library.categoriesScreen
 import app.tsunayomi.feature.library.libraryScreen
+import app.tsunayomi.feature.library.navigateToCategories
 import app.tsunayomi.feature.reader.navigateToReader
 import app.tsunayomi.feature.reader.readerScreen
 import app.tsunayomi.feature.settings.komgaSettingsScreen
@@ -67,7 +69,12 @@ fun TsunayomiApp(navController: NavHostController = rememberNavController()) {
         },
     ) {
         NavHost(navController = navController, startDestination = LibraryRoute) {
-            libraryScreen(onOpenManga = navController::navigateToDetails)
+            libraryScreen(
+                onOpenManga = navController::navigateToDetails,
+                onOpenReader = navController::navigateToReader,
+                onOpenCategories = navController::navigateToCategories,
+            )
+            categoriesScreen(onBack = navController::popBackStack)
             browseScreen(
                 onOpenCatalog = navController::navigateToCatalog,
                 onOpenGlobalSearch = navController::navigateToGlobalSearch,
@@ -81,7 +88,7 @@ fun TsunayomiApp(navController: NavHostController = rememberNavController()) {
             )
             globalSearchScreen(onBack = navController::popBackStack, onOpenManga = navController::navigateToDetails)
             komgaSettingsScreen(onBack = navController::popBackStack)
-            historyScreen()
+            historyScreen(onOpenManga = navController::navigateToDetails, onOpenReader = navController::navigateToReader)
             detailsScreen(onBack = navController::popBackStack, onRead = navController::navigateToReader)
             readerScreen(onBack = navController::popBackStack)
             moreGraph(navController)

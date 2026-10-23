@@ -18,4 +18,9 @@
     <string name="feature_details_status_completed">Completed</string>
     <string name="feature_details_status_hiatus">On hiatus</string>
     <string name="feature_details_status_cancelled">Cancelled</string>
+    <string name="feature_details_categories">Categories</string>
+    <string name="feature_details_ok">OK</string>
+    <string name="feature_details_cancel">Cancel</string>
+    <string name="feature_details_no_chapters">No chapters available yet. Pull down to refresh.</string>
+    <string name="feature_details_chapters_external_only">Chapters in this language are only available on the publisher\'s site, so they cannot be read in the app. Try another language in Browse.</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,10 +23,15 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.Label
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.PlayArrow
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AssistChip
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -53,12 +59,14 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.component.COVER_ASPECT_RATIO
 import app.tsunayomi.core.designsystem.component.CoverImage
+import app.tsunayomi.core.model.Category
 import app.tsunayomi.core.model.Chapter
 import app.tsunayomi.core.model.Manga
 import app.tsunayomi.core.model.MangaStatus
@@ -75,6 +83,7 @@ internal fun DetailsScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
+    var categoryDialog by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(state.error) {
         state.error?.let {
             snackbarHostState.showSnackbar(it)
@@ -121,13 +130,40 @@ internal fun DetailsScreen(
                 .padding(padding),
         ) {
             LazyColumn(contentPadding = PaddingValues(bottom = 96.dp)) {
-                item { Header(manga, state.sourceName, onToggleFavorite = viewModel::toggleFavorite) }
+                item {
+                    Header(
+                        manga = manga,
+                        sourceName = state.sourceName,
+                        hasCategories = state.categories.isNotEmpty(),
+                        onFavoriteClick = {
+                            // With categories, adding asks where to put the title; removing is immediate.
+                            if (!manga.favorite && state.categories.isNotEmpty()) categoryDialog = true else viewModel.toggleFavorite()
+                        },
+                        onEditCategories = { categoryDialog = true },
+                    )
+                }
                 item {
                     Text(
                         text = pluralStringResource(R.plurals.feature_details_chapter_count, state.chapters.size, state.chapters.size),
                         style = MaterialTheme.typography.titleSmall,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                     )
+                }
+                if (state.chapters.isEmpty() && !state.refreshing) {
+                    item {
+                        Text(
+                            text = stringResource(
+                                if (state.chaptersOnlyExternal) {
+                                    R.string.feature_details_chapters_external_only
+                                } else {
+                                    R.string.feature_details_no_chapters
+                                },
+                            ),
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+                        )
+                    }
                 }
                 items(state.chapters, key = { it.id }) { chapter ->
                     ChapterRow(
@@ -140,10 +176,62 @@ internal fun DetailsScreen(
             }
         }
     }
+
+    if (categoryDialog) {
+        CategoryDialog(
+            categories = state.categories,
+            initial = state.mangaCategoryIds,
+            onConfirm = {
+                categoryDialog = false
+                viewModel.saveToLibrary(it)
+            },
+            onDismiss = { categoryDialog = false },
+        )
+    }
 }
 
 @Composable
-private fun Header(manga: Manga, sourceName: String?, onToggleFavorite: () -> Unit) {
+private fun CategoryDialog(
+    categories: List<Category>,
+    initial: Set<Long>,
+    onConfirm: (Set<Long>) -> Unit,
+    onDismiss: () -> Unit,
+) {
+    var selected by remember { mutableStateOf(initial) }
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.feature_details_categories)) },
+        text = {
+            Column {
+                categories.forEach { category ->
+                    val checked = category.id in selected
+                    ListItem(
+                        headlineContent = { Text(category.name) },
+                        leadingContent = { Checkbox(checked = checked, onCheckedChange = null) },
+                        modifier = Modifier.toggleable(value = checked, role = Role.Checkbox) {
+                            selected = if (it) selected + category.id else selected - category.id
+                        },
+                    )
+                }
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onConfirm(selected) }) { Text(stringResource(R.string.feature_details_ok)) }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) { Text(stringResource(R.string.feature_details_cancel)) }
+        },
+    )
+}
+
+@Composable
+private fun Header(
+    manga: Manga,
+    sourceName: String?,
+    hasCategories: Boolean,
+    onFavoriteClick: () -> Unit,
+    onEditCategories: () -> Unit,
+) {
     Column(Modifier.padding(horizontal = 16.dp)) {
         Row {
             CoverImage(
@@ -173,17 +261,26 @@ private fun Header(manga: Manga, sourceName: String?, onToggleFavorite: () -> Un
             }
         }
         Spacer(Modifier.height(12.dp))
-        FilledTonalButton(onClick = onToggleFavorite) {
-            Icon(
-                if (manga.favorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
-                contentDescription = null,
-            )
-            Spacer(Modifier.width(8.dp))
-            Text(
-                stringResource(
-                    if (manga.favorite) R.string.feature_details_in_library else R.string.feature_details_add_to_library,
-                ),
-            )
+        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            FilledTonalButton(onClick = onFavoriteClick) {
+                Icon(
+                    if (manga.favorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
+                    contentDescription = null,
+                )
+                Spacer(Modifier.width(8.dp))
+                Text(
+                    stringResource(
+                        if (manga.favorite) R.string.feature_details_in_library else R.string.feature_details_add_to_library,
+                    ),
+                )
+            }
+            if (manga.favorite && hasCategories) {
+                OutlinedButton(onClick = onEditCategories) {
+                    Icon(Icons.AutoMirrored.Outlined.Label, contentDescription = null)
+                    Spacer(Modifier.width(8.dp))
+                    Text(stringResource(R.string.feature_details_categories))
+                }
+            }
         }
         manga.description?.takeIf { it.isNotBlank() }?.let { description ->
             var expanded by rememberSaveable { mutableStateOf(false) }

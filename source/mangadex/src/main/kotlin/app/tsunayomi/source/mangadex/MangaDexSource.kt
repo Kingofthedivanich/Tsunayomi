@@ -4,6 +4,7 @@ import app.tsunayomi.core.network.RateLimitInterceptor
 import app.tsunayomi.core.network.await
 import app.tsunayomi.core.network.bodyOrThrow
 import app.tsunayomi.source.api.CatalogSource
+import app.tsunayomi.source.api.ChaptersOnlyExternalException
 import app.tsunayomi.source.api.Filter
 import app.tsunayomi.source.api.FilterList
 import app.tsunayomi.source.api.MangaPage
@@ -131,11 +132,28 @@ class MangaDexSource(
             offset = response.offset + response.limit
         } while (offset < response.total && offset < MAX_OFFSET)
 
-        return chapters
-            .filter { it.attributes.externalUrl == null && it.attributes.pages > 0 }
+        val readable = chapters.filter { it.attributes.externalUrl == null && it.attributes.pages > 0 }
+        if (readable.isEmpty()) {
+            val external = externalCount(manga.url)
+            if (external > 0) throw ChaptersOnlyExternalException(external)
+        }
+        return readable
             .map { it.toSChapter() }
             // Volume-less chapters come last from the API; order everything by number, keeping group variants together.
             .sortedBy { chapter -> chapter.number.takeIf { it >= 0 } ?: Float.MAX_VALUE }
+    }
+
+    /**
+     * The feed request excludes external chapters, so ask once more only when nothing readable came back:
+     * a total above zero means the series is licensed and lives on the publisher's site.
+     */
+    private suspend fun externalCount(mangaId: String): Int {
+        val url = apiUrl.newBuilder().addPathSegment("manga").addPathSegment(mangaId).addPathSegment("feed")
+            .addQueryParameter("translatedLanguage[]", lang)
+            .addQueryParameter("limit", "1")
+            .apply { ALL_CONTENT_RATINGS.forEach { addQueryParameter("contentRating[]", it) } }
+            .build()
+        return json.decodeFromString<ChapterListResponse>(get(url)).total
     }
 
     override suspend fun getPages(chapter: SChapter): List<SPage> {

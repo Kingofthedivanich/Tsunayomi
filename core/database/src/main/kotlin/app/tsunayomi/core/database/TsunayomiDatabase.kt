@@ -6,6 +6,7 @@ import androidx.room.TypeConverters
 import app.tsunayomi.core.database.dao.CategoryDao
 import app.tsunayomi.core.database.dao.ChapterDao
 import app.tsunayomi.core.database.dao.HistoryDao
+import app.tsunayomi.core.database.dao.LibraryDao
 import app.tsunayomi.core.database.dao.MangaDao
 import app.tsunayomi.core.database.entity.CategoryEntity
 import app.tsunayomi.core.database.entity.ChapterEntity
@@ -30,4 +31,5 @@ abstract class TsunayomiDatabase : RoomDatabase() {
     abstract fun chapterDao(): ChapterDao
     abstract fun categoryDao(): CategoryDao
     abstract fun historyDao(): HistoryDao
+    abstract fun libraryDao(): LibraryDao
 }

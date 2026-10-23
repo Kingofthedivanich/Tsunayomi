@@ -3,4 +3,13 @@
     <string name="feature_history_title">История</string>
     <string name="feature_history_empty_title">Вы ещё ничего не читали</string>
     <string name="feature_history_empty_message">Здесь появятся открытые главы.</string>
+    <string name="feature_history_today">Сегодня</string>
+    <string name="feature_history_yesterday">Вчера</string>
+    <string name="feature_history_page">стр. %d</string>
+    <string name="feature_history_delete">Удалить из истории</string>
+    <string name="feature_history_clear">Очистить историю</string>
+    <string name="feature_history_clear_title">Очистить всю историю?</string>
+    <string name="feature_history_clear_message">Прогресс в главах сохранится, очистится только этот список.</string>
+    <string name="feature_history_cancel">Отмена</string>
+    <string name="feature_history_local_source">Локальные файлы</string>
 </resources>

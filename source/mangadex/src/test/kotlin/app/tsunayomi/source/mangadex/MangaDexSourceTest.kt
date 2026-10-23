@@ -1,5 +1,6 @@
 package app.tsunayomi.source.mangadex
 
+import app.tsunayomi.source.api.ChaptersOnlyExternalException
 import app.tsunayomi.source.api.FilterList
 import app.tsunayomi.source.api.ReadingDirection
 import app.tsunayomi.source.api.SChapter
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class MangaDexSourceTest {
     private val server = MockWebServer()
@@ -100,6 +102,29 @@ class MangaDexSourceTest {
         assertEquals("Oneshot", chapters[2].name)
         assertEquals(-1f, chapters[2].number)
         assertEquals(1714557600000L, chapters[1].uploadedAt)
+    }
+
+    @Test
+    fun `only external chapters are reported as such`() = runTest {
+        enqueue("feed_empty.json")
+        enqueue("feed_external_total.json")
+
+        val error = assertThrows<ChaptersOnlyExternalException> {
+            source.getChapters(SManga(url = "licensed", title = "x", coverUrl = null))
+        }
+
+        assertEquals(220, error.externalCount)
+        server.takeRequest()
+        val probe = server.takeRequest().url
+        assertEquals("1", probe.queryParameter("limit"))
+        assertNull(probe.queryParameter("includeExternalUrl"))
+    }
+
+    @Test
+    fun `a series without any chapters is just empty`() = runTest {
+        enqueue("feed_empty.json")
+        enqueue("feed_empty.json")
+        assertTrue(source.getChapters(SManga(url = "new", title = "x", coverUrl = null)).isEmpty())
     }
 
     @Test

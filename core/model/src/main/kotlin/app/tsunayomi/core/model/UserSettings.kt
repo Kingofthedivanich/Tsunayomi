@@ -8,6 +8,8 @@ data class UserSettings(
     val localLibraryUri: String? = null,
     val defaultReaderMode: ReaderMode = ReaderMode.PagedRightToLeft,
     val volumeKeysNavigation: Boolean = true,
+    val librarySort: LibrarySort = LibrarySort.Title,
+    val librarySortAscending: Boolean = true,
 )
 
 enum class ThemeMode {

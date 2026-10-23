@@ -1,0 +1,1 @@
+{"result": "ok", "response": "collection", "limit": 1, "offset": 0, "total": 220, "data": [{"id": "x", "type": "chapter", "attributes": {"chapter": "1", "externalUrl": "https://example.com/1", "pages": 0}, "relationships": []}]}
