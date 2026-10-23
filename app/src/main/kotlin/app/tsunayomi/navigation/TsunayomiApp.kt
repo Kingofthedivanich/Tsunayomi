@@ -20,6 +20,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import app.tsunayomi.feature.browse.BrowseRoute
 import app.tsunayomi.feature.browse.browseScreen
+import app.tsunayomi.feature.extensions.extensionsScreen
+import app.tsunayomi.feature.extensions.navigateToExtensionSourceSettings
+import app.tsunayomi.feature.extensions.navigateToExtensions
 import app.tsunayomi.feature.browse.catalogScreen
 import app.tsunayomi.feature.browse.globalSearchScreen
 import app.tsunayomi.feature.browse.navigateToCatalog
@@ -93,12 +96,18 @@ fun TsunayomiApp(
             browseScreen(
                 onOpenCatalog = navController::navigateToCatalog,
                 onOpenGlobalSearch = navController::navigateToGlobalSearch,
+                onOpenExtensions = navController::navigateToExtensions,
             )
+            extensionsScreen(onBack = navController::popBackStack)
             catalogScreen(
                 onBack = navController::popBackStack,
                 onOpenManga = navController::navigateToDetails,
                 onOpenSourceSettings = { sourceId ->
-                    if (sourceId == SourceIds.KOMGA) navController.navigateToKomgaSettings()
+                    if (sourceId == SourceIds.KOMGA) {
+                        navController.navigateToKomgaSettings()
+                    } else {
+                        navController.navigateToExtensionSourceSettings(sourceId)
+                    }
                 },
             )
             globalSearchScreen(onBack = navController::popBackStack, onOpenManga = navController::navigateToDetails)

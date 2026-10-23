@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_extensions_title">Расширения</string>
+    <string name="feature_extensions_back">Назад</string>
+    <string name="feature_extensions_languages">Языки</string>
+    <string name="feature_extensions_repos">Репозитории</string>
+    <string name="feature_extensions_refresh">Обновить</string>
+    <string name="feature_extensions_no_repos_title">Нет репозиториев</string>
+    <string name="feature_extensions_no_repos_message">Расширения из репозиториев Tachiyomi и Mihon добавляют новые сайты. Добавьте репозиторий, которому доверяете, чтобы увидеть его расширения.</string>
+    <string name="feature_extensions_add_repo">Добавить</string>
+    <string name="feature_extensions_search">Поиск расширений</string>
+    <string name="feature_extensions_section_updates">Обновления</string>
+    <string name="feature_extensions_section_installed">Установленные</string>
+    <string name="feature_extensions_section_available">Доступные</string>
+    <string name="feature_extensions_update">Обновить</string>
+    <string name="feature_extensions_install">Установить</string>
+    <string name="feature_extensions_uninstall">Удалить</string>
+    <string name="feature_extensions_uninstall_title">Удалить %1$s?</string>
+    <string name="feature_extensions_uninstall_message">Тайтлы из его источников останутся в библиотеке, но открыть их можно будет только после повторной установки.</string>
+    <string name="feature_extensions_cancel">Отмена</string>
+    <string name="feature_extensions_close">Закрыть</string>
+    <string name="feature_extensions_remove_repo">Удалить репозиторий</string>
+    <string name="feature_extensions_repo_hint">Ссылка на индекс репозитория (repo.json, index.min.json или index.pb). Устанавливаются только расширения, подписанные ключом репозитория.</string>
+    <string name="feature_extensions_repo_url">Ссылка на репозиторий</string>
+    <string name="feature_extensions_show_nsfw">Показывать расширения 18+</string>
+    <string name="feature_extensions_lang_multi">Несколько языков</string>
+    <string name="feature_extensions_lang_other">Другие</string>
+    <string name="feature_extensions_failed_lib">Требуется другая версия приложения</string>
+    <string name="feature_extensions_failed_untrusted">Не подписано ни одним из добавленных репозиториев</string>
+    <string name="feature_extensions_failed_broken">Не удалось загрузить</string>
+    <string name="feature_extensions_source_settings">Настройки источника</string>
+</resources>

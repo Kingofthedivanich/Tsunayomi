@@ -29,6 +29,8 @@ APK (отдельный на каждую архитектуру, для тел�
 | `core:*` | Модели, БД (Room), настройки (DataStore), сеть (OkHttp), тема |
 | `data` | Репозитории |
 | `source:api` | Интерфейс источников манги |
+| `extension:lib` | API расширений Tachiyomi/Mihon (код из Mihon, Apache-2.0, см. `extension/lib/LICENSE-mihon`) |
+| `extension:manager` | Репозитории, установка и загрузка расширений |
 | `translation:api` | Интерфейсы пайплайна перевода |
 | `feature:*` | Экраны |
 | `build-logic` | Convention-плагины Gradle |

@@ -85,6 +85,8 @@ dependencies {
     implementation(projects.downloads)
     implementation(projects.updates)
     implementation(projects.feature.updates)
+    implementation(projects.extension.manager)
+    implementation(projects.feature.extensions)
     implementation(projects.source.local)
     implementation(projects.source.mangadex)
     implementation(projects.source.komga)

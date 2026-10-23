@@ -4,6 +4,9 @@ package app.tsunayomi.source.api
 interface CatalogSource : Source {
     val supportsLatest: Boolean
 
+    /** The source has its own settings screen (extensions that expose preferences). */
+    val hasSettings: Boolean get() = false
+
     fun getFilters(): FilterList = FilterList()
 
     suspend fun getPopular(page: Int): MangaPage

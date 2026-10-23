@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="extension_lib_cloudflare_bypass_failure">Не удалось пройти проверку Cloudflare. Откройте сайт в WebView и попробуйте снова</string>
+    <string name="extension_lib_webview_required">Для этого источника нужен WebView</string>
+    <string name="extension_lib_webview_outdated">Обновите WebView для лучшей совместимости</string>
+</resources>

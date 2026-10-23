@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_extensions_title">Extensions</string>
+    <string name="feature_extensions_back">Back</string>
+    <string name="feature_extensions_languages">Languages</string>
+    <string name="feature_extensions_repos">Repositories</string>
+    <string name="feature_extensions_refresh">Refresh</string>
+    <string name="feature_extensions_no_repos_title">No repositories</string>
+    <string name="feature_extensions_no_repos_message">Extensions from Tachiyomi and Mihon repositories add more sites. Add a repository you trust to see its extensions.</string>
+    <string name="feature_extensions_add_repo">Add</string>
+    <string name="feature_extensions_search">Search extensions</string>
+    <string name="feature_extensions_section_updates">Updates</string>
+    <string name="feature_extensions_section_installed">Installed</string>
+    <string name="feature_extensions_section_available">Available</string>
+    <string name="feature_extensions_update">Update</string>
+    <string name="feature_extensions_install">Install</string>
+    <string name="feature_extensions_uninstall">Remove</string>
+    <string name="feature_extensions_uninstall_title">Remove %1$s?</string>
+    <string name="feature_extensions_uninstall_message">Titles from its sources stay in the library but can\'t be opened until it is installed again.</string>
+    <string name="feature_extensions_cancel">Cancel</string>
+    <string name="feature_extensions_close">Close</string>
+    <string name="feature_extensions_remove_repo">Remove repository</string>
+    <string name="feature_extensions_repo_hint">Link to a repository index (repo.json, index.min.json or index.pb). Only extensions signed with the repository key are installed.</string>
+    <string name="feature_extensions_repo_url">Repository link</string>
+    <string name="feature_extensions_show_nsfw">Show 18+ extensions</string>
+    <string name="feature_extensions_lang_multi">Multiple languages</string>
+    <string name="feature_extensions_lang_other">Other</string>
+    <string name="feature_extensions_failed_lib">Needs a newer or older version of the app</string>
+    <string name="feature_extensions_failed_untrusted">Not signed by any added repository</string>
+    <string name="feature_extensions_failed_broken">Could not be loaded</string>
+    <string name="feature_extensions_source_settings">Source settings</string>
+</resources>

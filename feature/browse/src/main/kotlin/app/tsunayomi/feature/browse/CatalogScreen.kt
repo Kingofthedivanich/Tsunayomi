@@ -13,6 +13,7 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Dns
 import androidx.compose.material.icons.outlined.FilterList
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.SearchOff
@@ -102,6 +103,11 @@ internal fun CatalogScreen(
                     if (viewModel.hasFilters) {
                         IconButton(onClick = { showFilters = true }) {
                             Icon(Icons.Outlined.FilterList, stringResource(R.string.feature_browse_filters))
+                        }
+                    }
+                    if (viewModel.source.hasSettings) {
+                        IconButton(onClick = { onOpenSourceSettings(viewModel.source.id) }) {
+                            Icon(Icons.Outlined.Settings, stringResource(R.string.feature_browse_source_settings))
                         }
                     }
                 },

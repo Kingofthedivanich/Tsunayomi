@@ -51,7 +51,7 @@ internal class GlobalSearchViewModel @Inject constructor(
         val trimmed = query.trim()
         if (trimmed.isEmpty()) return
         searchJob?.cancel()
-        val sources = sourceManager.catalogSources
+        val sources = sourceManager.currentCatalogSources()
         _state.value = GlobalSearchUiState(trimmed, sources.map { it to SourceResult.Loading })
         searchJob = viewModelScope.launch {
             val limiter = Semaphore(PARALLEL_SOURCES)

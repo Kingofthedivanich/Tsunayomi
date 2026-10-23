@@ -18,6 +18,11 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // QuickJS for extensions that evaluate JavaScript; only that artifact is taken from JitPack.
+        exclusiveContent {
+            forRepository { maven("https://www.jitpack.io") }
+            filter { includeGroup("com.github.zhanghai.quickjs-java") }
+        }
     }
 }
 
@@ -43,6 +48,9 @@ include(":source:api")
 include(":source:local")
 include(":source:mangadex")
 include(":source:komga")
+include(":extension:lib")
+include(":extension:manager")
+include(":feature:extensions")
 
 include(":translation:api")
 include(":translation:core")

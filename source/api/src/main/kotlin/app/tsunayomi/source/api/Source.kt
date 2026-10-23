@@ -15,6 +15,9 @@ interface Source {
     /** Ids this source used to have (e.g. before several per-language sources were merged); entries saved under them keep working. */
     val legacyIds: Set<Long> get() = emptySet()
 
+    /** Image URI of the source's icon, if it has its own (extensions do). */
+    val iconUri: String? get() = null
+
     companion object {
         const val MULTI_LANG = "multi"
     }

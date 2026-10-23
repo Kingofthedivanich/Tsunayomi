@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="extension_lib_cloudflare_bypass_failure">Could not get past Cloudflare. Open the site in WebView and try again</string>
+    <string name="extension_lib_webview_required">WebView is required for this source</string>
+    <string name="extension_lib_webview_outdated">Update WebView for better compatibility</string>
+</resources>

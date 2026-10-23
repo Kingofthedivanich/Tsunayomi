@@ -14,8 +14,14 @@ data class CatalogRoute(val sourceId: Long)
 @Serializable
 data object GlobalSearchRoute
 
-fun NavGraphBuilder.browseScreen(onOpenCatalog: (sourceId: Long) -> Unit, onOpenGlobalSearch: () -> Unit) {
-    composable<BrowseRoute> { BrowseScreen(onOpenCatalog = onOpenCatalog, onOpenGlobalSearch = onOpenGlobalSearch) }
+fun NavGraphBuilder.browseScreen(
+    onOpenCatalog: (sourceId: Long) -> Unit,
+    onOpenGlobalSearch: () -> Unit,
+    onOpenExtensions: () -> Unit,
+) {
+    composable<BrowseRoute> {
+        BrowseScreen(onOpenCatalog = onOpenCatalog, onOpenGlobalSearch = onOpenGlobalSearch, onOpenExtensions = onOpenExtensions)
+    }
 }
 
 fun NavGraphBuilder.catalogScreen(
