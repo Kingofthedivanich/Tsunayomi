@@ -62,4 +62,10 @@
     <string name="feature_settings_save">Save</string>
     <string name="feature_settings_translate_on_download">Translate when downloading</string>
     <string name="feature_settings_translate_on_download_summary">Downloaded chapters are translated right away, so they open translated even offline</string>
+    <string name="feature_settings_about_credits">Sources and services</string>
+    <string name="feature_settings_about_mangadex">Catalog and chapters from mangadex.org. Translations of chapters are the work of the scanlation groups shown next to each chapter.</string>
+    <string name="feature_settings_about_komga">Reads your own Komga server (komga.org).</string>
+    <string name="feature_settings_about_mlkit">On-device text recognition and offline translation.</string>
+    <string name="feature_settings_about_gemini">Online translation with your own API key; page text is sent to Google only when Gemini is chosen.</string>
+    <string name="feature_settings_about_disclaimer">Tsunayomi hosts no content and is not affiliated with any source. It shows what the sources you connect provide.</string>
 </resources>

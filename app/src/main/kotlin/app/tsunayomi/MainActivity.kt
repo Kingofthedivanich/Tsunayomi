@@ -10,6 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import app.tsunayomi.crash.CrashReportDialog
+import app.tsunayomi.crash.CrashReporter
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.theme.TsunayomiTheme
 import app.tsunayomi.core.model.ThemeMode
@@ -24,7 +29,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val pendingCrash = CrashReporter.pending(this)
         setContent {
+            var crashReport by remember { mutableStateOf(pendingCrash) }
             val settings by viewModel.settings.collectAsStateWithLifecycle()
             val current = settings ?: return@setContent
             val darkTheme = when (current.themeMode) {
@@ -46,6 +53,12 @@ class MainActivity : AppCompatActivity() {
                 pureBlack = current.pureBlack,
             ) {
                 TsunayomiApp()
+                crashReport?.let { report ->
+                    CrashReportDialog(report) {
+                        CrashReporter.discard(this)
+                        crashReport = null
+                    }
+                }
             }
         }
     }

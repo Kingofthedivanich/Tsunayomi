@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.tsunayomi.android.application)
     alias(libs.plugins.tsunayomi.android.compose)
@@ -5,13 +7,38 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
 }
 
+/**
+ * Release signing comes from keystore.properties (never committed) or, on CI, from environment variables.
+ * Without either, the release build is simply left unsigned.
+ */
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("keystore.properties")
+    if (file.exists()) file.inputStream().use(::load)
+}
+
+fun signingValue(property: String, environment: String): String? =
+    keystoreProperties.getProperty(property) ?: providers.environmentVariable(environment).orNull
+
 android {
     namespace = "app.tsunayomi"
 
     defaultConfig {
         applicationId = "app.tsunayomi"
-        versionCode = 1
-        versionName = "0.1.0"
+        // CI passes these from the release tag (v1.2.3 → versionName 1.2.3); local builds use the defaults.
+        versionCode = providers.gradleProperty("versionCode").orNull?.toInt() ?: 1
+        versionName = providers.gradleProperty("versionName").orNull ?: "0.1.0"
+    }
+
+    signingConfigs {
+        create("release") {
+            val store = signingValue("storeFile", "TSUNAYOMI_KEYSTORE_FILE")
+            if (store != null) {
+                storeFile = rootProject.file(store)
+                storePassword = signingValue("storePassword", "TSUNAYOMI_KEYSTORE_PASSWORD")
+                keyAlias = signingValue("keyAlias", "TSUNAYOMI_KEY_ALIAS")
+                keyPassword = signingValue("keyPassword", "TSUNAYOMI_KEY_PASSWORD")
+            }
+        }
     }
 
     splits {
@@ -22,6 +49,10 @@ android {
             include("arm64-v8a", "armeabi-v7a", "x86_64")
             isUniversalApk = false
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     androidResources {
@@ -35,6 +66,7 @@ android {
             versionNameSuffix = "-debug"
         }
         release {
+            signingConfig = signingConfigs.getByName("release").takeIf { it.storeFile != null }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")

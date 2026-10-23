@@ -59,4 +59,10 @@
     <string name="feature_settings_save">Сохранить</string>
     <string name="feature_settings_translate_on_download">Переводить при загрузке</string>
     <string name="feature_settings_translate_on_download_summary">Скачанные главы сразу переводятся и открываются с переводом даже без интернета</string>
+    <string name="feature_settings_about_credits">Источники и сервисы</string>
+    <string name="feature_settings_about_mangadex">Каталог и главы с mangadex.org. Переводы глав — работа групп-переводчиков, указанных у каждой главы.</string>
+    <string name="feature_settings_about_komga">Чтение с вашего собственного сервера Komga (komga.org).</string>
+    <string name="feature_settings_about_mlkit">Распознавание текста на устройстве и офлайн-перевод.</string>
+    <string name="feature_settings_about_gemini">Онлайн-перевод с вашим ключом API; текст страниц отправляется в Google, только когда выбран Gemini.</string>
+    <string name="feature_settings_about_disclaimer">Tsunayomi не размещает контент и не связан ни с одним источником. Приложение показывает то, что дают подключённые вами источники.</string>
 </resources>

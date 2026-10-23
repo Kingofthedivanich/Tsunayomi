@@ -1,0 +1,66 @@
+name: Release
+
+# Push a tag like v0.9.0 to build signed APKs and attach them to a GitHub release.
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Restore signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.TSUNAYOMI_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$KEYSTORE_BASE64" ]; then echo "TSUNAYOMI_KEYSTORE_BASE64 secret is missing"; exit 1; fi
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/release.jks"
+
+      - name: Build signed release
+        env:
+          TSUNAYOMI_KEYSTORE_FILE: ${{ runner.temp }}/release.jks
+          TSUNAYOMI_KEYSTORE_PASSWORD: ${{ secrets.TSUNAYOMI_KEYSTORE_PASSWORD }}
+          TSUNAYOMI_KEY_ALIAS: ${{ secrets.TSUNAYOMI_KEY_ALIAS }}
+          TSUNAYOMI_KEY_PASSWORD: ${{ secrets.TSUNAYOMI_KEY_PASSWORD }}
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          # versionCode must grow with every release; the commit count does.
+          CODE="$(git rev-list --count HEAD)"
+          ./gradlew assembleRelease testDebugUnitTest test -PversionName="$VERSION" -PversionCode="$CODE" --stacktrace
+          mkdir dist
+          for apk in app/build.nosync/outputs/apk/release/*.apk; do
+            abi="$(basename "$apk" | sed -E 's/app-(.*)-release\.apk/\1/')"
+            cp "$apk" "dist/tsunayomi-$VERSION-$abi.apk"
+          done
+          # Needed to read stack traces from crash reports (release code is obfuscated).
+          cp app/build.nosync/outputs/mapping/release/mapping.txt "dist/mapping-$VERSION.txt"
+          (cd dist && sha256sum *.apk > SHA256SUMS.txt)
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" dist/*.apk dist/SHA256SUMS.txt \
+            --title "Tsunayomi ${GITHUB_REF_NAME#v}" --generate-notes
+
+      - name: Keep mapping file
+        uses: actions/upload-artifact@v4
+        with:
+          name: mapping-${{ github.ref_name }}
+          path: dist/mapping-*.txt
+          retention-days: 90

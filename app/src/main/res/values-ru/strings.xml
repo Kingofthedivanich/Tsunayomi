@@ -4,4 +4,8 @@
     <string name="nav_browse">Обзор</string>
     <string name="nav_history">История</string>
     <string name="nav_more">Ещё</string>
+    <string name="crash_title">Tsunayomi аварийно закрылся</string>
+    <string name="crash_message">Отчёт хранится только на телефоне. Ничего не отправляется, пока вы сами не поделитесь им — это поможет исправить ошибку.</string>
+    <string name="crash_share">Поделиться отчётом</string>
+    <string name="crash_discard">Удалить</string>
 </resources>

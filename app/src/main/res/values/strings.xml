@@ -5,4 +5,8 @@
     <string name="nav_browse">Browse</string>
     <string name="nav_history">History</string>
     <string name="nav_more">More</string>
+    <string name="crash_title">Tsunayomi crashed last time</string>
+    <string name="crash_message">This report stays on your phone. Nothing is sent unless you share it yourself — it helps fix the bug.</string>
+    <string name="crash_share">Share report</string>
+    <string name="crash_discard">Delete</string>
 </resources>
