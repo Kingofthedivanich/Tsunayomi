@@ -68,4 +68,12 @@
     <string name="feature_settings_about_mlkit">On-device text recognition and offline translation.</string>
     <string name="feature_settings_about_gemini">Online translation with your own API key; page text is sent to Google only when Gemini is chosen.</string>
     <string name="feature_settings_about_disclaimer">Tsunayomi hosts no content and is not affiliated with any source. It shows what the sources you connect provide.</string>
+    <string name="feature_settings_section_updates">Library updates</string>
+    <string name="feature_settings_update_interval">Check for new chapters</string>
+    <string name="feature_settings_update_off">Off</string>
+    <string name="feature_settings_update_every">Every %d h</string>
+    <string name="feature_settings_update_wifi_only">Only on Wi-Fi</string>
+    <string name="feature_settings_update_wifi_only_summary">Skip automatic checks on mobile data</string>
+    <string name="feature_settings_auto_download">Download new chapters</string>
+    <string name="feature_settings_auto_download_summary">Chapters found by an update are downloaded (and translated, if that is on)</string>
 </resources>

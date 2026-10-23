@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="updates_progress_channel">Library update</string>
+    <string name="updates_channel">New chapters</string>
+    <string name="updates_progress_title">Checking for new chapters</string>
+    <string name="updates_progress">%1$d of %2$d titles</string>
+    <plurals name="updates_new_chapters">
+        <item quantity="one">%d new chapter</item>
+        <item quantity="other">%d new chapters</item>
+    </plurals>
+    <string name="updates_more_titles">and %d more titles</string>
+</resources>

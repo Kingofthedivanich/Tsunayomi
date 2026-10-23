@@ -37,6 +37,7 @@ include(":core:network")
 
 include(":data")
 include(":downloads")
+include(":updates")
 
 include(":source:api")
 include(":source:local")
@@ -49,6 +50,7 @@ include(":translation:mlkit")
 include(":translation:gemini")
 
 include(":feature:library")
+include(":feature:updates")
 include(":feature:browse")
 include(":feature:details")
 include(":feature:reader")

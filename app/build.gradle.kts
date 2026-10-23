@@ -83,6 +83,8 @@ dependencies {
     implementation(projects.core.network)
     implementation(projects.data)
     implementation(projects.downloads)
+    implementation(projects.updates)
+    implementation(projects.feature.updates)
     implementation(projects.source.local)
     implementation(projects.source.mangadex)
     implementation(projects.source.komga)

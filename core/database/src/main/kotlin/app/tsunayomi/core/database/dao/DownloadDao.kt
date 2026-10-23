@@ -12,6 +12,9 @@ interface DownloadDao {
     @Query("SELECT * FROM download WHERE manga_id = :mangaId")
     fun observeForManga(mangaId: Long): Flow<List<DownloadEntity>>
 
+    @Query("SELECT * FROM download")
+    fun observeAll(): Flow<List<DownloadEntity>>
+
     @Query("SELECT * FROM download WHERE state IN ('Queued', 'Downloading', 'Translating') ORDER BY created_at")
     fun observeActive(): Flow<List<DownloadEntity>>
 

@@ -5,6 +5,7 @@ import app.tsunayomi.core.database.dao.LibraryDao
 import app.tsunayomi.core.model.Category
 import app.tsunayomi.core.model.HistoryItem
 import app.tsunayomi.core.model.LibraryManga
+import app.tsunayomi.core.model.UpdateItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
@@ -30,6 +31,12 @@ class LibraryRepository @Inject constructor(
             )
         }
     }
+
+    fun observeUpdates(): Flow<List<UpdateItem>> = libraryDao.observeUpdates().map { rows ->
+        rows.map { UpdateItem(it.chapter.toModel(), it.mangaTitle, it.mangaCoverUrl, it.chapter.fetchedAt) }
+    }
+
+    suspend fun favoriteIds(): List<Long> = libraryDao.favoriteIds()
 
     fun observeCategories(): Flow<List<Category>> =
         categoryDao.observeAll().map { list -> list.map { Category(it.id, it.name, it.order) } }

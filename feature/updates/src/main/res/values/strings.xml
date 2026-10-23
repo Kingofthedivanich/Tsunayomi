@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_updates_title">Updates</string>
+    <string name="feature_updates_refresh">Check for new chapters</string>
+    <string name="feature_updates_download">Download</string>
+    <string name="feature_updates_today">Today</string>
+    <string name="feature_updates_yesterday">Yesterday</string>
+    <string name="feature_updates_empty_title">No new chapters yet</string>
+    <string name="feature_updates_empty_message">Library titles are checked every %d h. Pull down to check now.</string>
+    <string name="feature_updates_empty_message_off">Automatic checks are off in settings. Pull down to check now.</string>
+</resources>

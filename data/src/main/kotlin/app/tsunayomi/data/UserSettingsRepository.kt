@@ -36,5 +36,11 @@ class UserSettingsRepository @Inject constructor(
 
     suspend fun setTranslateOnDownload(enabled: Boolean) = preferences.setTranslateOnDownload(enabled)
 
+    suspend fun setLibraryUpdateInterval(hours: Int) = preferences.setLibraryUpdateInterval(hours)
+
+    suspend fun setLibraryUpdateWifiOnly(enabled: Boolean) = preferences.setLibraryUpdateWifiOnly(enabled)
+
+    suspend fun setAutoDownloadNewChapters(enabled: Boolean) = preferences.setAutoDownloadNewChapters(enabled)
+
     suspend fun setLibrarySort(sort: LibrarySort, ascending: Boolean) = preferences.setLibrarySort(sort, ascending)
 }

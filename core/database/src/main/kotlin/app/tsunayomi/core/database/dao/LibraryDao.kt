@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Dao
 import androidx.room.Embedded
 import androidx.room.Query
+import app.tsunayomi.core.database.entity.ChapterEntity
 import app.tsunayomi.core.database.entity.MangaEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -27,8 +28,30 @@ data class HistoryRow(
     @ColumnInfo(name = "last_read_at") val lastReadAt: Long,
 )
 
+/** A chapter found by a library update, with what the Updates tab shows about its title. */
+data class UpdateRow(
+    @Embedded val chapter: ChapterEntity,
+    @ColumnInfo(name = "manga_title") val mangaTitle: String,
+    @ColumnInfo(name = "manga_cover_url") val mangaCoverUrl: String?,
+    @ColumnInfo(name = "manga_source_id") val mangaSourceId: Long,
+)
+
 @Dao
 interface LibraryDao {
+    @Query(
+        """
+        SELECT c.*, m.title AS manga_title, m.cover_url AS manga_cover_url, m.source_id AS manga_source_id
+        FROM chapter c JOIN manga m ON m.id = c.manga_id
+        WHERE m.favorite = 1 AND c.fetched_at > 0
+        ORDER BY c.fetched_at DESC, c.source_order DESC
+        LIMIT 500
+        """,
+    )
+    fun observeUpdates(): Flow<List<UpdateRow>>
+
+    @Query("SELECT id FROM manga WHERE favorite = 1 ORDER BY title COLLATE NOCASE")
+    suspend fun favoriteIds(): List<Long>
+
     @Query(
         """
         SELECT m.*,

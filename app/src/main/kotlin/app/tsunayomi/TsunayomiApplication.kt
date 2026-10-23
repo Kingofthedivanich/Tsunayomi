@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import app.tsunayomi.crash.CrashReporter
+import app.tsunayomi.updates.LibraryUpdateScheduler
 import coil3.ImageLoader
 import coil3.PlatformContext
 import coil3.SingletonImageLoader
@@ -20,9 +21,13 @@ class TsunayomiApplication : Application(), SingletonImageLoader.Factory, Config
     @Inject
     lateinit var workerFactory: HiltWorkerFactory
 
+    @Inject
+    lateinit var libraryUpdateScheduler: LibraryUpdateScheduler
+
     override fun onCreate() {
         super.onCreate()
         CrashReporter.install(this, BuildConfig.VERSION_NAME)
+        libraryUpdateScheduler.start()
     }
 
     override fun newImageLoader(context: PlatformContext): ImageLoader = imageLoader.get()

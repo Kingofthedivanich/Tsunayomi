@@ -1,5 +1,6 @@
 package app.tsunayomi
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
@@ -26,12 +27,29 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
 
+    /** Set when launched from the "new chapters" notification; the UI opens the Updates tab and clears it. */
+    private val openUpdatesState = mutableStateOf(false)
+    private var openUpdatesRequest: Boolean
+        get() = openUpdatesState.value
+        set(value) {
+            openUpdatesState.value = value
+        }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        if (intent.wantsUpdates()) openUpdatesRequest = true
+    }
+
+    private fun Intent?.wantsUpdates() = this?.getStringExtra("app.tsunayomi.open") == "updates"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         val pendingCrash = CrashReporter.pending(this)
+        openUpdatesRequest = intent.wantsUpdates()
         setContent {
             var crashReport by remember { mutableStateOf(pendingCrash) }
+            val openUpdates by remember { openUpdatesState }
             val settings by viewModel.settings.collectAsStateWithLifecycle()
             val current = settings ?: return@setContent
             val darkTheme = when (current.themeMode) {
@@ -52,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 dynamicColor = current.dynamicColor,
                 pureBlack = current.pureBlack,
             ) {
-                TsunayomiApp()
+                TsunayomiApp(openUpdates = openUpdates, onUpdatesOpened = { openUpdatesRequest = false })
                 crashReport?.let { report ->
                     CrashReportDialog(report) {
                         CrashReporter.discard(this)

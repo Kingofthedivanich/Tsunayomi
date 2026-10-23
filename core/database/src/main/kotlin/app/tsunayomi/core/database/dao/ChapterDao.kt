@@ -26,7 +26,7 @@ abstract class ChapterDao {
     abstract suspend fun setRead(ids: List<Long>, read: Boolean)
 
     @Insert
-    protected abstract suspend fun insert(chapters: List<ChapterEntity>)
+    protected abstract suspend fun insert(chapters: List<ChapterEntity>): List<Long>
 
     @Update
     protected abstract suspend fun update(chapters: List<ChapterEntity>)
@@ -37,10 +37,12 @@ abstract class ChapterDao {
     /**
      * Replaces the chapter list with [incoming] (matched by URL) while keeping read state and progress.
      * Chapters that disappeared from the source are removed together with their history.
+     * Returns the ids of chapters that are new; they are stamped with [now] unless this is the title's first list.
      */
     @Transaction
-    open suspend fun sync(mangaId: Long, incoming: List<ChapterEntity>) {
+    open suspend fun sync(mangaId: Long, incoming: List<ChapterEntity>, now: Long = System.currentTimeMillis()): List<Long> {
         val existing = getByManga(mangaId).associateBy { it.url }
+        val firstList = existing.isEmpty()
         val incomingUrls = incoming.mapTo(HashSet()) { it.url }
         delete(existing.values.filter { it.url !in incomingUrls }.map { it.id })
 
@@ -48,9 +50,15 @@ abstract class ChapterDao {
         update(
             known.map { chapter ->
                 val old = existing.getValue(chapter.url)
-                chapter.copy(id = old.id, read = old.read, lastPageRead = old.lastPageRead, bookmark = old.bookmark)
+                chapter.copy(
+                    id = old.id,
+                    read = old.read,
+                    lastPageRead = old.lastPageRead,
+                    bookmark = old.bookmark,
+                    fetchedAt = old.fetchedAt,
+                )
             },
         )
-        insert(fresh)
+        return insert(fresh.map { it.copy(fetchedAt = if (firstList) 0 else now) })
     }
 }

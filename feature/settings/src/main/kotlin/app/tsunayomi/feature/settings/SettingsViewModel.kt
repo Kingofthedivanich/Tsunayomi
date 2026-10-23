@@ -33,6 +33,18 @@ internal class SettingsViewModel @Inject constructor(
         viewModelScope.launch { repository.setTranslationTargetLang(lang) }
     }
 
+    fun setLibraryUpdateInterval(hours: Int) {
+        viewModelScope.launch { repository.setLibraryUpdateInterval(hours) }
+    }
+
+    fun setLibraryUpdateWifiOnly(enabled: Boolean) {
+        viewModelScope.launch { repository.setLibraryUpdateWifiOnly(enabled) }
+    }
+
+    fun setAutoDownloadNewChapters(enabled: Boolean) {
+        viewModelScope.launch { repository.setAutoDownloadNewChapters(enabled) }
+    }
+
     fun setTranslateOnDownload(enabled: Boolean) {
         viewModelScope.launch { repository.setTranslateOnDownload(enabled) }
     }

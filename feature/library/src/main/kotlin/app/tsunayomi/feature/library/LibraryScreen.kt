@@ -30,6 +30,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -64,6 +65,7 @@ internal fun LibraryScreen(
     viewModel: LibraryViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val updating by viewModel.updating.collectAsStateWithLifecycle()
     LaunchedEffect(viewModel) {
         viewModel.eventFlow.collect { event ->
             when (event) {
@@ -113,7 +115,14 @@ internal fun LibraryScreen(
             )
             return@Scaffold
         }
-        Column(Modifier.padding(padding)) {
+        PullToRefreshBox(
+            isRefreshing = updating,
+            onRefresh = viewModel::updateLibrary,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
+        ) {
+        Column {
             val tabs = state.tabs
             val pagerState = rememberPagerState { tabs.size }
             val scope = rememberCoroutineScope()
@@ -149,6 +158,7 @@ internal fun LibraryScreen(
                     }
                 }
             }
+        }
         }
     }
 }

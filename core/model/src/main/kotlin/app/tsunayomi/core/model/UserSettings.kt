@@ -16,6 +16,11 @@ data class UserSettings(
     val translateByDefault: Boolean = false,
     /** Translate chapters right after downloading, so offline reading shows translations instantly. */
     val translateOnDownload: Boolean = true,
+    /** Hours between background library updates; 0 turns them off. */
+    val libraryUpdateIntervalHours: Int = 12,
+    val libraryUpdateWifiOnly: Boolean = false,
+    /** Queue chapters found by a library update for download (and translation, if that is on). */
+    val autoDownloadNewChapters: Boolean = false,
 )
 
 enum class ThemeMode {

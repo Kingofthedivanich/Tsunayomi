@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_updates_title">Обновления</string>
+    <string name="feature_updates_refresh">Проверить новые главы</string>
+    <string name="feature_updates_download">Скачать</string>
+    <string name="feature_updates_today">Сегодня</string>
+    <string name="feature_updates_yesterday">Вчера</string>
+    <string name="feature_updates_empty_title">Новых глав пока нет</string>
+    <string name="feature_updates_empty_message">Тайтлы библиотеки проверяются каждые %d ч. Потяните вниз, чтобы проверить сейчас.</string>
+    <string name="feature_updates_empty_message_off">Автоматическая проверка выключена в настройках. Потяните вниз, чтобы проверить сейчас.</string>
+</resources>

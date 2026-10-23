@@ -65,9 +65,9 @@ class MangaRepository @Inject constructor(
         )
     }
 
-    /** Fetches details and chapters from the source. */
-    suspend fun refresh(mangaId: Long) = withContext(io) {
-        val entity = mangaDao.getById(mangaId) ?: return@withContext
+    /** Fetches details and chapters from the source. Returns the ids of chapters that are new since the last time. */
+    suspend fun refresh(mangaId: Long): List<Long> = withContext(io) {
+        val entity = mangaDao.getById(mangaId) ?: return@withContext emptyList()
         val source = sourceManager.getCatalog(entity.sourceId)
         val details = source.getDetails(entity.toModel().toSManga())
         mangaDao.update(
@@ -88,6 +88,10 @@ class MangaRepository @Inject constructor(
         val chapters = source.getChapters(details)
         chapterDao.sync(mangaId, chapters.mapIndexed { index, chapter -> chapter.toEntity(mangaId, index) })
     }
+
+    suspend fun getManga(mangaIds: List<Long>): List<Manga> = mangaIds.mapNotNull { getManga(it) }
+
+    suspend fun getChaptersById(ids: List<Long>): List<Chapter> = ids.mapNotNull { chapterDao.getById(it)?.toModel() }
 
     suspend fun needsRefresh(mangaId: Long): Boolean =
         mangaDao.getById(mangaId)?.detailsUpdatedAt == 0L || chapterDao.getByManga(mangaId).isEmpty()

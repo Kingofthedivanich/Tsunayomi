@@ -32,4 +32,9 @@ data class ChapterEntity(
     @ColumnInfo(name = "source_order") val sourceOrder: Int,
     /** Language of the text in this chapter (ISO 639-1), when the source knows it. */
     @ColumnInfo(name = "language") val language: String? = null,
+    /**
+     * When a library update (or a later refresh) found this chapter; 0 for chapters that came with the title's
+     * first chapter list, so adding a title does not flood the Updates tab with its whole back catalogue.
+     */
+    @ColumnInfo(name = "fetched_at", defaultValue = "0") val fetchedAt: Long = 0,
 )

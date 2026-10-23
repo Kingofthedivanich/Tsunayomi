@@ -37,6 +37,10 @@ class DownloadManager @Inject constructor(
     fun observe(mangaId: Long): Flow<Map<Long, ChapterDownload>> =
         dao.observeForManga(mangaId).map { list -> list.associate { it.chapterId to it.toModel() } }
 
+    /** Every download (any title), for screens that mix titles such as Updates. */
+    fun observeAll(): Flow<Map<Long, ChapterDownload>> =
+        dao.observeAll().map { list -> list.associate { it.chapterId to it.toModel() } }
+
     fun observeActive(): Flow<List<ChapterDownload>> = dao.observeActive().map { list -> list.map { it.toModel() } }
 
     /** Queues chapters and adds the title to the library: downloaded chapters should be found there, not in the source. */

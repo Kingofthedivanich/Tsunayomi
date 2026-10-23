@@ -65,4 +65,12 @@
     <string name="feature_settings_about_mlkit">Распознавание текста на устройстве и офлайн-перевод.</string>
     <string name="feature_settings_about_gemini">Онлайн-перевод с вашим ключом API; текст страниц отправляется в Google, только когда выбран Gemini.</string>
     <string name="feature_settings_about_disclaimer">Tsunayomi не размещает контент и не связан ни с одним источником. Приложение показывает то, что дают подключённые вами источники.</string>
+    <string name="feature_settings_section_updates">Обновления библиотеки</string>
+    <string name="feature_settings_update_interval">Проверять новые главы</string>
+    <string name="feature_settings_update_off">Выключено</string>
+    <string name="feature_settings_update_every">Каждые %d ч</string>
+    <string name="feature_settings_update_wifi_only">Только по Wi-Fi</string>
+    <string name="feature_settings_update_wifi_only_summary">Не проверять автоматически через мобильный интернет</string>
+    <string name="feature_settings_auto_download">Скачивать новые главы</string>
+    <string name="feature_settings_auto_download_summary">Найденные при обновлении главы скачиваются (и переводятся, если это включено)</string>
 </resources>

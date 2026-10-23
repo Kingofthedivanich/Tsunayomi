@@ -9,6 +9,7 @@ import app.tsunayomi.data.LibrarySorting
 import app.tsunayomi.data.MangaRepository
 import app.tsunayomi.data.ReadingOrder
 import app.tsunayomi.data.UserSettingsRepository
+import app.tsunayomi.updates.LibraryUpdateScheduler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,7 +47,14 @@ internal class LibraryViewModel @Inject constructor(
     libraryRepository: LibraryRepository,
     private val mangaRepository: MangaRepository,
     private val settingsRepository: UserSettingsRepository,
+    private val updateScheduler: LibraryUpdateScheduler,
 ) : ViewModel() {
+    val updating: StateFlow<Boolean> = updateScheduler.isRunning
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
+
+    /** Pull to refresh: check every library title for new chapters now. */
+    fun updateLibrary() = updateScheduler.runNow()
+
     private val query = MutableStateFlow("")
     private val events = Channel<LibraryEvent>(Channel.BUFFERED)
     val eventFlow = events.receiveAsFlow()

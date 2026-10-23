@@ -15,6 +15,14 @@ enum class LibrarySort {
     Unread,
 }
 
+/** A new chapter in the Updates tab. */
+data class UpdateItem(
+    val chapter: Chapter,
+    val mangaTitle: String,
+    val mangaCoverUrl: String?,
+    val fetchedAt: Long,
+)
+
 enum class DownloadState { Queued, Downloading, Translating, Done, Failed }
 
 data class ChapterDownload(

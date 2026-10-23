@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="updates_progress_channel">Обновление библиотеки</string>
+    <string name="updates_channel">Новые главы</string>
+    <string name="updates_progress_title">Проверка новых глав</string>
+    <string name="updates_progress">%1$d из %2$d тайтлов</string>
+    <plurals name="updates_new_chapters">
+        <item quantity="one">%d новая глава</item>
+        <item quantity="few">%d новые главы</item>
+        <item quantity="many">%d новых глав</item>
+        <item quantity="other">%d новой главы</item>
+    </plurals>
+    <string name="updates_more_titles">и ещё %d тайтлов</string>
+</resources>

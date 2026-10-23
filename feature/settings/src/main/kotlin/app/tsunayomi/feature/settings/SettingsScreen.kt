@@ -63,6 +63,9 @@ internal fun SettingsScreen(
         onTranslationLangChange = viewModel::setTranslationTargetLang,
         onTranslateByDefaultChange = viewModel::setTranslateByDefault,
         onTranslateOnDownloadChange = viewModel::setTranslateOnDownload,
+        onUpdateIntervalChange = viewModel::setLibraryUpdateInterval,
+        onUpdateWifiOnlyChange = viewModel::setLibraryUpdateWifiOnly,
+        onAutoDownloadNewChange = viewModel::setAutoDownloadNewChapters,
         onGeminiChange = viewModel::setGemini,
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
@@ -85,6 +88,9 @@ private fun SettingsContent(
     onTranslationLangChange: (String) -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
     onTranslateOnDownloadChange: (Boolean) -> Unit,
+    onUpdateIntervalChange: (Int) -> Unit,
+    onUpdateWifiOnlyChange: (Boolean) -> Unit,
+    onAutoDownloadNewChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
@@ -100,6 +106,7 @@ private fun SettingsContent(
     var showReaderModeDialog by rememberSaveable { mutableStateOf(false) }
     var showEngineDialog by rememberSaveable { mutableStateOf(false) }
     var showTargetDialog by rememberSaveable { mutableStateOf(false) }
+    var showIntervalDialog by rememberSaveable { mutableStateOf(false) }
     val pickFolder = rememberLibraryFolderPicker { onLibraryFolderPicked(it.toString()) }
     val language = remember(showLanguageDialog) { AppLanguage.current() }
 
@@ -175,6 +182,27 @@ private fun SettingsContent(
                 modifier = Modifier.clickable(onClick = onOpenKomga),
             )
 
+            SectionHeader(stringResource(R.string.feature_settings_section_updates))
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_update_interval)) },
+                supportingContent = { Text(intervalLabel(settings.libraryUpdateIntervalHours)) },
+                modifier = Modifier.clickable { showIntervalDialog = true },
+            )
+            if (settings.libraryUpdateIntervalHours > 0) {
+                SwitchItem(
+                    title = stringResource(R.string.feature_settings_update_wifi_only),
+                    summary = stringResource(R.string.feature_settings_update_wifi_only_summary),
+                    checked = settings.libraryUpdateWifiOnly,
+                    onCheckedChange = onUpdateWifiOnlyChange,
+                )
+            }
+            SwitchItem(
+                title = stringResource(R.string.feature_settings_auto_download),
+                summary = stringResource(R.string.feature_settings_auto_download_summary),
+                checked = settings.autoDownloadNewChapters,
+                onCheckedChange = onAutoDownloadNewChange,
+            )
+
             SectionHeader(stringResource(R.string.feature_settings_section_reader))
             ListItem(
                 headlineContent = { Text(stringResource(R.string.feature_settings_reader_mode)) },
@@ -200,6 +228,20 @@ private fun SettingsContent(
                 switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
             )
         }
+    }
+
+    if (showIntervalDialog && settings != null) {
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_update_interval),
+            options = UPDATE_INTERVALS,
+            selected = settings.libraryUpdateIntervalHours,
+            label = { intervalLabel(it) },
+            onSelect = {
+                showIntervalDialog = false
+                onUpdateIntervalChange(it)
+            },
+            onDismiss = { showIntervalDialog = false },
+        )
     }
 
     if (showEngineDialog && settings != null) {
@@ -343,6 +385,13 @@ private fun <T> ChoiceDialog(
         },
     )
 }
+
+/** Hours between library updates offered in settings; 0 is "off". */
+private val UPDATE_INTERVALS = listOf(0, 6, 12, 24, 48)
+
+@Composable
+private fun intervalLabel(hours: Int): String =
+    if (hours <= 0) stringResource(R.string.feature_settings_update_off) else stringResource(R.string.feature_settings_update_every, hours)
 
 /** "primary:Manga/Shelf" → "Manga/Shelf": the tree id is the most readable thing SAF gives us. */
 private fun folderLabel(uri: String): String =

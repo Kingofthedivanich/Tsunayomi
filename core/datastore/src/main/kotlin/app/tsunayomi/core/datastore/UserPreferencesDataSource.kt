@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import app.tsunayomi.core.model.LibrarySort
 import app.tsunayomi.core.model.ReaderMode
@@ -32,6 +33,9 @@ class UserPreferencesDataSource @Inject constructor(
             translationTargetLang = prefs[Keys.translationTargetLang] ?: defaults.translationTargetLang,
             translateByDefault = prefs[Keys.translateByDefault] ?: defaults.translateByDefault,
             translateOnDownload = prefs[Keys.translateOnDownload] ?: defaults.translateOnDownload,
+            libraryUpdateIntervalHours = prefs[Keys.libraryUpdateInterval] ?: defaults.libraryUpdateIntervalHours,
+            libraryUpdateWifiOnly = prefs[Keys.libraryUpdateWifiOnly] ?: defaults.libraryUpdateWifiOnly,
+            autoDownloadNewChapters = prefs[Keys.autoDownloadNew] ?: defaults.autoDownloadNewChapters,
         )
     }
 
@@ -76,6 +80,18 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.translationTargetLang] = lang }
     }
 
+    suspend fun setLibraryUpdateInterval(hours: Int) {
+        dataStore.edit { it[Keys.libraryUpdateInterval] = hours }
+    }
+
+    suspend fun setLibraryUpdateWifiOnly(enabled: Boolean) {
+        dataStore.edit { it[Keys.libraryUpdateWifiOnly] = enabled }
+    }
+
+    suspend fun setAutoDownloadNewChapters(enabled: Boolean) {
+        dataStore.edit { it[Keys.autoDownloadNew] = enabled }
+    }
+
     suspend fun setTranslateOnDownload(enabled: Boolean) {
         dataStore.edit { it[Keys.translateOnDownload] = enabled }
     }
@@ -100,5 +116,8 @@ class UserPreferencesDataSource @Inject constructor(
         val translationTargetLang = stringPreferencesKey("translation_target_lang")
         val translateByDefault = booleanPreferencesKey("translate_by_default")
         val translateOnDownload = booleanPreferencesKey("translate_on_download")
+        val libraryUpdateInterval = intPreferencesKey("library_update_interval_hours")
+        val libraryUpdateWifiOnly = booleanPreferencesKey("library_update_wifi_only")
+        val autoDownloadNew = booleanPreferencesKey("auto_download_new_chapters")
     }
 }

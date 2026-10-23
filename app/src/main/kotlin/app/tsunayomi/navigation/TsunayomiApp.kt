@@ -7,6 +7,7 @@ import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffoldDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteType
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavDestination
@@ -35,12 +36,25 @@ import app.tsunayomi.feature.reader.navigateToReader
 import app.tsunayomi.feature.reader.readerScreen
 import app.tsunayomi.feature.settings.komgaSettingsScreen
 import app.tsunayomi.feature.settings.moreGraph
+import app.tsunayomi.feature.updates.UpdatesRoute
+import app.tsunayomi.feature.updates.updatesScreen
 import app.tsunayomi.feature.settings.navigateToKomgaSettings
 import app.tsunayomi.source.api.SourceIds
 
 /** Root of the UI: adaptive navigation (bottom bar on phones, rail on tablets) around the nav host. */
 @Composable
-fun TsunayomiApp(navController: NavHostController = rememberNavController()) {
+fun TsunayomiApp(
+    navController: NavHostController = rememberNavController(),
+    openUpdates: Boolean = false,
+    onUpdatesOpened: () -> Unit = {},
+) {
+    // Opened from the "new chapters" notification.
+    LaunchedEffect(openUpdates) {
+        if (openUpdates) {
+            navController.navigateToTopLevel(TopLevelDestination.Updates)
+            onUpdatesOpened()
+        }
+    }
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = backStackEntry?.destination
     val showNavigation = currentDestination?.isTopLevel() ?: true
@@ -75,6 +89,7 @@ fun TsunayomiApp(navController: NavHostController = rememberNavController()) {
                 onOpenCategories = navController::navigateToCategories,
             )
             categoriesScreen(onBack = navController::popBackStack)
+            updatesScreen(onOpenManga = navController::navigateToDetails, onOpenReader = navController::navigateToReader)
             browseScreen(
                 onOpenCatalog = navController::navigateToCatalog,
                 onOpenGlobalSearch = navController::navigateToGlobalSearch,
@@ -98,7 +113,8 @@ fun TsunayomiApp(navController: NavHostController = rememberNavController()) {
 
 /** The bar stays on tab roots and settings pages; detail screens and the reader get the full screen. */
 private fun NavDestination.isTopLevel(): Boolean =
-    hasRoute(LibraryRoute::class) || hasRoute(BrowseRoute::class) || hasRoute(HistoryRoute::class) ||
+    hasRoute(LibraryRoute::class) || hasRoute(UpdatesRoute::class) || hasRoute(BrowseRoute::class) ||
+        hasRoute(HistoryRoute::class) ||
         hierarchy.any { it.hasRoute(TopLevelDestination.More.routeClass) }
 
 private fun NavHostController.navigateToTopLevel(destination: TopLevelDestination) {
