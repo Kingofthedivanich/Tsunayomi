@@ -28,6 +28,9 @@ interface Translator {
     /** Part of the cache key; bump when output changes (e.g. a new prompt) so old translations are redone. */
     val cacheVersion: Int get() = 1
 
+    /** Settings that change the output (e.g. the chosen models), also part of the cache key. */
+    suspend fun cacheTag(): String = ""
+
     /**
      * True for engines that do better with many pages in one call (LLMs: shared context, fewer requests).
      * Others are called page by page.

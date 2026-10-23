@@ -156,13 +156,14 @@ class DefaultPageTranslatorTest {
     }
 
     @Test
-    fun `overlapping requests do the work once`() = runTest {
+    fun `overlapping requests translate each page once`() = runTest {
         val pageTranslator = translator()
         listOf(
             async { pageTranslator.translate(pages("p1", "p2"), "en", mangaId = 7) },
             async { pageTranslator.translate(pages("p2", "p3"), "en", mangaId = 7) },
         ).awaitAll()
-        assertEquals(3, recognizeCalls)
+        // Recognition may overlap, but the shared page is only sent to the translator once.
+        assertEquals(6, gemini.calls.sumOf { it.first.size })
     }
 
     @Test

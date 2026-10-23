@@ -54,7 +54,7 @@
     <string name="feature_settings_gemini_key_missing">Не задан — пока используется ML Kit</string>
     <string name="feature_settings_gemini_key_set">Сохранён (зашифрован на устройстве)</string>
     <string name="feature_settings_gemini_key_hint">Бесплатный ключ: aistudio.google.com → Get API key. Хранится зашифрованным и отправляется только в Google.</string>
-    <string name="feature_settings_gemini_model">Модель Gemini</string>
-    <string name="feature_settings_gemini_model_hint">Идентификатор модели, например %s. Дешёвые модели быстрее и с бо́льшими бесплатными лимитами.</string>
+    <string name="feature_settings_gemini_model">Модели Gemini</string>
+    <string name="feature_settings_gemini_model_hint">Идентификаторы моделей через запятую, по порядку. Когда у одной кончается бесплатный лимит на день или минуту, работает следующая. Оставьте пустым для набора по умолчанию: %s</string>
     <string name="feature_settings_save">Сохранить</string>
 </resources>

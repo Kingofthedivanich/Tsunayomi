@@ -57,7 +57,7 @@
     <string name="feature_settings_gemini_key_missing">Not set — ML Kit is used until you add one</string>
     <string name="feature_settings_gemini_key_set">Saved (encrypted on this device)</string>
     <string name="feature_settings_gemini_key_hint">Create a free key at aistudio.google.com → Get API key. It is stored encrypted and only sent to Google.</string>
-    <string name="feature_settings_gemini_model">Gemini model</string>
-    <string name="feature_settings_gemini_model_hint">Model id, e.g. %s. Cheaper models are faster and have higher free limits.</string>
+    <string name="feature_settings_gemini_model">Gemini models</string>
+    <string name="feature_settings_gemini_model_hint">Model ids separated by commas, in order. When one runs out of its free daily or per-minute limit, the next one takes over. Leave empty for the default: %s</string>
     <string name="feature_settings_save">Save</string>
 </resources>

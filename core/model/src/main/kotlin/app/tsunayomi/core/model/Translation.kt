@@ -11,10 +11,15 @@ enum class TranslationEngine(val requiresApiKey: Boolean, val implemented: Boole
 
 data class GeminiConfig(
     val apiKey: String = "",
-    val model: String = DEFAULT_MODEL,
+    /** Tried in order; when one runs out of its free quota the next takes over. */
+    val models: List<String> = DEFAULT_MODELS,
 ) {
     companion object {
-        /** Cheapest fast model at the time of writing; the user can change it in settings. */
-        const val DEFAULT_MODEL = "gemini-3.5-flash-lite"
+        /**
+         * Free-tier quotas are per model, so a chain multiplies the daily budget:
+         * 500 + 500 requests/day for the Flash Lite models, then Gemma with a large daily cap but a tight
+         * tokens-per-minute limit.
+         */
+        val DEFAULT_MODELS = listOf("gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it")
     }
 }

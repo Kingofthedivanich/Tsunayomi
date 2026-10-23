@@ -35,14 +35,20 @@ import java.util.Locale
  * Several pages go in one request as numbered items tagged with their page; the model answers with JSON keyed
  * by the same ids, plus names and terms it saw for the first time, which the caller keeps as a glossary.
  */
-class GeminiTranslator(
+class GeminiTranslator internal constructor(
     private val client: OkHttpClient,
     private val configs: Flow<GeminiConfig>,
-    private val baseUrl: HttpUrl = BASE_URL.toHttpUrl(),
+    private val baseUrl: HttpUrl,
+    private val quota: ModelQuota,
 ) : Translator {
+    constructor(client: OkHttpClient, configs: Flow<GeminiConfig>, baseUrl: HttpUrl = BASE_URL.toHttpUrl()) :
+        this(client, configs, baseUrl, ModelQuota())
+
     override val engine: TranslationEngine = TranslationEngine.Gemini
     override val cacheVersion: Int = PROMPT_VERSION
     override val batchesPages: Boolean = true
+
+    override suspend fun cacheTag(): String = configs.first().models.joinToString("+")
 
     override suspend fun translate(
         texts: List<SourceText>,
@@ -54,14 +60,46 @@ class GeminiTranslator(
         val config = configs.first()
         if (config.apiKey.isBlank()) throw TranslationException.MissingApiKey(engine)
 
+        // Quotas are per model: walk the chain, skipping models known to be out of quota.
+        var lastUnavailable: String? = null
+        for (model in config.models.filter(quota::isAvailable)) {
+            when (val outcome = request(model, config.apiKey, texts, sourceLang, targetLang, context)) {
+                is Outcome.Success -> return outcome.batch
+                is Outcome.Unavailable -> {
+                    quota.block(model, outcome.until)
+                    lastUnavailable = outcome.reason
+                }
+            }
+        }
+        if (lastUnavailable != null && lastUnavailable.startsWith(NOT_FOUND)) {
+            throw TranslationException.Engine("No usable Gemini model: $lastUnavailable")
+        }
+        throw TranslationException.QuotaExceeded(engine)
+    }
+
+    private sealed interface Outcome {
+        data class Success(val batch: TranslationBatch) : Outcome
+
+        /** This model can't serve now (quota, unknown id); the next one in the chain should try. */
+        data class Unavailable(val until: Long, val reason: String) : Outcome
+    }
+
+    private suspend fun request(
+        model: String,
+        apiKey: String,
+        texts: List<SourceText>,
+        sourceLang: String?,
+        targetLang: String,
+        context: TranslationContext,
+    ): Outcome {
         val url = baseUrl.newBuilder()
             .addPathSegments("v1beta/models")
-            .addPathSegment("${config.model}:generateContent")
+            .addPathSegment("$model:generateContent")
             .build()
         val request = Request.Builder()
             .url(url)
-            .header("x-goog-api-key", config.apiKey)
-            .post(requestBody(texts, sourceLang, targetLang, context).toRequestBody(JSON_TYPE))
+            .header("x-goog-api-key", apiKey)
+            .post(requestBody(model, texts, sourceLang, targetLang, context).toRequestBody(JSON_TYPE))
             .build()
 
         val response = try {
@@ -70,16 +108,42 @@ class GeminiTranslator(
             throw TranslationException.Network(e)
         }
         val body = response.use { it.body.string() }
-        when {
-            response.code == 429 -> throw TranslationException.QuotaExceeded(engine)
+        return when {
+            response.code == 429 -> Outcome.Unavailable(quotaResetTime(body), "$model: quota")
+            response.code == 404 -> Outcome.Unavailable(quota.inSeconds(UNKNOWN_MODEL_RETRY_SECONDS), "$NOT_FOUND $model")
             response.code == 401 || response.code == 403 -> throw TranslationException.InvalidApiKey(engine)
             response.code == 400 && "API key" in body -> throw TranslationException.InvalidApiKey(engine)
             !response.isSuccessful -> throw TranslationException.Engine("Gemini HTTP ${response.code}: ${errorMessage(body)}")
+            else -> Outcome.Success(parse(body, texts))
         }
-        return parse(body, texts)
     }
 
-    private fun requestBody(texts: List<SourceText>, sourceLang: String?, targetLang: String, context: TranslationContext): String {
+    /**
+     * Daily quota → blocked until the Pacific-midnight reset; per-minute quota (requests or tokens) →
+     * blocked for the delay the server suggests, or a minute.
+     */
+    private fun quotaResetTime(body: String): Long {
+        val details = runCatching {
+            json.parseToJsonElement(body).jsonObject["error"]!!.jsonObject["details"]!!.jsonArray.map { it.jsonObject }
+        }.getOrDefault(emptyList())
+        val daily = details.any { detail ->
+            detail["violations"]?.jsonArray?.any { "PerDay" in (it.jsonObject["quotaId"]?.jsonPrimitive?.content ?: "") } == true
+        } || "PerDay" in body
+        if (daily) return quota.nextDailyReset()
+        val retrySeconds = details.firstNotNullOfOrNull { it["retryDelay"]?.jsonPrimitive?.content }
+            ?.removeSuffix("s")?.toDoubleOrNull()?.toLong()
+        return quota.inSeconds((retrySeconds ?: DEFAULT_RETRY_SECONDS).coerceAtLeast(1))
+    }
+
+    private fun requestBody(
+        model: String,
+        texts: List<SourceText>,
+        sourceLang: String?,
+        targetLang: String,
+        context: TranslationContext,
+    ): String {
+        // Gemma on this API is not documented to support JSON mode; it gets the format in the prompt instead.
+        val jsonMode = !model.startsWith("gemma")
         val items = json.encodeToString(texts.mapIndexed { index, text -> SourceItem(index, text.page, text.text) })
         return buildJsonObject {
             putJsonObject("systemInstruction") {
@@ -93,8 +157,8 @@ class GeminiTranslator(
             }
             putJsonObject("generationConfig") {
                 put("temperature", 0.3)
-                put("responseMimeType", "application/json")
-                putJsonObject("responseSchema") {
+                if (jsonMode) put("responseMimeType", "application/json")
+                if (jsonMode) putJsonObject("responseSchema") {
                     put("type", "OBJECT")
                     putJsonObject("properties") {
                         putJsonObject("translations") {
@@ -143,7 +207,7 @@ class GeminiTranslator(
         val text = candidate["content"]?.jsonObject?.get("parts")?.jsonArray
             ?.joinToString("") { it.jsonObject["text"]?.jsonPrimitive?.content.orEmpty() }
             ?: throw TranslationException.Engine("Gemini answer has no text")
-        val answer = runCatching { json.decodeFromString<Answer>(text) }.getOrElse {
+        val answer = runCatching { json.decodeFromString<Answer>(extractJson(text)) }.getOrElse {
             throw TranslationException.Engine("Gemini answer is not the expected JSON", it)
         }
         val byId = answer.translations.associate { it.id to it.text }
@@ -154,6 +218,13 @@ class GeminiTranslator(
                 .filter { it.source.isNotBlank() && it.target.isNotBlank() }
                 .associate { it.source.trim() to it.target.trim() },
         )
+    }
+
+    /** Models without JSON mode may wrap the answer in a ```json fence or add a line around it. */
+    private fun extractJson(text: String): String {
+        val start = text.indexOf('{')
+        val end = text.lastIndexOf('}')
+        return if (start >= 0 && end > start) text.substring(start, end + 1) else text
     }
 
     private fun errorMessage(body: String): String = runCatching {
@@ -180,6 +251,10 @@ class GeminiTranslator(
         /** Bumped whenever the prompt changes, so cached translations made with the old one are redone. */
         const val PROMPT_VERSION = 2
 
+        private const val NOT_FOUND = "not found:"
+        private const val DEFAULT_RETRY_SECONDS = 60L
+        private const val UNKNOWN_MODEL_RETRY_SECONDS = 3600L
+
         /** Keeps the prompt bounded for long series; the oldest terms are the main cast and come first. */
         private const val MAX_GLOSSARY_TERMS = 300
 
@@ -203,7 +278,7 @@ class GeminiTranslator(
                 - Keep sound effects short. Return page numbers, credits and noise unchanged.
                 - Never add notes or explanations.
                 $established
-                Answer with a JSON object:
+                Answer with only a JSON object, no other text:
                 - "translations": one {"id", "text"} per input item, with the same ids;
                 - "glossary": character names, places, titles and special terms that appear in this batch and are
                   not listed above, as {"source": original spelling, "target": your translation}. Empty if none.

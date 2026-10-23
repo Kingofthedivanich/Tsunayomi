@@ -92,7 +92,7 @@ internal fun TranslationSection(
         )
         ListItem(
             headlineContent = { Text(stringResource(R.string.feature_settings_gemini_model)) },
-            supportingContent = { Text(gemini.model) },
+            supportingContent = { Text(gemini.models.joinToString(" → ")) },
             modifier = Modifier.clickable { modelDialog = true },
         )
     }
@@ -113,12 +113,13 @@ internal fun TranslationSection(
     if (modelDialog && gemini != null) {
         TextValueDialog(
             title = stringResource(R.string.feature_settings_gemini_model),
-            hint = stringResource(R.string.feature_settings_gemini_model_hint, GeminiConfig.DEFAULT_MODEL),
-            initial = gemini.model,
+            hint = stringResource(R.string.feature_settings_gemini_model_hint, GeminiConfig.DEFAULT_MODELS.joinToString(", ")),
+            initial = gemini.models.joinToString(", "),
             secret = false,
             onConfirm = {
                 modelDialog = false
-                onGeminiChange(gemini.copy(model = it.ifBlank { GeminiConfig.DEFAULT_MODEL }))
+                val models = it.split(',').map(String::trim).filter(String::isNotEmpty)
+                onGeminiChange(gemini.copy(models = models.ifEmpty { GeminiConfig.DEFAULT_MODELS }))
             },
             onDismiss = { modelDialog = false },
         )

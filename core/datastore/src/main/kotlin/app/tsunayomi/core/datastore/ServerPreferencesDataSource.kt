@@ -44,14 +44,17 @@ class ServerPreferencesDataSource @Inject constructor(
     val gemini: Flow<GeminiConfig> = dataStore.data.map { prefs ->
         GeminiConfig(
             apiKey = prefs[Keys.geminiApiKey]?.let(cipher::decrypt).orEmpty(),
-            model = prefs[Keys.geminiModel]?.ifBlank { null } ?: GeminiConfig.DEFAULT_MODEL,
+            models = prefs[Keys.geminiModels]
+                ?.split(',')?.map { it.trim() }?.filter { it.isNotEmpty() }
+                ?.ifEmpty { null }
+                ?: GeminiConfig.DEFAULT_MODELS,
         )
     }.distinctUntilChanged()
 
     suspend fun setGemini(config: GeminiConfig) {
         dataStore.edit { prefs ->
             prefs.putSecret(Keys.geminiApiKey, config.apiKey.trim())
-            prefs[Keys.geminiModel] = config.model.trim()
+            prefs[Keys.geminiModels] = config.models.joinToString(",") { it.trim() }
         }
     }
 
@@ -68,6 +71,6 @@ class ServerPreferencesDataSource @Inject constructor(
         val komgaPassword = stringPreferencesKey("komga_password")
         val komgaApiKey = stringPreferencesKey("komga_api_key")
         val geminiApiKey = stringPreferencesKey("gemini_api_key")
-        val geminiModel = stringPreferencesKey("gemini_model")
+        val geminiModels = stringPreferencesKey("gemini_models")
     }
 }

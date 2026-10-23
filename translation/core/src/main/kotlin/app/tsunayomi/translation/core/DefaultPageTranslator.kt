@@ -40,22 +40,30 @@ class DefaultPageTranslator @Inject constructor(
     private val byEngine = translators.associateBy { it.engine }
     private val offline = byEngine[TranslationEngine.MlKit] ?: error("ML Kit translator is required as the fallback")
 
-    // One batch at a time: no duplicate work for overlapping requests, and free API tiers count requests per minute.
-    private val mutex = Mutex()
+    // Translation calls go one at a time (free API tiers count requests per minute). Recognition runs outside
+    // this lock, so the next window's OCR overlaps the current window's request.
+    private val translateMutex = Mutex()
 
-    override suspend fun translate(pages: List<PageRequest>, sourceLang: String?, mangaId: Long?): List<PageTranslation> =
-        mutex.withLock {
-            val (engine, targetLang) = target.current()
-            val primary = byEngine[engine] ?: offline
-            val primaryKey = primary.cacheKey(sourceLang)
-            val results = arrayOfNulls<PageTranslation>(pages.size)
-            pages.forEachIndexed { index, page ->
+    override suspend fun translate(pages: List<PageRequest>, sourceLang: String?, mangaId: Long?): List<PageTranslation> {
+        val (engine, targetLang) = target.current()
+        val primary = byEngine[engine] ?: offline
+        val primaryKey = primary.cacheKey(sourceLang)
+        val results = arrayOfNulls<PageTranslation>(pages.size)
+        suspend fun fillFromCache() = pages.forEachIndexed { index, page ->
+            if (results[index] == null) {
                 cache.get(page.key, targetLang, primaryKey)?.let { results[index] = PageTranslation(it, primary.engine) }
             }
-            val missing = pages.indices.filter { results[it] == null }
-            if (missing.isEmpty()) return@withLock results.requireNoNulls().toList()
+        }
+        fillFromCache()
+        val toRecognize = pages.indices.filter { results[it] == null }
+        if (toRecognize.isEmpty()) return results.requireNoNulls().toList()
+        val recognized = toRecognize.associateWith { BubbleGrouping.group(recognizer.recognize(pages[it].load(), sourceLang)) }
 
-            val blocks = missing.associateWith { BubbleGrouping.group(recognizer.recognize(pages[it].load(), sourceLang)) }
+        return translateMutex.withLock {
+            // An overlapping request may have translated some of these pages while we were recognizing.
+            fillFromCache()
+            val missing = pages.indices.filter { results[it] == null }
+            val blocks = missing.associateWith { recognized.getValue(it) }
             try {
                 translateBlocks(primary, blocks, sourceLang, targetLang, mangaId).forEach { (index, regions) ->
                     cache.put(pages[index].key, targetLang, primaryKey, regions)
@@ -75,6 +83,7 @@ class DefaultPageTranslator @Inject constructor(
             }
             results.requireNoNulls().toList()
         }
+    }
 
     /** Translates the blocks of several pages; keys are positions in the request list. */
     private suspend fun translateBlocks(
@@ -134,9 +143,11 @@ class DefaultPageTranslator @Inject constructor(
         return chunks
     }
 
-    /** Engine, its prompt version, the pipeline version and the source language all change the result. */
-    private fun Translator.cacheKey(sourceLang: String?) =
-        "${engine.name}:$cacheVersion:p$PIPELINE_VERSION:${sourceLang ?: "auto"}"
+    /** Engine, its prompt version and settings, the pipeline version and the source language all change the result. */
+    private suspend fun Translator.cacheKey(sourceLang: String?): String {
+        val tag = cacheTag().let { if (it.isEmpty()) "" else ":$it" }
+        return "${engine.name}:$cacheVersion$tag:p$PIPELINE_VERSION:${sourceLang ?: "auto"}"
+    }
 
     private companion object {
         /** Bump when recognition or grouping changes, so pages translated the old way are redone. */

@@ -25,8 +25,6 @@ import coil3.toBitmap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.sync.Semaphore
-import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
@@ -89,9 +87,10 @@ internal class ReaderViewModel @Inject constructor(
     private val _translations = MutableStateFlow<Map<Int, PageTranslationState>>(emptyMap())
     val translations: StateFlow<Map<Int, PageTranslationState>> = _translations.asStateFlow()
 
-    // One window at a time: OCR is CPU-heavy and free API tiers limit requests per minute.
-    private val translationLimiter = Semaphore(1)
     private val translationJobs = mutableListOf<Job>()
+
+    /** The background window walking ahead to the end of the chapter; at most one at a time. */
+    private var aheadJob: Job? = null
     private val renderJobs = mutableMapOf<Int, Job>()
 
     private var chapters: List<Chapter> = emptyList()
@@ -174,44 +173,46 @@ internal class ReaderViewModel @Inject constructor(
     }
 
     /**
-     * Keeps translations ahead of the reader in windows: a short first window so the visible page appears soon,
-     * then larger ones whenever fewer than [LOW_WATER] translated pages remain ahead. Each window is one batch,
-     * so an LLM sees several pages of context and the request count stays low.
+     * The visible page gets a short window of its own right away, so it appears soon. Behind it, one background
+     * window at a time walks to the end of the chapter: each finished window starts the next, so while the reader
+     * is on the first pages the rest of the chapter is already being translated. Each window is one batch,
+     * so an LLM sees several pages of context and a chapter costs only a handful of requests.
      */
     private fun translateAround(page: Int) {
         updateRenders(page)
         val pageCount = _state.value.pages.size
-        val states = _translations.value
-        val firstMissing = (page until pageCount).firstOrNull { states[it] == null } ?: return
-        val ahead = firstMissing - page
-        val size = when {
-            ahead == 0 -> FIRST_WINDOW
-            ahead < LOW_WATER -> WINDOW
-            else -> return
+        if (page in 0 until pageCount && _translations.value[page] == null) {
+            requestWindow(page until minOf(page + FIRST_WINDOW, pageCount))
         }
-        requestWindow(firstMissing until minOf(firstMissing + size, pageCount))
+        translateAhead()
     }
 
-    private fun requestWindow(range: IntRange) {
+    private fun translateAhead() {
+        if (!_translationOn.value || aheadJob?.isActive == true) return
+        val pageCount = _state.value.pages.size
+        val states = _translations.value
+        val from = (_currentPage.value until pageCount).firstOrNull { states[it] == null } ?: return
+        aheadJob = requestWindow(from until minOf(from + WINDOW, pageCount), continueAhead = true)
+    }
+
+    private fun requestWindow(range: IntRange, continueAhead: Boolean = false): Job? {
         val state = _state.value
-        val manga = state.manga ?: return
-        val chapter = state.chapter ?: return
+        val manga = state.manga ?: return null
+        val chapter = state.chapter ?: return null
         val indices = range.filter { _translations.value[it] == null }
-        if (indices.isEmpty()) return
+        if (indices.isEmpty()) return null
 
         _translations.update { states -> states + indices.associateWith { PageTranslationState.Loading } }
-        translationJobs += viewModelScope.launch {
+        val job = viewModelScope.launch {
             try {
-                val results = translationLimiter.withPermit {
-                    pageTranslator.translate(
-                        pages = indices.map { index ->
-                            // Remote page URLs can change between sessions (MangaDex@Home), so key by chapter and index.
-                            PageRequest("${manga.sourceId}|${chapter.url}|$index") { loadPageBitmap(state.pages[index]) }
-                        },
-                        sourceLang = manga.originalLang,
-                        mangaId = manga.id,
-                    )
-                }
+                val results = pageTranslator.translate(
+                    pages = indices.map { index ->
+                        // Remote page URLs can change between sessions (MangaDex@Home), so key by chapter and index.
+                        PageRequest("${manga.sourceId}|${chapter.url}|$index") { loadPageBitmap(state.pages[index]) }
+                    },
+                    sourceLang = manga.originalLang,
+                    mangaId = manga.id,
+                )
                 _translations.update { states ->
                     states + indices.zip(results).filter { (index, _) -> index in states }
                         .associate { (index, translation) -> index to PageTranslationState.Done(translation) }
@@ -221,8 +222,16 @@ internal class ReaderViewModel @Inject constructor(
                 throw e
             } catch (e: Exception) {
                 _translations.update { states -> states + indices.filter { it in states }.associateWith { PageTranslationState.Failed(e) } }
+                // A failing engine must not be hammered window after window; the user retries from the status pill.
+                return@launch
+            }
+            if (continueAhead) {
+                aheadJob = null
+                translateAhead()
             }
         }
+        translationJobs += job
+        return job
     }
 
     /** Draws translations for pages around [page] and frees the images of pages far from it. */
@@ -274,6 +283,7 @@ internal class ReaderViewModel @Inject constructor(
     private fun resetTranslations() {
         translationJobs.forEach { it.cancel() }
         translationJobs.clear()
+        aheadJob = null
         renderJobs.values.forEach { it.cancel() }
         renderJobs.clear()
         _translations.value = emptyMap()
@@ -288,14 +298,11 @@ internal class ReaderViewModel @Inject constructor(
     }
 
     private companion object {
-        /** Pages in the first batch: small, so the visible page shows up quickly. */
+        /** Pages in the window of the visible page: small, so it shows up quickly. */
         const val FIRST_WINDOW = 5
 
-        /** Pages per later batch. */
+        /** Pages per background batch. */
         const val WINDOW = 10
-
-        /** Request the next batch when fewer translated pages than this remain ahead. */
-        const val LOW_WATER = 4
 
         const val RENDER_BEHIND = 1
         const val RENDER_AHEAD = 3
