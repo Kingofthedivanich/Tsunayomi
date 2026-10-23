@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "44e8ad6d61379aacae3c55aa5f39b880",
+    "identityHash": "8c1915eed4704f7c4e10b0ae356d26a8",
     "entities": [
       {
         "tableName": "manga",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `source_id` INTEGER NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `cover_url` TEXT, `author` TEXT, `artist` TEXT, `description` TEXT, `genres` TEXT NOT NULL, `status` TEXT NOT NULL, `favorite` INTEGER NOT NULL, `date_added` INTEGER NOT NULL, `reader_mode` TEXT, `original_lang` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `source_id` INTEGER NOT NULL, `url` TEXT NOT NULL, `title` TEXT NOT NULL, `cover_url` TEXT, `author` TEXT, `artist` TEXT, `description` TEXT, `genres` TEXT NOT NULL, `status` TEXT NOT NULL, `favorite` INTEGER NOT NULL, `date_added` INTEGER NOT NULL, `reader_mode` TEXT, `original_lang` TEXT, `details_updated_at` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -85,6 +85,12 @@
             "fieldPath": "originalLang",
             "columnName": "original_lang",
             "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "detailsUpdatedAt",
+            "columnName": "details_updated_at",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -363,7 +369,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '44e8ad6d61379aacae3c55aa5f39b880')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8c1915eed4704f7c4e10b0ae356d26a8')"
     ]
   }
 }

@@ -26,3 +26,8 @@ fun sourceIdOf(name: String, lang: String, versionId: Int = 1): Long {
     val bytes = MessageDigest.getInstance("MD5").digest(key.toByteArray())
     return (0..7).fold(0L) { acc, i -> acc or ((bytes[i].toLong() and 0xFF) shl (8 * (7 - i))) } and Long.MAX_VALUE
 }
+
+object SourceIds {
+    /** The on-device library. Fixed so local entries survive renames of the source. */
+    const val LOCAL = 0L
+}

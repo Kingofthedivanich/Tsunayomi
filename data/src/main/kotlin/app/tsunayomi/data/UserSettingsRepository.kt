@@ -1,6 +1,7 @@
 package app.tsunayomi.data
 
 import app.tsunayomi.core.datastore.UserPreferencesDataSource
+import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
 import kotlinx.coroutines.flow.Flow
@@ -18,4 +19,10 @@ class UserSettingsRepository @Inject constructor(
     suspend fun setDynamicColor(enabled: Boolean) = preferences.setDynamicColor(enabled)
 
     suspend fun setPureBlack(enabled: Boolean) = preferences.setPureBlack(enabled)
+
+    suspend fun setLocalLibraryUri(uri: String?) = preferences.setLocalLibraryUri(uri)
+
+    suspend fun setDefaultReaderMode(mode: ReaderMode) = preferences.setDefaultReaderMode(mode)
+
+    suspend fun setVolumeKeysNavigation(enabled: Boolean) = preferences.setVolumeKeysNavigation(enabled)
 }

@@ -3,4 +3,19 @@
     <string name="feature_browse_title">Browse</string>
     <string name="feature_browse_empty_title">No sources yet</string>
     <string name="feature_browse_empty_message">Local files, MangaDex and Komga will appear here.</string>
+    <string name="feature_browse_local_source">Local files</string>
+    <string name="feature_browse_local_source_summary">Folders, CBZ/ZIP and PDF on this device</string>
+    <string name="feature_browse_back">Back</string>
+    <string name="feature_browse_search">Search</string>
+    <string name="feature_browse_search_hint">Search…</string>
+    <string name="feature_browse_close_search">Close search</string>
+    <string name="feature_browse_popular">Popular</string>
+    <string name="feature_browse_latest">Latest</string>
+    <string name="feature_browse_local_not_configured_title">Choose your manga folder</string>
+    <string name="feature_browse_local_not_configured_message">Each series is a subfolder; chapters are folders of images, CBZ/ZIP or PDF files.</string>
+    <string name="feature_browse_choose_folder">Choose folder</string>
+    <string name="feature_browse_error_title">Could not load</string>
+    <string name="feature_browse_retry">Retry</string>
+    <string name="feature_browse_nothing_found">Nothing found</string>
+    <string name="feature_browse_local_empty_message">Put each series in its own subfolder of the library folder, then pull to refresh.</string>
 </resources>

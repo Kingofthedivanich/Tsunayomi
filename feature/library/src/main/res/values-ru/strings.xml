@@ -2,5 +2,5 @@
 <resources>
     <string name="feature_library_title">Библиотека</string>
     <string name="feature_library_empty_title">Библиотека пуста</string>
-    <string name="feature_library_empty_message">Добавьте мангу из «Обзора» или выберите локальную папку в настройках.</string>
+    <string name="feature_library_empty_message">Откройте тайтл в «Обзоре» и нажмите «В библиотеку».</string>
 </resources>

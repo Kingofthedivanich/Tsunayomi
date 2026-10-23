@@ -4,6 +4,9 @@ plugins {
 
 group = "app.tsunayomi.buildlogic"
 
+// See the root build file: keeps build output out of iCloud sync.
+layout.buildDirectory = layout.projectDirectory.dir("build.nosync")
+
 java {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17

@@ -32,15 +32,19 @@ include(":core:model")
 include(":core:database")
 include(":core:datastore")
 include(":core:designsystem")
+include(":core:image")
 include(":core:network")
 
 include(":data")
 
 include(":source:api")
+include(":source:local")
 
 include(":translation:api")
 
 include(":feature:library")
 include(":feature:browse")
+include(":feature:details")
+include(":feature:reader")
 include(":feature:history")
 include(":feature:settings")

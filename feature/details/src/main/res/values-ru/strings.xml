@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_details_local_source">Локальные файлы</string>
+    <string name="feature_details_back">Назад</string>
+    <string name="feature_details_start">Читать</string>
+    <string name="feature_details_continue">Продолжить</string>
+    <string name="feature_details_add_to_library">В библиотеку</string>
+    <string name="feature_details_in_library">В библиотеке</string>
+    <plurals name="feature_details_chapter_count">
+        <item quantity="one">%d глава</item>
+        <item quantity="few">%d главы</item>
+        <item quantity="many">%d глав</item>
+        <item quantity="other">%d главы</item>
+    </plurals>
+    <string name="feature_details_page_progress">Стр. %d</string>
+    <string name="feature_details_mark_read">Отметить прочитанной</string>
+    <string name="feature_details_mark_unread">Отметить непрочитанной</string>
+    <string name="feature_details_mark_read_up_to">Отметить предыдущие прочитанными</string>
+    <string name="feature_details_status_ongoing">Выходит</string>
+    <string name="feature_details_status_completed">Завершён</string>
+    <string name="feature_details_status_hiatus">Перерыв</string>
+    <string name="feature_details_status_cancelled">Отменён</string>
+</resources>

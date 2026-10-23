@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_reader_back">Назад</string>
+    <string name="feature_reader_mode">Режим чтения</string>
+    <string name="feature_reader_previous_chapter">Предыдущая глава</string>
+    <string name="feature_reader_next_chapter">Следующая глава</string>
+    <string name="feature_reader_next_chapter_name">Далее: %s</string>
+    <string name="feature_reader_chapter_finished">Глава прочитана</string>
+    <string name="feature_reader_last_chapter">Это была последняя глава</string>
+    <string name="feature_reader_page_failed">Не удалось загрузить страницу. Повторить</string>
+    <string name="feature_reader_error">Не удалось открыть главу</string>
+    <string name="feature_reader_no_pages">В главе нет страниц</string>
+</resources>

@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "app.tsunayomi.feature.library"
 }
+
+dependencies {
+    implementation(projects.data)
+}

@@ -26,4 +26,6 @@ data class MangaEntity(
     @ColumnInfo(name = "date_added") val dateAdded: Long,
     @ColumnInfo(name = "reader_mode") val readerMode: ReaderMode?,
     @ColumnInfo(name = "original_lang") val originalLang: String?,
+    /** When details were last fetched from the source; 0 means only the catalog entry is known. */
+    @ColumnInfo(name = "details_updated_at") val detailsUpdatedAt: Long,
 )

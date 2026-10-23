@@ -1,8 +1,11 @@
 # Gradle
 .gradle/
+.gradle.nosync/
 build/
+build.nosync/
 !gradle/wrapper/gradle-wrapper.jar
 .kotlin/
+
 
 # Local configuration
 local.properties

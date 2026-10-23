@@ -22,4 +22,12 @@
     <string name="feature_settings_about_title">О приложении</string>
     <string name="feature_settings_about_version">Версия</string>
     <string name="feature_settings_about_license">Лицензия</string>
+
+    <string name="feature_settings_section_library">Библиотека</string>
+    <string name="feature_settings_local_folder">Папка с мангой</string>
+    <string name="feature_settings_local_folder_not_set">Не выбрана</string>
+    <string name="feature_settings_section_reader">Ридер</string>
+    <string name="feature_settings_reader_mode">Режим чтения по умолчанию</string>
+    <string name="feature_settings_volume_keys">Листать кнопками громкости</string>
+    <string name="feature_settings_volume_keys_summary">Тише — следующая страница, громче — предыдущая</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_details_local_source">Local files</string>
+    <string name="feature_details_back">Back</string>
+    <string name="feature_details_start">Start reading</string>
+    <string name="feature_details_continue">Continue</string>
+    <string name="feature_details_add_to_library">Add to library</string>
+    <string name="feature_details_in_library">In library</string>
+    <plurals name="feature_details_chapter_count">
+        <item quantity="one">%d chapter</item>
+        <item quantity="other">%d chapters</item>
+    </plurals>
+    <string name="feature_details_page_progress">Page %d</string>
+    <string name="feature_details_mark_read">Mark as read</string>
+    <string name="feature_details_mark_unread">Mark as unread</string>
+    <string name="feature_details_mark_read_up_to">Mark previous as read</string>
+    <string name="feature_details_status_ongoing">Ongoing</string>
+    <string name="feature_details_status_completed">Completed</string>
+    <string name="feature_details_status_hiatus">On hiatus</string>
+    <string name="feature_details_status_cancelled">Cancelled</string>
+</resources>

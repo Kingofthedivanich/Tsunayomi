@@ -2,5 +2,5 @@
 <resources>
     <string name="feature_library_title">Library</string>
     <string name="feature_library_empty_title">Your library is empty</string>
-    <string name="feature_library_empty_message">Add manga from Browse or pick a local folder in settings.</string>
+    <string name="feature_library_empty_message">Open a title in Browse and tap \"Add to library\".</string>
 </resources>

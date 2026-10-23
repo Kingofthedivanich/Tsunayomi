@@ -5,3 +5,7 @@ plugins {
 android {
     namespace = "app.tsunayomi.feature.browse"
 }
+
+dependencies {
+    implementation(projects.data)
+}

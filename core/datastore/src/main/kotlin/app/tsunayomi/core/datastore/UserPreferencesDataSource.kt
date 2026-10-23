@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
 import kotlinx.coroutines.flow.Flow
@@ -17,11 +18,12 @@ class UserPreferencesDataSource @Inject constructor(
     val settings: Flow<UserSettings> = dataStore.data.map { prefs ->
         val defaults = UserSettings()
         UserSettings(
-            themeMode = prefs[Keys.themeMode]
-                ?.let { name -> ThemeMode.entries.firstOrNull { it.name == name } }
-                ?: defaults.themeMode,
+            themeMode = prefs[Keys.themeMode].toEnum(defaults.themeMode),
             dynamicColor = prefs[Keys.dynamicColor] ?: defaults.dynamicColor,
             pureBlack = prefs[Keys.pureBlack] ?: defaults.pureBlack,
+            localLibraryUri = prefs[Keys.localLibraryUri],
+            defaultReaderMode = prefs[Keys.defaultReaderMode].toEnum(defaults.defaultReaderMode),
+            volumeKeysNavigation = prefs[Keys.volumeKeysNavigation] ?: defaults.volumeKeysNavigation,
         )
     }
 
@@ -37,9 +39,29 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.pureBlack] = enabled }
     }
 
+    suspend fun setLocalLibraryUri(uri: String?) {
+        dataStore.edit {
+            if (uri == null) it.remove(Keys.localLibraryUri) else it[Keys.localLibraryUri] = uri
+        }
+    }
+
+    suspend fun setDefaultReaderMode(mode: ReaderMode) {
+        dataStore.edit { it[Keys.defaultReaderMode] = mode.name }
+    }
+
+    suspend fun setVolumeKeysNavigation(enabled: Boolean) {
+        dataStore.edit { it[Keys.volumeKeysNavigation] = enabled }
+    }
+
+    private inline fun <reified E : Enum<E>> String?.toEnum(default: E): E =
+        this?.let { name -> enumValues<E>().firstOrNull { it.name == name } } ?: default
+
     private object Keys {
         val themeMode = stringPreferencesKey("theme_mode")
         val dynamicColor = booleanPreferencesKey("dynamic_color")
         val pureBlack = booleanPreferencesKey("pure_black")
+        val localLibraryUri = stringPreferencesKey("local_library_uri")
+        val defaultReaderMode = stringPreferencesKey("default_reader_mode")
+        val volumeKeysNavigation = booleanPreferencesKey("volume_keys_navigation")
     }
 }

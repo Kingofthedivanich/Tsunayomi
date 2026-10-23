@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_reader_back">Back</string>
+    <string name="feature_reader_mode">Reading mode</string>
+    <string name="feature_reader_previous_chapter">Previous chapter</string>
+    <string name="feature_reader_next_chapter">Next chapter</string>
+    <string name="feature_reader_next_chapter_name">Next: %s</string>
+    <string name="feature_reader_chapter_finished">Chapter finished</string>
+    <string name="feature_reader_last_chapter">This was the last chapter</string>
+    <string name="feature_reader_page_failed">Could not load page. Retry</string>
+    <string name="feature_reader_error">Could not open chapter</string>
+    <string name="feature_reader_no_pages">No pages in this chapter</string>
+</resources>

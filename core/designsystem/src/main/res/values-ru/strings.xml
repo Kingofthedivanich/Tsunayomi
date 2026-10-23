@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reader_mode_paged_ltr">Страницы (слева направо)</string>
+    <string name="reader_mode_paged_rtl">Страницы (справа налево)</string>
+    <string name="reader_mode_vertical">Вертикальные страницы</string>
+    <string name="reader_mode_webtoon">Вебтун</string>
+</resources>

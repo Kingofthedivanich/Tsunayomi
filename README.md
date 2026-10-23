@@ -18,7 +18,7 @@
 ./gradlew assembleDebug
 ```
 
-APK: `app/build/outputs/apk/debug/`.
+APK: `app/build.nosync/outputs/apk/debug/`. Папки сборки названы `*.nosync`, чтобы iCloud их не синхронизировал.
 
 ## Структура
 

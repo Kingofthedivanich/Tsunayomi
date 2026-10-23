@@ -1,13 +1,18 @@
 package app.tsunayomi
 
+import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.theme.TsunayomiTheme
+import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.navigation.TsunayomiApp
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +27,19 @@ class MainActivity : AppCompatActivity() {
         setContent {
             val settings by viewModel.settings.collectAsStateWithLifecycle()
             val current = settings ?: return@setContent
+            val darkTheme = when (current.themeMode) {
+                ThemeMode.System -> isSystemInDarkTheme()
+                ThemeMode.Light -> false
+                ThemeMode.Dark -> true
+            }
+            // System bar icons follow the app theme, not the system one: a forced dark theme needs light icons.
+            DisposableEffect(darkTheme) {
+                enableEdgeToEdge(
+                    statusBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { darkTheme },
+                    navigationBarStyle = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT) { darkTheme },
+                )
+                onDispose {}
+            }
             TsunayomiTheme(
                 themeMode = current.themeMode,
                 dynamicColor = current.dynamicColor,

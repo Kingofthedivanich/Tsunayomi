@@ -1,6 +1,8 @@
 package app.tsunayomi.feature.settings
 
 import android.os.Build
+import android.provider.DocumentsContract
+import androidx.core.net.toUri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -37,6 +39,9 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import app.tsunayomi.core.designsystem.component.labelRes
+import app.tsunayomi.core.designsystem.component.rememberLibraryFolderPicker
+import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
 
@@ -52,6 +57,9 @@ internal fun SettingsScreen(
         onThemeModeChange = viewModel::setThemeMode,
         onDynamicColorChange = viewModel::setDynamicColor,
         onPureBlackChange = viewModel::setPureBlack,
+        onLibraryFolderPicked = viewModel::setLocalLibraryUri,
+        onReaderModeChange = viewModel::setDefaultReaderMode,
+        onVolumeKeysChange = viewModel::setVolumeKeysNavigation,
     )
 }
 
@@ -63,8 +71,13 @@ private fun SettingsContent(
     onThemeModeChange: (ThemeMode) -> Unit,
     onDynamicColorChange: (Boolean) -> Unit,
     onPureBlackChange: (Boolean) -> Unit,
+    onLibraryFolderPicked: (String) -> Unit,
+    onReaderModeChange: (ReaderMode) -> Unit,
+    onVolumeKeysChange: (Boolean) -> Unit,
 ) {
     var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
+    var showReaderModeDialog by rememberSaveable { mutableStateOf(false) }
+    val pickFolder = rememberLibraryFolderPicker { onLibraryFolderPicked(it.toString()) }
     val language = remember(showLanguageDialog) { AppLanguage.current() }
 
     Scaffold(
@@ -121,12 +134,54 @@ private fun SettingsContent(
                 supportingContent = { Text(stringResource(language.label)) },
                 modifier = Modifier.clickable { showLanguageDialog = true },
             )
+
+            SectionHeader(stringResource(R.string.feature_settings_section_library))
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_local_folder)) },
+                supportingContent = {
+                    Text(
+                        settings.localLibraryUri?.let(::folderLabel)
+                            ?: stringResource(R.string.feature_settings_local_folder_not_set),
+                    )
+                },
+                modifier = Modifier.clickable(onClick = pickFolder),
+            )
+
+            SectionHeader(stringResource(R.string.feature_settings_section_reader))
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_reader_mode)) },
+                supportingContent = { Text(stringResource(settings.defaultReaderMode.labelRes)) },
+                modifier = Modifier.clickable { showReaderModeDialog = true },
+            )
+            SwitchItem(
+                title = stringResource(R.string.feature_settings_volume_keys),
+                summary = stringResource(R.string.feature_settings_volume_keys_summary),
+                checked = settings.volumeKeysNavigation,
+                onCheckedChange = onVolumeKeysChange,
+            )
         }
     }
 
+    if (showReaderModeDialog && settings != null) {
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_reader_mode),
+            options = ReaderMode.entries,
+            selected = settings.defaultReaderMode,
+            label = { stringResource(it.labelRes) },
+            onSelect = {
+                showReaderModeDialog = false
+                onReaderModeChange(it)
+            },
+            onDismiss = { showReaderModeDialog = false },
+        )
+    }
+
     if (showLanguageDialog) {
-        LanguageDialog(
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_language),
+            options = AppLanguage.entries,
             selected = language,
+            label = { stringResource(it.label) },
             onSelect = {
                 showLanguageDialog = false
                 it.apply()
@@ -190,24 +245,27 @@ private fun ThemeModeSelector(
 }
 
 @Composable
-private fun LanguageDialog(
-    selected: AppLanguage,
-    onSelect: (AppLanguage) -> Unit,
+private fun <T> ChoiceDialog(
+    title: String,
+    options: List<T>,
+    selected: T,
+    label: @Composable (T) -> String,
+    onSelect: (T) -> Unit,
     onDismiss: () -> Unit,
 ) {
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text(stringResource(R.string.feature_settings_language)) },
+        title = { Text(title) },
         text = {
             Column {
-                AppLanguage.entries.forEach { language ->
+                options.forEach { option ->
                     ListItem(
-                        headlineContent = { Text(stringResource(language.label)) },
-                        leadingContent = { RadioButton(selected = language == selected, onClick = null) },
+                        headlineContent = { Text(label(option)) },
+                        leadingContent = { RadioButton(selected = option == selected, onClick = null) },
                         modifier = Modifier.selectable(
-                            selected = language == selected,
+                            selected = option == selected,
                             role = Role.RadioButton,
-                            onClick = { onSelect(language) },
+                            onClick = { onSelect(option) },
                         ),
                     )
                 }
@@ -218,3 +276,10 @@ private fun LanguageDialog(
         },
     )
 }
+
+/** "primary:Manga/Shelf" → "Manga/Shelf": the tree id is the most readable thing SAF gives us. */
+private fun folderLabel(uri: String): String =
+    runCatching { DocumentsContract.getTreeDocumentId(uri.toUri()).substringAfter(':') }
+        .getOrNull()
+        ?.ifEmpty { null }
+        ?: uri

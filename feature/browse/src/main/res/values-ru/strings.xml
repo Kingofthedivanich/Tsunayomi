@@ -3,4 +3,19 @@
     <string name="feature_browse_title">Обзор</string>
     <string name="feature_browse_empty_title">Источников пока нет</string>
     <string name="feature_browse_empty_message">Здесь появятся локальные файлы, MangaDex и Komga.</string>
+    <string name="feature_browse_local_source">Локальные файлы</string>
+    <string name="feature_browse_local_source_summary">Папки, CBZ/ZIP и PDF на устройстве</string>
+    <string name="feature_browse_back">Назад</string>
+    <string name="feature_browse_search">Поиск</string>
+    <string name="feature_browse_search_hint">Поиск…</string>
+    <string name="feature_browse_close_search">Закрыть поиск</string>
+    <string name="feature_browse_popular">Популярное</string>
+    <string name="feature_browse_latest">Новое</string>
+    <string name="feature_browse_local_not_configured_title">Выберите папку с мангой</string>
+    <string name="feature_browse_local_not_configured_message">Каждая серия — отдельная подпапка; главы — папки с картинками, файлы CBZ/ZIP или PDF.</string>
+    <string name="feature_browse_choose_folder">Выбрать папку</string>
+    <string name="feature_browse_error_title">Не удалось загрузить</string>
+    <string name="feature_browse_retry">Повторить</string>
+    <string name="feature_browse_nothing_found">Ничего не найдено</string>
+    <string name="feature_browse_local_empty_message">Положите каждую серию в отдельную подпапку библиотеки и потяните вниз, чтобы обновить.</string>
 </resources>

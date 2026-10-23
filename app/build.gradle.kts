@@ -36,12 +36,16 @@ dependencies {
     implementation(projects.core.common)
     implementation(projects.core.database)
     implementation(projects.core.designsystem)
+    implementation(projects.core.image)
     implementation(projects.core.model)
     implementation(projects.core.network)
     implementation(projects.data)
+    implementation(projects.source.local)
 
     implementation(projects.feature.library)
     implementation(projects.feature.browse)
+    implementation(projects.feature.details)
+    implementation(projects.feature.reader)
     implementation(projects.feature.history)
     implementation(projects.feature.settings)
 

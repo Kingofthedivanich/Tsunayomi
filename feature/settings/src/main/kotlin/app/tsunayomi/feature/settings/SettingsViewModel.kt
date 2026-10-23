@@ -2,6 +2,7 @@ package app.tsunayomi.feature.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
 import app.tsunayomi.data.UserSettingsRepository
@@ -29,5 +30,17 @@ internal class SettingsViewModel @Inject constructor(
 
     fun setPureBlack(enabled: Boolean) {
         viewModelScope.launch { repository.setPureBlack(enabled) }
+    }
+
+    fun setLocalLibraryUri(uri: String) {
+        viewModelScope.launch { repository.setLocalLibraryUri(uri) }
+    }
+
+    fun setDefaultReaderMode(mode: ReaderMode) {
+        viewModelScope.launch { repository.setDefaultReaderMode(mode) }
+    }
+
+    fun setVolumeKeysNavigation(enabled: Boolean) {
+        viewModelScope.launch { repository.setVolumeKeysNavigation(enabled) }
     }
 }

@@ -10,3 +10,9 @@ plugins {
     alias(libs.plugins.room) apply false
     alias(libs.plugins.android.lint) apply false
 }
+
+// The project lives in an iCloud-synced folder on the main dev machine. iCloud duplicates churned build files
+// ("values-ru 3.xml") and breaks resource merging, but it skips anything named *.nosync.
+allprojects {
+    layout.buildDirectory = layout.projectDirectory.dir("build.nosync")
+}

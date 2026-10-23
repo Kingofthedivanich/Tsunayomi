@@ -14,6 +14,7 @@ interface CatalogSource : Source {
 
     suspend fun getDetails(manga: SManga): SManga
 
+    /** Chapters in reading order: the first chapter first. */
     suspend fun getChapters(manga: SManga): List<SChapter>
 
     suspend fun getPages(chapter: SChapter): List<SPage>
