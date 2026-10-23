@@ -69,7 +69,7 @@ class DefaultPageTranslatorTest {
         assertEquals(first.regions, second.regions)
         assertEquals(1, recognizeCalls)
         assertEquals(1, gemini.calls)
-        assertTrue(Triple("page-1", "ru", "Gemini:3") in cache.entries)
+        assertTrue(Triple("page-1", "ru", "Gemini:3:p2:en") in cache.entries)
     }
 
     @Test
@@ -82,7 +82,7 @@ class DefaultPageTranslatorTest {
         assertTrue(result.fallbackReason is TranslationException.MissingApiKey)
         assertEquals("Hello→ru(MlKit)", result.regions.first().translatedText)
         // Not cached as Gemini, so Gemini is retried once the user adds a key.
-        assertNull(cache.entries[Triple("page-1", "ru", "Gemini:3")])
+        assertNull(cache.entries[Triple("page-1", "ru", "Gemini:3:p2:en")])
     }
 
     @Test

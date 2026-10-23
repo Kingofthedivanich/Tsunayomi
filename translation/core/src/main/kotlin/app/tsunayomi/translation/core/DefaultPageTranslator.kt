@@ -5,6 +5,7 @@ import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.translation.api.PageTranslation
 import app.tsunayomi.translation.api.PageTranslator
 import app.tsunayomi.translation.api.RecognizedBlock
+import app.tsunayomi.translation.api.TextJoining
 import app.tsunayomi.translation.api.TextRecognizer
 import app.tsunayomi.translation.api.TranslatedRegion
 import app.tsunayomi.translation.api.TranslationException
@@ -39,24 +40,26 @@ class DefaultPageTranslator @Inject constructor(
     override suspend fun translate(pageKey: String, sourceLang: String?, loadPage: suspend () -> Bitmap): PageTranslation {
         val (engine, targetLang) = target.current()
         val primary = byEngine[engine] ?: offline
+        val primaryKey = primary.cacheKey(sourceLang)
         return locks.getOrPut(pageKey) { Mutex() }.withLock {
-            cache.get(pageKey, targetLang, primary.cacheKey())?.let { return@withLock PageTranslation(it, primary.engine) }
+            cache.get(pageKey, targetLang, primaryKey)?.let { return@withLock PageTranslation(it, primary.engine) }
 
-            val blocks = recognizer.recognize(loadPage(), sourceLang)
+            val blocks = BubbleGrouping.group(recognizer.recognize(loadPage(), sourceLang))
             if (blocks.isEmpty()) {
-                cache.put(pageKey, targetLang, primary.cacheKey(), emptyList())
+                cache.put(pageKey, targetLang, primaryKey, emptyList())
                 return@withLock PageTranslation(emptyList(), primary.engine)
             }
             try {
                 val regions = translateBlocks(primary, blocks, sourceLang, targetLang)
-                cache.put(pageKey, targetLang, primary.cacheKey(), regions)
+                cache.put(pageKey, targetLang, primaryKey, regions)
                 PageTranslation(regions, primary.engine)
             } catch (e: TranslationException) {
                 if (primary === offline) throw e
                 // Cached under ML Kit's key, so the chosen engine is tried again next time.
-                val regions = cache.get(pageKey, targetLang, offline.cacheKey())
+                val offlineKey = offline.cacheKey(sourceLang)
+                val regions = cache.get(pageKey, targetLang, offlineKey)
                     ?: translateBlocks(offline, blocks, sourceLang, targetLang)
-                        .also { cache.put(pageKey, targetLang, offline.cacheKey(), it) }
+                        .also { cache.put(pageKey, targetLang, offlineKey, it) }
                 PageTranslation(regions, offline.engine, fallbackReason = e)
             }
         }
@@ -68,11 +71,18 @@ class DefaultPageTranslator @Inject constructor(
         sourceLang: String?,
         targetLang: String,
     ): List<TranslatedRegion> {
-        val translations = translator.translate(blocks.map { it.text }, sourceLang, targetLang)
+        val translations = translator.translate(blocks.map { TextJoining.normalizeCase(it.text) }, sourceLang, targetLang)
         return blocks.mapIndexed { index, block ->
             TranslatedRegion(block.box, block.text, translations.getOrElse(index) { block.text })
         }
     }
 
-    private fun Translator.cacheKey() = "${engine.name}:$cacheVersion"
+    /** Engine, its prompt version, the pipeline version and the source language all change the result. */
+    private fun Translator.cacheKey(sourceLang: String?) =
+        "${engine.name}:$cacheVersion:p$PIPELINE_VERSION:${sourceLang ?: "auto"}"
+
+    private companion object {
+        /** Bump when recognition or grouping changes, so pages translated the old way are redone. */
+        const val PIPELINE_VERSION = 2
+    }
 }

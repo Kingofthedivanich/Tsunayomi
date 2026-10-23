@@ -1,4 +1,4 @@
-package app.tsunayomi.translation.mlkit
+package app.tsunayomi.translation.api
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -28,5 +28,22 @@ class TextJoiningTest {
         assertFalse(TextJoining.isMeaningful("a"))
         assertTrue(TextJoining.isMeaningful("猫"))
         assertTrue(TextJoining.isMeaningful("OK"))
+        assertFalse(TextJoining.isMeaningful("32"))
+        assertFalse(TextJoining.isMeaningful("1/6"))
+    }
+
+    @Test
+    fun `all caps becomes sentence case`() {
+        assertEquals("Xin chào. Bạn khỏe không?", TextJoining.normalizeCase("XIN CHÀO. BẠN KHỎE KHÔNG?"))
+        assertEquals("Normal Text stays", TextJoining.normalizeCase("Normal Text stays"))
+        assertEquals("OK!", TextJoining.normalizeCase("OK!"))
+        assertEquals("こんにちは", TextJoining.normalizeCase("こんにちは"))
+    }
+
+    @Test
+    fun `cjk ratio`() {
+        assertEquals(1f, TextJoining.cjkRatio("こんにちは"))
+        assertEquals(0f, TextJoining.cjkRatio("HELLO 32"))
+        assertTrue(TextJoining.cjkRatio("HELLO ん") < 0.2f)
     }
 }

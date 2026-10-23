@@ -107,6 +107,10 @@ internal class DetailsViewModel @Inject constructor(
         viewModelScope.launch { mangaRepository.setFavorite(manga.id, !manga.favorite) }
     }
 
+    fun setOriginalLang(lang: String?) {
+        viewModelScope.launch { mangaRepository.setOriginalLang(mangaId, lang) }
+    }
+
     /** Adds to the library (if needed) with exactly these categories. */
     fun saveToLibrary(categoryIds: Set<Long>) {
         val manga = state.value.manga ?: return

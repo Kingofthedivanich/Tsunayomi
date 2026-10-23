@@ -17,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -54,6 +55,10 @@ internal fun WebtoonReader(
     onNextChapter: () -> Unit,
 ) {
     val listState = rememberLazyListState(initialFirstVisibleItemIndex = initialPage)
+    // Width / height of each page once seen. Kept for the whole chapter so a page never changes height again —
+    // not when it reloads, scrolls back into view, or is swapped for its translated copy. Height jumps would shift
+    // the list, report a new "current" page, trigger more translations and cascade to the end of the chapter.
+    val aspectRatios = remember { mutableStateMapOf<Int, Float>() }
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
 
@@ -92,7 +97,15 @@ internal fun WebtoonReader(
                     }
                 },
         ) {
-            items(pages.size, key = { it }) { index -> WebtoonPage(pages[index], decodeSize, translatedImage(index)) }
+            items(pages.size, key = { it }) { index ->
+                WebtoonPage(
+                    page = pages[index],
+                    decodeSize = decodeSize,
+                    translatedImage = translatedImage(index),
+                    aspectRatio = aspectRatios[index],
+                    onAspectRatio = { aspectRatios[index] = it },
+                )
+            }
             item(key = "end") {
                 Box(Modifier.fillMaxWidth().height(maxHeight)) { ChapterEndPage(nextChapter, onNextChapter) }
             }
@@ -101,21 +114,35 @@ internal fun WebtoonReader(
 }
 
 @Composable
-private fun WebtoonPage(page: SPage, decodeSize: Size, translatedImage: Bitmap?) {
+private fun WebtoonPage(
+    page: SPage,
+    decodeSize: Size,
+    translatedImage: Bitmap?,
+    aspectRatio: Float?,
+    onAspectRatio: (Float) -> Unit,
+) {
     val context = LocalContext.current
     var attempt by remember(page) { mutableIntStateOf(0) }
     var painterState by remember(page) { mutableStateOf<AsyncImagePainter.State>(AsyncImagePainter.State.Empty) }
     val request = remember(page, attempt, decodeSize) { page.toImageRequest(context) { size(decodeSize) } }
-    val loaded = painterState is AsyncImagePainter.State.Success
 
     Box(contentAlignment = Alignment.Center) {
         AsyncImage(
             model = translatedImage ?: request,
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
-            onState = { painterState = it },
-            // Until the real height is known, reserve a typical page height so the list does not load everything at once.
-            modifier = if (loaded) Modifier.fillMaxWidth() else Modifier.fillMaxWidth().aspectRatio(PLACEHOLDER_RATIO),
+            onState = { state ->
+                painterState = state
+                if (state is AsyncImagePainter.State.Success && aspectRatio == null) {
+                    val size = state.painter.intrinsicSize
+                    if (size.width > 0f && size.height > 0f) onAspectRatio(size.width / size.height)
+                }
+            },
+            // The height is fixed by the page's real proportions once known; before that, a typical page height
+            // keeps the list from composing everything at once.
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(aspectRatio ?: PLACEHOLDER_RATIO),
         )
         when (painterState) {
             is AsyncImagePainter.State.Error -> PageError(onRetry = { attempt++ })

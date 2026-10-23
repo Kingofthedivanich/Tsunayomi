@@ -25,4 +25,7 @@
     <string name="feature_details_cancel">Отмена</string>
     <string name="feature_details_no_chapters">Доступных глав пока нет. Потяните вниз, чтобы обновить.</string>
     <string name="feature_details_chapters_external_only">Главы на этом языке есть только на сайте издателя, поэтому читать их в приложении нельзя. Попробуйте другой язык в «Обзоре».</string>
+    <string name="feature_details_original_lang">Язык страниц</string>
+    <string name="feature_details_original_lang_auto">Определять автоматически</string>
+    <string name="feature_details_original_lang_hint">Нужен, чтобы распознать и перевести текст на страницах. Укажите, если автоопределение ошибается.</string>
 </resources>

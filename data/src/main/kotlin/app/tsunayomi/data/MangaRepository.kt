@@ -96,6 +96,11 @@ class MangaRepository @Inject constructor(
         mangaDao.setFavorite(mangaId, favorite, if (favorite) System.currentTimeMillis() else 0)
     }
 
+    /** Language of the text on the pages; null lets OCR detect it. */
+    suspend fun setOriginalLang(mangaId: Long, lang: String?) {
+        mangaDao.setOriginalLang(mangaId, lang)
+    }
+
     suspend fun setReaderMode(mangaId: Long, mode: ReaderMode?) {
         mangaDao.setReaderMode(mangaId, mode?.name)
     }

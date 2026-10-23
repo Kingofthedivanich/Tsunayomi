@@ -18,10 +18,12 @@ data class NormalizedBox(
     val height: Float get() = bottom - top
 }
 
-/** A block of text found on the page, usually one speech bubble. */
+/** A block of text found on the page: a speech bubble or a piece of one. */
 data class RecognizedBlock(
     val box: NormalizedBox,
     val text: String,
+    /** Average height of one text line, normalized like [box]; used to tell neighbouring pieces of one bubble apart. */
+    val lineHeight: Float = box.height,
 )
 
 @Serializable

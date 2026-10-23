@@ -1,6 +1,7 @@
 package app.tsunayomi.translation.mlkit
 
 import app.tsunayomi.core.model.TranslationEngine
+import app.tsunayomi.translation.api.TextJoining
 import app.tsunayomi.translation.api.TranslationException
 import app.tsunayomi.translation.api.Translator
 import com.google.mlkit.common.model.DownloadConditions

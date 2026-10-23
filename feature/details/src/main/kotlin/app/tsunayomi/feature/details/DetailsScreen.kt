@@ -5,7 +5,10 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +34,7 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -57,6 +61,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -73,6 +78,7 @@ import app.tsunayomi.core.model.MangaStatus
 import app.tsunayomi.source.api.SourceIds
 import java.text.DateFormat
 import java.util.Date
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,6 +90,7 @@ internal fun DetailsScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     var categoryDialog by rememberSaveable { mutableStateOf(false) }
+    var languageDialog by rememberSaveable { mutableStateOf(false) }
     LaunchedEffect(state.error) {
         state.error?.let {
             snackbarHostState.showSnackbar(it)
@@ -143,6 +150,15 @@ internal fun DetailsScreen(
                     )
                 }
                 item {
+                    ListItem(
+                        headlineContent = { Text(stringResource(R.string.feature_details_original_lang)) },
+                        supportingContent = {
+                            Text(manga.originalLang?.let { languageName(it) } ?: stringResource(R.string.feature_details_original_lang_auto))
+                        },
+                        modifier = Modifier.clickable { languageDialog = true },
+                    )
+                }
+                item {
                     Text(
                         text = pluralStringResource(R.plurals.feature_details_chapter_count, state.chapters.size, state.chapters.size),
                         style = MaterialTheme.typography.titleSmall,
@@ -177,6 +193,20 @@ internal fun DetailsScreen(
         }
     }
 
+    if (languageDialog) {
+        val manga = state.manga
+        if (manga != null) {
+            LanguageDialog(
+                selected = manga.originalLang,
+                onSelect = {
+                    languageDialog = false
+                    viewModel.setOriginalLang(it)
+                },
+                onDismiss = { languageDialog = false },
+            )
+        }
+    }
+
     if (categoryDialog) {
         CategoryDialog(
             categories = state.categories,
@@ -188,6 +218,42 @@ internal fun DetailsScreen(
             onDismiss = { categoryDialog = false },
         )
     }
+}
+
+/** Languages offered for the page text; null means "detect automatically". */
+private val ORIGINAL_LANGUAGES = listOf(null, "ja", "ko", "zh", "en", "vi", "th", "id", "es", "pt", "fr", "de", "it", "ru", "uk", "pl", "tr")
+
+@Composable
+private fun languageName(tag: String): String {
+    val locale = Locale.forLanguageTag(tag)
+    return locale.getDisplayLanguage(locale).replaceFirstChar { it.titlecase(LocalConfiguration.current.locales[0]) }
+}
+
+@Composable
+private fun LanguageDialog(selected: String?, onSelect: (String?) -> Unit, onDismiss: () -> Unit) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.feature_details_original_lang)) },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text(
+                    stringResource(R.string.feature_details_original_lang_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(bottom = 8.dp),
+                )
+                ORIGINAL_LANGUAGES.forEach { tag ->
+                    ListItem(
+                        headlineContent = {
+                            Text(tag?.let { languageName(it) } ?: stringResource(R.string.feature_details_original_lang_auto))
+                        },
+                        leadingContent = { RadioButton(selected = tag == selected, onClick = null) },
+                        modifier = Modifier.selectable(selected = tag == selected, role = Role.RadioButton) { onSelect(tag) },
+                    )
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.feature_details_cancel)) } },
+    )
 }
 
 @Composable

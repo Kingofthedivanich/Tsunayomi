@@ -31,6 +31,9 @@ interface MangaDao {
     @Query("UPDATE manga SET favorite = :favorite, date_added = :dateAdded WHERE id = :id")
     suspend fun setFavorite(id: Long, favorite: Boolean, dateAdded: Long)
 
+    @Query("UPDATE manga SET original_lang = :lang WHERE id = :id")
+    suspend fun setOriginalLang(id: Long, lang: String?)
+
     @Query("UPDATE manga SET reader_mode = :readerMode WHERE id = :id")
     suspend fun setReaderMode(id: Long, readerMode: String?)
 }

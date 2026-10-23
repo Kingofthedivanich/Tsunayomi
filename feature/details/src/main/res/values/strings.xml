@@ -23,4 +23,7 @@
     <string name="feature_details_cancel">Cancel</string>
     <string name="feature_details_no_chapters">No chapters available yet. Pull down to refresh.</string>
     <string name="feature_details_chapters_external_only">Chapters in this language are only available on the publisher\'s site, so they cannot be read in the app. Try another language in Browse.</string>
+    <string name="feature_details_original_lang">Language of the pages</string>
+    <string name="feature_details_original_lang_auto">Detect automatically</string>
+    <string name="feature_details_original_lang_hint">Used to read and translate the text on the pages. Set it if automatic detection gets it wrong.</string>
 </resources>
