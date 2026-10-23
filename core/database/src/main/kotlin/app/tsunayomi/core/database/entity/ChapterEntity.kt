@@ -1,0 +1,33 @@
+package app.tsunayomi.core.database.entity
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.ForeignKey
+import androidx.room.Index
+import androidx.room.PrimaryKey
+
+@Entity(
+    tableName = "chapter",
+    foreignKeys = [
+        ForeignKey(
+            entity = MangaEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["manga_id"],
+            onDelete = ForeignKey.CASCADE,
+        ),
+    ],
+    indices = [Index(value = ["manga_id", "url"], unique = true)],
+)
+data class ChapterEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @ColumnInfo(name = "manga_id") val mangaId: Long,
+    val url: String,
+    val name: String,
+    val number: Float,
+    val scanlator: String?,
+    @ColumnInfo(name = "uploaded_at") val uploadedAt: Long?,
+    val read: Boolean,
+    @ColumnInfo(name = "last_page_read") val lastPageRead: Int,
+    val bookmark: Boolean,
+    @ColumnInfo(name = "source_order") val sourceOrder: Int,
+)

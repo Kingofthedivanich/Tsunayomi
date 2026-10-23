@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_browse_title">Browse</string>
+    <string name="feature_browse_empty_title">No sources yet</string>
+    <string name="feature_browse_empty_message">Local files, MangaDex and Komga will appear here.</string>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_settings_more_title">Ещё</string>
+    <string name="feature_settings_title">Настройки</string>
+    <string name="feature_settings_back">Назад</string>
+    <string name="feature_settings_cancel">Отмена</string>
+
+    <string name="feature_settings_section_appearance">Оформление</string>
+    <string name="feature_settings_theme">Тема</string>
+    <string name="feature_settings_theme_system">Системная</string>
+    <string name="feature_settings_theme_light">Светлая</string>
+    <string name="feature_settings_theme_dark">Тёмная</string>
+    <string name="feature_settings_dynamic_color">Динамические цвета</string>
+    <string name="feature_settings_dynamic_color_summary">Цвета из обоев</string>
+    <string name="feature_settings_pure_black">Чёрная тёмная тема</string>
+    <string name="feature_settings_pure_black_summary">Экономит заряд на AMOLED-экранах</string>
+
+    <string name="feature_settings_section_general">Общие</string>
+    <string name="feature_settings_language">Язык</string>
+    <string name="feature_settings_language_system">Как в системе</string>
+
+    <string name="feature_settings_about_title">О приложении</string>
+    <string name="feature_settings_about_version">Версия</string>
+    <string name="feature_settings_about_license">Лицензия</string>
+</resources>

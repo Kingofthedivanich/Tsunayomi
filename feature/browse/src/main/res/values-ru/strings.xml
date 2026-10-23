@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_browse_title">Обзор</string>
+    <string name="feature_browse_empty_title">Источников пока нет</string>
+    <string name="feature_browse_empty_message">Здесь появятся локальные файлы, MangaDex и Komga.</string>
+</resources>

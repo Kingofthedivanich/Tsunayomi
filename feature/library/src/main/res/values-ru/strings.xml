@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_library_title">Библиотека</string>
+    <string name="feature_library_empty_title">Библиотека пуста</string>
+    <string name="feature_library_empty_message">Добавьте мангу из «Обзора» или выберите локальную папку в настройках.</string>
+</resources>

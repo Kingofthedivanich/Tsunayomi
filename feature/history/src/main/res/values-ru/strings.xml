@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_history_title">История</string>
+    <string name="feature_history_empty_title">Вы ещё ничего не читали</string>
+    <string name="feature_history_empty_message">Здесь появятся открытые главы.</string>
+</resources>

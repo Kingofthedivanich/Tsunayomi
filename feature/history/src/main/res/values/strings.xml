@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_history_title">History</string>
+    <string name="feature_history_empty_title">Nothing read yet</string>
+    <string name="feature_history_empty_message">Chapters you open will show up here.</string>
+</resources>

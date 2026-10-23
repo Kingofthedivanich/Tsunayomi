@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature_library_title">Library</string>
+    <string name="feature_library_empty_title">Your library is empty</string>
+    <string name="feature_library_empty_message">Add manga from Browse or pick a local folder in settings.</string>
+</resources>
