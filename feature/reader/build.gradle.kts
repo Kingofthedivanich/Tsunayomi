@@ -8,6 +8,8 @@ android {
 
 dependencies {
     implementation(projects.data)
+    implementation(projects.translation.api)
+    implementation(projects.translation.core)
     implementation(libs.androidx.activity.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.telephoto.zoomable.image.coil3)

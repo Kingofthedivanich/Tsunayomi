@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import app.tsunayomi.core.model.LibrarySort
 import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
+import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.UserSettings
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -27,6 +28,9 @@ class UserPreferencesDataSource @Inject constructor(
             volumeKeysNavigation = prefs[Keys.volumeKeysNavigation] ?: defaults.volumeKeysNavigation,
             librarySort = prefs[Keys.librarySort].toEnum(defaults.librarySort),
             librarySortAscending = prefs[Keys.librarySortAscending] ?: defaults.librarySortAscending,
+            translationEngine = prefs[Keys.translationEngine].toEnum(defaults.translationEngine),
+            translationTargetLang = prefs[Keys.translationTargetLang] ?: defaults.translationTargetLang,
+            translateByDefault = prefs[Keys.translateByDefault] ?: defaults.translateByDefault,
         )
     }
 
@@ -63,6 +67,18 @@ class UserPreferencesDataSource @Inject constructor(
         }
     }
 
+    suspend fun setTranslationEngine(engine: TranslationEngine) {
+        dataStore.edit { it[Keys.translationEngine] = engine.name }
+    }
+
+    suspend fun setTranslationTargetLang(lang: String) {
+        dataStore.edit { it[Keys.translationTargetLang] = lang }
+    }
+
+    suspend fun setTranslateByDefault(enabled: Boolean) {
+        dataStore.edit { it[Keys.translateByDefault] = enabled }
+    }
+
     private inline fun <reified E : Enum<E>> String?.toEnum(default: E): E =
         this?.let { name -> enumValues<E>().firstOrNull { it.name == name } } ?: default
 
@@ -75,5 +91,8 @@ class UserPreferencesDataSource @Inject constructor(
         val volumeKeysNavigation = booleanPreferencesKey("volume_keys_navigation")
         val librarySort = stringPreferencesKey("library_sort")
         val librarySortAscending = booleanPreferencesKey("library_sort_ascending")
+        val translationEngine = stringPreferencesKey("translation_engine")
+        val translationTargetLang = stringPreferencesKey("translation_target_lang")
+        val translateByDefault = booleanPreferencesKey("translate_by_default")
     }
 }

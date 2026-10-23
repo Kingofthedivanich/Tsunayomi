@@ -1,5 +1,6 @@
 package app.tsunayomi.feature.reader
 
+import android.graphics.Bitmap
 import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBars
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material.icons.Icons
@@ -53,6 +55,11 @@ internal fun ReaderScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val currentPage by viewModel.currentPage.collectAsStateWithLifecycle()
+    val translationOn by viewModel.translationOn.collectAsStateWithLifecycle()
+    val translations by viewModel.translations.collectAsStateWithLifecycle()
+    val translatedImage: (Int) -> Bitmap? = { index ->
+        if (translationOn) (translations[index] as? PageTranslationState.Done)?.image else null
+    }
     var menuVisible by rememberSaveable { mutableStateOf(false) }
     val navigator = remember { ReaderNavigator() }
     val focusRequester = remember { FocusRequester() }
@@ -101,6 +108,7 @@ internal fun ReaderScreen(
                         initialPage = state.initialPage,
                         nextChapter = state.nextChapter,
                         navigator = navigator,
+                        translatedImage = translatedImage,
                         onPageChanged = viewModel::onPageChanged,
                         onToggleMenu = toggleMenu,
                         onNextChapter = viewModel::openNextChapter,
@@ -112,12 +120,24 @@ internal fun ReaderScreen(
                         vertical = state.mode == ReaderMode.Vertical,
                         nextChapter = state.nextChapter,
                         navigator = navigator,
+                        translatedImage = translatedImage,
                         onPageChanged = viewModel::onPageChanged,
                         onToggleMenu = toggleMenu,
                         onNextChapter = viewModel::openNextChapter,
                     )
                 }
             }
+        }
+
+        if (translationOn && chapter != null) {
+            TranslationStatus(
+                state = translations[currentPage],
+                onRetry = { viewModel.retryTranslation(currentPage) },
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .windowInsetsPadding(WindowInsets.statusBars)
+                    .padding(top = if (menuVisible) 72.dp else 8.dp),
+            )
         }
 
         if (!menuVisible && chapter != null && state.pages.isNotEmpty()) {
@@ -144,6 +164,8 @@ internal fun ReaderScreen(
             hasNext = state.nextChapter != null,
             onBack = onBack,
             onModeChange = viewModel::setMode,
+            translationOn = translationOn,
+            onToggleTranslation = viewModel::toggleTranslation,
             onJumpTo = { navigator.jumpTo(it) },
             onPreviousChapter = viewModel::openPreviousChapter,
             onNextChapter = viewModel::openNextChapter,

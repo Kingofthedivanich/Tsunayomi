@@ -41,7 +41,9 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.component.labelRes
 import app.tsunayomi.core.designsystem.component.rememberLibraryFolderPicker
+import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.ReaderMode
+import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
 
@@ -53,8 +55,14 @@ internal fun SettingsScreen(
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val komgaUrl by viewModel.komgaUrl.collectAsStateWithLifecycle()
+    val gemini by viewModel.gemini.collectAsStateWithLifecycle()
     SettingsContent(
         settings = settings,
+        gemini = gemini,
+        onTranslationEngineChange = viewModel::setTranslationEngine,
+        onTranslationLangChange = viewModel::setTranslationTargetLang,
+        onTranslateByDefaultChange = viewModel::setTranslateByDefault,
+        onGeminiChange = viewModel::setGemini,
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
         onBack = onBack,
@@ -71,6 +79,11 @@ internal fun SettingsScreen(
 @Composable
 private fun SettingsContent(
     settings: UserSettings?,
+    gemini: GeminiConfig?,
+    onTranslationEngineChange: (TranslationEngine) -> Unit,
+    onTranslationLangChange: (String) -> Unit,
+    onTranslateByDefaultChange: (Boolean) -> Unit,
+    onGeminiChange: (GeminiConfig) -> Unit,
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
     onBack: () -> Unit,
@@ -83,6 +96,8 @@ private fun SettingsContent(
 ) {
     var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
     var showReaderModeDialog by rememberSaveable { mutableStateOf(false) }
+    var showEngineDialog by rememberSaveable { mutableStateOf(false) }
+    var showTargetDialog by rememberSaveable { mutableStateOf(false) }
     val pickFolder = rememberLibraryFolderPicker { onLibraryFolderPicked(it.toString()) }
     val language = remember(showLanguageDialog) { AppLanguage.current() }
 
@@ -170,7 +185,45 @@ private fun SettingsContent(
                 checked = settings.volumeKeysNavigation,
                 onCheckedChange = onVolumeKeysChange,
             )
+
+            SectionHeader(stringResource(R.string.feature_settings_section_translation))
+            TranslationSection(
+                settings = settings,
+                gemini = gemini,
+                onPickEngine = { showEngineDialog = true },
+                onPickLanguage = { showTargetDialog = true },
+                onTranslateByDefaultChange = onTranslateByDefaultChange,
+                onGeminiChange = onGeminiChange,
+                switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
+            )
         }
+    }
+
+    if (showEngineDialog && settings != null) {
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_translation_engine),
+            options = TranslationEngine.entries.filter { it.implemented },
+            selected = settings.translationEngine,
+            label = { it.label() },
+            onSelect = {
+                showEngineDialog = false
+                onTranslationEngineChange(it)
+            },
+            onDismiss = { showEngineDialog = false },
+        )
+    }
+    if (showTargetDialog && settings != null) {
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_translation_lang),
+            options = TRANSLATION_TARGETS,
+            selected = settings.translationTargetLang,
+            label = { languageLabel(it) },
+            onSelect = {
+                showTargetDialog = false
+                onTranslationLangChange(it)
+            },
+            onDismiss = { showTargetDialog = false },
+        )
     }
 
     if (showReaderModeDialog && settings != null) {

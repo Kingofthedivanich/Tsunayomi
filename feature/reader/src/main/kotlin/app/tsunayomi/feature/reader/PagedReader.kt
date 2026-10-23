@@ -1,5 +1,6 @@
 package app.tsunayomi.feature.reader
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,6 +49,7 @@ internal fun PagedReader(
     vertical: Boolean,
     nextChapter: Chapter?,
     navigator: ReaderNavigator,
+    translatedImage: (Int) -> Bitmap?,
     onPageChanged: (Int) -> Unit,
     onToggleMenu: () -> Unit,
     onNextChapter: () -> Unit,
@@ -85,7 +87,7 @@ internal fun PagedReader(
 
     val pageContent: @Composable (Int) -> Unit = { index ->
         if (index < pages.size) {
-            ZoomablePage(pages[index], onTap)
+            ZoomablePage(pages[index], translatedImage(index), onTap)
         } else {
             TappableBox(onTap) { ChapterEndPage(nextChapter, onNextChapter) }
         }
@@ -104,7 +106,7 @@ internal fun PagedReader(
 }
 
 @Composable
-private fun ZoomablePage(page: SPage, onTap: (Offset, IntSize) -> Unit) {
+private fun ZoomablePage(page: SPage, translatedImage: Bitmap?, onTap: (Offset, IntSize) -> Unit) {
     val context = LocalContext.current
     var size by remember { mutableStateOf(IntSize.Zero) }
     var failed by remember(page) { mutableStateOf(false) }
@@ -123,7 +125,8 @@ private fun ZoomablePage(page: SPage, onTap: (Offset, IntSize) -> Unit) {
         contentAlignment = Alignment.Center,
     ) {
         ZoomableAsyncImage(
-            model = request,
+            // The translated copy replaces the page, so zoom and pan apply to the translation too.
+            model = translatedImage ?: request,
             contentDescription = null,
             state = imageState,
             modifier = Modifier.fillMaxSize(),

@@ -1,31 +1,36 @@
 package app.tsunayomi.translation.api
 
 import android.graphics.Bitmap
+import app.tsunayomi.core.model.TranslationEngine
 
-/** Finds speech bubbles and text areas on a page. */
-interface TextDetector {
-    suspend fun detect(page: Bitmap): List<TextBlock>
-}
-
-/** Recognizes the text inside detected blocks. Returns one string per block, in the same order. */
-interface OcrEngine {
-    /** ISO 639-1 codes this engine reads well. */
-    val supportedLanguages: Set<String>
-
-    suspend fun recognize(page: Bitmap, blocks: List<TextBlock>, lang: String?): List<String>
+/** Finds and reads the text on a page. */
+interface TextRecognizer {
+    /** [sourceLang] (ISO 639-1) picks the script model; null means "probably CJK", which also reads Latin. */
+    suspend fun recognize(page: Bitmap, sourceLang: String?): List<RecognizedBlock>
 }
 
 /**
- * Translates a batch of texts. Batches let LLM engines see the whole page or chapter at once,
+ * Translates a batch of texts in one go. Batches let LLM engines see the whole page at once,
  * which keeps names and tone consistent and costs one request instead of one per bubble.
  */
 interface Translator {
-    val engine: TranslatorEngine
+    val engine: TranslationEngine
 
-    suspend fun translate(texts: List<String>, request: TranslationRequest): List<String>
+    /** Part of the cache key; bump when output changes (e.g. a new prompt) so old translations are redone. */
+    val cacheVersion: Int get() = 1
+
+    /** Returns one translation per input, in order. [sourceLang] may be null when unknown. */
+    suspend fun translate(texts: List<String>, sourceLang: String?, targetLang: String): List<String>
 }
 
-/** Runs the whole pipeline for one page: detect → OCR → translate. Results are cached by implementations. */
+/** Runs the whole pipeline for one page — recognize, translate, cache — with fallback to the offline engine. */
 interface PageTranslator {
-    suspend fun translate(page: Bitmap, request: TranslationRequest): List<TranslatedRegion>
+    /**
+     * [pageKey] identifies the page image (its URL or URI). [loadPage] is only called on a cache miss.
+     */
+    suspend fun translate(
+        pageKey: String,
+        sourceLang: String?,
+        loadPage: suspend () -> Bitmap,
+    ): PageTranslation
 }

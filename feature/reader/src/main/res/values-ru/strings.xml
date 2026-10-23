@@ -10,4 +10,14 @@
     <string name="feature_reader_page_failed">Не удалось загрузить страницу. Повторить</string>
     <string name="feature_reader_error">Не удалось открыть главу</string>
     <string name="feature_reader_no_pages">В главе нет страниц</string>
+    <string name="feature_reader_translation_on">Переводить страницы</string>
+    <string name="feature_reader_translation_off">Показать оригинал</string>
+    <string name="feature_reader_translating">Перевожу…</string>
+    <string name="feature_reader_translation_failed">Не удалось перевести: %s. Нажмите, чтобы повторить</string>
+    <string name="feature_reader_translation_fallback">%s — переведено офлайн через ML Kit</string>
+    <string name="feature_reader_translation_error_no_key">у %s нет ключа API</string>
+    <string name="feature_reader_translation_error_bad_key">%s отклонил ключ API</string>
+    <string name="feature_reader_translation_error_quota">исчерпан бесплатный лимит %s</string>
+    <string name="feature_reader_translation_error_language">язык «%s» не поддерживается</string>
+    <string name="feature_reader_translation_error_network">нет связи (при первом запуске скачивается языковой пакет)</string>
 </resources>

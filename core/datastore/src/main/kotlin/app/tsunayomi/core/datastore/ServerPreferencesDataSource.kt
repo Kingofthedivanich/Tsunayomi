@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.KomgaConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -40,6 +41,20 @@ class ServerPreferencesDataSource @Inject constructor(
         }
     }
 
+    val gemini: Flow<GeminiConfig> = dataStore.data.map { prefs ->
+        GeminiConfig(
+            apiKey = prefs[Keys.geminiApiKey]?.let(cipher::decrypt).orEmpty(),
+            model = prefs[Keys.geminiModel]?.ifBlank { null } ?: GeminiConfig.DEFAULT_MODEL,
+        )
+    }.distinctUntilChanged()
+
+    suspend fun setGemini(config: GeminiConfig) {
+        dataStore.edit { prefs ->
+            prefs.putSecret(Keys.geminiApiKey, config.apiKey.trim())
+            prefs[Keys.geminiModel] = config.model.trim()
+        }
+    }
+
     private fun androidx.datastore.preferences.core.MutablePreferences.putSecret(
         key: Preferences.Key<String>,
         value: String,
@@ -52,5 +67,7 @@ class ServerPreferencesDataSource @Inject constructor(
         val komgaUsername = stringPreferencesKey("komga_username")
         val komgaPassword = stringPreferencesKey("komga_password")
         val komgaApiKey = stringPreferencesKey("komga_api_key")
+        val geminiApiKey = stringPreferencesKey("gemini_api_key")
+        val geminiModel = stringPreferencesKey("gemini_model")
     }
 }

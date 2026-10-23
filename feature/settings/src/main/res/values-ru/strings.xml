@@ -42,4 +42,19 @@
     <string name="feature_settings_komga_remove">Удалить</string>
     <string name="feature_settings_komga_connected">Подключено</string>
     <string name="feature_settings_komga_failed">Не удалось подключиться: %s</string>
+    <string name="feature_settings_section_translation">Перевод</string>
+    <string name="feature_settings_translation_engine">Способ перевода</string>
+    <string name="feature_settings_translation_engine_mlkit">ML Kit — офлайн, бесплатно, базовое качество</string>
+    <string name="feature_settings_translation_engine_gemini">Gemini — свой бесплатный ключ, лучшее качество</string>
+    <string name="feature_settings_translation_lang">Переводить на</string>
+    <string name="feature_settings_translation_lang_app">Язык приложения</string>
+    <string name="feature_settings_translate_by_default">Переводить автоматически</string>
+    <string name="feature_settings_translate_by_default_summary">Включать перевод при открытии ридера</string>
+    <string name="feature_settings_gemini_key">Ключ Gemini API</string>
+    <string name="feature_settings_gemini_key_missing">Не задан — пока используется ML Kit</string>
+    <string name="feature_settings_gemini_key_set">Сохранён (зашифрован на устройстве)</string>
+    <string name="feature_settings_gemini_key_hint">Бесплатный ключ: aistudio.google.com → Get API key. Хранится зашифрованным и отправляется только в Google.</string>
+    <string name="feature_settings_gemini_model">Модель Gemini</string>
+    <string name="feature_settings_gemini_model_hint">Идентификатор модели, например %s. Дешёвые модели быстрее и с бо́льшими бесплатными лимитами.</string>
+    <string name="feature_settings_save">Сохранить</string>
 </resources>

@@ -2,7 +2,9 @@ package app.tsunayomi.feature.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.ReaderMode
+import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
 import app.tsunayomi.data.ServerSettingsRepository
@@ -18,8 +20,27 @@ import javax.inject.Inject
 @HiltViewModel
 internal class SettingsViewModel @Inject constructor(
     private val repository: UserSettingsRepository,
-    serverSettings: ServerSettingsRepository,
+    private val serverSettings: ServerSettingsRepository,
 ) : ViewModel() {
+    val gemini: StateFlow<GeminiConfig?> = serverSettings.gemini
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
+
+    fun setTranslationEngine(engine: TranslationEngine) {
+        viewModelScope.launch { repository.setTranslationEngine(engine) }
+    }
+
+    fun setTranslationTargetLang(lang: String) {
+        viewModelScope.launch { repository.setTranslationTargetLang(lang) }
+    }
+
+    fun setTranslateByDefault(enabled: Boolean) {
+        viewModelScope.launch { repository.setTranslateByDefault(enabled) }
+    }
+
+    fun setGemini(config: GeminiConfig) {
+        viewModelScope.launch { serverSettings.setGemini(config) }
+    }
+
     val komgaUrl: StateFlow<String?> = serverSettings.komga.map { it?.url }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
 

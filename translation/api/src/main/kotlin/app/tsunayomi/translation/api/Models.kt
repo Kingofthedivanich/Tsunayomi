@@ -1,7 +1,14 @@
 package app.tsunayomi.translation.api
 
-/** Axis-aligned box in source image pixels. */
-data class BoundingBox(
+import app.tsunayomi.core.model.TranslationEngine
+import kotlinx.serialization.Serializable
+
+/**
+ * Box in normalized page coordinates: 0..1 of the page width/height, so it fits any rendering
+ * of the page (zoomed, downscaled for OCR, full-width webtoon strip).
+ */
+@Serializable
+data class NormalizedBox(
     val left: Float,
     val top: Float,
     val right: Float,
@@ -11,37 +18,33 @@ data class BoundingBox(
     val height: Float get() = bottom - top
 }
 
-/** A detected block of text on a page: a speech bubble or free-floating text. */
-data class TextBlock(
-    val box: BoundingBox,
-    /** Outline of the bubble in image pixels as x0,y0,x1,y1,…; null if only the box is known. */
-    val polygon: List<Float>? = null,
-    val isBubble: Boolean,
-    val vertical: Boolean = false,
+/** A block of text found on the page, usually one speech bubble. */
+data class RecognizedBlock(
+    val box: NormalizedBox,
+    val text: String,
 )
 
-/** A text block after OCR and translation, ready to be drawn over the page. */
+@Serializable
 data class TranslatedRegion(
-    val block: TextBlock,
+    val box: NormalizedBox,
     val sourceText: String,
     val translatedText: String,
 )
 
-/** Everything the pipeline needs to know besides the image itself. */
-data class TranslationRequest(
-    /** ISO 639-1 code; null means detect automatically. */
-    val sourceLang: String?,
-    val targetLang: String,
-    val readingDirection: ReadingOrder,
+data class PageTranslation(
+    val regions: List<TranslatedRegion>,
+    /** The engine that actually produced the text; differs from the chosen one after a fallback. */
+    val engine: TranslationEngine,
+    /** Why the chosen engine was replaced by the offline one, if it was. */
+    val fallbackReason: TranslationException? = null,
 )
 
-enum class ReadingOrder { LeftToRight, RightToLeft }
-
-/** Engines the user can pick in settings. Gemini Nano was dropped: too few devices to test on. */
-enum class TranslatorEngine(val requiresApiKey: Boolean, val requiresNetwork: Boolean) {
-    MlKit(requiresApiKey = false, requiresNetwork = false),
-    OfflineModel(requiresApiKey = false, requiresNetwork = false),
-    Gemini(requiresApiKey = true, requiresNetwork = true),
-    OpenAiCompatible(requiresApiKey = true, requiresNetwork = true),
-    DeepL(requiresApiKey = true, requiresNetwork = true),
+/** Failures the UI explains to the user rather than showing a raw message. */
+sealed class TranslationException(message: String, cause: Throwable? = null) : Exception(message, cause) {
+    class MissingApiKey(val engine: TranslationEngine) : TranslationException("$engine needs an API key")
+    class InvalidApiKey(val engine: TranslationEngine) : TranslationException("$engine rejected the API key")
+    class QuotaExceeded(val engine: TranslationEngine) : TranslationException("$engine quota exceeded")
+    class UnsupportedLanguage(val lang: String) : TranslationException("Language not supported: $lang")
+    class Network(cause: Throwable) : TranslationException("Network error: ${cause.message}", cause)
+    class Engine(message: String, cause: Throwable? = null) : TranslationException(message, cause)
 }

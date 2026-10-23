@@ -1,5 +1,6 @@
 package app.tsunayomi.core.database
 
+import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
@@ -8,11 +9,13 @@ import app.tsunayomi.core.database.dao.ChapterDao
 import app.tsunayomi.core.database.dao.HistoryDao
 import app.tsunayomi.core.database.dao.LibraryDao
 import app.tsunayomi.core.database.dao.MangaDao
+import app.tsunayomi.core.database.dao.TranslationDao
 import app.tsunayomi.core.database.entity.CategoryEntity
 import app.tsunayomi.core.database.entity.ChapterEntity
 import app.tsunayomi.core.database.entity.HistoryEntity
 import app.tsunayomi.core.database.entity.MangaCategoryEntity
 import app.tsunayomi.core.database.entity.MangaEntity
+import app.tsunayomi.core.database.entity.TranslationPageEntity
 
 @Database(
     entities = [
@@ -21,9 +24,13 @@ import app.tsunayomi.core.database.entity.MangaEntity
         CategoryEntity::class,
         MangaCategoryEntity::class,
         HistoryEntity::class,
+        TranslationPageEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
+    autoMigrations = [
+        AutoMigration(from = 1, to = 2),
+    ],
 )
 @TypeConverters(Converters::class)
 abstract class TsunayomiDatabase : RoomDatabase() {
@@ -32,4 +39,5 @@ abstract class TsunayomiDatabase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
     abstract fun historyDao(): HistoryDao
     abstract fun libraryDao(): LibraryDao
+    abstract fun translationDao(): TranslationDao
 }

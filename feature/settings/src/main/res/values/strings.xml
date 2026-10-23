@@ -45,4 +45,19 @@
     <string name="feature_settings_komga_remove">Remove</string>
     <string name="feature_settings_komga_connected">Connected</string>
     <string name="feature_settings_komga_failed">Could not connect: %s</string>
+    <string name="feature_settings_section_translation">Translation</string>
+    <string name="feature_settings_translation_engine">Translation engine</string>
+    <string name="feature_settings_translation_engine_mlkit">ML Kit — offline, free, basic quality</string>
+    <string name="feature_settings_translation_engine_gemini">Gemini — your free API key, best quality</string>
+    <string name="feature_settings_translation_lang">Translate into</string>
+    <string name="feature_settings_translation_lang_app">App language</string>
+    <string name="feature_settings_translate_by_default">Translate automatically</string>
+    <string name="feature_settings_translate_by_default_summary">Turn translation on when opening the reader</string>
+    <string name="feature_settings_gemini_key">Gemini API key</string>
+    <string name="feature_settings_gemini_key_missing">Not set — ML Kit is used until you add one</string>
+    <string name="feature_settings_gemini_key_set">Saved (encrypted on this device)</string>
+    <string name="feature_settings_gemini_key_hint">Create a free key at aistudio.google.com → Get API key. It is stored encrypted and only sent to Google.</string>
+    <string name="feature_settings_gemini_model">Gemini model</string>
+    <string name="feature_settings_gemini_model_hint">Model id, e.g. %s. Cheaper models are faster and have higher free limits.</string>
+    <string name="feature_settings_save">Save</string>
 </resources>

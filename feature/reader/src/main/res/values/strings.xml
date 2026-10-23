@@ -10,4 +10,14 @@
     <string name="feature_reader_page_failed">Could not load page. Retry</string>
     <string name="feature_reader_error">Could not open chapter</string>
     <string name="feature_reader_no_pages">No pages in this chapter</string>
+    <string name="feature_reader_translation_on">Translate pages</string>
+    <string name="feature_reader_translation_off">Show original</string>
+    <string name="feature_reader_translating">Translating…</string>
+    <string name="feature_reader_translation_failed">Translation failed: %s. Tap to retry</string>
+    <string name="feature_reader_translation_fallback">%s — translated offline with ML Kit</string>
+    <string name="feature_reader_translation_error_no_key">%s has no API key</string>
+    <string name="feature_reader_translation_error_bad_key">%s rejected the API key</string>
+    <string name="feature_reader_translation_error_quota">%s free limit reached</string>
+    <string name="feature_reader_translation_error_language">language \"%s\" is not supported</string>
+    <string name="feature_reader_translation_error_network">no connection (first use downloads a language pack)</string>
 </resources>

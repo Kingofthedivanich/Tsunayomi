@@ -21,10 +21,13 @@ import androidx.compose.material.icons.outlined.AutoStories
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.SkipNext
 import androidx.compose.material.icons.outlined.SkipPrevious
+import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Surface
@@ -58,6 +61,8 @@ internal fun ReaderMenu(
     hasNext: Boolean,
     onBack: () -> Unit,
     onModeChange: (ReaderMode) -> Unit,
+    translationOn: Boolean,
+    onToggleTranslation: () -> Unit,
     onJumpTo: (Int) -> Unit,
     onPreviousChapter: () -> Unit,
     onNextChapter: () -> Unit,
@@ -83,6 +88,13 @@ internal fun ReaderMenu(
                     Column(Modifier.weight(1f)) {
                         Text(title, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
                         Text(chapterName, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
+                    IconToggleButton(checked = translationOn, onCheckedChange = { onToggleTranslation() }) {
+                        Icon(
+                            Icons.Outlined.Translate,
+                            stringResource(if (translationOn) R.string.feature_reader_translation_off else R.string.feature_reader_translation_on),
+                            tint = if (translationOn) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                        )
                     }
                     ModeButton(mode, onModeChange)
                 }

@@ -10,6 +10,10 @@ data class UserSettings(
     val volumeKeysNavigation: Boolean = true,
     val librarySort: LibrarySort = LibrarySort.Title,
     val librarySortAscending: Boolean = true,
+    val translationEngine: TranslationEngine = TranslationEngine.MlKit,
+    /** ISO 639-1 target language; empty means "the app's language". */
+    val translationTargetLang: String = "",
+    val translateByDefault: Boolean = false,
 )
 
 enum class ThemeMode {

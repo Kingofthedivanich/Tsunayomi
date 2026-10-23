@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.tsunayomi.android.library)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -7,5 +8,7 @@ android {
 }
 
 dependencies {
+    api(projects.core.model)
     api(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.serialization.json)
 }

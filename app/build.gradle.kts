@@ -14,6 +14,16 @@ android {
         versionName = "0.1.0"
     }
 
+    splits {
+        abi {
+            // ML Kit ships native code per ABI; one APK per ABI keeps each download small.
+            isEnable = true
+            reset()
+            include("arm64-v8a", "armeabi-v7a", "x86_64")
+            isUniversalApk = false
+        }
+    }
+
     androidResources {
         // Only ship the languages we translate; drops unused locales pulled in by libraries.
         localeFilters += listOf("en", "ru")
@@ -43,6 +53,9 @@ dependencies {
     implementation(projects.source.local)
     implementation(projects.source.mangadex)
     implementation(projects.source.komga)
+    implementation(projects.translation.core)
+    implementation(projects.translation.mlkit)
+    implementation(projects.translation.gemini)
 
     implementation(projects.feature.library)
     implementation(projects.feature.browse)

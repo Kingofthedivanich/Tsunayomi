@@ -1,5 +1,6 @@
 package app.tsunayomi.feature.reader
 
+import android.graphics.Bitmap
 import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
@@ -47,6 +48,7 @@ internal fun WebtoonReader(
     initialPage: Int,
     nextChapter: Chapter?,
     navigator: ReaderNavigator,
+    translatedImage: (Int) -> Bitmap?,
     onPageChanged: (Int) -> Unit,
     onToggleMenu: () -> Unit,
     onNextChapter: () -> Unit,
@@ -90,7 +92,7 @@ internal fun WebtoonReader(
                     }
                 },
         ) {
-            items(pages.size, key = { it }) { index -> WebtoonPage(pages[index], decodeSize) }
+            items(pages.size, key = { it }) { index -> WebtoonPage(pages[index], decodeSize, translatedImage(index)) }
             item(key = "end") {
                 Box(Modifier.fillMaxWidth().height(maxHeight)) { ChapterEndPage(nextChapter, onNextChapter) }
             }
@@ -99,7 +101,7 @@ internal fun WebtoonReader(
 }
 
 @Composable
-private fun WebtoonPage(page: SPage, decodeSize: Size) {
+private fun WebtoonPage(page: SPage, decodeSize: Size, translatedImage: Bitmap?) {
     val context = LocalContext.current
     var attempt by remember(page) { mutableIntStateOf(0) }
     var painterState by remember(page) { mutableStateOf<AsyncImagePainter.State>(AsyncImagePainter.State.Empty) }
@@ -108,7 +110,7 @@ private fun WebtoonPage(page: SPage, decodeSize: Size) {
 
     Box(contentAlignment = Alignment.Center) {
         AsyncImage(
-            model = request,
+            model = translatedImage ?: request,
             contentDescription = null,
             contentScale = ContentScale.FillWidth,
             onState = { painterState = it },

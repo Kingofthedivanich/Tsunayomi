@@ -43,6 +43,9 @@ include(":source:mangadex")
 include(":source:komga")
 
 include(":translation:api")
+include(":translation:core")
+include(":translation:mlkit")
+include(":translation:gemini")
 
 include(":feature:library")
 include(":feature:browse")
