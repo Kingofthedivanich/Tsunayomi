@@ -30,4 +30,16 @@
     <string name="feature_settings_reader_mode">Режим чтения по умолчанию</string>
     <string name="feature_settings_volume_keys">Листать кнопками громкости</string>
     <string name="feature_settings_volume_keys_summary">Тише — следующая страница, громче — предыдущая</string>
+    <string name="feature_settings_komga_title">Сервер Komga</string>
+    <string name="feature_settings_komga_not_set">Не настроен</string>
+    <string name="feature_settings_komga_hint">Читайте мангу с собственного сервера Komga. Пароль и ключ API хранятся на устройстве в зашифрованном виде.</string>
+    <string name="feature_settings_komga_url">Адрес сервера</string>
+    <string name="feature_settings_komga_username">Email</string>
+    <string name="feature_settings_komga_password">Пароль</string>
+    <string name="feature_settings_komga_api_key">Ключ API (необязательно)</string>
+    <string name="feature_settings_komga_api_key_hint">Используется вместо пароля. Создаётся в Komga: Аккаунт → API-ключи.</string>
+    <string name="feature_settings_komga_save">Сохранить и проверить</string>
+    <string name="feature_settings_komga_remove">Удалить</string>
+    <string name="feature_settings_komga_connected">Подключено</string>
+    <string name="feature_settings_komga_failed">Не удалось подключиться: %s</string>
 </resources>

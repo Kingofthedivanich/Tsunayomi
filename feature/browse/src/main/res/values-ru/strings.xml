@@ -2,7 +2,7 @@
 <resources>
     <string name="feature_browse_title">Обзор</string>
     <string name="feature_browse_empty_title">Источников пока нет</string>
-    <string name="feature_browse_empty_message">Здесь появятся локальные файлы, MangaDex и Komga.</string>
+    <string name="feature_browse_empty_message">Источники не установлены.</string>
     <string name="feature_browse_local_source">Локальные файлы</string>
     <string name="feature_browse_local_source_summary">Папки, CBZ/ZIP и PDF на устройстве</string>
     <string name="feature_browse_back">Назад</string>
@@ -18,4 +18,14 @@
     <string name="feature_browse_retry">Повторить</string>
     <string name="feature_browse_nothing_found">Ничего не найдено</string>
     <string name="feature_browse_local_empty_message">Положите каждую серию в отдельную подпапку библиотеки и потяните вниз, чтобы обновить.</string>
+    <string name="feature_browse_komga_summary">Ваш собственный сервер Komga</string>
+    <string name="feature_browse_global_search">Поиск по всем источникам</string>
+    <string name="feature_browse_global_search_hint">Искать везде…</string>
+    <string name="feature_browse_global_search_message">Здесь появятся результаты из всех настроенных источников, по группам.</string>
+    <string name="feature_browse_filters">Фильтры</string>
+    <string name="feature_browse_filter_reset">Сбросить</string>
+    <string name="feature_browse_filter_apply">Применить</string>
+    <string name="feature_browse_server_not_configured_title">Сервер не настроен</string>
+    <string name="feature_browse_server_not_configured_message">Укажите адрес сервера и данные для входа в настройках.</string>
+    <string name="feature_browse_configure">Настроить</string>
 </resources>

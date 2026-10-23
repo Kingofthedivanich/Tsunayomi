@@ -41,6 +41,8 @@ dependencies {
     implementation(projects.core.network)
     implementation(projects.data)
     implementation(projects.source.local)
+    implementation(projects.source.mangadex)
+    implementation(projects.source.komga)
 
     implementation(projects.feature.library)
     implementation(projects.feature.browse)

@@ -20,7 +20,9 @@ import androidx.navigation.compose.rememberNavController
 import app.tsunayomi.feature.browse.BrowseRoute
 import app.tsunayomi.feature.browse.browseScreen
 import app.tsunayomi.feature.browse.catalogScreen
+import app.tsunayomi.feature.browse.globalSearchScreen
 import app.tsunayomi.feature.browse.navigateToCatalog
+import app.tsunayomi.feature.browse.navigateToGlobalSearch
 import app.tsunayomi.feature.details.detailsScreen
 import app.tsunayomi.feature.details.navigateToDetails
 import app.tsunayomi.feature.history.HistoryRoute
@@ -29,7 +31,10 @@ import app.tsunayomi.feature.library.LibraryRoute
 import app.tsunayomi.feature.library.libraryScreen
 import app.tsunayomi.feature.reader.navigateToReader
 import app.tsunayomi.feature.reader.readerScreen
+import app.tsunayomi.feature.settings.komgaSettingsScreen
 import app.tsunayomi.feature.settings.moreGraph
+import app.tsunayomi.feature.settings.navigateToKomgaSettings
+import app.tsunayomi.source.api.SourceIds
 
 /** Root of the UI: adaptive navigation (bottom bar on phones, rail on tablets) around the nav host. */
 @Composable
@@ -63,8 +68,19 @@ fun TsunayomiApp(navController: NavHostController = rememberNavController()) {
     ) {
         NavHost(navController = navController, startDestination = LibraryRoute) {
             libraryScreen(onOpenManga = navController::navigateToDetails)
-            browseScreen(onOpenCatalog = navController::navigateToCatalog)
-            catalogScreen(onBack = navController::popBackStack, onOpenManga = navController::navigateToDetails)
+            browseScreen(
+                onOpenCatalog = navController::navigateToCatalog,
+                onOpenGlobalSearch = navController::navigateToGlobalSearch,
+            )
+            catalogScreen(
+                onBack = navController::popBackStack,
+                onOpenManga = navController::navigateToDetails,
+                onOpenSourceSettings = { sourceId ->
+                    if (sourceId == SourceIds.KOMGA) navController.navigateToKomgaSettings()
+                },
+            )
+            globalSearchScreen(onBack = navController::popBackStack, onOpenManga = navController::navigateToDetails)
+            komgaSettingsScreen(onBack = navController::popBackStack)
             historyScreen()
             detailsScreen(onBack = navController::popBackStack, onRead = navController::navigateToReader)
             readerScreen(onBack = navController::popBackStack)

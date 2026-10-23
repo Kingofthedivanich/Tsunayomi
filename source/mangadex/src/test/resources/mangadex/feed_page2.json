@@ -1,0 +1,7 @@
+{
+  "result": "ok", "response": "collection", "limit": 2, "offset": 2, "total": 4,
+  "data": [
+    {"id": "ch-ext", "type": "chapter", "attributes": {"volume": null, "chapter": "3", "title": "Elsewhere", "externalUrl": "https://example.com/c3", "pages": 0}, "relationships": []},
+    {"id": "ch-os", "type": "chapter", "attributes": {"volume": null, "chapter": null, "title": null, "externalUrl": null, "publishAt": "2024-06-01T10:00:00+00:00", "pages": 5}, "relationships": []}
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "result": "ok", "response": "collection", "limit": 2, "offset": 0, "total": 4,
+  "data": [
+    {"id": "ch-2", "type": "chapter", "attributes": {"volume": "1", "chapter": "2", "title": "", "translatedLanguage": "en", "externalUrl": null, "publishAt": "2024-05-01T10:00:00+00:00", "pages": 20},
+     "relationships": [{"id": "g1", "type": "scanlation_group", "attributes": {"name": "Group A"}}, {"id": "g2", "type": "scanlation_group", "attributes": {"name": "Group B"}}]},
+    {"id": "ch-1", "type": "chapter", "attributes": {"volume": "1", "chapter": "1", "title": "Start", "translatedLanguage": "en", "externalUrl": null, "publishAt": "2024-04-01T10:00:00+00:00", "pages": 18}, "relationships": []}
+  ]
+}

@@ -2,7 +2,7 @@
 <resources>
     <string name="feature_browse_title">Browse</string>
     <string name="feature_browse_empty_title">No sources yet</string>
-    <string name="feature_browse_empty_message">Local files, MangaDex and Komga will appear here.</string>
+    <string name="feature_browse_empty_message">No sources are installed.</string>
     <string name="feature_browse_local_source">Local files</string>
     <string name="feature_browse_local_source_summary">Folders, CBZ/ZIP and PDF on this device</string>
     <string name="feature_browse_back">Back</string>
@@ -18,4 +18,14 @@
     <string name="feature_browse_retry">Retry</string>
     <string name="feature_browse_nothing_found">Nothing found</string>
     <string name="feature_browse_local_empty_message">Put each series in its own subfolder of the library folder, then pull to refresh.</string>
+    <string name="feature_browse_komga_summary">Your self-hosted Komga server</string>
+    <string name="feature_browse_global_search">Search all sources</string>
+    <string name="feature_browse_global_search_hint">Search everywhere…</string>
+    <string name="feature_browse_global_search_message">Results from every configured source appear here, grouped by source.</string>
+    <string name="feature_browse_filters">Filters</string>
+    <string name="feature_browse_filter_reset">Reset</string>
+    <string name="feature_browse_filter_apply">Apply</string>
+    <string name="feature_browse_server_not_configured_title">Server not set up</string>
+    <string name="feature_browse_server_not_configured_message">Enter the server address and your login in settings.</string>
+    <string name="feature_browse_configure">Set up</string>
 </resources>

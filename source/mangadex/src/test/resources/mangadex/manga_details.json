@@ -1,0 +1,17 @@
+{
+  "result": "ok", "response": "entity",
+  "data": {
+    "id": "11111111-1111-1111-1111-111111111111", "type": "manga",
+    "attributes": {
+      "title": {"en": "Test Manga"}, "altTitles": [],
+      "description": {"en": "English description", "ru": "Русское описание"},
+      "status": "hiatus", "originalLanguage": "ja", "tags": []
+    },
+    "relationships": [
+      {"id": "a1", "type": "author", "attributes": {"name": "Writer One"}},
+      {"id": "a2", "type": "artist", "attributes": {"name": "Writer One"}},
+      {"id": "a3", "type": "artist", "attributes": {"name": "Artist Two"}},
+      {"id": "c1", "type": "cover_art", "attributes": {"fileName": "cover.png"}}
+    ]
+  }
+}

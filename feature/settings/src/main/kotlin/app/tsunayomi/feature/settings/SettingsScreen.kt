@@ -48,11 +48,15 @@ import app.tsunayomi.core.model.UserSettings
 @Composable
 internal fun SettingsScreen(
     onBack: () -> Unit,
+    onOpenKomga: () -> Unit,
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
+    val komgaUrl by viewModel.komgaUrl.collectAsStateWithLifecycle()
     SettingsContent(
         settings = settings,
+        komgaUrl = komgaUrl,
+        onOpenKomga = onOpenKomga,
         onBack = onBack,
         onThemeModeChange = viewModel::setThemeMode,
         onDynamicColorChange = viewModel::setDynamicColor,
@@ -67,6 +71,8 @@ internal fun SettingsScreen(
 @Composable
 private fun SettingsContent(
     settings: UserSettings?,
+    komgaUrl: String?,
+    onOpenKomga: () -> Unit,
     onBack: () -> Unit,
     onThemeModeChange: (ThemeMode) -> Unit,
     onDynamicColorChange: (Boolean) -> Unit,
@@ -145,6 +151,11 @@ private fun SettingsContent(
                     )
                 },
                 modifier = Modifier.clickable(onClick = pickFolder),
+            )
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_komga_title)) },
+                supportingContent = { Text(komgaUrl ?: stringResource(R.string.feature_settings_komga_not_set)) },
+                modifier = Modifier.clickable(onClick = onOpenKomga),
             )
 
             SectionHeader(stringResource(R.string.feature_settings_section_reader))

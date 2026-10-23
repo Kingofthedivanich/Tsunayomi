@@ -33,6 +33,9 @@ internal data class CatalogUiState(
     val hasNext: Boolean = true,
     val notConfigured: Boolean = false,
     val error: String? = null,
+    /** True once the user applied filters; listing chips then no longer apply. */
+    val filtersApplied: Boolean = false,
+    val filterVersion: Int = 0,
 )
 
 @HiltViewModel
@@ -50,6 +53,11 @@ internal class CatalogViewModel @Inject constructor(
     private val openManga = Channel<Long>(Channel.BUFFERED)
     val openMangaEvents = openManga.receiveAsFlow()
 
+    /** Mutable filter objects edited by the sheet; [CatalogUiState.filterVersion] tracks edits. */
+    var filters: FilterList = source.getFilters()
+        private set
+    val hasFilters: Boolean get() = filters.isNotEmpty()
+
     private var nextPage = 1
     private var loadJob: Job? = null
 
@@ -58,7 +66,23 @@ internal class CatalogViewModel @Inject constructor(
     }
 
     fun setListing(listing: CatalogListing) {
-        _state.update { it.copy(listing = listing, query = null) }
+        filters = source.getFilters()
+        _state.update { it.copy(listing = listing, query = null, filtersApplied = false, filterVersion = it.filterVersion + 1) }
+        reload()
+    }
+
+    fun editFilters(edit: () -> Unit) {
+        edit()
+        _state.update { it.copy(filterVersion = it.filterVersion + 1) }
+    }
+
+    fun resetFilters() {
+        filters = source.getFilters()
+        _state.update { it.copy(filterVersion = it.filterVersion + 1) }
+    }
+
+    fun applyFilters() {
+        _state.update { it.copy(filtersApplied = true) }
         reload()
     }
 
@@ -82,7 +106,7 @@ internal class CatalogViewModel @Inject constructor(
             val page = nextPage
             try {
                 val result = when {
-                    current.query != null -> source.search(current.query, FilterList(), page)
+                    current.query != null || current.filtersApplied -> source.search(current.query.orEmpty(), filters, page)
                     current.listing == CatalogListing.Latest && source.supportsLatest -> source.getLatest(page)
                     else -> source.getPopular(page)
                 }

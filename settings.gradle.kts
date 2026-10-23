@@ -39,6 +39,8 @@ include(":data")
 
 include(":source:api")
 include(":source:local")
+include(":source:mangadex")
+include(":source:komga")
 
 include(":translation:api")
 

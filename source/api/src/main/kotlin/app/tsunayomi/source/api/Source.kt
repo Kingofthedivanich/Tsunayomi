@@ -30,4 +30,6 @@ fun sourceIdOf(name: String, lang: String, versionId: Int = 1): Long {
 object SourceIds {
     /** The on-device library. Fixed so local entries survive renames of the source. */
     const val LOCAL = 0L
+
+    val KOMGA: Long = sourceIdOf("Komga", Source.MULTI_LANG)
 }

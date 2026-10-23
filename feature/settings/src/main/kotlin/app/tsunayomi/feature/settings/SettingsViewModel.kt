@@ -5,10 +5,12 @@ import androidx.lifecycle.viewModelScope
 import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
+import app.tsunayomi.data.ServerSettingsRepository
 import app.tsunayomi.data.UserSettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +18,11 @@ import javax.inject.Inject
 @HiltViewModel
 internal class SettingsViewModel @Inject constructor(
     private val repository: UserSettingsRepository,
+    serverSettings: ServerSettingsRepository,
 ) : ViewModel() {
+    val komgaUrl: StateFlow<String?> = serverSettings.komga.map { it?.url }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
+
     val settings: StateFlow<UserSettings?> = repository.settings
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
 

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {"id": "B1", "name": "book1.cbz", "number": 1, "fileLastModified": "2024-01-02T03:04:05Z", "metadata": {"title": "Chapter One", "number": "1", "numberSort": 1.0, "releaseDate": null}, "media": {"pagesCount": 12}},
+    {"id": "B2", "name": "book2.epub", "number": 2, "metadata": {"title": "", "number": "2", "numberSort": 2.0, "releaseDate": "2024-02-03"}, "media": {"pagesCount": 0}},
+    {"id": "B3", "name": "book3.cbz", "number": 3, "metadata": {"title": "", "number": "3", "numberSort": 3.0, "releaseDate": "2024-03-04"}, "media": {"pagesCount": 8}}
+  ],
+  "last": true
+}

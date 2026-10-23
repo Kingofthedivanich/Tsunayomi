@@ -2,6 +2,7 @@ package app.tsunayomi.data
 
 import app.tsunayomi.source.api.CatalogSource
 import app.tsunayomi.source.api.Source
+import app.tsunayomi.source.api.SourceIds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -16,7 +17,9 @@ class SourceManager @Inject constructor(
 ) {
     private val byId: Map<Long, Source> = sources.associateBy { it.id }
 
-    val catalogSources: List<CatalogSource> = sources.filterIsInstance<CatalogSource>().sortedBy { it.id }
+    /** Local files first, then by name and language. */
+    val catalogSources: List<CatalogSource> = sources.filterIsInstance<CatalogSource>()
+        .sortedWith(compareBy({ it.id != SourceIds.LOCAL }, { it.name.lowercase() }, { it.lang }))
 
     fun get(id: Long): Source? = byId[id]
 

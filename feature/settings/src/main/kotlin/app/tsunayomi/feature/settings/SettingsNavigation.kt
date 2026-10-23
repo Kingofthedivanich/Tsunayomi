@@ -28,7 +28,7 @@ fun NavGraphBuilder.moreGraph(navController: NavController) {
             )
         }
         composable<SettingsRoute> {
-            SettingsScreen(onBack = navController::popBackStack)
+            SettingsScreen(onBack = navController::popBackStack, onOpenKomga = navController::navigateToKomgaSettings)
         }
         composable<AboutRoute> {
             AboutScreen(onBack = navController::popBackStack)

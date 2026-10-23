@@ -11,6 +11,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.outlined.Dns
+import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.SearchOff
@@ -37,6 +39,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
@@ -53,6 +56,7 @@ import app.tsunayomi.source.api.SourceIds
 internal fun CatalogScreen(
     onBack: () -> Unit,
     onOpenManga: (Long) -> Unit,
+    onOpenSourceSettings: (Long) -> Unit,
     viewModel: CatalogViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -61,6 +65,8 @@ internal fun CatalogScreen(
 
     var searching by rememberSaveable { mutableStateOf(false) }
     var query by rememberSaveable { mutableStateOf("") }
+    var showFilters by rememberSaveable { mutableStateOf(false) }
+    val isLocal = viewModel.source.id == SourceIds.LOCAL
 
     Scaffold(
         topBar = {
@@ -93,12 +99,17 @@ internal fun CatalogScreen(
                             Icon(Icons.Outlined.Search, stringResource(R.string.feature_browse_search))
                         }
                     }
+                    if (viewModel.hasFilters) {
+                        IconButton(onClick = { showFilters = true }) {
+                            Icon(Icons.Outlined.FilterList, stringResource(R.string.feature_browse_filters))
+                        }
+                    }
                 },
             )
         },
     ) { padding ->
         Column(Modifier.padding(padding)) {
-            if (viewModel.source.supportsLatest && state.query == null) {
+            if (viewModel.source.supportsLatest && state.query == null && !state.filtersApplied) {
                 ListingChips(selected = state.listing, onSelect = viewModel::setListing)
             }
             PullToRefreshBox(
@@ -107,12 +118,19 @@ internal fun CatalogScreen(
                 modifier = Modifier.fillMaxSize(),
             ) {
                 when {
-                    state.notConfigured -> MessageWithAction(
+                    state.notConfigured && isLocal -> MessageWithAction(
                         title = stringResource(R.string.feature_browse_local_not_configured_title),
                         message = stringResource(R.string.feature_browse_local_not_configured_message),
                         icon = Icons.Outlined.FolderOpen,
                         actionLabel = stringResource(R.string.feature_browse_choose_folder),
                         onAction = pickFolder,
+                    )
+                    state.notConfigured -> MessageWithAction(
+                        title = stringResource(R.string.feature_browse_server_not_configured_title),
+                        message = stringResource(R.string.feature_browse_server_not_configured_message),
+                        icon = Icons.Outlined.Dns,
+                        actionLabel = stringResource(R.string.feature_browse_configure),
+                        onAction = { onOpenSourceSettings(viewModel.source.id) },
                     )
                     state.error != null && state.items.isEmpty() -> MessageWithAction(
                         title = stringResource(R.string.feature_browse_error_title),
@@ -125,7 +143,7 @@ internal fun CatalogScreen(
                     }
                     state.items.isEmpty() -> MessageWithAction(
                         title = stringResource(R.string.feature_browse_nothing_found),
-                        message = if (viewModel.source.id == SourceIds.LOCAL) {
+                        message = if (isLocal) {
                             stringResource(R.string.feature_browse_local_empty_message)
                         } else {
                             null
@@ -150,6 +168,25 @@ internal fun CatalogScreen(
             }
         }
     }
+
+    if (showFilters) {
+        CatalogFilterSheet(viewModel, state.filterVersion, onDismiss = { showFilters = false })
+    }
+}
+
+@Composable
+private fun CatalogFilterSheet(viewModel: CatalogViewModel, version: Int, onDismiss: () -> Unit) {
+    FilterSheet(
+        filters = viewModel.filters,
+        version = version,
+        onEdit = viewModel::editFilters,
+        onReset = viewModel::resetFilters,
+        onApply = {
+            onDismiss()
+            viewModel.applyFilters()
+        },
+        onDismiss = onDismiss,
+    )
 }
 
 @Composable
@@ -174,6 +211,7 @@ private fun ListingChips(selected: CatalogListing, onSelect: (CatalogListing) ->
 @Composable
 private fun SearchField(query: String, onQueryChange: (String) -> Unit, onSearch: () -> Unit) {
     val focusRequester = remember { FocusRequester() }
+    val keyboard = LocalSoftwareKeyboardController.current
     LaunchedEffect(Unit) { focusRequester.requestFocus() }
     TextField(
         value = query,
@@ -181,7 +219,10 @@ private fun SearchField(query: String, onQueryChange: (String) -> Unit, onSearch
         placeholder = { Text(stringResource(R.string.feature_browse_search_hint)) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-        keyboardActions = KeyboardActions(onSearch = { onSearch() }),
+        keyboardActions = KeyboardActions(onSearch = {
+            keyboard?.hide()
+            onSearch()
+        }),
         colors = TextFieldDefaults.colors(
             focusedContainerColor = Color.Transparent,
             unfocusedContainerColor = Color.Transparent,

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- Cleartext is allowed for self-hosted servers on the home network (Komga over http://192.168.x.x). -->
     <application
         android:name=".TsunayomiApplication"
         android:allowBackup="true"
@@ -13,7 +14,8 @@
         android:localeConfig="@xml/locales_config"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Tsunayomi">
+        android:theme="@style/Theme.Tsunayomi"
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".MainActivity"

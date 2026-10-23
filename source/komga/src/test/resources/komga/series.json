@@ -1,0 +1,10 @@
+{
+  "content": [
+    {
+      "id": "S1", "libraryId": "L1", "name": "folder-name",
+      "metadata": {"status": "ONGOING", "title": "Komga Series", "summary": "", "readingDirection": "RIGHT_TO_LEFT", "language": "ja-JP", "genres": ["Action"], "tags": ["tag1"]},
+      "booksMetadata": {"authors": [{"name": "W", "role": "writer"}, {"name": "P", "role": "penciller"}], "summary": "From books"}
+    }
+  ],
+  "last": false, "totalElements": 31, "number": 0
+}

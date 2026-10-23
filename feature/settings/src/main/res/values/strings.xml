@@ -33,4 +33,16 @@
     <string name="feature_settings_reader_mode">Default reading mode</string>
     <string name="feature_settings_volume_keys">Volume keys turn pages</string>
     <string name="feature_settings_volume_keys_summary">Volume down — next page, volume up — previous</string>
+    <string name="feature_settings_komga_title">Komga server</string>
+    <string name="feature_settings_komga_not_set">Not set up</string>
+    <string name="feature_settings_komga_hint">Read manga from your own Komga server. The password and API key are stored encrypted on this device.</string>
+    <string name="feature_settings_komga_url">Server address</string>
+    <string name="feature_settings_komga_username">Email</string>
+    <string name="feature_settings_komga_password">Password</string>
+    <string name="feature_settings_komga_api_key">API key (optional)</string>
+    <string name="feature_settings_komga_api_key_hint">Used instead of the password. Create one in Komga under Account → API keys.</string>
+    <string name="feature_settings_komga_save">Save and check</string>
+    <string name="feature_settings_komga_remove">Remove</string>
+    <string name="feature_settings_komga_connected">Connected</string>
+    <string name="feature_settings_komga_failed">Could not connect: %s</string>
 </resources>

@@ -12,5 +12,6 @@ android {
 
 dependencies {
     api(libs.okhttp)
+    implementation(libs.kotlinx.coroutines.core)
     implementation(libs.okhttp.logging)
 }
