@@ -34,6 +34,8 @@ data class SChapter(
     val number: Float,
     val uploadedAt: Long? = null,
     val scanlator: String? = null,
+    /** Language of this chapter's text (ISO 639-1), for sources that offer several. */
+    val language: String? = null,
 )
 
 sealed interface SPage {

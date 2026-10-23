@@ -71,7 +71,7 @@ internal fun BrowseScreen(
                             when (source.id) {
                                 SourceIds.LOCAL -> stringResource(R.string.feature_browse_local_source_summary)
                                 SourceIds.KOMGA -> stringResource(R.string.feature_browse_komga_summary)
-                                else -> source.languageLabel().orEmpty()
+                                else -> source.languageLabel() ?: stringResource(R.string.feature_browse_multi_language_summary)
                             },
                         )
                     },

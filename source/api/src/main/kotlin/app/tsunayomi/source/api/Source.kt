@@ -12,6 +12,9 @@ interface Source {
     /** ISO 639-1 code of the content language, or [MULTI_LANG] if the source mixes languages. */
     val lang: String
 
+    /** Ids this source used to have (e.g. before several per-language sources were merged); entries saved under them keep working. */
+    val legacyIds: Set<Long> get() = emptySet()
+
     companion object {
         const val MULTI_LANG = "multi"
     }

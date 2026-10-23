@@ -196,9 +196,11 @@ internal fun DetailsScreen(
                         )
                     }
                 }
+                val showLanguage = state.chapters.mapNotNullTo(HashSet()) { it.language }.size > 1
                 items(state.chapters, key = { it.id }) { chapter ->
                     ChapterRow(
                         chapter = chapter,
+                        showLanguage = showLanguage,
                         onClick = { onRead(manga.id, chapter.id) },
                         onSetRead = { viewModel.setRead(chapter, it) },
                         onReadUpTo = { viewModel.setReadUpTo(chapter) },
@@ -444,6 +446,7 @@ private fun Header(
 @Composable
 private fun ChapterRow(
     chapter: Chapter,
+    showLanguage: Boolean,
     onClick: () -> Unit,
     onSetRead: (Boolean) -> Unit,
     onReadUpTo: () -> Unit,
@@ -454,6 +457,8 @@ private fun ChapterRow(
             headlineContent = { Text(chapter.name, maxLines = 1, overflow = TextOverflow.Ellipsis) },
             supportingContent = {
                 val parts = listOfNotNull(
+                    // With several chapter languages listed, tell them apart at a glance.
+                    chapter.language?.takeIf { showLanguage }?.uppercase(),
                     chapter.uploadedAt?.let { DateFormat.getDateInstance(DateFormat.MEDIUM).format(Date(it)) },
                     chapter.scanlator,
                     if (!chapter.read && chapter.lastPageRead > 0) {

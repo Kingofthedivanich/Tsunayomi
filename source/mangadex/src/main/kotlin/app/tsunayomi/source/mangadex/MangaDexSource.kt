@@ -12,6 +12,7 @@ import app.tsunayomi.source.api.ReadingDirection
 import app.tsunayomi.source.api.SChapter
 import app.tsunayomi.source.api.SManga
 import app.tsunayomi.source.api.SPage
+import app.tsunayomi.source.api.Source
 import app.tsunayomi.source.api.sourceIdOf
 import kotlinx.serialization.json.Json
 import okhttp3.HttpUrl
@@ -19,21 +20,30 @@ import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.time.OffsetDateTime
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
- * MangaDex through its public API (https://api.mangadex.org/docs). One instance per chapter language.
- * Terms: credit MangaDex and the scanlation groups, no ads or paid features.
+ * MangaDex through its public API (https://api.mangadex.org/docs).
+ * One source for all languages: the chapter languages are a filter in the catalog, remembered as a setting
+ * and also used for chapter lists. Terms: credit MangaDex and the scanlation groups, no ads or paid features.
  */
 class MangaDexSource(
-    override val lang: String,
     client: OkHttpClient,
+    /** Chapter languages chosen by the user (MangaDex codes, e.g. "en", "pt-br"). */
+    private val languages: () -> Set<String>,
+    /** Called when the user picks other languages in the filter, so chapter lists follow. */
+    private val saveLanguages: suspend (Set<String>) -> Unit,
     private val apiUrl: HttpUrl = API_URL.toHttpUrl(),
     private val coversUrl: String = COVERS_URL,
 ) : CatalogSource {
     override val name: String = "MangaDex"
+    override val lang: String = Source.MULTI_LANG
     override val id: Long = sourceIdOf(name, lang)
     override val supportsLatest: Boolean = true
+
+    /** The per-language sources this one replaced; their library and history entries resolve here. */
+    override val legacyIds: Set<Long> = LEGACY_LANGUAGES.mapTo(HashSet()) { sourceIdOf(name, it) }
 
     // Stay under the documented ~5 req/s; the at-home endpoint has its own 40/min budget.
     private val apiClient = client.newBuilder().addInterceptor(RateLimitInterceptor(permits = 4, period = 1)).build()
@@ -41,7 +51,7 @@ class MangaDexSource(
         .addInterceptor(RateLimitInterceptor(permits = 40, period = 1, unit = TimeUnit.MINUTES))
         .build()
 
-    override fun getFilters(): FilterList = MangaDexFilters.create()
+    override fun getFilters(): FilterList = MangaDexFilters.create(languages())
 
     override suspend fun getPopular(page: Int): MangaPage = searchManga(page, query = null, filters = getFilters())
 
@@ -52,16 +62,20 @@ class MangaDexSource(
         return searchManga(page, query = null, filters = filters)
     }
 
-    override suspend fun search(query: String, filters: FilterList, page: Int): MangaPage =
-        searchManga(page, query.trim().ifEmpty { null }, filters.ifEmpty { getFilters() })
+    override suspend fun search(query: String, filters: FilterList, page: Int): MangaPage {
+        val chosen = MangaDexFilters.selectedLanguages(filters)
+        if (chosen.isNotEmpty() && chosen != languages()) saveLanguages(chosen)
+        return searchManga(page, query.trim().ifEmpty { null }, filters.ifEmpty { getFilters() })
+    }
 
     private suspend fun searchManga(page: Int, query: String?, filters: List<Filter<*>>): MangaPage {
         val offset = (page - 1) * PAGE_SIZE
+        val chapterLanguages = MangaDexFilters.selectedLanguages(filters).ifEmpty { languages() }
         val url = apiUrl.newBuilder().addPathSegment("manga").apply {
             addQueryParameter("limit", PAGE_SIZE.toString())
             addQueryParameter("offset", offset.toString())
             addQueryParameter("includes[]", "cover_art")
-            addQueryParameter("availableTranslatedLanguage[]", lang)
+            chapterLanguages.forEach { addQueryParameter("availableTranslatedLanguage[]", it) }
             addQueryParameter("hasAvailableChapters", "true")
             if (query != null) addQueryParameter("title", query)
             applyFilters(filters, hasQuery = query != null)
@@ -117,7 +131,7 @@ class MangaDexSource(
         var offset = 0
         do {
             val url = apiUrl.newBuilder().addPathSegment("manga").addPathSegment(manga.url).addPathSegment("feed")
-                .addQueryParameter("translatedLanguage[]", lang)
+                .apply { languages().forEach { addQueryParameter("translatedLanguage[]", it) } }
                 .addQueryParameter("limit", FEED_PAGE_SIZE.toString())
                 .addQueryParameter("offset", offset.toString())
                 .addQueryParameter("order[volume]", "asc")
@@ -149,7 +163,7 @@ class MangaDexSource(
      */
     private suspend fun externalCount(mangaId: String): Int {
         val url = apiUrl.newBuilder().addPathSegment("manga").addPathSegment(mangaId).addPathSegment("feed")
-            .addQueryParameter("translatedLanguage[]", lang)
+            .apply { languages().forEach { addQueryParameter("translatedLanguage[]", it) } }
             .addQueryParameter("limit", "1")
             .apply { ALL_CONTENT_RATINGS.forEach { addQueryParameter("contentRating[]", it) } }
             .build()
@@ -180,7 +194,7 @@ class MangaDexSource(
                 .joinToString().ifEmpty { null },
             artist = relationships.filter { it.type == "artist" }.mapNotNull { it.attributes?.name }.distinct()
                 .joinToString().ifEmpty { null },
-            description = (attrs.description[lang] ?: attrs.description["en"] ?: attrs.description.values.firstOrNull())
+            description = (attrs.description[displayLanguage()] ?: attrs.description["en"] ?: attrs.description.values.firstOrNull())
                 ?.trim()?.ifEmpty { null },
             genres = tags,
             status = when (attrs.status) {
@@ -200,9 +214,15 @@ class MangaDexSource(
         )
     }
 
-    /** A title in this source's language if MangaDex has one, then English, then whatever exists. */
+    /** The app language when it is among the chosen chapter languages, otherwise English. */
+    private fun displayLanguage(): String {
+        val app = Locale.getDefault().language
+        return if (languages().any { it.substringBefore('-') == app }) app else "en"
+    }
+
+    /** A title in the display language if MangaDex has one, then English, then whatever exists. */
     private fun preferredTitle(attrs: MangaAttributes): String =
-        attrs.altTitles.firstNotNullOfOrNull { it[lang] }.takeIf { lang != "en" }
+        displayLanguage().let { display -> attrs.altTitles.firstNotNullOfOrNull { it[display] }.takeIf { display != "en" } }
             ?: attrs.title["en"]
             ?: attrs.altTitles.firstNotNullOfOrNull { it["en"] }
             ?: attrs.title.values.firstOrNull()
@@ -223,6 +243,7 @@ class MangaDexSource(
             uploadedAt = attrs.publishAt?.let { runCatching { OffsetDateTime.parse(it).toInstant().toEpochMilli() }.getOrNull() },
             scanlator = relationships.filter { it.type == "scanlation_group" }.mapNotNull { it.attributes?.name }
                 .joinToString(" & ").ifEmpty { null },
+            language = attrs.translatedLanguage,
         )
     }
 
@@ -234,8 +255,20 @@ class MangaDexSource(
         private const val MAX_OFFSET = 10_000
         private val ALL_CONTENT_RATINGS = listOf("safe", "suggestive", "erotica", "pornographic")
 
-        /** Chapter languages offered as separate sources. */
-        val LANGUAGES = listOf("en", "ru", "ja", "ko", "zh")
+        /** Languages that used to be separate sources, for [legacyIds]. */
+        private val LEGACY_LANGUAGES = listOf("en", "ru", "ja", "ko", "zh")
+
+        /** Chapter languages offered in the filter (MangaDex codes). */
+        val LANGUAGES = listOf(
+            "en", "ru", "uk", "ja", "ko", "zh", "zh-hk", "es", "es-la", "pt-br", "fr", "de", "it", "pl", "tr", "id", "vi", "th",
+        )
+
+        /** Until the user picks: the app language if MangaDex has it, plus English. */
+        fun defaultLanguages(appLanguage: String = Locale.getDefault().language): Set<String> =
+            linkedSetOf<String>().apply {
+                if (appLanguage in LANGUAGES) add(appLanguage)
+                add("en")
+            }
 
         internal val json = Json { ignoreUnknownKeys = true; explicitNulls = false }
     }

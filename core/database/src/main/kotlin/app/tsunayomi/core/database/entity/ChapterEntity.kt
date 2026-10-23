@@ -30,4 +30,6 @@ data class ChapterEntity(
     @ColumnInfo(name = "last_page_read") val lastPageRead: Int,
     val bookmark: Boolean,
     @ColumnInfo(name = "source_order") val sourceOrder: Int,
+    /** Language of the text in this chapter (ISO 639-1), when the source knows it. */
+    @ColumnInfo(name = "language") val language: String? = null,
 )

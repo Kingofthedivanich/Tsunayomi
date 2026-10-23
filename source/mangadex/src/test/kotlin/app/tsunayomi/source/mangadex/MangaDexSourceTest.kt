@@ -1,6 +1,7 @@
 package app.tsunayomi.source.mangadex
 
 import app.tsunayomi.source.api.ChaptersOnlyExternalException
+import app.tsunayomi.source.api.Filter
 import app.tsunayomi.source.api.FilterList
 import app.tsunayomi.source.api.ReadingDirection
 import app.tsunayomi.source.api.SChapter
@@ -17,20 +18,35 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.util.Locale
 import org.junit.jupiter.api.assertThrows
 
 class MangaDexSourceTest {
     private val server = MockWebServer()
+    private var languages: Set<String> = setOf("ru")
+    private val saved = mutableListOf<Set<String>>()
     private lateinit var source: MangaDexSource
+    private lateinit var defaultLocale: Locale
 
     @BeforeEach
     fun setUp() {
         server.start()
-        source = MangaDexSource("ru", OkHttpClient(), apiUrl = server.url("/"), coversUrl = "https://covers.test")
+        defaultLocale = Locale.getDefault()
+        Locale.setDefault(Locale.forLanguageTag("ru"))
+        source = MangaDexSource(
+            client = OkHttpClient(),
+            languages = { languages },
+            saveLanguages = { saved += it; languages = it },
+            apiUrl = server.url("/"),
+            coversUrl = "https://covers.test",
+        )
     }
 
     @AfterEach
-    fun tearDown() = server.close()
+    fun tearDown() {
+        server.close()
+        Locale.setDefault(defaultLocale)
+    }
 
     private fun enqueue(resource: String) {
         val body = javaClass.getResource("/mangadex/$resource")!!.readText()
@@ -102,6 +118,7 @@ class MangaDexSourceTest {
         assertEquals("Oneshot", chapters[2].name)
         assertEquals(-1f, chapters[2].number)
         assertEquals(1714557600000L, chapters[1].uploadedAt)
+        assertEquals("en", chapters[0].language)
     }
 
     @Test
@@ -145,8 +162,36 @@ class MangaDexSourceTest {
     }
 
     @Test
-    fun `source ids differ per language`() {
-        val client = OkHttpClient()
-        assertFalse(MangaDexSource("en", client).id == MangaDexSource("ru", client).id)
+    fun `old per-language source ids resolve to the single source`() {
+        assertTrue(app.tsunayomi.source.api.sourceIdOf("MangaDex", "en") in source.legacyIds)
+        assertTrue(app.tsunayomi.source.api.sourceIdOf("MangaDex", "ru") in source.legacyIds)
+        assertFalse(source.id in source.legacyIds)
+    }
+
+    @Test
+    fun `language filter drives the search and is remembered for chapter lists`() = runTest {
+        enqueue("manga_list.json")
+        val filters = source.getFilters()
+        val group = filters.first { it is Filter.Group<*> && it.name == MangaDexFilters.LANGUAGES_GROUP } as Filter.Group<*>
+        group.state.forEachIndexed { index, box ->
+            (box as Filter.CheckBox).state = MangaDexSource.LANGUAGES[index] in setOf("en", "ja")
+        }
+
+        source.search("", filters, page = 1)
+
+        assertEquals(listOf("en", "ja"), server.takeRequest().url.queryParameterValues("availableTranslatedLanguage[]"))
+        assertEquals(listOf(setOf("en", "ja")), saved)
+
+        enqueue("feed_page1.json")
+        enqueue("feed_page2.json")
+        source.getChapters(SManga(url = "m1", title = "x", coverUrl = null))
+        assertEquals(listOf("en", "ja"), server.takeRequest().url.queryParameterValues("translatedLanguage[]"))
+    }
+
+    @Test
+    fun `default languages are the app language plus English`() {
+        assertEquals(setOf("ru", "en"), MangaDexSource.defaultLanguages("ru"))
+        assertEquals(setOf("en"), MangaDexSource.defaultLanguages("en"))
+        assertEquals(setOf("en"), MangaDexSource.defaultLanguages("xx"))
     }
 }

@@ -210,7 +210,8 @@ internal class ReaderViewModel @Inject constructor(
                         // Remote page URLs can change between sessions (MangaDex@Home), so key by chapter and index.
                         PageRequest("${manga.sourceId}|${chapter.url}|$index") { loadPageBitmap(state.pages[index]) }
                     },
-                    sourceLang = manga.originalLang,
+                    // The chapter's own language (e.g. an English scanlation of a Japanese manga) beats the title's.
+                    sourceLang = chapter.language?.substringBefore('-') ?: manga.originalLang,
                     mangaId = manga.id,
                 )
                 _translations.update { states ->

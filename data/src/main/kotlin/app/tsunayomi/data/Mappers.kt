@@ -50,6 +50,7 @@ internal fun ChapterEntity.toModel() = Chapter(
     lastPageRead = lastPageRead,
     bookmark = bookmark,
     sourceOrder = sourceOrder,
+    language = language,
 )
 
 internal fun Chapter.toSChapter() = SChapter(
@@ -58,6 +59,7 @@ internal fun Chapter.toSChapter() = SChapter(
     number = number,
     uploadedAt = uploadedAt,
     scanlator = scanlator,
+    language = language,
 )
 
 internal fun SChapter.toEntity(mangaId: Long, sourceOrder: Int) = ChapterEntity(
@@ -71,6 +73,7 @@ internal fun SChapter.toEntity(mangaId: Long, sourceOrder: Int) = ChapterEntity(
     lastPageRead = 0,
     bookmark = false,
     sourceOrder = sourceOrder,
+    language = language,
 )
 
 internal fun SManga.Status.toModel(): MangaStatus = when (this) {

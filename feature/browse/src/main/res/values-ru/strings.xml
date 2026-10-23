@@ -28,4 +28,5 @@
     <string name="feature_browse_server_not_configured_title">Сервер не настроен</string>
     <string name="feature_browse_server_not_configured_message">Укажите адрес сервера и данные для входа в настройках.</string>
     <string name="feature_browse_configure">Настроить</string>
+    <string name="feature_browse_multi_language_summary">Все языки — языки глав выбираются в фильтрах каталога</string>
 </resources>

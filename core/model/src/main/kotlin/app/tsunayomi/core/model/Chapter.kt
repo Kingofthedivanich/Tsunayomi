@@ -13,4 +13,6 @@ data class Chapter(
     val lastPageRead: Int = 0,
     val bookmark: Boolean = false,
     val sourceOrder: Int = 0,
+    /** Language of the text on the pages (ISO 639-1); null if the source does not say. */
+    val language: String? = null,
 )

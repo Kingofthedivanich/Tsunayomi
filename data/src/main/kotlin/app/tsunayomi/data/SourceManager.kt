@@ -15,7 +15,8 @@ import javax.inject.Singleton
 class SourceManager @Inject constructor(
     sources: Set<@JvmSuppressWildcards Source>,
 ) {
-    private val byId: Map<Long, Source> = sources.associateBy { it.id }
+    private val byId: Map<Long, Source> = sources.associateBy { it.id } +
+        sources.flatMap { source -> source.legacyIds.map { it to source } }
 
     /** Local files first, then by name and language. */
     val catalogSources: List<CatalogSource> = sources.filterIsInstance<CatalogSource>()
