@@ -8,9 +8,18 @@ REPO="${1:-Kingofthedivanich/Tsunayomi}"
 KEYSTORE="tsunayomi-release.jks"
 ALIAS="tsunayomi"
 
-KEYTOOL="$(command -v keytool || true)"
-if [ -z "$KEYTOOL" ] && [ -x /opt/homebrew/opt/openjdk@21/bin/keytool ]; then KEYTOOL=/opt/homebrew/opt/openjdk@21/bin/keytool; fi
-[ -n "$KEYTOOL" ] || { echo "keytool не найден (нужен JDK)."; exit 1; }
+# macOS ships a /usr/bin/keytool stub that fails without a registered Java, so try real JDKs first
+# and accept a candidate only if it actually runs.
+KEYTOOL=""
+for candidate in \
+  "${JAVA_HOME:-}/bin/keytool" \
+  /opt/homebrew/opt/openjdk@21/bin/keytool \
+  /opt/homebrew/opt/openjdk/bin/keytool \
+  "$(/usr/libexec/java_home 2>/dev/null)/bin/keytool" \
+  "$(command -v keytool || true)"; do
+  if [ -x "$candidate" ] && "$candidate" -help >/dev/null 2>&1; then KEYTOOL="$candidate"; break; fi
+done
+[ -n "$KEYTOOL" ] || { echo "Рабочий keytool не найден: установите JDK (brew install openjdk@21)."; exit 1; }
 command -v gh >/dev/null || { echo "gh не найден."; exit 1; }
 gh auth status >/dev/null 2>&1 || { echo "gh не авторизован: выполните gh auth login."; exit 1; }
 if [ -e "$KEYSTORE" ]; then
