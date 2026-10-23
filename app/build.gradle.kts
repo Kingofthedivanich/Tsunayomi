@@ -93,6 +93,7 @@ dependencies {
     implementation(projects.source.webtoons)
     implementation(projects.source.naver)
     implementation(projects.source.remanga)
+    implementation(projects.source.asura)
     implementation(projects.translation.core)
     implementation(projects.translation.mlkit)
     implementation(projects.translation.gemini)
