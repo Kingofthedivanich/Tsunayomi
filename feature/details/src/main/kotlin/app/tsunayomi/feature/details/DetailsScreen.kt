@@ -28,6 +28,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.Label
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.AlertDialog
@@ -76,6 +77,7 @@ import app.tsunayomi.core.model.Chapter
 import app.tsunayomi.core.model.Manga
 import app.tsunayomi.core.model.MangaStatus
 import app.tsunayomi.source.api.SourceIds
+import app.tsunayomi.translation.core.GlossaryEntry
 import java.text.DateFormat
 import java.util.Date
 import java.util.Locale
@@ -91,6 +93,8 @@ internal fun DetailsScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     var categoryDialog by rememberSaveable { mutableStateOf(false) }
     var languageDialog by rememberSaveable { mutableStateOf(false) }
+    var glossaryDialog by rememberSaveable { mutableStateOf(false) }
+    val glossary by viewModel.glossary.collectAsStateWithLifecycle()
     LaunchedEffect(state.error) {
         state.error?.let {
             snackbarHostState.showSnackbar(it)
@@ -158,6 +162,17 @@ internal fun DetailsScreen(
                         modifier = Modifier.clickable { languageDialog = true },
                     )
                 }
+                if (glossary.isNotEmpty()) {
+                    item {
+                        ListItem(
+                            headlineContent = { Text(stringResource(R.string.feature_details_glossary)) },
+                            supportingContent = {
+                                Text(pluralStringResource(R.plurals.feature_details_glossary_count, glossary.size, glossary.size))
+                            },
+                            modifier = Modifier.clickable { glossaryDialog = true },
+                        )
+                    }
+                }
                 item {
                     Text(
                         text = pluralStringResource(R.plurals.feature_details_chapter_count, state.chapters.size, state.chapters.size),
@@ -193,6 +208,18 @@ internal fun DetailsScreen(
         }
     }
 
+    if (glossaryDialog) {
+        GlossaryDialog(
+            entries = glossary,
+            onDelete = viewModel::deleteGlossaryEntry,
+            onClear = {
+                glossaryDialog = false
+                viewModel.clearGlossary()
+            },
+            onDismiss = { glossaryDialog = false },
+        )
+    }
+
     if (languageDialog) {
         val manga = state.manga
         if (manga != null) {
@@ -218,6 +245,47 @@ internal fun DetailsScreen(
             onDismiss = { categoryDialog = false },
         )
     }
+}
+
+/** Names and terms the translator keeps consistent for this title; wrong ones can be removed and are re-learned. */
+@Composable
+private fun GlossaryDialog(
+    entries: List<GlossaryEntry>,
+    onDelete: (GlossaryEntry) -> Unit,
+    onClear: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    val showLanguage = entries.map { it.targetLang }.distinct().size > 1
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = { Text(stringResource(R.string.feature_details_glossary)) },
+        text = {
+            Column(Modifier.verticalScroll(rememberScrollState())) {
+                Text(
+                    stringResource(R.string.feature_details_glossary_hint),
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier.padding(bottom = 8.dp),
+                )
+                entries.forEach { entry ->
+                    ListItem(
+                        headlineContent = { Text("${entry.source} → ${entry.translation}") },
+                        supportingContent = if (showLanguage) {
+                            { Text(languageName(entry.targetLang)) }
+                        } else {
+                            null
+                        },
+                        trailingContent = {
+                            IconButton(onClick = { onDelete(entry) }) {
+                                Icon(Icons.Outlined.Delete, stringResource(R.string.feature_details_glossary_delete))
+                            }
+                        },
+                    )
+                }
+            }
+        },
+        confirmButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.feature_details_ok)) } },
+        dismissButton = { TextButton(onClick = onClear) { Text(stringResource(R.string.feature_details_glossary_clear)) } },
+    )
 }
 
 /** Languages offered for the page text; null means "detect automatically". */

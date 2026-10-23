@@ -24,4 +24,5 @@ internal object DatabaseModule {
     @Provides fun providesHistoryDao(db: TsunayomiDatabase) = db.historyDao()
     @Provides fun providesLibraryDao(db: TsunayomiDatabase) = db.libraryDao()
     @Provides fun providesTranslationDao(db: TsunayomiDatabase) = db.translationDao()
+    @Provides fun providesGlossaryDao(db: TsunayomiDatabase) = db.glossaryDao()
 }

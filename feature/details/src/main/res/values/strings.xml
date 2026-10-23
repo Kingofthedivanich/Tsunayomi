@@ -26,4 +26,12 @@
     <string name="feature_details_original_lang">Language of the pages</string>
     <string name="feature_details_original_lang_auto">Detect automatically</string>
     <string name="feature_details_original_lang_hint">Used to read and translate the text on the pages. Set it if automatic detection gets it wrong.</string>
+    <string name="feature_details_glossary">Translation glossary</string>
+    <string name="feature_details_glossary_hint">Names and terms Gemini keeps consistent for this title. Remove a wrong one and it will be learned again.</string>
+    <string name="feature_details_glossary_delete">Remove term</string>
+    <string name="feature_details_glossary_clear">Clear all</string>
+    <plurals name="feature_details_glossary_count">
+        <item quantity="one">%d term</item>
+        <item quantity="other">%d terms</item>
+    </plurals>
 </resources>

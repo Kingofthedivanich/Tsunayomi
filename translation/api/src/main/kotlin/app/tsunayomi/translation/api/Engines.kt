@@ -5,32 +5,51 @@ import app.tsunayomi.core.model.TranslationEngine
 
 /** Finds and reads the text on a page. */
 interface TextRecognizer {
-    /** [sourceLang] (ISO 639-1) picks the script model; null means "probably CJK", which also reads Latin. */
+    /** [sourceLang] (ISO 639-1) picks the script model; null means "detect". */
     suspend fun recognize(page: Bitmap, sourceLang: String?): List<RecognizedBlock>
 }
 
-/**
- * Translates a batch of texts in one go. Batches let LLM engines see the whole page at once,
- * which keeps names and tone consistent and costs one request instead of one per bubble.
- */
+/** One text to translate. [page] numbers pages within a batch so the model sees where each page starts. */
+data class SourceText(val text: String, val page: Int = 1)
+
+/** What the translator should keep consistent: established translations of names and terms (source → target). */
+data class TranslationContext(val glossary: Map<String, String> = emptyMap())
+
+data class TranslationBatch(
+    /** One translation per input text, in order. */
+    val translations: List<String>,
+    /** Names and terms first seen in this batch, to be kept for the rest of the series. */
+    val newTerms: Map<String, String> = emptyMap(),
+)
+
 interface Translator {
     val engine: TranslationEngine
 
     /** Part of the cache key; bump when output changes (e.g. a new prompt) so old translations are redone. */
     val cacheVersion: Int get() = 1
 
-    /** Returns one translation per input, in order. [sourceLang] may be null when unknown. */
-    suspend fun translate(texts: List<String>, sourceLang: String?, targetLang: String): List<String>
+    /**
+     * True for engines that do better with many pages in one call (LLMs: shared context, fewer requests).
+     * Others are called page by page.
+     */
+    val batchesPages: Boolean get() = false
+
+    suspend fun translate(
+        texts: List<SourceText>,
+        sourceLang: String?,
+        targetLang: String,
+        context: TranslationContext = TranslationContext(),
+    ): TranslationBatch
 }
 
-/** Runs the whole pipeline for one page — recognize, translate, cache — with fallback to the offline engine. */
+/** A page to translate: its stable cache key and how to load its image (only called on a cache miss). */
+data class PageRequest(val key: String, val load: suspend () -> Bitmap)
+
+/** Runs the pipeline for a run of pages of one chapter: recognize, translate (batched when the engine likes it), cache. */
 interface PageTranslator {
     /**
-     * [pageKey] identifies the page image (its URL or URI). [loadPage] is only called on a cache miss.
+     * Returns one result per page, in order. [mangaId] scopes the glossary; null disables it.
+     * If the chosen online engine fails for a fixable reason, pages are translated offline and the reason reported.
      */
-    suspend fun translate(
-        pageKey: String,
-        sourceLang: String?,
-        loadPage: suspend () -> Bitmap,
-    ): PageTranslation
+    suspend fun translate(pages: List<PageRequest>, sourceLang: String?, mangaId: Long?): List<PageTranslation>
 }

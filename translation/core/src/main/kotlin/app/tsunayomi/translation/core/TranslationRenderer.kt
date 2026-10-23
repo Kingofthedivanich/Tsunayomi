@@ -56,6 +56,9 @@ object TranslationRenderer {
         return output
     }
 
+    /** False when nothing on the page would change, so the original can be shown as is. */
+    fun needsRendering(regions: List<TranslatedRegion>): Boolean = regions.any { it.changesText() }
+
     /**
      * Engines return names, numbers and credits unchanged; covering those with an identical copy only hides
      * the original lettering, so such regions are left as they are.

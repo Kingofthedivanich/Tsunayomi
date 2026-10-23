@@ -20,6 +20,9 @@ internal abstract class TranslationModule {
     @Binds
     abstract fun bindsCache(cache: RoomTranslationCache): TranslationCache
 
+    @Binds
+    abstract fun bindsGlossary(store: RoomGlossaryStore): GlossaryStore
+
     companion object {
         @Provides
         fun providesTarget(preferences: UserPreferencesDataSource): TranslationTarget = TranslationTarget {

@@ -8,4 +8,5 @@ android {
 
 dependencies {
     implementation(projects.data)
+    implementation(projects.translation.core)
 }

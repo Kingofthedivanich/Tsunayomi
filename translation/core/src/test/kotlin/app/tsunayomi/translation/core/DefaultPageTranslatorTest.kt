@@ -3,14 +3,20 @@ package app.tsunayomi.translation.core
 import android.graphics.Bitmap
 import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.translation.api.NormalizedBox
+import app.tsunayomi.translation.api.PageRequest
 import app.tsunayomi.translation.api.RecognizedBlock
+import app.tsunayomi.translation.api.SourceText
 import app.tsunayomi.translation.api.TextRecognizer
 import app.tsunayomi.translation.api.TranslatedRegion
+import app.tsunayomi.translation.api.TranslationBatch
+import app.tsunayomi.translation.api.TranslationContext
 import app.tsunayomi.translation.api.TranslationException
 import app.tsunayomi.translation.api.Translator
 import io.mockk.mockk
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
@@ -19,25 +25,35 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class DefaultPageTranslatorTest {
-    private val box = NormalizedBox(0.1f, 0.1f, 0.4f, 0.2f)
+    // Two blocks per page, far apart so bubble grouping keeps them separate.
     private var recognizeCalls = 0
     private val recognizer = object : TextRecognizer {
         override suspend fun recognize(page: Bitmap, sourceLang: String?): List<RecognizedBlock> {
             recognizeCalls++
-            return listOf(RecognizedBlock(box, "Hello"), RecognizedBlock(box, "World"))
+            return listOf(
+                RecognizedBlock(NormalizedBox(0.1f, 0.1f, 0.4f, 0.15f), "Hello"),
+                RecognizedBlock(NormalizedBox(0.1f, 0.6f, 0.4f, 0.65f), "World"),
+            )
         }
     }
 
     private class FakeTranslator(
         override val engine: TranslationEngine,
-        var failure: TranslationException? = null,
+        override val batchesPages: Boolean,
         override val cacheVersion: Int = 1,
+        var failure: TranslationException? = null,
+        var newTerms: Map<String, String> = emptyMap(),
     ) : Translator {
-        var calls = 0
-        override suspend fun translate(texts: List<String>, sourceLang: String?, targetLang: String): List<String> {
-            calls++
+        val calls = mutableListOf<Pair<List<SourceText>, TranslationContext>>()
+        override suspend fun translate(
+            texts: List<SourceText>,
+            sourceLang: String?,
+            targetLang: String,
+            context: TranslationContext,
+        ): TranslationBatch {
+            calls += texts to context
             failure?.let { throw it }
-            return texts.map { "$it→$targetLang(${engine.name})" }
+            return TranslationBatch(texts.map { "${it.text}→$targetLang(${engine.name})" }, newTerms)
         }
     }
 
@@ -49,63 +65,121 @@ class DefaultPageTranslatorTest {
         }
     }
 
-    private val mlKit = FakeTranslator(TranslationEngine.MlKit)
-    private val gemini = FakeTranslator(TranslationEngine.Gemini, cacheVersion = 3)
+    private class MemoryGlossary : GlossaryStore {
+        val terms = mutableMapOf<Pair<Long, String>, MutableMap<String, String>>()
+        override suspend fun terms(mangaId: Long, targetLang: String) = terms[mangaId to targetLang].orEmpty().toMap()
+        override suspend fun add(mangaId: Long, targetLang: String, terms: Map<String, String>) {
+            val existing = this.terms.getOrPut(mangaId to targetLang) { mutableMapOf() }
+            terms.forEach { (k, v) -> existing.putIfAbsent(k, v) }
+        }
+        override fun observe(mangaId: Long): Flow<List<GlossaryEntry>> = emptyFlow()
+        override suspend fun delete(mangaId: Long, entry: GlossaryEntry) = Unit
+        override suspend fun clear(mangaId: Long) = Unit
+    }
+
+    private val mlKit = FakeTranslator(TranslationEngine.MlKit, batchesPages = false)
+    private val gemini = FakeTranslator(TranslationEngine.Gemini, batchesPages = true, cacheVersion = 3)
     private val cache = MemoryCache()
+    private val glossary = MemoryGlossary()
     private var engine = TranslationEngine.Gemini
     private val bitmap: Bitmap = mockk(relaxed = true)
 
-    private fun translator() = DefaultPageTranslator(recognizer, setOf(mlKit, gemini), cache) { engine to "ru" }
+    private fun translator(vararg translators: Translator = arrayOf(mlKit, gemini)) =
+        DefaultPageTranslator(recognizer, translators.toSet(), cache, glossary) { engine to "ru" }
+
+    private fun pages(vararg keys: String) = keys.map { PageRequest(it) { bitmap } }
 
     @Test
-    fun `translates with the chosen engine and caches the result`() = runTest {
-        val pageTranslator = translator()
+    fun `a run of pages goes to a batch engine in one request with page numbers`() = runTest {
+        val result = translator().translate(pages("p1", "p2", "p3"), "en", mangaId = 7)
 
-        val first = pageTranslator.translate("page-1", "en") { bitmap }
-        val second = pageTranslator.translate("page-1", "en") { error("must not load the page again") }
-
-        assertEquals(TranslationEngine.Gemini, first.engine)
-        assertEquals(listOf("Hello→ru(Gemini)", "World→ru(Gemini)"), first.regions.map { it.translatedText })
-        assertEquals(first.regions, second.regions)
-        assertEquals(1, recognizeCalls)
-        assertEquals(1, gemini.calls)
-        assertTrue(Triple("page-1", "ru", "Gemini:3:p2:en") in cache.entries)
+        assertEquals(1, gemini.calls.size)
+        assertEquals(listOf(1, 1, 2, 2, 3, 3), gemini.calls.single().first.map { it.page })
+        assertEquals(3, result.size)
+        assertEquals(listOf("Hello→ru(Gemini)", "World→ru(Gemini)"), result[1].regions.map { it.translatedText })
+        assertTrue(Triple("p2", "ru", "Gemini:3:p2:en") in cache.entries)
     }
 
     @Test
-    fun `falls back to ML Kit and reports why`() = runTest {
+    fun `offline engines are called page by page`() = runTest {
+        engine = TranslationEngine.MlKit
+        translator().translate(pages("p1", "p2"), "en", mangaId = 7)
+        assertEquals(2, mlKit.calls.size)
+    }
+
+    @Test
+    fun `cached pages are skipped and not loaded again`() = runTest {
+        val pageTranslator = translator()
+        pageTranslator.translate(pages("p1"), "en", mangaId = 7)
+        recognizeCalls = 0
+
+        pageTranslator.translate(
+            listOf(PageRequest("p1") { error("must not load a cached page") }, PageRequest("p2") { bitmap }),
+            "en",
+            mangaId = 7,
+        )
+
+        assertEquals(1, recognizeCalls)
+        assertEquals(listOf("Hello", "World"), gemini.calls.last().first.map { it.text })
+    }
+
+    @Test
+    fun `glossary terms are collected and sent with the next batch`() = runTest {
+        gemini.newTerms = mapOf("Kenta" to "Кента")
+        val pageTranslator = translator()
+
+        pageTranslator.translate(pages("p1"), "ja", mangaId = 7)
+        gemini.newTerms = mapOf("Kenta" to "Кэнта", "Hana" to "Хана")
+        pageTranslator.translate(pages("p2"), "ja", mangaId = 7)
+
+        assertEquals(mapOf("Kenta" to "Кента"), gemini.calls[1].second.glossary)
+        // The first translation of a name sticks.
+        assertEquals(mapOf("Kenta" to "Кента", "Hana" to "Хана"), glossary.terms(7, "ru"))
+    }
+
+    @Test
+    fun `falls back to ML Kit page by page and reports why`() = runTest {
         gemini.failure = TranslationException.MissingApiKey(TranslationEngine.Gemini)
 
-        val result = translator().translate("page-1", "en") { bitmap }
+        val result = translator().translate(pages("p1", "p2"), "en", mangaId = 7)
 
-        assertEquals(TranslationEngine.MlKit, result.engine)
-        assertTrue(result.fallbackReason is TranslationException.MissingApiKey)
-        assertEquals("Hello→ru(MlKit)", result.regions.first().translatedText)
-        // Not cached as Gemini, so Gemini is retried once the user adds a key.
-        assertNull(cache.entries[Triple("page-1", "ru", "Gemini:3:p2:en")])
+        assertTrue(result.all { it.engine == TranslationEngine.MlKit && it.fallbackReason is TranslationException.MissingApiKey })
+        assertEquals(2, mlKit.calls.size)
+        assertNull(cache.entries[Triple("p1", "ru", "Gemini:3:p2:en")])
     }
 
     @Test
     fun `offline engine errors are not swallowed`() = runTest {
         engine = TranslationEngine.MlKit
         mlKit.failure = TranslationException.UnsupportedLanguage("xx")
-        assertThrows<TranslationException.UnsupportedLanguage> { translator().translate("p", "xx") { bitmap } }
+        assertThrows<TranslationException.UnsupportedLanguage> { translator().translate(pages("p"), "xx", mangaId = 7) }
     }
 
     @Test
-    fun `concurrent requests for one page do the work once`() = runTest {
+    fun `overlapping requests do the work once`() = runTest {
         val pageTranslator = translator()
-        listOf(async { pageTranslator.translate("p", "en") { bitmap } }, async { pageTranslator.translate("p", "en") { bitmap } })
-            .awaitAll()
-        assertEquals(1, recognizeCalls)
-        assertEquals(1, gemini.calls)
+        listOf(
+            async { pageTranslator.translate(pages("p1", "p2"), "en", mangaId = 7) },
+            async { pageTranslator.translate(pages("p2", "p3"), "en", mangaId = 7) },
+        ).awaitAll()
+        assertEquals(3, recognizeCalls)
     }
 
     @Test
     fun `changing the prompt version invalidates the cache`() = runTest {
-        translator().translate("p", "en") { bitmap }
-        val updated = FakeTranslator(TranslationEngine.Gemini, cacheVersion = 4)
-        DefaultPageTranslator(recognizer, setOf(mlKit, updated), cache) { engine to "ru" }.translate("p", "en") { bitmap }
-        assertEquals(1, updated.calls)
+        translator().translate(pages("p"), "en", mangaId = 7)
+        val updated = FakeTranslator(TranslationEngine.Gemini, batchesPages = true, cacheVersion = 4)
+        translator(mlKit, updated).translate(pages("p"), "en", mangaId = 7)
+        assertEquals(1, updated.calls.size)
+    }
+
+    @Test
+    fun `large runs are split into several requests without splitting pages`() {
+        val block = RecognizedBlock(NormalizedBox(0f, 0f, 1f, 1f), "x".repeat(1_000))
+        val pageTranslator = translator()
+        // 30 pages × 1000 chars exceeds one request; each chunk must hold whole pages.
+        val chunks = pageTranslator.chunk((0 until 30).associateWith { listOf(block) })
+        assertTrue(chunks.size > 1)
+        assertEquals((0 until 30).toList(), chunks.flatMap { it.keys })
     }
 }

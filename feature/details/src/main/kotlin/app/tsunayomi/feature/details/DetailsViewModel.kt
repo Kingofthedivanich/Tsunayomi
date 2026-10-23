@@ -13,6 +13,8 @@ import app.tsunayomi.data.ReadingOrder
 import app.tsunayomi.data.ReadingProgressRepository
 import app.tsunayomi.data.SourceManager
 import app.tsunayomi.source.api.ChaptersOnlyExternalException
+import app.tsunayomi.translation.core.GlossaryEntry
+import app.tsunayomi.translation.core.GlossaryStore
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,6 +48,7 @@ internal class DetailsViewModel @Inject constructor(
     private val progressRepository: ReadingProgressRepository,
     private val sourceManager: SourceManager,
     private val libraryRepository: LibraryRepository,
+    private val glossaryStore: GlossaryStore,
 ) : ViewModel() {
     private val mangaId = savedStateHandle.toRoute<DetailsRoute>().mangaId
     private val refresh = MutableStateFlow(RefreshState())
@@ -105,6 +108,17 @@ internal class DetailsViewModel @Inject constructor(
     fun toggleFavorite() {
         val manga = state.value.manga ?: return
         viewModelScope.launch { mangaRepository.setFavorite(manga.id, !manga.favorite) }
+    }
+
+    val glossary: StateFlow<List<GlossaryEntry>> = glossaryStore.observe(mangaId)
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
+
+    fun deleteGlossaryEntry(entry: GlossaryEntry) {
+        viewModelScope.launch { glossaryStore.delete(mangaId, entry) }
+    }
+
+    fun clearGlossary() {
+        viewModelScope.launch { glossaryStore.clear(mangaId) }
     }
 
     fun setOriginalLang(lang: String?) {

@@ -28,4 +28,14 @@
     <string name="feature_details_original_lang">Язык страниц</string>
     <string name="feature_details_original_lang_auto">Определять автоматически</string>
     <string name="feature_details_original_lang_hint">Нужен, чтобы распознать и перевести текст на страницах. Укажите, если автоопределение ошибается.</string>
+    <string name="feature_details_glossary">Глоссарий перевода</string>
+    <string name="feature_details_glossary_hint">Имена и термины, которые Gemini переводит одинаково во всём тайтле. Удалите неверный — он выучится заново.</string>
+    <string name="feature_details_glossary_delete">Удалить термин</string>
+    <string name="feature_details_glossary_clear">Очистить всё</string>
+    <plurals name="feature_details_glossary_count">
+        <item quantity="one">%d термин</item>
+        <item quantity="few">%d термина</item>
+        <item quantity="many">%d терминов</item>
+        <item quantity="other">%d термина</item>
+    </plurals>
 </resources>

@@ -1,7 +1,10 @@
 package app.tsunayomi.translation.mlkit
 
 import app.tsunayomi.core.model.TranslationEngine
+import app.tsunayomi.translation.api.SourceText
 import app.tsunayomi.translation.api.TextJoining
+import app.tsunayomi.translation.api.TranslationBatch
+import app.tsunayomi.translation.api.TranslationContext
 import app.tsunayomi.translation.api.TranslationException
 import app.tsunayomi.translation.api.Translator
 import com.google.mlkit.common.model.DownloadConditions
@@ -26,7 +29,14 @@ class MlKitTranslator @Inject constructor() : Translator {
     private val languageId by lazy { LanguageIdentification.getClient() }
     private val clients = ConcurrentHashMap<Pair<String, String>, MlKitClient>()
 
-    override suspend fun translate(texts: List<String>, sourceLang: String?, targetLang: String): List<String> {
+    override suspend fun translate(
+        texts: List<SourceText>,
+        sourceLang: String?,
+        targetLang: String,
+        context: TranslationContext,
+    ): TranslationBatch = TranslationBatch(translateAll(texts.map { it.text }, sourceLang, targetLang))
+
+    private suspend fun translateAll(texts: List<String>, sourceLang: String?, targetLang: String): List<String> {
         if (texts.isEmpty()) return emptyList()
         val sourceTag = sourceLang ?: identify(texts.joinToString(" "))
         val source = TranslateLanguage.fromLanguageTag(sourceTag) ?: throw TranslationException.UnsupportedLanguage(sourceTag)
