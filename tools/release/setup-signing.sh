@@ -29,14 +29,14 @@ done
 unset confirm
 export TSUNAYOMI_SIGNING_PW
 
-echo "Создаю ключ $KEYSTORE…"
+echo "Создаю ключ ${KEYSTORE}…"
 "$KEYTOOL" -genkeypair -keystore "$KEYSTORE" -storetype PKCS12 -alias "$ALIAS" \
   -keyalg RSA -keysize 4096 -validity 10000 \
   -dname "CN=$(git config user.name || echo Tsunayomi)" \
   -storepass:env TSUNAYOMI_SIGNING_PW -keypass:env TSUNAYOMI_SIGNING_PW >/dev/null
 "$KEYTOOL" -list -keystore "$KEYSTORE" -storepass:env TSUNAYOMI_SIGNING_PW -alias "$ALIAS" >/dev/null
 
-echo "Загружаю секреты в $REPO…"
+echo "Загружаю секреты в ${REPO}…"
 base64 -i "$KEYSTORE" | gh secret set TSUNAYOMI_KEYSTORE_BASE64 -R "$REPO"
 printf '%s' "$TSUNAYOMI_SIGNING_PW" | gh secret set TSUNAYOMI_KEYSTORE_PASSWORD -R "$REPO"
 printf '%s' "$TSUNAYOMI_SIGNING_PW" | gh secret set TSUNAYOMI_KEY_PASSWORD -R "$REPO"
