@@ -91,6 +91,7 @@ dependencies {
     implementation(projects.source.mangadex)
     implementation(projects.source.komga)
     implementation(projects.source.webtoons)
+    implementation(projects.source.naver)
     implementation(projects.translation.core)
     implementation(projects.translation.mlkit)
     implementation(projects.translation.gemini)
