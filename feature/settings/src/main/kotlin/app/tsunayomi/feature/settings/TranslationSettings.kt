@@ -53,6 +53,7 @@ internal fun TranslationSection(
     onPickEngine: () -> Unit,
     onPickLanguage: () -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
+    onTranslateOnDownloadChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
     switchItem: @Composable (title: String, summary: String, checked: Boolean, onChange: (Boolean) -> Unit) -> Unit,
 ) {
@@ -74,6 +75,12 @@ internal fun TranslationSection(
         stringResource(R.string.feature_settings_translate_by_default_summary),
         settings.translateByDefault,
         onTranslateByDefaultChange,
+    )
+    switchItem(
+        stringResource(R.string.feature_settings_translate_on_download),
+        stringResource(R.string.feature_settings_translate_on_download_summary),
+        settings.translateOnDownload,
+        onTranslateOnDownloadChange,
     )
     if (settings.translationEngine == TranslationEngine.Gemini && gemini != null) {
         ListItem(

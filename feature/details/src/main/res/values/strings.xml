@@ -34,4 +34,12 @@
         <item quantity="one">%d term</item>
         <item quantity="other">%d terms</item>
     </plurals>
+    <string name="feature_details_download">Download</string>
+    <string name="feature_details_downloaded">Downloaded</string>
+    <string name="feature_details_download_retry">Download failed, tap to retry</string>
+    <string name="feature_details_download_delete">Delete download</string>
+    <string name="feature_details_downloads">Downloads</string>
+    <string name="feature_details_download_unread">Download unread chapters</string>
+    <string name="feature_details_download_delete_all">Delete all downloads</string>
+    <string name="feature_details_download_error">⚠ %s</string>
 </resources>

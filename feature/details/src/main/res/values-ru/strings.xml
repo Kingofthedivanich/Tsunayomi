@@ -38,4 +38,12 @@
         <item quantity="many">%d терминов</item>
         <item quantity="other">%d термина</item>
     </plurals>
+    <string name="feature_details_download">Скачать</string>
+    <string name="feature_details_downloaded">Скачано</string>
+    <string name="feature_details_download_retry">Не удалось скачать, нажмите для повтора</string>
+    <string name="feature_details_download_delete">Удалить загрузку</string>
+    <string name="feature_details_downloads">Загрузки</string>
+    <string name="feature_details_download_unread">Скачать непрочитанные</string>
+    <string name="feature_details_download_delete_all">Удалить все загрузки</string>
+    <string name="feature_details_download_error">⚠ %s</string>
 </resources>

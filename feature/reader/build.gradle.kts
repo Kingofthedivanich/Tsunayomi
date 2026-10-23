@@ -8,6 +8,7 @@ android {
 
 dependencies {
     implementation(projects.data)
+    implementation(projects.downloads)
     implementation(projects.translation.api)
     implementation(projects.translation.core)
     implementation(libs.androidx.activity.compose)

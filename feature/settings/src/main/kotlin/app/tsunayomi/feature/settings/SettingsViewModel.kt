@@ -33,6 +33,10 @@ internal class SettingsViewModel @Inject constructor(
         viewModelScope.launch { repository.setTranslationTargetLang(lang) }
     }
 
+    fun setTranslateOnDownload(enabled: Boolean) {
+        viewModelScope.launch { repository.setTranslateOnDownload(enabled) }
+    }
+
     fun setTranslateByDefault(enabled: Boolean) {
         viewModelScope.launch { repository.setTranslateByDefault(enabled) }
     }

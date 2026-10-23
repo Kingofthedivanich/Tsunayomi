@@ -14,6 +14,8 @@ data class UserSettings(
     /** ISO 639-1 target language; empty means "the app's language". */
     val translationTargetLang: String = "",
     val translateByDefault: Boolean = false,
+    /** Translate chapters right after downloading, so offline reading shows translations instantly. */
+    val translateOnDownload: Boolean = true,
 )
 
 enum class ThemeMode {

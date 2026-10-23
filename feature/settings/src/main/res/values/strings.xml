@@ -60,4 +60,6 @@
     <string name="feature_settings_gemini_model">Gemini models</string>
     <string name="feature_settings_gemini_model_hint">Model ids separated by commas, in order. When one runs out of its free daily or per-minute limit, the next one takes over. Leave empty for the default: %s</string>
     <string name="feature_settings_save">Save</string>
+    <string name="feature_settings_translate_on_download">Translate when downloading</string>
+    <string name="feature_settings_translate_on_download_summary">Downloaded chapters are translated right away, so they open translated even offline</string>
 </resources>

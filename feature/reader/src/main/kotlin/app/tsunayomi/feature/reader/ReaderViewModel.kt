@@ -12,11 +12,13 @@ import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.data.MangaRepository
 import app.tsunayomi.data.ReadingProgressRepository
 import app.tsunayomi.data.UserSettingsRepository
+import app.tsunayomi.downloads.DownloadManager
 import app.tsunayomi.source.api.SPage
 import app.tsunayomi.translation.api.PageRequest
 import app.tsunayomi.translation.api.PageTranslation
 import app.tsunayomi.translation.api.PageTranslator
 import app.tsunayomi.translation.api.TranslationException
+import app.tsunayomi.translation.core.TranslationKeys
 import app.tsunayomi.translation.core.TranslationRenderer
 import coil3.imageLoader
 import coil3.request.SuccessResult
@@ -69,6 +71,7 @@ internal class ReaderViewModel @Inject constructor(
     private val progressRepository: ReadingProgressRepository,
     private val settingsRepository: UserSettingsRepository,
     private val pageTranslator: PageTranslator,
+    private val downloadManager: DownloadManager,
     @ApplicationContext private val context: Context,
 ) : ViewModel() {
     private val route = savedStateHandle.toRoute<ReaderRoute>()
@@ -126,7 +129,8 @@ internal class ReaderViewModel @Inject constructor(
                 chapters = mangaRepository.getChapters(manga.id)
                 val index = chapters.indexOfFirst { it.id == chapterId }
                 val chapter = chapters.getOrNull(index) ?: error("Chapter $chapterId not found")
-                val pages = mangaRepository.getPages(manga, chapter)
+                // A downloaded chapter is read from its file, which also works offline.
+                val pages = downloadManager.downloadedPages(manga.id, chapter.id) ?: mangaRepository.getPages(manga, chapter)
                 val startPage = if (!chapter.read && chapter.lastPageRead in pages.indices) chapter.lastPageRead else 0
                 _currentPage.value = startPage
                 _state.update {
@@ -207,11 +211,9 @@ internal class ReaderViewModel @Inject constructor(
             try {
                 val results = pageTranslator.translate(
                     pages = indices.map { index ->
-                        // Remote page URLs can change between sessions (MangaDex@Home), so key by chapter and index.
-                        PageRequest("${manga.sourceId}|${chapter.url}|$index") { loadPageBitmap(state.pages[index]) }
+                        PageRequest(TranslationKeys.page(manga.sourceId, chapter.url, index)) { loadPageBitmap(state.pages[index]) }
                     },
-                    // The chapter's own language (e.g. an English scanlation of a Japanese manga) beats the title's.
-                    sourceLang = chapter.language?.substringBefore('-') ?: manga.originalLang,
+                    sourceLang = TranslationKeys.sourceLanguage(chapter.language, manga.originalLang),
                     mangaId = manga.id,
                 )
                 _translations.update { states ->

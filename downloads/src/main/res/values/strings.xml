@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="downloads_channel">Downloads</string>
+    <string name="downloads_stop">Stop</string>
+    <string name="downloads_progress">%1$s · page %2$d of %3$d</string>
+    <string name="downloads_translating">%1$s · translating page %2$d of %3$d</string>
+    <string name="downloads_translation_failed">Downloaded, but not translated: %s</string>
+</resources>

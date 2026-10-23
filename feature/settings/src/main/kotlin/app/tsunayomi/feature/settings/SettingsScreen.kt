@@ -62,6 +62,7 @@ internal fun SettingsScreen(
         onTranslationEngineChange = viewModel::setTranslationEngine,
         onTranslationLangChange = viewModel::setTranslationTargetLang,
         onTranslateByDefaultChange = viewModel::setTranslateByDefault,
+        onTranslateOnDownloadChange = viewModel::setTranslateOnDownload,
         onGeminiChange = viewModel::setGemini,
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
@@ -83,6 +84,7 @@ private fun SettingsContent(
     onTranslationEngineChange: (TranslationEngine) -> Unit,
     onTranslationLangChange: (String) -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
+    onTranslateOnDownloadChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
@@ -193,6 +195,7 @@ private fun SettingsContent(
                 onPickEngine = { showEngineDialog = true },
                 onPickLanguage = { showTargetDialog = true },
                 onTranslateByDefaultChange = onTranslateByDefaultChange,
+                onTranslateOnDownloadChange = onTranslateOnDownloadChange,
                 onGeminiChange = onGeminiChange,
                 switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
             )

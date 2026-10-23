@@ -36,6 +36,7 @@ include(":core:image")
 include(":core:network")
 
 include(":data")
+include(":downloads")
 
 include(":source:api")
 include(":source:local")

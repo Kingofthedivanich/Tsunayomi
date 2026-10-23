@@ -31,6 +31,7 @@ class UserPreferencesDataSource @Inject constructor(
             translationEngine = prefs[Keys.translationEngine].toEnum(defaults.translationEngine),
             translationTargetLang = prefs[Keys.translationTargetLang] ?: defaults.translationTargetLang,
             translateByDefault = prefs[Keys.translateByDefault] ?: defaults.translateByDefault,
+            translateOnDownload = prefs[Keys.translateOnDownload] ?: defaults.translateOnDownload,
         )
     }
 
@@ -75,6 +76,10 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.translationTargetLang] = lang }
     }
 
+    suspend fun setTranslateOnDownload(enabled: Boolean) {
+        dataStore.edit { it[Keys.translateOnDownload] = enabled }
+    }
+
     suspend fun setTranslateByDefault(enabled: Boolean) {
         dataStore.edit { it[Keys.translateByDefault] = enabled }
     }
@@ -94,5 +99,6 @@ class UserPreferencesDataSource @Inject constructor(
         val translationEngine = stringPreferencesKey("translation_engine")
         val translationTargetLang = stringPreferencesKey("translation_target_lang")
         val translateByDefault = booleanPreferencesKey("translate_by_default")
+        val translateOnDownload = booleanPreferencesKey("translate_on_download")
     }
 }

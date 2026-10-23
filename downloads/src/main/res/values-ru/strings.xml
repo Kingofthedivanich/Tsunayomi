@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="downloads_channel">Загрузки</string>
+    <string name="downloads_stop">Остановить</string>
+    <string name="downloads_progress">%1$s · стр. %2$d из %3$d</string>
+    <string name="downloads_translating">%1$s · перевод стр. %2$d из %3$d</string>
+    <string name="downloads_translation_failed">Скачано, но не переведено: %s</string>
+</resources>

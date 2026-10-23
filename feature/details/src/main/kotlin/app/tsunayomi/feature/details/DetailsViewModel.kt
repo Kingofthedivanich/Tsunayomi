@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
 import app.tsunayomi.core.model.Category
+import app.tsunayomi.core.model.ChapterDownload
+import app.tsunayomi.core.model.DownloadState
 import app.tsunayomi.core.model.Chapter
 import app.tsunayomi.core.model.Manga
 import app.tsunayomi.data.LibraryRepository
@@ -12,6 +14,8 @@ import app.tsunayomi.data.MangaRepository
 import app.tsunayomi.data.ReadingOrder
 import app.tsunayomi.data.ReadingProgressRepository
 import app.tsunayomi.data.SourceManager
+import app.tsunayomi.downloads.DownloadManager
+import app.tsunayomi.source.api.SourceIds
 import app.tsunayomi.source.api.ChaptersOnlyExternalException
 import app.tsunayomi.translation.core.GlossaryEntry
 import app.tsunayomi.translation.core.GlossaryStore
@@ -49,7 +53,49 @@ internal class DetailsViewModel @Inject constructor(
     private val sourceManager: SourceManager,
     private val libraryRepository: LibraryRepository,
     private val glossaryStore: GlossaryStore,
+    private val downloadManager: DownloadManager,
 ) : ViewModel() {
+    /** Download state per chapter id. */
+    val downloads: StateFlow<Map<Long, ChapterDownload>> by lazy {
+        downloadManager.observe(mangaId).stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyMap())
+    }
+
+    /** Local files are offline already; downloads are offered only for online sources. */
+    val canDownload: Boolean
+        get() = state.value.manga?.let { it.sourceId != SourceIds.LOCAL } == true
+
+    fun download(chapter: Chapter) {
+        viewModelScope.launch { downloadManager.enqueue(mangaId, listOf(chapter.id)) }
+    }
+
+    /** Unread chapters in reading order, so the first ones to read finish first. */
+    fun downloadUnread() {
+        val ids = state.value.chapters.asReversed().filter { !it.read && it.id !in downloads.value }.map { it.id }
+        viewModelScope.launch { downloadManager.enqueue(mangaId, ids) }
+    }
+
+    fun onDownloadClick(chapter: Chapter) {
+        val download = downloads.value[chapter.id]
+        viewModelScope.launch {
+            when (download?.state) {
+                null -> downloadManager.enqueue(mangaId, listOf(chapter.id))
+                DownloadState.Failed -> downloadManager.retry(chapter.id)
+                // Queued or running: cancel. Done is removed through the explicit menu item.
+                DownloadState.Queued, DownloadState.Downloading, DownloadState.Translating ->
+                    downloadManager.remove(mangaId, listOf(chapter.id))
+                DownloadState.Done -> Unit
+            }
+        }
+    }
+
+    fun deleteDownload(chapter: Chapter) {
+        viewModelScope.launch { downloadManager.remove(mangaId, listOf(chapter.id)) }
+    }
+
+    fun deleteAllDownloads() {
+        viewModelScope.launch { downloadManager.removeAll(mangaId) }
+    }
+
     private val mangaId = savedStateHandle.toRoute<DetailsRoute>().mangaId
     private val refresh = MutableStateFlow(RefreshState())
 

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,11 +28,15 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.Label
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedButton
@@ -59,7 +64,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
@@ -72,7 +79,15 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.component.COVER_ASPECT_RATIO
 import app.tsunayomi.core.designsystem.component.CoverImage
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import app.tsunayomi.core.model.Category
+import app.tsunayomi.core.model.ChapterDownload
+import app.tsunayomi.core.model.DownloadState
 import app.tsunayomi.core.model.Chapter
 import app.tsunayomi.core.model.Manga
 import app.tsunayomi.core.model.MangaStatus
@@ -95,6 +110,17 @@ internal fun DetailsScreen(
     var languageDialog by rememberSaveable { mutableStateOf(false) }
     var glossaryDialog by rememberSaveable { mutableStateOf(false) }
     val glossary by viewModel.glossary.collectAsStateWithLifecycle()
+    val downloads by viewModel.downloads.collectAsStateWithLifecycle()
+    // Ask once for the notification that shows download progress (Android 13+); downloads work either way.
+    val notificationPermission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {}
+    val context = LocalContext.current
+    val askNotificationPermission = {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
     LaunchedEffect(state.error) {
         state.error?.let {
             snackbarHostState.showSnackbar(it)
@@ -109,6 +135,17 @@ internal fun DetailsScreen(
                 navigationIcon = {
                     IconButton(onClick = onBack) {
                         Icon(Icons.AutoMirrored.Outlined.ArrowBack, stringResource(R.string.feature_details_back))
+                    }
+                },
+                actions = {
+                    if (viewModel.canDownload) {
+                        DownloadsMenu(
+                            onDownloadUnread = {
+                                askNotificationPermission()
+                                viewModel.downloadUnread()
+                            },
+                            onDeleteAll = viewModel::deleteAllDownloads,
+                        )
                     }
                 },
             )
@@ -201,6 +238,13 @@ internal fun DetailsScreen(
                     ChapterRow(
                         chapter = chapter,
                         showLanguage = showLanguage,
+                        download = downloads[chapter.id],
+                        canDownload = viewModel.canDownload,
+                        onDownloadClick = {
+                            if (downloads[chapter.id] == null) askNotificationPermission()
+                            viewModel.onDownloadClick(chapter)
+                        },
+                        onDeleteDownload = { viewModel.deleteDownload(chapter) },
                         onClick = { onRead(manga.id, chapter.id) },
                         onSetRead = { viewModel.setRead(chapter, it) },
                         onReadUpTo = { viewModel.setReadUpTo(chapter) },
@@ -447,6 +491,10 @@ private fun Header(
 private fun ChapterRow(
     chapter: Chapter,
     showLanguage: Boolean,
+    download: ChapterDownload?,
+    canDownload: Boolean,
+    onDownloadClick: () -> Unit,
+    onDeleteDownload: () -> Unit,
     onClick: () -> Unit,
     onSetRead: (Boolean) -> Unit,
     onReadUpTo: () -> Unit,
@@ -466,8 +514,14 @@ private fun ChapterRow(
                     } else {
                         null
                     },
+                    download?.error?.let { stringResource(R.string.feature_details_download_error, it) },
                 )
                 if (parts.isNotEmpty()) Text(parts.joinToString(" • "))
+            },
+            trailingContent = if (canDownload) {
+                { DownloadButton(download, onDownloadClick, onDeleteDownload) }
+            } else {
+                null
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -489,6 +543,78 @@ private fun ChapterRow(
                 onClick = {
                     menuOpen = false
                     onReadUpTo()
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun DownloadButton(download: ChapterDownload?, onClick: () -> Unit, onDelete: () -> Unit) {
+    var menuOpen by remember { mutableStateOf(false) }
+    Box(contentAlignment = Alignment.Center) {
+        IconButton(onClick = { if (download?.state == DownloadState.Done) menuOpen = true else onClick() }) {
+            when (download?.state) {
+                null -> Icon(Icons.Outlined.Download, stringResource(R.string.feature_details_download))
+                DownloadState.Queued -> CircularProgressIndicator(Modifier.size(22.dp), strokeWidth = 2.dp)
+                DownloadState.Downloading, DownloadState.Translating -> {
+                    val progress = if (download.pagesTotal > 0) download.pagesDone.toFloat() / download.pagesTotal else 0f
+                    CircularProgressIndicator(
+                        progress = { progress },
+                        modifier = Modifier.size(22.dp),
+                        strokeWidth = 2.dp,
+                        // Translating after the download shows in a different colour.
+                        color = if (download.state == DownloadState.Translating) {
+                            MaterialTheme.colorScheme.tertiary
+                        } else {
+                            MaterialTheme.colorScheme.primary
+                        },
+                    )
+                }
+                DownloadState.Done -> Icon(
+                    Icons.Filled.CheckCircle,
+                    stringResource(R.string.feature_details_downloaded),
+                    tint = MaterialTheme.colorScheme.primary,
+                )
+                DownloadState.Failed -> Icon(
+                    Icons.Outlined.ErrorOutline,
+                    stringResource(R.string.feature_details_download_retry),
+                    tint = MaterialTheme.colorScheme.error,
+                )
+            }
+        }
+        DropdownMenu(expanded = menuOpen, onDismissRequest = { menuOpen = false }) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.feature_details_download_delete)) },
+                onClick = {
+                    menuOpen = false
+                    onDelete()
+                },
+            )
+        }
+    }
+}
+
+@Composable
+private fun DownloadsMenu(onDownloadUnread: () -> Unit, onDeleteAll: () -> Unit) {
+    var expanded by remember { mutableStateOf(false) }
+    Box {
+        IconButton(onClick = { expanded = true }) {
+            Icon(Icons.Outlined.Download, stringResource(R.string.feature_details_downloads))
+        }
+        DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.feature_details_download_unread)) },
+                onClick = {
+                    expanded = false
+                    onDownloadUnread()
+                },
+            )
+            DropdownMenuItem(
+                text = { Text(stringResource(R.string.feature_details_download_delete_all)) },
+                onClick = {
+                    expanded = false
+                    onDeleteAll()
                 },
             )
         }

@@ -34,5 +34,7 @@ class UserSettingsRepository @Inject constructor(
 
     suspend fun setTranslateByDefault(enabled: Boolean) = preferences.setTranslateByDefault(enabled)
 
+    suspend fun setTranslateOnDownload(enabled: Boolean) = preferences.setTranslateOnDownload(enabled)
+
     suspend fun setLibrarySort(sort: LibrarySort, ascending: Boolean) = preferences.setLibrarySort(sort, ascending)
 }

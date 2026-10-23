@@ -57,4 +57,6 @@
     <string name="feature_settings_gemini_model">Модели Gemini</string>
     <string name="feature_settings_gemini_model_hint">Идентификаторы моделей через запятую, по порядку. Когда у одной кончается бесплатный лимит на день или минуту, работает следующая. Оставьте пустым для набора по умолчанию: %s</string>
     <string name="feature_settings_save">Сохранить</string>
+    <string name="feature_settings_translate_on_download">Переводить при загрузке</string>
+    <string name="feature_settings_translate_on_download_summary">Скачанные главы сразу переводятся и открываются с переводом даже без интернета</string>
 </resources>

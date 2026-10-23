@@ -15,6 +15,17 @@ enum class LibrarySort {
     Unread,
 }
 
+enum class DownloadState { Queued, Downloading, Translating, Done, Failed }
+
+data class ChapterDownload(
+    val chapterId: Long,
+    val state: DownloadState,
+    val pagesDone: Int,
+    val pagesTotal: Int,
+    /** For [DownloadState.Failed]; for [DownloadState.Done], a non-fatal note (e.g. translation could not run). */
+    val error: String?,
+)
+
 data class HistoryItem(
     val mangaId: Long,
     val sourceId: Long,

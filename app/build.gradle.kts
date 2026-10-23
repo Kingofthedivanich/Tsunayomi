@@ -50,6 +50,7 @@ dependencies {
     implementation(projects.core.model)
     implementation(projects.core.network)
     implementation(projects.data)
+    implementation(projects.downloads)
     implementation(projects.source.local)
     implementation(projects.source.mangadex)
     implementation(projects.source.komga)
@@ -72,4 +73,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.work.runtime)
+    implementation(libs.androidx.hilt.work)
 }
