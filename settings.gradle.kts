@@ -18,10 +18,13 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        // QuickJS for extensions that evaluate JavaScript; only that artifact is taken from JitPack.
+        // QuickJS and Kotatsu parsers; only those artifacts are taken from JitPack.
         exclusiveContent {
             forRepository { maven("https://www.jitpack.io") }
-            filter { includeGroup("com.github.zhanghai.quickjs-java") }
+            filter {
+                includeGroup("com.github.zhanghai.quickjs-java")
+                includeGroup("com.github.Gekkoushi")
+            }
         }
     }
 }
@@ -52,6 +55,7 @@ include(":source:webtoons")
 include(":source:naver")
 include(":source:remanga")
 include(":source:asura")
+include(":source:kotatsu")
 include(":extension:lib")
 include(":extension:manager")
 include(":feature:extensions")

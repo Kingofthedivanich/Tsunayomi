@@ -1,0 +1,33 @@
+[
+    {
+        "name": "MANGACHAN",
+        "locale": "ru",
+        "domain": "manga-chan.me",
+        "verifiedAt": "2026-10-24T17:46:35.239941Z"
+    },
+    {
+        "name": "LIKEMANGA",
+        "locale": "en",
+        "domain": "likemanga.ink",
+        "verifiedAt": "2026-10-24T17:47:09.154573Z"
+    },
+    {
+        "name": "LHTRANSLATION",
+        "locale": "en",
+        "domain": "lhtranslation.net",
+        "verifiedAt": "2026-10-24T17:47:11.914525Z"
+    },
+    {
+        "name": "TOONILY",
+        "locale": "en",
+        "domain": "toonily.com",
+        "verifiedAt": "2026-10-24T17:47:14.461987Z"
+    },
+    {
+        "name": "KLZ9",
+        "locale": "ja",
+        "domain": "klz9.com",
+        "verifiedAt": "2026-10-24T17:47:16.325941Z",
+        "isNsfw": true
+    }
+]
