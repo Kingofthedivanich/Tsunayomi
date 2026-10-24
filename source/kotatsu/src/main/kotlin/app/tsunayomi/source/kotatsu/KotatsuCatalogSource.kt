@@ -8,6 +8,8 @@ import app.tsunayomi.source.api.SManga
 import app.tsunayomi.source.api.SPage
 import app.tsunayomi.source.api.Source
 import app.tsunayomi.source.api.sourceIdOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.koitharu.kotatsu.parsers.MangaParser
 import org.koitharu.kotatsu.parsers.model.ContentRating
 import org.koitharu.kotatsu.parsers.model.Manga
@@ -21,6 +23,7 @@ import org.koitharu.kotatsu.parsers.model.SortOrder
 internal class KotatsuCatalogSource(
     val parserSource: MangaParserSource,
     val parser: MangaParser,
+    val isNsfw: Boolean = false,
 ) : CatalogSource {
 
     override val id: Long = sourceIdOf("kotatsu_${parserSource.name}", parserSource.locale.ifBlank { Source.MULTI_LANG })
@@ -44,9 +47,11 @@ internal class KotatsuCatalogSource(
         }
     }
 
+    override fun webHeaders(): Map<String, String> = parser.getRequestHeaders().toMap()
+
     override fun getFilters(): FilterList = FilterList()
 
-    override suspend fun getPopular(page: Int): MangaPage {
+    override suspend fun getPopular(page: Int): MangaPage = withContext(Dispatchers.IO) {
         val sortOrder = if (parser.availableSortOrders.contains(SortOrder.POPULARITY)) {
             SortOrder.POPULARITY
         } else {
@@ -54,13 +59,13 @@ internal class KotatsuCatalogSource(
         }
         val offset = maxOf(0, page - 1) * 20
         val list = parser.getList(offset = offset, order = sortOrder, filter = MangaListFilter())
-        return MangaPage(
+        MangaPage(
             items = list.map { it.toSManga() },
             hasNext = list.isNotEmpty(),
         )
     }
 
-    override suspend fun getLatest(page: Int): MangaPage {
+    override suspend fun getLatest(page: Int): MangaPage = withContext(Dispatchers.IO) {
         val sortOrder = if (parser.availableSortOrders.contains(SortOrder.UPDATED)) {
             SortOrder.UPDATED
         } else {
@@ -68,37 +73,35 @@ internal class KotatsuCatalogSource(
         }
         val offset = maxOf(0, page - 1) * 20
         val list = parser.getList(offset = offset, order = sortOrder, filter = MangaListFilter())
-        return MangaPage(
+        MangaPage(
             items = list.map { it.toSManga() },
             hasNext = list.isNotEmpty(),
         )
     }
 
-    override suspend fun search(query: String, filters: FilterList, page: Int): MangaPage {
+    override suspend fun search(query: String, filters: FilterList, page: Int): MangaPage = withContext(Dispatchers.IO) {
         val offset = maxOf(0, page - 1) * 20
         val sortOrder = parser.availableSortOrders.firstOrNull() ?: SortOrder.POPULARITY
         val filter = if (query.isNotBlank()) MangaListFilter(query = query) else MangaListFilter()
-        val list = runCatching {
-            parser.getList(offset = offset, order = sortOrder, filter = filter)
-        }.getOrDefault(emptyList())
+        val list = parser.getList(offset = offset, order = sortOrder, filter = filter)
 
-        return MangaPage(
+        MangaPage(
             items = list.map { it.toSManga() },
             hasNext = list.isNotEmpty(),
         )
     }
 
-    override suspend fun getDetails(manga: SManga): SManga {
+    override suspend fun getDetails(manga: SManga): SManga = withContext(Dispatchers.IO) {
         val kotatsuManga = manga.toKotatsuManga()
         val details = parser.getDetails(kotatsuManga)
-        return details.toSManga()
+        details.toSManga()
     }
 
-    override suspend fun getChapters(manga: SManga): List<SChapter> {
+    override suspend fun getChapters(manga: SManga): List<SChapter> = withContext(Dispatchers.IO) {
         val kotatsuManga = manga.toKotatsuManga()
         val details = parser.getDetails(kotatsuManga)
         val chapters = details.chapters.orEmpty()
-        if (chapters.isEmpty()) return emptyList()
+        if (chapters.isEmpty()) return@withContext emptyList()
 
         // Ensure reading order: first chapter first (ascending)
         val sorted = if (chapters.size > 1 && chapters.first().number > chapters.last().number) {
@@ -107,7 +110,7 @@ internal class KotatsuCatalogSource(
             chapters
         }
 
-        return sorted.map { chapter ->
+        sorted.map { chapter ->
             SChapter(
                 url = chapter.url,
                 name = chapter.title?.ifBlank { "Chapter ${chapter.numberString()}" } ?: "Chapter ${chapter.numberString()}",
@@ -119,7 +122,7 @@ internal class KotatsuCatalogSource(
         }
     }
 
-    override suspend fun getPages(chapter: SChapter): List<SPage> {
+    override suspend fun getPages(chapter: SChapter): List<SPage> = withContext(Dispatchers.IO) {
         val kotatsuChapter = MangaChapter(
             id = 0L,
             title = chapter.name,
@@ -132,17 +135,12 @@ internal class KotatsuCatalogSource(
             source = parserSource,
         )
         val pages = parser.getPages(kotatsuChapter)
-        val headers = parser.getRequestHeaders().toMap().toMutableMap()
-        if (!headers.containsKey("Referer")) {
-            headers["Referer"] = "https://${parser.domain}/"
-        }
 
-        return pages.mapIndexed { index, page ->
-            val imageUrl = runCatching { parser.getPageUrl(page) }.getOrDefault(page.url)
+        pages.mapIndexed { index, page ->
             SPage.Remote(
                 index = index,
-                imageUrl = imageUrl,
-                headers = headers,
+                imageUrl = KotatsuUrls.page(id, page.url, page.preview, page.id),
+                headers = emptyMap(),
             )
         }
     }

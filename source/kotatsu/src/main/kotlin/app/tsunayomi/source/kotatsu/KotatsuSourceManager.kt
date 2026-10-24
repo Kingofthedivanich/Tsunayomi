@@ -30,13 +30,15 @@ class KotatsuSourceManager @Inject constructor(
     baseClient: OkHttpClient,
 ) : DynamicSources {
 
-    private val loaderContext = AndroidMangaLoaderContext(context, baseClient)
+    internal val loaderContext = AndroidMangaLoaderContext(context, baseClient)
     private val prefs = context.getSharedPreferences("extensions", Context.MODE_PRIVATE)
     private val json = Json { ignoreUnknownKeys = true }
     private val loaded = CountDownLatch(1)
 
     private val _sources = MutableStateFlow<List<KotatsuCatalogSource>>(emptyList())
     override val sources: StateFlow<List<Source>> = _sources.asStateFlow()
+
+    internal fun getSource(sourceId: Long): KotatsuCatalogSource? = _sources.value.firstOrNull { it.id == sourceId }
 
     private val _languages = MutableStateFlow(
         prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko"),
@@ -58,7 +60,7 @@ class KotatsuSourceManager @Inject constructor(
     ) { allSources, langs, nsfw ->
         allSources.filter { src ->
             val langMatches = src.lang in langs || src.lang.substringBefore('-') in langs
-            val nsfwAllowed = nsfw || (src.parserSource.contentType != ContentType.HENTAI)
+            val nsfwAllowed = nsfw || !(src.isNsfw || src.parserSource.contentType in ADULT_TYPES)
             langMatches && nsfwAllowed
         }
     }.stateIn(scope, SharingStarted.Eagerly, emptyList())
@@ -105,9 +107,19 @@ class KotatsuSourceManager @Inject constructor(
             // Exclude Kakao content / mirrors
             if (domain.contains("kakao") || domain.contains("piccoma")) continue
 
-            sourcesList.add(KotatsuCatalogSource(parserSource, parser))
+            sourcesList.add(KotatsuCatalogSource(parserSource, parser, isNsfw = entry.isNsfw))
         }
 
         _sources.value = sourcesList
+    }
+
+    private companion object {
+        val ADULT_TYPES = setOf(
+            ContentType.HENTAI,
+            ContentType.DOUJINSHI,
+            ContentType.IMAGE_SET,
+            ContentType.ARTIST_CG,
+            ContentType.GAME_CG,
+        )
     }
 }

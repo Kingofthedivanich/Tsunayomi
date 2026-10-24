@@ -13,6 +13,9 @@ interface CatalogSource : Source {
     /** Web page for the specific manga in this source. */
     fun webUrl(manga: SManga): String? = null
 
+    /** Web headers (e.g. User-Agent, Referer) required for opening the web page in WebView. */
+    fun webHeaders(): Map<String, String> = emptyMap()
+
     fun getFilters(): FilterList = FilterList()
 
     suspend fun getPopular(page: Int): MangaPage

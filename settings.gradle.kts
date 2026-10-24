@@ -75,3 +75,6 @@ include(":feature:details")
 include(":feature:reader")
 include(":feature:history")
 include(":feature:settings")
+
+include(":tools:kotatsu-health")
+

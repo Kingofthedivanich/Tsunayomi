@@ -1,33 +1,464 @@
 [
     {
-        "name": "MANGACHAN",
-        "locale": "ru",
-        "domain": "manga-chan.me",
-        "verifiedAt": "2026-10-24T17:46:35.239941Z"
+        "name": "ANISASCANS",
+        "locale": "en",
+        "domain": "anisascans.in",
+        "verifiedAt": "2026-10-24T20:13:39.152985Z",
+        "isNsfw": false
     },
     {
-        "name": "LIKEMANGA",
-        "locale": "en",
-        "domain": "likemanga.ink",
-        "verifiedAt": "2026-10-24T17:47:09.154573Z"
+        "name": "ASMHENTAI",
+        "locale": "",
+        "domain": "asmhentai.com",
+        "verifiedAt": "2026-10-24T20:13:27.594516Z",
+        "isNsfw": true
     },
     {
-        "name": "LHTRANSLATION",
+        "name": "BANANASCAN_COM",
         "locale": "en",
-        "domain": "lhtranslation.net",
-        "verifiedAt": "2026-10-24T17:47:11.914525Z"
+        "domain": "bananascans.com",
+        "verifiedAt": "2026-10-24T20:13:51.065525Z",
+        "isNsfw": false
     },
     {
-        "name": "TOONILY",
+        "name": "CLONEMANGA",
         "locale": "en",
-        "domain": "toonily.com",
-        "verifiedAt": "2026-10-24T17:47:14.461987Z"
+        "domain": "manga.clone-army.org",
+        "verifiedAt": "2026-10-24T20:13:50.348619Z",
+        "isNsfw": false
+    },
+    {
+        "name": "DANKE",
+        "locale": "en",
+        "domain": "danke.moe",
+        "verifiedAt": "2026-10-24T20:14:01.260993Z",
+        "isNsfw": false
+    },
+    {
+        "name": "DEATHTOLLSCANS",
+        "locale": "en",
+        "domain": "reader.deathtollscans.net",
+        "verifiedAt": "2026-10-24T20:14:00.499103Z",
+        "isNsfw": false
+    },
+    {
+        "name": "DECADENCESCANS",
+        "locale": "en",
+        "domain": "reader.decadencescans.com",
+        "verifiedAt": "2026-10-24T20:13:34.776742Z",
+        "isNsfw": true
+    },
+    {
+        "name": "DEMONICSCANS",
+        "locale": "en",
+        "domain": "demonicscans.org",
+        "verifiedAt": "2026-10-24T20:13:51.458230Z",
+        "isNsfw": false
+    },
+    {
+        "name": "ENTHUNDERSCANS",
+        "locale": "en",
+        "domain": "en-thunderscans.com",
+        "verifiedAt": "2026-10-24T20:13:53.606353Z",
+        "isNsfw": false
+    },
+    {
+        "name": "EXHENTAI",
+        "locale": "",
+        "domain": "e-hentai.org",
+        "verifiedAt": "2026-10-24T20:13:28.013323Z",
+        "isNsfw": true
+    },
+    {
+        "name": "FLAMECOMICS",
+        "locale": "en",
+        "domain": "flamecomics.xyz",
+        "verifiedAt": "2026-10-24T20:13:53.307543Z",
+        "isNsfw": false
+    },
+    {
+        "name": "GDSCANS",
+        "locale": "en",
+        "domain": "gdscans.com",
+        "verifiedAt": "2026-10-24T20:13:47.612755Z",
+        "isNsfw": false
+    },
+    {
+        "name": "GEDECOMIX",
+        "locale": "en",
+        "domain": "gedecomix.com",
+        "verifiedAt": "2026-10-24T20:13:31.967973Z",
+        "isNsfw": true
+    },
+    {
+        "name": "GRABBER",
+        "locale": "en",
+        "domain": "grabber.zone",
+        "verifiedAt": "2026-10-24T20:13:37.782352Z",
+        "isNsfw": false
+    },
+    {
+        "name": "GUYACUBARI",
+        "locale": "en",
+        "domain": "guya.cubari.moe",
+        "verifiedAt": "2026-10-24T20:14:01.803682Z",
+        "isNsfw": false
+    },
+    {
+        "name": "HACHIRUMI",
+        "locale": "en",
+        "domain": "hachirumi.com",
+        "verifiedAt": "2026-10-24T20:14:04.248052Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HENTAI20",
+        "locale": "en",
+        "domain": "hentai20.io",
+        "verifiedAt": "2026-10-24T20:13:54.317190Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HENTAI3ZCC",
+        "locale": "en",
+        "domain": "hentai3z.cc",
+        "verifiedAt": "2026-10-24T20:14:04.178613Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HENTAIERA",
+        "locale": "",
+        "domain": "hentaiera.com",
+        "verifiedAt": "2026-10-24T20:13:29.142101Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HENTAIFOX",
+        "locale": "",
+        "domain": "hentaifox.com",
+        "verifiedAt": "2026-10-24T20:13:27.389315Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HENTAIXCOMIC",
+        "locale": "en",
+        "domain": "hentaixcomic.com",
+        "verifiedAt": "2026-10-24T20:13:49.214862Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HENTAIXDICKGIRL",
+        "locale": "en",
+        "domain": "hentaixdickgirl.com",
+        "verifiedAt": "2026-10-24T20:13:40.553150Z",
+        "isNsfw": true
+    },
+    {
+        "name": "HMANGABAT",
+        "locale": "en",
+        "domain": "www.mangabats.com",
+        "verifiedAt": "2026-10-24T20:14:02.647015Z",
+        "isNsfw": false
+    },
+    {
+        "name": "HOLOEARTH",
+        "locale": "",
+        "domain": "holoearth.com",
+        "verifiedAt": "2026-10-24T20:13:31.364946Z",
+        "isNsfw": false
+    },
+    {
+        "name": "IMHENTAI",
+        "locale": "",
+        "domain": "imhentai.xxx",
+        "verifiedAt": "2026-10-24T20:13:29.141915Z",
+        "isNsfw": true
+    },
+    {
+        "name": "KIUTAKU",
+        "locale": "",
+        "domain": "kiutaku.com",
+        "verifiedAt": "2026-10-24T20:13:53.167387Z",
+        "isNsfw": true
     },
     {
         "name": "KLZ9",
         "locale": "ja",
         "domain": "klz9.com",
-        "verifiedAt": "2026-10-24T17:47:16.325941Z",
+        "verifiedAt": "2026-10-24T20:13:28.751182Z",
         "isNsfw": true
+    },
+    {
+        "name": "KSGROUPSCANS",
+        "locale": "en",
+        "domain": "ksgroupscans.com",
+        "verifiedAt": "2026-10-24T20:13:47.756919Z",
+        "isNsfw": false
+    },
+    {
+        "name": "LHTRANSLATION",
+        "locale": "en",
+        "domain": "lhtranslation.net",
+        "verifiedAt": "2026-10-24T20:13:47.942964Z",
+        "isNsfw": false
+    },
+    {
+        "name": "LIKEMANGA",
+        "locale": "en",
+        "domain": "likemanga.ink",
+        "verifiedAt": "2026-10-24T20:14:03.258346Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MAHOUSHOUJOBU",
+        "locale": "",
+        "domain": "mahoushoujobu.com",
+        "verifiedAt": "2026-10-24T20:14:00.599881Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGA18",
+        "locale": "en",
+        "domain": "manga18.club",
+        "verifiedAt": "2026-10-24T20:14:03.894981Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANGA18FX",
+        "locale": "",
+        "domain": "manga18fx.com",
+        "verifiedAt": "2026-10-24T20:13:29.826320Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANGABEE",
+        "locale": "en",
+        "domain": "mangazin.org",
+        "verifiedAt": "2026-10-24T20:13:34.917951Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANGADASS",
+        "locale": "en",
+        "domain": "mangadass.com",
+        "verifiedAt": "2026-10-24T20:13:31.423577Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANGADNA",
+        "locale": "en",
+        "domain": "mangadna.com",
+        "verifiedAt": "2026-10-24T20:13:32.912374Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANGAECLIPSE",
+        "locale": "en",
+        "domain": "mangaeclipse.com",
+        "verifiedAt": "2026-10-24T20:13:42.270609Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGAFORFREE",
+        "locale": "en",
+        "domain": "mangaforfree.com",
+        "verifiedAt": "2026-10-24T20:13:46.722707Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANGAGEKO",
+        "locale": "en",
+        "domain": "www.mgeko.cc",
+        "verifiedAt": "2026-10-24T20:13:51.971356Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGAGG",
+        "locale": "en",
+        "domain": "mangagg.com",
+        "verifiedAt": "2026-10-24T20:13:51.657380Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGANATO",
+        "locale": "en",
+        "domain": "www.manganato.gg",
+        "verifiedAt": "2026-10-24T20:14:02.820239Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGAOWL_IO",
+        "locale": "en",
+        "domain": "mangaowl.io",
+        "verifiedAt": "2026-10-24T20:13:45.052798Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGAREAD",
+        "locale": "en",
+        "domain": "www.mangaread.org",
+        "verifiedAt": "2026-10-24T20:13:48.563094Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGASUSHI",
+        "locale": "en",
+        "domain": "mangasushi.org",
+        "verifiedAt": "2026-10-24T20:13:36.863633Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANGATELLERS",
+        "locale": "en",
+        "domain": "reader.mangatellers.gr",
+        "verifiedAt": "2026-10-24T20:14:00.031839Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANHUAGUI",
+        "locale": "zh",
+        "domain": "www.manhuagui.com",
+        "verifiedAt": "2026-10-24T20:13:28.984465Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANHUAPLUS",
+        "locale": "en",
+        "domain": "manhuaplus.com",
+        "verifiedAt": "2026-10-24T20:13:47.091038Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANHUAPLUSORG",
+        "locale": "en",
+        "domain": "manhuaplus.org",
+        "verifiedAt": "2026-10-24T20:14:00.445309Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MANHWA18CC",
+        "locale": "",
+        "domain": "manhwa18.cc",
+        "verifiedAt": "2026-10-24T20:13:30.514097Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANHWA18COM",
+        "locale": "en",
+        "domain": "manhwa18.com",
+        "verifiedAt": "2026-10-24T20:13:52.406937Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANHWADEN",
+        "locale": "en",
+        "domain": "www.manhwaden.com",
+        "verifiedAt": "2026-10-24T20:13:49.266644Z",
+        "isNsfw": true
+    },
+    {
+        "name": "MANHWATOP",
+        "locale": "en",
+        "domain": "manhwatop.com",
+        "verifiedAt": "2026-10-24T20:13:50.144239Z",
+        "isNsfw": false
+    },
+    {
+        "name": "MISSKON",
+        "locale": "",
+        "domain": "misskon.com",
+        "verifiedAt": "2026-10-24T20:13:29.556102Z",
+        "isNsfw": true
+    },
+    {
+        "name": "NHENTAI_XXX",
+        "locale": "",
+        "domain": "nhentai.xxx",
+        "verifiedAt": "2026-10-24T20:13:27.586867Z",
+        "isNsfw": true
+    },
+    {
+        "name": "OMEGASCANS",
+        "locale": "en",
+        "domain": "omegascans.org",
+        "verifiedAt": "2026-10-24T20:14:01.479374Z",
+        "isNsfw": true
+    },
+    {
+        "name": "PETROTECHSOCIETY",
+        "locale": "en",
+        "domain": "www.petrotechsociety.org",
+        "verifiedAt": "2026-10-24T20:13:33.907859Z",
+        "isNsfw": true
+    },
+    {
+        "name": "PORNCOMIC18",
+        "locale": "en",
+        "domain": "18porncomic.com",
+        "verifiedAt": "2026-10-24T20:14:03.820081Z",
+        "isNsfw": true
+    },
+    {
+        "name": "RACKUSREADS",
+        "locale": "en",
+        "domain": "rackusreads.com",
+        "verifiedAt": "2026-10-24T20:13:55.470233Z",
+        "isNsfw": false
+    },
+    {
+        "name": "RAW1001",
+        "locale": "ja",
+        "domain": "raw1001.net",
+        "verifiedAt": "2026-10-24T20:14:00.683239Z",
+        "isNsfw": false
+    },
+    {
+        "name": "SEINAGI",
+        "locale": "en",
+        "domain": "reader.seinagi.org.es",
+        "verifiedAt": "2026-10-24T20:14:04.163513Z",
+        "isNsfw": false
+    },
+    {
+        "name": "SHOJOSCANS",
+        "locale": "en",
+        "domain": "violetscans.com",
+        "verifiedAt": "2026-10-24T20:14:01.396822Z",
+        "isNsfw": false
+    },
+    {
+        "name": "TOONIZY",
+        "locale": "en",
+        "domain": "toonizy.com",
+        "verifiedAt": "2026-10-24T20:13:52.987744Z",
+        "isNsfw": true
+    },
+    {
+        "name": "TOPMANHUA",
+        "locale": "en",
+        "domain": "manhuatop.org",
+        "verifiedAt": "2026-10-24T20:13:37.658165Z",
+        "isNsfw": false
+    },
+    {
+        "name": "TRITINIA",
+        "locale": "en",
+        "domain": "tritinia.org",
+        "verifiedAt": "2026-10-24T20:13:40.756862Z",
+        "isNsfw": false
+    },
+    {
+        "name": "XIUTAKU",
+        "locale": "zh",
+        "domain": "xiutaku.com",
+        "verifiedAt": "2026-10-24T20:13:52.431567Z",
+        "isNsfw": true
+    },
+    {
+        "name": "YKMH",
+        "locale": "zh",
+        "domain": "www.ykmh.net",
+        "verifiedAt": "2026-10-24T20:14:11.732039Z",
+        "isNsfw": false
     }
 ]

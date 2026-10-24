@@ -7,6 +7,7 @@ import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import okhttp3.Headers
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -15,7 +16,6 @@ import org.koitharu.kotatsu.parsers.model.Manga
 import org.koitharu.kotatsu.parsers.model.MangaChapter
 import org.koitharu.kotatsu.parsers.model.MangaPage
 import org.koitharu.kotatsu.parsers.model.MangaParserSource
-import org.koitharu.kotatsu.parsers.model.SortOrder
 
 class KotatsuCatalogSourceTest {
 
@@ -67,24 +67,33 @@ class KotatsuCatalogSourceTest {
     }
 
     @Test
-    fun `getPages injects Referer header`() = runTest {
-        every { mockParser.domain } returns "likemanga.ink"
-        every { mockParser.getRequestHeaders() } returns Headers.headersOf("User-Agent", "TestAgent")
-
+    fun `getPages encodes Kotatsu page url with source id and parameters`() = runTest {
         val source = KotatsuCatalogSource(MangaParserSource.LIKEMANGA, mockParser)
 
-        val mockKotatsuPage = MangaPage(id = 1L, url = "https://cdn.example.com/p1.jpg", preview = null, source = MangaParserSource.LIKEMANGA)
+        val mockKotatsuPage = MangaPage(id = 123L, url = "https://cdn.example.com/p1.jpg", preview = "https://cdn.example.com/thumb.jpg", source = MangaParserSource.LIKEMANGA)
         coEvery { mockParser.getPages(any()) } returns listOf(mockKotatsuPage)
-        coEvery { mockParser.getPageUrl(any()) } returns "https://cdn.example.com/p1.jpg"
 
         val chapter = app.tsunayomi.source.api.SChapter(url = "/ch1", name = "Chapter 1", number = 1f)
         val pages = source.getPages(chapter)
 
         assertEquals(1, pages.size)
         val remotePage = pages[0] as SPage.Remote
-        assertEquals("https://cdn.example.com/p1.jpg", remotePage.imageUrl)
-        assertEquals("https://likemanga.ink/", remotePage.headers["Referer"])
-        assertEquals("TestAgent", remotePage.headers["User-Agent"])
+        assertTrue(remotePage.imageUrl.startsWith("https://kotatsu.tsunayomi.invalid/page/"))
+        val httpUrl = remotePage.imageUrl.toHttpUrl()
+        assertEquals("kotatsu.tsunayomi.invalid", httpUrl.host)
+        assertEquals("https://cdn.example.com/p1.jpg", httpUrl.queryParameter("url"))
+        assertEquals("https://cdn.example.com/thumb.jpg", httpUrl.queryParameter("preview"))
+        assertEquals("123", httpUrl.queryParameter("id"))
+    }
+
+    @Test
+    fun `webHeaders returns parser request headers`() {
+        every { mockParser.getRequestHeaders() } returns Headers.headersOf("User-Agent", "KotatsuAgent/1.0", "Referer", "https://likemanga.ink/")
+        val source = KotatsuCatalogSource(MangaParserSource.LIKEMANGA, mockParser)
+
+        val headers = source.webHeaders()
+        assertEquals("KotatsuAgent/1.0", headers["User-Agent"])
+        assertEquals("https://likemanga.ink/", headers["Referer"])
     }
 
     @Test
