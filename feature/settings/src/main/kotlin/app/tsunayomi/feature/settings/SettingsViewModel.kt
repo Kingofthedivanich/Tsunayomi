@@ -3,6 +3,7 @@ package app.tsunayomi.feature.settings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.tsunayomi.core.model.GeminiConfig
+import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.ThemeMode
@@ -24,6 +25,13 @@ internal class SettingsViewModel @Inject constructor(
 ) : ViewModel() {
     val gemini: StateFlow<GeminiConfig?> = serverSettings.gemini
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
+
+    val openAi: StateFlow<OpenAiConfig?> = serverSettings.openAi
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
+
+    fun setOpenAi(config: OpenAiConfig) {
+        viewModelScope.launch { serverSettings.setOpenAi(config) }
+    }
 
     fun setTranslationEngine(engine: TranslationEngine) {
         viewModelScope.launch { repository.setTranslationEngine(engine) }

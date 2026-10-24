@@ -6,6 +6,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.KomgaConfig
+import app.tsunayomi.core.model.OpenAiConfig
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
@@ -58,6 +59,22 @@ class ServerPreferencesDataSource @Inject constructor(
         }
     }
 
+    val openAi: Flow<OpenAiConfig> = dataStore.data.map { prefs ->
+        OpenAiConfig(
+            baseUrl = prefs[Keys.openAiBaseUrl]?.trim()?.ifEmpty { null } ?: OpenAiConfig.DEFAULT_BASE_URL,
+            apiKey = prefs[Keys.openAiApiKey]?.let(cipher::decrypt).orEmpty(),
+            model = prefs[Keys.openAiModel]?.trim()?.ifEmpty { null } ?: OpenAiConfig.DEFAULT_MODEL,
+        )
+    }.distinctUntilChanged()
+
+    suspend fun setOpenAi(config: OpenAiConfig) {
+        dataStore.edit { prefs ->
+            prefs[Keys.openAiBaseUrl] = config.baseUrl.trim()
+            prefs.putSecret(Keys.openAiApiKey, config.apiKey.trim())
+            prefs[Keys.openAiModel] = config.model.trim()
+        }
+    }
+
     private fun androidx.datastore.preferences.core.MutablePreferences.putSecret(
         key: Preferences.Key<String>,
         value: String,
@@ -72,5 +89,8 @@ class ServerPreferencesDataSource @Inject constructor(
         val komgaApiKey = stringPreferencesKey("komga_api_key")
         val geminiApiKey = stringPreferencesKey("gemini_api_key")
         val geminiModels = stringPreferencesKey("gemini_models")
+        val openAiBaseUrl = stringPreferencesKey("openai_base_url")
+        val openAiApiKey = stringPreferencesKey("openai_api_key")
+        val openAiModel = stringPreferencesKey("openai_model")
     }
 }

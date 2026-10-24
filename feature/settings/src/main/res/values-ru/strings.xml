@@ -46,6 +46,16 @@
     <string name="feature_settings_translation_engine">Способ перевода</string>
     <string name="feature_settings_translation_engine_mlkit">ML Kit — офлайн, бесплатно, базовое качество</string>
     <string name="feature_settings_translation_engine_gemini">Gemini — свой бесплатный ключ, лучшее качество</string>
+    <string name="feature_settings_translation_engine_openai">OpenAI-совместимый (DeepSeek, OpenRouter, Groq, Ollama)</string>
+    <string name="feature_settings_openai_preset">Провайдер</string>
+    <string name="feature_settings_openai_url">Базовый URL API</string>
+    <string name="feature_settings_openai_url_hint">URL OpenAI-совместимого эндпоинта (например, https://api.deepseek.com/v1 или http://192.168.1.5:11434/v1)</string>
+    <string name="feature_settings_openai_key">Ключ API</string>
+    <string name="feature_settings_openai_key_missing">Не задан (не обязателен для локального Ollama)</string>
+    <string name="feature_settings_openai_key_set">Сохранён (зашифрован на устройстве)</string>
+    <string name="feature_settings_openai_key_hint">Ключ API вашего провайдера. Оставьте пустым для локального Ollama без авторизации.</string>
+    <string name="feature_settings_openai_model">Имя модели</string>
+    <string name="feature_settings_openai_model_hint">Идентификатор модели (например, deepseek-chat, gpt-4o-mini, qwen2.5:7b)</string>
     <string name="feature_settings_translation_lang">Переводить на</string>
     <string name="feature_settings_translation_lang_app">Язык приложения</string>
     <string name="feature_settings_translate_by_default">Переводить автоматически</string>

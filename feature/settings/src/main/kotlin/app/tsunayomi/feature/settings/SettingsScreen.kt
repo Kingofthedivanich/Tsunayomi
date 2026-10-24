@@ -42,6 +42,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.component.labelRes
 import app.tsunayomi.core.designsystem.component.rememberLibraryFolderPicker
 import app.tsunayomi.core.model.GeminiConfig
+import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.ThemeMode
@@ -56,9 +57,11 @@ internal fun SettingsScreen(
     val settings by viewModel.settings.collectAsStateWithLifecycle()
     val komgaUrl by viewModel.komgaUrl.collectAsStateWithLifecycle()
     val gemini by viewModel.gemini.collectAsStateWithLifecycle()
+    val openAi by viewModel.openAi.collectAsStateWithLifecycle()
     SettingsContent(
         settings = settings,
         gemini = gemini,
+        openAi = openAi,
         onTranslationEngineChange = viewModel::setTranslationEngine,
         onTranslationLangChange = viewModel::setTranslationTargetLang,
         onTranslateByDefaultChange = viewModel::setTranslateByDefault,
@@ -67,6 +70,7 @@ internal fun SettingsScreen(
         onUpdateWifiOnlyChange = viewModel::setLibraryUpdateWifiOnly,
         onAutoDownloadNewChange = viewModel::setAutoDownloadNewChapters,
         onGeminiChange = viewModel::setGemini,
+        onOpenAiChange = viewModel::setOpenAi,
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
         onBack = onBack,
@@ -84,6 +88,7 @@ internal fun SettingsScreen(
 private fun SettingsContent(
     settings: UserSettings?,
     gemini: GeminiConfig?,
+    openAi: OpenAiConfig?,
     onTranslationEngineChange: (TranslationEngine) -> Unit,
     onTranslationLangChange: (String) -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
@@ -92,6 +97,7 @@ private fun SettingsContent(
     onUpdateWifiOnlyChange: (Boolean) -> Unit,
     onAutoDownloadNewChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
+    onOpenAiChange: (OpenAiConfig) -> Unit,
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
     onBack: () -> Unit,
@@ -220,11 +226,13 @@ private fun SettingsContent(
             TranslationSection(
                 settings = settings,
                 gemini = gemini,
+                openAi = openAi,
                 onPickEngine = { showEngineDialog = true },
                 onPickLanguage = { showTargetDialog = true },
                 onTranslateByDefaultChange = onTranslateByDefaultChange,
                 onTranslateOnDownloadChange = onTranslateOnDownloadChange,
                 onGeminiChange = onGeminiChange,
+                onOpenAiChange = onOpenAiChange,
                 switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
             )
         }
@@ -354,7 +362,7 @@ private fun ThemeModeSelector(
 }
 
 @Composable
-private fun <T> ChoiceDialog(
+internal fun <T> ChoiceDialog(
     title: String,
     options: List<T>,
     selected: T,

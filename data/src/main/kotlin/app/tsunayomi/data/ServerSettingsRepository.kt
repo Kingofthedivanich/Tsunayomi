@@ -3,6 +3,7 @@ package app.tsunayomi.data
 import app.tsunayomi.core.datastore.ServerPreferencesDataSource
 import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.KomgaConfig
+import app.tsunayomi.core.model.OpenAiConfig
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,4 +19,8 @@ class ServerSettingsRepository @Inject constructor(
     val gemini: Flow<GeminiConfig> = preferences.gemini
 
     suspend fun setGemini(config: GeminiConfig) = preferences.setGemini(config)
+
+    val openAi: Flow<OpenAiConfig> = preferences.openAi
+
+    suspend fun setOpenAi(config: OpenAiConfig) = preferences.setOpenAi(config)
 }

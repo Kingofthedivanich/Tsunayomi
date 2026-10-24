@@ -20,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import app.tsunayomi.core.model.GeminiConfig
+import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.UserSettings
 import java.util.Locale
@@ -42,6 +43,7 @@ internal fun languageLabel(tag: String): String {
 internal fun TranslationEngine.label(): String = when (this) {
     TranslationEngine.MlKit -> stringResource(R.string.feature_settings_translation_engine_mlkit)
     TranslationEngine.Gemini -> stringResource(R.string.feature_settings_translation_engine_gemini)
+    TranslationEngine.OpenAiCompatible -> stringResource(R.string.feature_settings_translation_engine_openai)
     else -> name
 }
 
@@ -50,15 +52,22 @@ internal fun TranslationEngine.label(): String = when (this) {
 internal fun TranslationSection(
     settings: UserSettings,
     gemini: GeminiConfig?,
+    openAi: OpenAiConfig?,
     onPickEngine: () -> Unit,
     onPickLanguage: () -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
     onTranslateOnDownloadChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
+    onOpenAiChange: (OpenAiConfig) -> Unit,
     switchItem: @Composable (title: String, summary: String, checked: Boolean, onChange: (Boolean) -> Unit) -> Unit,
 ) {
     var keyDialog by rememberSaveable { mutableStateOf(false) }
     var modelDialog by rememberSaveable { mutableStateOf(false) }
+
+    var openAiPresetDialog by rememberSaveable { mutableStateOf(false) }
+    var openAiUrlDialog by rememberSaveable { mutableStateOf(false) }
+    var openAiKeyDialog by rememberSaveable { mutableStateOf(false) }
+    var openAiModelDialog by rememberSaveable { mutableStateOf(false) }
 
     ListItem(
         headlineContent = { Text(stringResource(R.string.feature_settings_translation_engine)) },
@@ -104,6 +113,38 @@ internal fun TranslationSection(
         )
     }
 
+    if (settings.translationEngine == TranslationEngine.OpenAiCompatible && openAi != null) {
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.feature_settings_openai_preset)) },
+            supportingContent = { Text(openAi.presetName()) },
+            modifier = Modifier.clickable { openAiPresetDialog = true },
+        )
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.feature_settings_openai_url)) },
+            supportingContent = { Text(openAi.baseUrl) },
+            modifier = Modifier.clickable { openAiUrlDialog = true },
+        )
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.feature_settings_openai_key)) },
+            supportingContent = {
+                Text(
+                    if (openAi.apiKey.isBlank()) {
+                        stringResource(R.string.feature_settings_openai_key_missing)
+                    } else {
+                        stringResource(R.string.feature_settings_openai_key_set)
+                    },
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            },
+            modifier = Modifier.clickable { openAiKeyDialog = true },
+        )
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.feature_settings_openai_model)) },
+            supportingContent = { Text(openAi.model) },
+            modifier = Modifier.clickable { openAiModelDialog = true },
+        )
+    }
+
     if (keyDialog && gemini != null) {
         TextValueDialog(
             title = stringResource(R.string.feature_settings_gemini_key),
@@ -131,7 +172,78 @@ internal fun TranslationSection(
             onDismiss = { modelDialog = false },
         )
     }
+
+    if (openAiPresetDialog && openAi != null) {
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_openai_preset),
+            options = OPENAI_PRESETS,
+            selected = OPENAI_PRESETS.firstOrNull { it.baseUrl == openAi.baseUrl } ?: OPENAI_PRESETS[0],
+            label = { it.name },
+            onSelect = { preset ->
+                openAiPresetDialog = false
+                onOpenAiChange(openAi.copy(baseUrl = preset.baseUrl, model = preset.model))
+            },
+            onDismiss = { openAiPresetDialog = false },
+        )
+    }
+
+    if (openAiUrlDialog && openAi != null) {
+        TextValueDialog(
+            title = stringResource(R.string.feature_settings_openai_url),
+            hint = stringResource(R.string.feature_settings_openai_url_hint),
+            initial = openAi.baseUrl,
+            secret = false,
+            onConfirm = {
+                openAiUrlDialog = false
+                onOpenAiChange(openAi.copy(baseUrl = it))
+            },
+            onDismiss = { openAiUrlDialog = false },
+        )
+    }
+
+    if (openAiKeyDialog && openAi != null) {
+        TextValueDialog(
+            title = stringResource(R.string.feature_settings_openai_key),
+            hint = stringResource(R.string.feature_settings_openai_key_hint),
+            initial = openAi.apiKey,
+            secret = true,
+            onConfirm = {
+                openAiKeyDialog = false
+                onOpenAiChange(openAi.copy(apiKey = it))
+            },
+            onDismiss = { openAiKeyDialog = false },
+        )
+    }
+
+    if (openAiModelDialog && openAi != null) {
+        TextValueDialog(
+            title = stringResource(R.string.feature_settings_openai_model),
+            hint = stringResource(R.string.feature_settings_openai_model_hint),
+            initial = openAi.model,
+            secret = false,
+            onConfirm = {
+                openAiModelDialog = false
+                onOpenAiChange(openAi.copy(model = it))
+            },
+            onDismiss = { openAiModelDialog = false },
+        )
+    }
 }
+
+private data class OpenAiPreset(val name: String, val baseUrl: String, val model: String)
+
+private val OPENAI_PRESETS = listOf(
+    OpenAiPreset("DeepSeek", "https://api.deepseek.com/v1", "deepseek-chat"),
+    OpenAiPreset("OpenRouter", "https://openrouter.ai/api/v1", "deepseek/deepseek-chat"),
+    OpenAiPreset("Groq", "https://api.groq.com/openai/v1", "llama-3.3-70b-versatile"),
+    OpenAiPreset("Ollama (Local Wi-Fi)", "http://192.168.1.100:11434/v1", "qwen2.5:7b"),
+    OpenAiPreset("OpenAI", "https://api.openai.com/v1", "gpt-4o-mini"),
+)
+
+private fun OpenAiConfig.presetName(): String =
+    OPENAI_PRESETS.firstOrNull { it.baseUrl == baseUrl && it.model == model }?.name
+        ?: OPENAI_PRESETS.firstOrNull { it.baseUrl == baseUrl }?.let { "${it.name} ($model)" }
+        ?: "$model ($baseUrl)"
 
 @Composable
 private fun TextValueDialog(

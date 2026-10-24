@@ -49,6 +49,16 @@
     <string name="feature_settings_translation_engine">Translation engine</string>
     <string name="feature_settings_translation_engine_mlkit">ML Kit — offline, free, basic quality</string>
     <string name="feature_settings_translation_engine_gemini">Gemini — your free API key, best quality</string>
+    <string name="feature_settings_translation_engine_openai">OpenAI-compatible (DeepSeek, OpenRouter, Groq, Ollama)</string>
+    <string name="feature_settings_openai_preset">Provider preset</string>
+    <string name="feature_settings_openai_url">API Base URL</string>
+    <string name="feature_settings_openai_url_hint">Base URL for OpenAI-compatible endpoint (e.g. https://api.deepseek.com/v1 or http://192.168.1.5:11434/v1)</string>
+    <string name="feature_settings_openai_key">API key</string>
+    <string name="feature_settings_openai_key_missing">Not set (optional for local Ollama)</string>
+    <string name="feature_settings_openai_key_set">Saved (encrypted on this device)</string>
+    <string name="feature_settings_openai_key_hint">API key for your provider. Leave empty if using local Ollama without auth.</string>
+    <string name="feature_settings_openai_model">Model name</string>
+    <string name="feature_settings_openai_model_hint">Model identifier (e.g. deepseek-chat, gpt-4o-mini, qwen2.5:7b)</string>
     <string name="feature_settings_translation_lang">Translate into</string>
     <string name="feature_settings_translation_lang_app">App language</string>
     <string name="feature_settings_translate_by_default">Translate automatically</string>
