@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.tsunayomi.core.model.DeepLConfig
 import app.tsunayomi.core.model.GeminiConfig
-import app.tsunayomi.core.model.MangaOcrStatus
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.TranslationEngine
-import app.tsunayomi.data.MangaOcrModelManager
+import app.tsunayomi.core.model.DeepLUsage
+import app.tsunayomi.data.ApiCheckException
 import app.tsunayomi.data.ServerSettingsRepository
 import app.tsunayomi.data.UserSettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,18 +21,23 @@ import javax.inject.Inject
 sealed interface VerificationState {
     data object Idle : VerificationState
     data object Loading : VerificationState
-    data class Success(val message: String? = null) : VerificationState
-    data class Error(val message: String, val alternativeModels: List<String> = emptyList()) : VerificationState
+    /** [usage] is set for DeepL, which reports how much of the monthly quota is used. */
+    data class Success(val usage: DeepLUsage? = null) : VerificationState
+
+    /** [reason] null means an unexpected error, described by [detail]. */
+    data class Error(
+        val reason: ApiCheckException.Reason?,
+        val detail: String? = null,
+        val alternativeModels: List<String> = emptyList(),
+    ) : VerificationState
 }
 
 @HiltViewModel
 class ApiConfigViewModel @Inject constructor(
     private val serverSettings: ServerSettingsRepository,
     private val userSettings: UserSettingsRepository,
-    private val mangaOcrManager: MangaOcrModelManager,
 ) : ViewModel() {
 
-    val mangaOcrStatus: StateFlow<MangaOcrStatus> = mangaOcrManager.status
 
     private val _selectedEngine = MutableStateFlow(TranslationEngine.Gemini)
     val selectedEngine: StateFlow<TranslationEngine> = _selectedEngine.asStateFlow()
@@ -104,7 +109,7 @@ class ApiConfigViewModel @Inject constructor(
     fun verifyGeminiKey() {
         val key = _geminiApiKey.value.trim()
         if (key.isBlank()) {
-            _geminiStatus.value = VerificationState.Error("Ключ не может быть пустым")
+            _geminiStatus.value = VerificationState.Error(ApiCheckException.Reason.NoKey)
             return
         }
         viewModelScope.launch {
@@ -112,7 +117,7 @@ class ApiConfigViewModel @Inject constructor(
             val result = serverSettings.validateGemini(key)
             _geminiStatus.value = result.fold(
                 onSuccess = { VerificationState.Success() },
-                onFailure = { VerificationState.Error(it.message ?: "Ошибка проверки ключа") },
+                onFailure = { it.toVerificationError() },
             )
         }
     }
@@ -148,7 +153,7 @@ class ApiConfigViewModel @Inject constructor(
         val key = _openAiApiKey.value.trim()
         val model = _openAiModel.value.trim()
         if (url.isBlank() || model.isBlank()) {
-            _openAiStatus.value = VerificationState.Error("Укажите адрес сервера и модель")
+            _openAiStatus.value = VerificationState.Error(ApiCheckException.Reason.ModelNotFound)
             return
         }
         viewModelScope.launch {
@@ -158,7 +163,7 @@ class ApiConfigViewModel @Inject constructor(
                 onSuccess = { VerificationState.Success() },
                 onFailure = { error ->
                     val alternatives = _openRouterModels.value.filter { it != model }.take(4)
-                    VerificationState.Error(error.message ?: "Модель недоступна", alternatives)
+                    error.toVerificationError().copy(alternativeModels = alternatives)
                 },
             )
         }
@@ -172,18 +177,15 @@ class ApiConfigViewModel @Inject constructor(
     fun verifyDeepLKey() {
         val key = _deepLApiKey.value.trim()
         if (key.isBlank()) {
-            _deepLStatus.value = VerificationState.Error("Ключ не может быть пустым")
+            _deepLStatus.value = VerificationState.Error(ApiCheckException.Reason.NoKey)
             return
         }
         viewModelScope.launch {
             _deepLStatus.value = VerificationState.Loading
             val result = serverSettings.validateDeepL(key)
             _deepLStatus.value = result.fold(
-                onSuccess = { usage ->
-                    val msg = "${usage.characterCount} / ${usage.characterLimit} символов (${usage.percentage}%)"
-                    VerificationState.Success(msg)
-                },
-                onFailure = { VerificationState.Error(it.message ?: "Ошибка проверки ключа") },
+                onSuccess = { usage -> VerificationState.Success(usage) },
+                onFailure = { it.toVerificationError() },
             )
         }
     }
@@ -216,10 +218,9 @@ class ApiConfigViewModel @Inject constructor(
             onCompleted()
         }
     }
-
-    fun downloadMangaOcr() = mangaOcrManager.download()
-
-    fun cancelMangaOcr() = mangaOcrManager.cancel()
-
-    fun deleteMangaOcr() = mangaOcrManager.delete()
 }
+
+private fun Throwable.toVerificationError() = VerificationState.Error(
+    reason = (this as? ApiCheckException)?.reason,
+    detail = if (this is ApiCheckException) message else message ?: toString(),
+)

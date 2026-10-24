@@ -10,7 +10,7 @@ class WebtoonsInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val host = request.url.host
-        return if (host.contains("pstatic.net") || host.contains("webtoons.com")) {
+        return if (host in WEBTOONS_CDN_HOSTS || host.endsWith("webtoons.com")) {
             val newRequest = request.newBuilder()
                 .header("Referer", "https://www.webtoons.com/")
                 .build()
@@ -18,5 +18,10 @@ class WebtoonsInterceptor : Interceptor {
         } else {
             chain.proceed(request)
         }
+    }
+
+    private companion object {
+        // Only Webtoons' own CDN: Naver Webtoon images are on pstatic.net too and need Naver's Referer.
+        val WEBTOONS_CDN_HOSTS = setOf("webtoon-phinf.pstatic.net", "swebtoon-phinf.pstatic.net", "webtoons-static.pstatic.net")
     }
 }

@@ -2,6 +2,7 @@ package app.tsunayomi
 
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.SystemBarStyle
@@ -176,7 +177,13 @@ class MainActivity : AppCompatActivity() {
     private fun promptBiometricUnlock() {
         if (isPromptShowing || !lifecycle.currentState.isAtLeast(Lifecycle.State.RESUMED)) return
         val biometricManager = BiometricManager.from(this)
-        val authenticators = BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL
+        // STRONG + device credential only exists from Android 11; before that, WEAK + credential is the supported pair.
+        val biometric = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            BiometricManager.Authenticators.BIOMETRIC_STRONG
+        } else {
+            BiometricManager.Authenticators.BIOMETRIC_WEAK
+        }
+        val authenticators = biometric or BiometricManager.Authenticators.DEVICE_CREDENTIAL
         if (biometricManager.canAuthenticate(authenticators) != BiometricManager.BIOMETRIC_SUCCESS) {
             // No biometrics or credentials configured on device; unlock without locking user out.
             isLockedState.value = false

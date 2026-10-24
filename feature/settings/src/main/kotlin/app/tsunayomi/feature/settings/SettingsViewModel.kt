@@ -5,13 +5,11 @@ import androidx.lifecycle.viewModelScope
 import app.tsunayomi.core.model.DeepLConfig
 import app.tsunayomi.core.model.DeepLUsage
 import app.tsunayomi.core.model.GeminiConfig
-import app.tsunayomi.core.model.MangaOcrStatus
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.ReaderMode
 import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.core.model.UserSettings
-import app.tsunayomi.data.MangaOcrModelManager
 import app.tsunayomi.data.ServerSettingsRepository
 import app.tsunayomi.data.UserSettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,12 +24,7 @@ import javax.inject.Inject
 internal class SettingsViewModel @Inject constructor(
     private val repository: UserSettingsRepository,
     private val serverSettings: ServerSettingsRepository,
-    private val mangaOcrManager: MangaOcrModelManager,
 ) : ViewModel() {
-    val mangaOcrStatus: StateFlow<MangaOcrStatus> = mangaOcrManager.status
-    fun downloadMangaOcr() = mangaOcrManager.download()
-    fun cancelMangaOcr() = mangaOcrManager.cancel()
-    fun deleteMangaOcr() = mangaOcrManager.delete()
     val gemini: StateFlow<GeminiConfig?> = serverSettings.gemini
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
 

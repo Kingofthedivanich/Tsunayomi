@@ -7,12 +7,17 @@ import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.KomgaConfig
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.network.await
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.add
+import kotlinx.serialization.json.buildJsonArray
+import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.jsonArray
+import kotlinx.serialization.json.put
 import kotlinx.serialization.json.jsonObject
 import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.json.longOrNull
@@ -52,7 +57,7 @@ class ServerSettingsRepository @Inject constructor(
 
     suspend fun validateDeepL(apiKey: String): Result<DeepLUsage> = withContext(Dispatchers.IO) {
         if (apiKey.isBlank()) {
-            return@withContext Result.failure(IllegalStateException("API key is not set"))
+            return@withContext Result.failure(ApiCheckException(ApiCheckException.Reason.NoKey))
         }
         val isFree = apiKey.trim().endsWith(":fx")
         val endpoint = if (isFree) DeepLConfig.FREE_ENDPOINT else DeepLConfig.PRO_ENDPOINT
@@ -65,12 +70,12 @@ class ServerSettingsRepository @Inject constructor(
 
             client.newCall(request).await().use { response ->
                 if (!response.isSuccessful) {
-                    val message = when (response.code) {
-                        401, 403 -> "Неверный API-ключ DeepL"
-                        429, 456 -> "Квота исчерпана"
-                        else -> "HTTP ${response.code}: ${response.message}"
+                    val reason = when (response.code) {
+                        401, 403 -> ApiCheckException.Reason.InvalidKey
+                        429, 456 -> ApiCheckException.Reason.QuotaExceeded
+                        else -> ApiCheckException.Reason.Http
                     }
-                    return@withContext Result.failure(IOException(message))
+                    return@withContext Result.failure(ApiCheckException(reason, "HTTP ${response.code}"))
                 }
                 val body = response.body.string()
                 val json = Json { ignoreUnknownKeys = true }
@@ -79,6 +84,8 @@ class ServerSettingsRepository @Inject constructor(
                 val limit = obj["character_limit"]?.jsonPrimitive?.longOrNull ?: 500_000L
                 Result.success(DeepLUsage(characterCount = count, characterLimit = limit))
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (t: Throwable) {
             Result.failure(t)
         }
@@ -86,25 +93,29 @@ class ServerSettingsRepository @Inject constructor(
 
     suspend fun validateGemini(apiKey: String): Result<Unit> = withContext(Dispatchers.IO) {
         if (apiKey.isBlank()) {
-            return@withContext Result.failure(IllegalArgumentException("API-ключ не указан"))
+            return@withContext Result.failure(ApiCheckException(ApiCheckException.Reason.NoKey))
         }
         try {
             val request = Request.Builder()
-                .url("https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey.trim()}")
+                .url("https://generativelanguage.googleapis.com/v1beta/models")
+                // In a header, like GeminiTranslator: a key in the URL ends up in logs.
+                .header("x-goog-api-key", apiKey.trim())
                 .get()
                 .build()
             client.newCall(request).await().use { response ->
                 if (response.isSuccessful) {
                     Result.success(Unit)
                 } else {
-                    val message = when (response.code) {
-                        400, 403 -> "Неверный API-ключ Gemini"
-                        429 -> "Превышен лимит запросов (429)"
-                        else -> "HTTP ${response.code}: ${response.message}"
+                    val reason = when (response.code) {
+                        400, 401, 403 -> ApiCheckException.Reason.InvalidKey
+                        429 -> ApiCheckException.Reason.QuotaExceeded
+                        else -> ApiCheckException.Reason.Http
                     }
-                    Result.failure(IOException(message))
+                    Result.failure(ApiCheckException(reason, "HTTP ${response.code}"))
                 }
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (t: Throwable) {
             Result.failure(t)
         }
@@ -138,6 +149,8 @@ class ServerSettingsRepository @Inject constructor(
                 val combined = (fallback + fetched).distinct()
                 Result.success(combined)
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (t: Throwable) {
             Result.success(fallback)
         }
@@ -150,7 +163,11 @@ class ServerSettingsRepository @Inject constructor(
     ): Result<Unit> = withContext(Dispatchers.IO) {
         try {
             val endpoint = "${baseUrl.trimEnd('/')}/chat/completions"
-            val bodyJson = """{"model":"$model","messages":[{"role":"user","content":"Hi"}],"max_tokens":1}"""
+            val bodyJson = buildJsonObject {
+                put("model", model)
+                put("messages", buildJsonArray { add(buildJsonObject { put("role", "user"); put("content", "Hi") }) })
+                put("max_tokens", 1)
+            }.toString()
             val builder = Request.Builder()
                 .url(endpoint)
                 .post(bodyJson.toRequestBody("application/json".toMediaType()))
@@ -163,17 +180,24 @@ class ServerSettingsRepository @Inject constructor(
                 if (response.isSuccessful) {
                     Result.success(Unit)
                 } else {
-                    val message = when (response.code) {
-                        401, 403 -> "Неверный API-ключ"
-                        404 -> "Модель \"$model\" не найдена"
-                        429 -> "Лимит исчерпан или модель перегружена (429)"
-                        else -> "HTTP ${response.code}: ${response.message}"
+                    val reason = when (response.code) {
+                        401, 403 -> ApiCheckException.Reason.InvalidKey
+                        404 -> ApiCheckException.Reason.ModelNotFound
+                        429 -> ApiCheckException.Reason.QuotaExceeded
+                        else -> ApiCheckException.Reason.Http
                     }
-                    Result.failure(IOException(message))
+                    Result.failure(ApiCheckException(reason, "HTTP ${response.code}"))
                 }
             }
+        } catch (e: CancellationException) {
+            throw e
         } catch (t: Throwable) {
             Result.failure(t)
         }
     }
+}
+
+/** Why checking an API key or model failed; the settings screen words it in the UI language. */
+class ApiCheckException(val reason: Reason, detail: String? = null) : IOException(listOfNotNull(reason.name, detail).joinToString(": ")) {
+    enum class Reason { NoKey, InvalidKey, QuotaExceeded, ModelNotFound, Http }
 }

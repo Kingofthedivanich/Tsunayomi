@@ -1,6 +1,7 @@
 package app.tsunayomi.data
 
 import app.tsunayomi.core.database.dao.CategoryDao
+import app.tsunayomi.core.database.DatabaseTransactions
 import app.tsunayomi.core.database.dao.ChapterDao
 import app.tsunayomi.core.database.dao.GlossaryDao
 import app.tsunayomi.core.database.dao.HistoryDao
@@ -20,7 +21,7 @@ import app.tsunayomi.core.model.MangaStatus
 import app.tsunayomi.core.model.RestoreResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
@@ -39,6 +40,7 @@ class BackupRepository @Inject constructor(
     private val chapterDao: ChapterDao,
     private val historyDao: HistoryDao,
     private val glossaryDao: GlossaryDao,
+    private val transactions: DatabaseTransactions,
 ) {
     private val json = Json {
         ignoreUnknownKeys = true
@@ -132,13 +134,13 @@ class BackupRepository @Inject constructor(
         }
     }
 
-    fun restoreBackup(inputStream: InputStream): Flow<RestoreStep> = flow {
+    fun restoreBackup(inputStream: InputStream): Flow<RestoreStep> = channelFlow {
         val root = try {
             val raw = decompressIfNeeded(inputStream).bufferedReader(Charsets.UTF_8).use { it.readText() }
             json.decodeFromString(BackupRoot.serializer(), raw)
         } catch (t: Throwable) {
-            emit(RestoreStep.Finished(RestoreResult.Error(t)))
-            return@flow
+            send(RestoreStep.Finished(RestoreResult.Error(t)))
+            return@channelFlow
         }
 
         var restoredMangaCount = 0
@@ -146,6 +148,8 @@ class BackupRepository @Inject constructor(
         var restoredCategoriesCount = 0
 
         try {
+            // One transaction: a restore that fails halfway leaves the library as it was.
+            transactions.run {
             // 1. Categories
             val existingCategories = categoryDao.getAll().toMutableList()
             val categoryNameToId = existingCategories.associate { it.name to it.id }.toMutableMap()
@@ -161,7 +165,7 @@ class BackupRepository @Inject constructor(
             // 2. Manga, Chapters, History, Glossary
             val totalManga = root.manga.size
             for ((index, bManga) in root.manga.withIndex()) {
-                emit(RestoreStep.Progress(current = index + 1, total = totalManga, currentTitle = bManga.title))
+                send(RestoreStep.Progress(current = index + 1, total = totalManga, currentTitle = bManga.title))
 
                 // Find or insert manga
                 val existing = mangaDao.getBySourceAndUrl(bManga.sourceId, bManga.url)
@@ -268,7 +272,9 @@ class BackupRepository @Inject constructor(
                 }
             }
 
-            emit(
+            }
+
+            send(
                 RestoreStep.Finished(
                     RestoreResult.Success(
                         mangaCount = restoredMangaCount,
@@ -278,7 +284,7 @@ class BackupRepository @Inject constructor(
                 ),
             )
         } catch (t: Throwable) {
-            emit(RestoreStep.Finished(RestoreResult.Error(t)))
+            send(RestoreStep.Finished(RestoreResult.Error(t)))
         }
     }.flowOn(Dispatchers.IO)
 

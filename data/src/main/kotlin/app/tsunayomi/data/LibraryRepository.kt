@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -22,28 +24,40 @@ class LibraryRepository @Inject constructor(
     private val categoryDao: CategoryDao,
     private val preferences: UserPreferencesDataSource,
 ) {
-    suspend fun ensureDefaultCategories() {
+    // Several screens and the update worker call this at startup; without the lock they would all seed.
+    private val seedMutex = Mutex()
+
+    /**
+     * Adds whichever status categories are missing, once. Users who already have their own categories still get
+     * them: new-chapter notifications only cover "Reading". When "Reading" is created here, library titles that
+     * had no category go into it, so they keep getting notifications as before.
+     */
+    suspend fun ensureDefaultCategories() = seedMutex.withLock {
         val initialized = preferences.defaultCategoriesInitialized.first()
-        if (initialized) return
+        if (initialized) return@withLock
         preferences.setDefaultCategoriesInitialized(true)
 
-        val existing = categoryDao.getAll()
-        if (existing.isNotEmpty()) return
-
+        val existing = categoryDao.getAll().map { it.name }
         val isRu = Locale.getDefault().language == "ru"
-        val readingName = if (isRu) DefaultCategories.READING_RU else DefaultCategories.READING_EN
-        val completedName = if (isRu) DefaultCategories.COMPLETED_RU else DefaultCategories.COMPLETED_EN
-        val planToReadName = if (isRu) DefaultCategories.PLAN_TO_READ_RU else DefaultCategories.PLAN_TO_READ_EN
-        val droppedName = if (isRu) DefaultCategories.DROPPED_RU else DefaultCategories.DROPPED_EN
+        fun missing(matches: (String) -> Boolean) = existing.none(matches)
 
-        val readingId = categoryDao.create(readingName)
-        categoryDao.create(completedName)
-        categoryDao.create(planToReadName)
-        categoryDao.create(droppedName)
+        val readingId = if (missing(DefaultCategories::isReading)) {
+            categoryDao.create(if (isRu) DefaultCategories.READING_RU else DefaultCategories.READING_EN)
+        } else {
+            null
+        }
+        if (missing(DefaultCategories::isCompleted)) {
+            categoryDao.create(if (isRu) DefaultCategories.COMPLETED_RU else DefaultCategories.COMPLETED_EN)
+        }
+        if (missing(DefaultCategories::isPlanToRead)) {
+            categoryDao.create(if (isRu) DefaultCategories.PLAN_TO_READ_RU else DefaultCategories.PLAN_TO_READ_EN)
+        }
+        if (missing(DefaultCategories::isDropped)) {
+            categoryDao.create(if (isRu) DefaultCategories.DROPPED_RU else DefaultCategories.DROPPED_EN)
+        }
 
-        val favorites = libraryDao.favoriteIds()
-        if (favorites.isNotEmpty()) {
-            favorites.forEach { mangaId ->
+        if (readingId != null) {
+            libraryDao.favoriteIds().forEach { mangaId ->
                 if (categoryDao.getCategoryIds(mangaId).isEmpty()) {
                     categoryDao.setMangaCategories(mangaId, listOf(readingId))
                 }

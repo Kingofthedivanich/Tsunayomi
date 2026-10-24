@@ -2,6 +2,8 @@ package app.tsunayomi.core.database.di
 
 import android.content.Context
 import androidx.room.Room
+import app.tsunayomi.core.database.DatabaseTransactions
+import app.tsunayomi.core.database.RoomTransactions
 import app.tsunayomi.core.database.TsunayomiDatabase
 import dagger.Module
 import dagger.Provides
@@ -26,4 +28,5 @@ internal object DatabaseModule {
     @Provides fun providesTranslationDao(db: TsunayomiDatabase) = db.translationDao()
     @Provides fun providesGlossaryDao(db: TsunayomiDatabase) = db.glossaryDao()
     @Provides fun providesDownloadDao(db: TsunayomiDatabase) = db.downloadDao()
+    @Provides fun providesTransactions(db: TsunayomiDatabase): DatabaseTransactions = RoomTransactions(db)
 }

@@ -66,10 +66,3 @@ data class GeminiConfig(
     }
 }
 
-sealed interface MangaOcrStatus {
-    data object NotDownloaded : MangaOcrStatus
-    data class Downloading(val progress: Float, val downloadedBytes: Long, val totalBytes: Long) : MangaOcrStatus
-    data class Ready(val sizeBytes: Long) : MangaOcrStatus
-    data class Error(val message: String) : MangaOcrStatus
-}
-

@@ -32,7 +32,8 @@ data class RemangaCatalogItemDto(
     @SerialName("issue_year") val issueYear: Int? = null,
     @SerialName("avg_rating") val avgRating: Float? = null,
     @SerialName("total_views") val totalViews: Long? = null,
-    val type: String? = null,
+    // A plain name in catalog results, {id, name} in title details; not used, so accept either.
+    val type: JsonElement? = null,
     val cover: RemangaImageDto? = null,
     val img: RemangaImageDto? = null,
     val genres: List<RemangaGenreDto> = emptyList(),
@@ -72,7 +73,8 @@ data class RemangaTitleDetailsDto(
     val cover: RemangaImageDto? = null,
     val img: RemangaImageDto? = null,
     val status: RemangaStatusDto? = null,
-    val type: String? = null,
+    // A plain name in catalog results, {id, name} in title details; not used, so accept either.
+    val type: JsonElement? = null,
     val genres: List<RemangaGenreDto> = emptyList(),
     val branches: List<RemangaBranchDto> = emptyList(),
     @SerialName("is_licensed") val isLicensed: Boolean = false,

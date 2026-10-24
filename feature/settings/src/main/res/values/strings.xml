@@ -164,16 +164,11 @@
     <string name="api_config_clear">Clear</string>
 
     <!-- Manga-OCR Japanese model -->
-    <string name="onboarding_manga_ocr_title">Vertical Japanese OCR</string>
-    <string name="onboarding_manga_ocr_subtitle">Dedicated offline neural network (manga-ocr, ~140 MB) for speech bubbles and furigana. Recommended if you read manga in Japanese.</string>
     <string name="onboarding_btn_finish">Finish</string>
-    <string name="manga_ocr_download">Download model (~140 MB)</string>
-    <string name="manga_ocr_downloading">Downloading… %1$d%% (%2$.1f MB / %3$.1f MB)</string>
-    <string name="manga_ocr_ready">✓ Model is ready to use (%1$.1f MB)</string>
-    <string name="manga_ocr_delete">Delete model</string>
-    <string name="manga_ocr_cancel">Cancel</string>
-    <string name="manga_ocr_retry">Retry</string>
-    <string name="feature_settings_manga_ocr_title">Vertical Japanese model (manga-ocr)</string>
-    <string name="feature_settings_manga_ocr_summary_not_downloaded">Not downloaded (~140 MB). Tap to download</string>
-    <string name="feature_settings_manga_ocr_summary_ready">Ready for offline Japanese OCR (%1$.1f MB)</string>
+    <string name="api_config_deepl_usage">%1$d / %2$d characters (%3$d%%)</string>
+    <string name="api_config_error_no_key">Enter a key first</string>
+    <string name="api_config_error_invalid_key">The key is not valid</string>
+    <string name="api_config_error_quota">Quota used up or the model is overloaded (429). Try another model or later</string>
+    <string name="api_config_error_model">Model not found. Check the server address and model name</string>
+    <string name="api_config_error_other">Check failed: %1$s</string>
 </resources>

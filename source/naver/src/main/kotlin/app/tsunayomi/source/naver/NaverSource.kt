@@ -12,20 +12,22 @@ import app.tsunayomi.source.api.SChapter
 import app.tsunayomi.source.api.SManga
 import app.tsunayomi.source.api.SPage
 import app.tsunayomi.source.api.sourceIdOf
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.json.Json
+import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.jsoup.Jsoup
-import org.jsoup.nodes.Document
-import java.net.URLEncoder
 import java.time.LocalDate
 import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 /**
- * Official Korean Naver Webtoon (comic.naver.com / m.comic.naver.com).
- * Original Korean RAW webtoons, ideal for real-time auto-translation into Russian and English.
+ * Official Korean Naver Webtoon (comic.naver.com): the original Korean webtoons, for reading with translation.
+ * The site is a web app, so lists come from the JSON API it uses itself; only the viewer page is HTML.
+ * Paid ("charge") episodes and adult titles, which need a Naver account, are left out.
  */
 class NaverSource(
     client: OkHttpClient,
@@ -40,233 +42,154 @@ class NaverSource(
         .addInterceptor(RateLimitInterceptor(permits = 4, period = 1))
         .build()
 
+    private val json = Json { ignoreUnknownKeys = true }
+
     override fun getFilters(): FilterList = FilterList(
         Filter.Select("Day", WEEKDAYS.map { it.first }, state = 0),
     )
 
-    override suspend fun getPopular(page: Int): MangaPage {
-        if (page > 1) return MangaPage(emptyList(), hasNext = false)
-        val url = "$baseUrl/webtoon/weekday"
-        val doc = fetchHtml(url)
-        val items = parseMangaList(doc)
-        return MangaPage(items, hasNext = false)
-    }
+    override suspend fun getPopular(page: Int): MangaPage = weekday(order = "user", day = null, page = page)
 
-    override suspend fun getLatest(page: Int): MangaPage {
-        if (page > 1) return MangaPage(emptyList(), hasNext = false)
-        val url = "$baseUrl/webtoon/weekday?sort=UPDATE"
-        val doc = fetchHtml(url)
-        val items = parseMangaList(doc)
-        return MangaPage(items, hasNext = false)
-    }
+    override suspend fun getLatest(page: Int): MangaPage = weekday(order = "update", day = null, page = page)
 
     override suspend fun search(query: String, filters: FilterList, page: Int): MangaPage {
         val trimmed = query.trim()
-        if (trimmed.isNotEmpty()) {
-            val encoded = URLEncoder.encode(trimmed, "UTF-8")
-            val url = "$baseUrl/search/result?keyword=$encoded"
-            val doc = fetchHtml(url)
-            val items = parseSearchResults(doc)
-            return MangaPage(items, hasNext = false)
+        if (trimmed.isEmpty()) {
+            val dayIndex = filters.filterIsInstance<Filter.Select>().firstOrNull()?.state ?: 0
+            return weekday(order = "user", day = WEEKDAYS.getOrNull(dayIndex)?.second, page = page)
         }
-
-        val dayFilter = filters.filterIsInstance<Filter.Select>().firstOrNull()
-        val dayIndex = dayFilter?.state ?: 0
-        val dayCode = WEEKDAYS.getOrNull(dayIndex)?.second
-
-        val url = if (!dayCode.isNullOrEmpty()) {
-            "$baseUrl/webtoon/weekday?week=$dayCode"
-        } else {
-            "$baseUrl/webtoon/weekday"
-        }
-        val doc = fetchHtml(url)
-        val items = parseMangaList(doc)
+        if (page > 1) return MangaPage(emptyList(), hasNext = false)
+        val url = api("search", "all").addQueryParameter("keyword", trimmed).build()
+        val result = json.decodeFromString<NaverSearchAll>(get(url))
+        val items = result.searchWebtoonResult?.searchViewList.orEmpty()
+            .filter { !it.adult && it.webtoonLevelCode == "WEBTOON" }
+            .map { it.toSManga() }
         return MangaPage(items, hasNext = false)
     }
 
     override suspend fun getDetails(manga: SManga): SManga {
-        val url = normalizeUrl(manga.url)
-        val doc = fetchHtml(url)
-
-        val title = doc.select(".title_box .title, h2.title, strong.title, .tit").text().trim().ifEmpty { manga.title }
-        val author = doc.select(".link_info .author, span.author, .author").text().trim().ifEmpty { manga.author }
-        val description = doc.select("p.summary, .summary, .desc").text().trim().ifEmpty { manga.description }
-        val coverUrl = doc.select(".thumbnail img, .thumb img").attr("src").ifEmpty { manga.coverUrl }
-        val isCompleted = doc.select(".badge_completed, .ico_break").isNotEmpty()
-
+        val info = json.decodeFromString<NaverTitleInfo>(
+            get(api("article", "list", "info").addQueryParameter("titleId", titleId(manga.url)).build()),
+        )
+        val authors = info.communityArtists
         return manga.copy(
-            title = title,
-            author = author,
-            description = description,
-            coverUrl = coverUrl,
-            status = if (isCompleted) SManga.Status.Completed else SManga.Status.Ongoing,
+            title = info.titleName,
+            coverUrl = info.thumbnailUrl ?: manga.coverUrl,
+            author = authors.filter { "ARTIST_WRITER" in it.artistTypeList }.joinToString(", ") { it.name }
+                .ifEmpty { manga.author },
+            artist = authors.filter { "ARTIST_PAINTER" in it.artistTypeList }.joinToString(", ") { it.name }
+                .ifEmpty { manga.artist },
+            description = info.synopsis ?: manga.description,
+            genres = info.curationTagList.filter { it.curationType?.startsWith("GENRE") == true }.map { it.tagName }
+                .ifEmpty { manga.genres },
+            status = if (info.finished) SManga.Status.Completed else SManga.Status.Ongoing,
             readingDirection = ReadingDirection.Webtoon,
             originalLang = "ko",
         )
     }
 
     override suspend fun getChapters(manga: SManga): List<SChapter> {
-        val base = normalizeUrl(manga.url)
+        val titleId = titleId(manga.url)
         val chapters = mutableListOf<SChapter>()
-        val seenUrls = mutableSetOf<String>()
         var page = 1
-
         while (page <= MAX_CHAPTER_PAGES) {
-            val pageUrl = if (base.contains("?")) "$base&page=$page" else "$base?page=$page"
-            val doc = fetchHtml(pageUrl)
-            val items = doc.select("ul.list_toon li.item, ul.detail_list li.item, li.item[data-no]")
-            if (items.isEmpty()) break
-
-            var newItemsFound = false
-            for (element in items) {
-                val link = element.select("a.link, a").attr("href").trim()
-                if (link.isEmpty() || link in seenUrls) continue
-                seenUrls += link
-                newItemsFound = true
-
-                val name = element.select(".name strong, .info .name, strong.title, .subj")
-                    .firstOrNull()?.text()?.trim().orEmpty()
-                val number = element.attr("data-no").toFloatOrNull()
-                    ?: parseEpisodeNumberFromUrl(link)
-                    ?: 0f
-                val dateStr = element.select(".date").text().trim()
-                val uploadedAt = parseDate(dateStr)
-
-                chapters += SChapter(
-                    url = link,
-                    name = name.ifEmpty { "Episode $number" },
-                    number = number,
-                    uploadedAt = uploadedAt,
+            val url = api("article", "list")
+                .addQueryParameter("titleId", titleId)
+                .addQueryParameter("page", page.toString())
+                .build()
+            val list = json.decodeFromString<NaverArticleList>(get(url))
+            list.articleList.filterNot { it.charge }.mapTo(chapters) { article ->
+                SChapter(
+                    url = "/webtoon/detail?titleId=$titleId&no=${article.no}",
+                    name = article.subtitle.ifBlank { "${article.no}화" },
+                    number = article.no.toFloat(),
+                    uploadedAt = article.serviceDateDescription?.let(::parseDate),
                 )
             }
-
-            if (!newItemsFound) break
-
-            val hasNextPage = doc.select(".paginate a.next, .btn_next").isNotEmpty() &&
-                doc.select(".paginate a.next.off, .btn_next.off").isEmpty()
-            if (!hasNextPage && items.size < 10) break
-
+            if (list.articleList.isEmpty() || page >= (list.pageInfo?.totalPages ?: 1)) break
             page++
         }
-
-        return chapters.sortedBy { it.number }
+        // The API lists the newest episode first; the app wants reading order.
+        return chapters.distinctBy { it.url }.sortedBy { it.number }
     }
 
     override suspend fun getPages(chapter: SChapter): List<SPage> {
-        val url = normalizeUrl(chapter.url)
-        val doc = fetchHtml(url)
-        val imageElements = doc.select("div.toon_view_lst img, div#toonLayer img, div.ct img")
-
-        return imageElements.mapNotNull { img ->
-            val imgUrl = img.attr("data-src").ifEmpty { img.attr("src") }.trim()
-            if (imgUrl.isBlank() || imgUrl.contains("icon_trans.gif") || imgUrl.contains("bg_transparency.png")) null else imgUrl
-        }.distinct().mapIndexed { index, imageUrl ->
-            SPage.Remote(
-                index = index,
-                imageUrl = imageUrl,
-                headers = mapOf("Referer" to "$baseUrl/"),
-            )
-        }
+        val url = absolute(chapter.url)
+        val doc = Jsoup.parse(get(url.toHttpUrl()), url)
+        return doc.select("#sectionContWide img")
+            .map { it.absUrl("src").ifEmpty { it.absUrl("data-src") } }
+            .filter { it.isNotBlank() && "/webtoon/" in it && "thumbnail" !in it }
+            .distinct()
+            .mapIndexed { index, imageUrl ->
+                SPage.Remote(index = index, imageUrl = imageUrl, headers = mapOf("Referer" to "$baseUrl/"))
+            }
     }
 
-    private suspend fun fetchHtml(url: String): Document {
+    private suspend fun weekday(order: String, day: String?, page: Int): MangaPage {
+        // The whole week comes in one response.
+        if (page > 1) return MangaPage(emptyList(), hasNext = false)
+        val url = api("webtoon", "titlelist", "weekday").addQueryParameter("order", order).build()
+        val map = json.decodeFromString<NaverWeekdayList>(get(url)).titleListMap
+        val titles = if (day != null) {
+            map[day].orEmpty()
+        } else {
+            DAY_KEYS.flatMap { map[it].orEmpty() }
+        }
+        val items = titles.filterNot { it.adult }.distinctBy { it.titleId }.map { it.toSManga() }
+        return MangaPage(items, hasNext = false)
+    }
+
+    private fun NaverTitle.toSManga() = SManga(
+        url = "/webtoon/list?titleId=$titleId",
+        title = titleName,
+        coverUrl = thumbnailUrl,
+        author = displayAuthor ?: author,
+        description = synopsis,
+        status = if (finish || finished) SManga.Status.Completed else SManga.Status.Ongoing,
+        readingDirection = ReadingDirection.Webtoon,
+        originalLang = "ko",
+    )
+
+    private fun api(vararg segments: String): HttpUrl.Builder =
+        "$baseUrl/api".toHttpUrl().newBuilder().apply { segments.forEach(::addPathSegment) }
+
+    private fun absolute(url: String) = if (url.startsWith("http")) url else "$baseUrl$url"
+
+    private fun titleId(url: String): String =
+        absolute(url).toHttpUrl().queryParameter("titleId") ?: error("No titleId in $url")
+
+    // Reading the body happens on the calling thread, so keep it off the main one.
+    private suspend fun get(url: HttpUrl): String = withContext(Dispatchers.IO) {
         val request = Request.Builder()
             .url(url)
             .header("User-Agent", USER_AGENT)
             .header("Referer", "$baseUrl/")
-            .header("Accept-Language", "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7")
             .build()
-        val html = apiClient.newCall(request).await().bodyOrThrow()
-        return Jsoup.parse(html, url)
+        apiClient.newCall(request).await().bodyOrThrow()
     }
-
-    private fun parseMangaList(doc: Document): List<SManga> {
-        val elements = doc.select("a.link_thumbnail, ul.list_toon li a, div.area_toon a.link_thumbnail")
-        return elements.mapNotNull { el ->
-            val link = el.attr("href").trim()
-            if (link.isEmpty()) return@mapNotNull null
-
-            val title = el.select("strong.title, .title").text().trim()
-            if (title.isEmpty()) return@mapNotNull null
-
-            val cover = el.select(".thumbnail img, img").attr("src").trim()
-            val author = el.select(".author, span.author").text().trim().takeIf { it.isNotEmpty() }
-            val summary = el.select("p.summary, .summary").text().trim().takeIf { it.isNotEmpty() }
-
-            SManga(
-                url = link,
-                title = title,
-                coverUrl = cover.ifEmpty { null },
-                author = author,
-                description = summary,
-                genres = listOf("Webtoon"),
-                status = SManga.Status.Ongoing,
-                readingDirection = ReadingDirection.Webtoon,
-                originalLang = "ko",
-            )
-        }.distinctBy { it.url }
-    }
-
-    private fun parseSearchResults(doc: Document): List<SManga> {
-        val elements = doc.select("article.result_lst ul.toon_lst li a, ul.toon_lst li a, div.lst a")
-        return elements.mapNotNull { el ->
-            val link = el.attr("href").trim()
-            if (link.isEmpty() || !link.contains("titleId=")) return@mapNotNull null
-
-            val title = el.select(".toon_info strong.title, strong.title, .title").text().trim()
-                .ifEmpty { el.select("img").attr("alt").trim() }
-            if (title.isEmpty()) return@mapNotNull null
-
-            val cover = el.select("img").attr("src").trim()
-            val author = el.select(".author, span.author").text().trim().takeIf { it.isNotEmpty() }
-
-            SManga(
-                url = link,
-                title = title,
-                coverUrl = cover.ifEmpty { null },
-                author = author,
-                genres = listOf("Webtoon"),
-                status = SManga.Status.Ongoing,
-                readingDirection = ReadingDirection.Webtoon,
-                originalLang = "ko",
-            )
-        }.distinctBy { it.url }
-    }
-
-    private fun normalizeUrl(url: String): String = if (url.startsWith("http")) url else "$baseUrl$url"
-
-    private fun parseEpisodeNumberFromUrl(url: String): Float? = runCatching {
-        val parsed = url.toHttpUrl()
-        parsed.queryParameter("no")?.toFloatOrNull()
-    }.getOrNull()
 
     internal fun parseDate(dateStr: String): Long? = runCatching {
-        val trimmed = dateStr.trim()
-        if (trimmed.isEmpty()) return null
-        val formatter = if (trimmed.length <= 8) DATE_FORMAT_SHORT else DATE_FORMAT_LONG
-        LocalDate.parse(trimmed, formatter)
-            .atStartOfDay(ZoneOffset.UTC)
-            .toInstant()
-            .toEpochMilli()
+        LocalDate.parse(dateStr.trim(), DATE_FORMAT).atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
     }.getOrNull()
 
     companion object {
-        const val BASE_URL = "https://m.comic.naver.com"
+        const val BASE_URL = "https://comic.naver.com"
         private const val USER_AGENT =
-            "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
-        private const val MAX_CHAPTER_PAGES = 50
-        private val DATE_FORMAT_SHORT = DateTimeFormatter.ofPattern("yy.MM.dd", Locale.KOREAN)
-        private val DATE_FORMAT_LONG = DateTimeFormatter.ofPattern("yyyy.MM.dd", Locale.KOREAN)
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0 Safari/537.36"
+        private const val MAX_CHAPTER_PAGES = 100
+        private val DATE_FORMAT = DateTimeFormatter.ofPattern("yy.MM.dd")
+
+        private val DAY_KEYS = listOf("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY")
 
         val WEEKDAYS = listOf(
-            "All" to "",
-            "Mon" to "mon",
-            "Tue" to "tue",
-            "Wed" to "wed",
-            "Thu" to "thu",
-            "Fri" to "fri",
-            "Sat" to "sat",
-            "Sun" to "sun",
+            "All" to null,
+            "Mon" to "MONDAY",
+            "Tue" to "TUESDAY",
+            "Wed" to "WEDNESDAY",
+            "Thu" to "THURSDAY",
+            "Fri" to "FRIDAY",
+            "Sat" to "SATURDAY",
+            "Sun" to "SUNDAY",
         )
     }
 }

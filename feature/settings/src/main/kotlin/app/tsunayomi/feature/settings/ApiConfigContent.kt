@@ -52,6 +52,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.model.TranslationEngine
+import app.tsunayomi.data.ApiCheckException
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -265,21 +266,6 @@ internal fun ApiConfigContent(
             content = null,
         )
 
-        if (onSkip == null) {
-            val mangaOcrStatus by viewModel.mangaOcrStatus.collectAsStateWithLifecycle()
-            Text(
-                text = stringResource(R.string.onboarding_manga_ocr_title),
-                style = MaterialTheme.typography.titleMedium,
-                fontWeight = FontWeight.SemiBold,
-            )
-            MangaOcrCard(
-                status = mangaOcrStatus,
-                onDownload = viewModel::downloadMangaOcr,
-                onCancel = viewModel::cancelMangaOcr,
-                onDelete = viewModel::deleteMangaOcr,
-            )
-        }
-
         Spacer(Modifier.height(16.dp))
 
         // Action buttons
@@ -401,7 +387,9 @@ private fun StatusView(status: VerificationState) {
                 )
                 Spacer(Modifier.width(4.dp))
                 Text(
-                    text = status.message ?: stringResource(R.string.api_config_key_valid),
+                    text = status.usage?.let {
+                        stringResource(R.string.api_config_deepl_usage, it.characterCount, it.characterLimit, it.percentage)
+                    } ?: stringResource(R.string.api_config_key_valid),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
                     fontWeight = FontWeight.Medium,
@@ -418,7 +406,14 @@ private fun StatusView(status: VerificationState) {
                 )
                 Spacer(Modifier.width(4.dp))
                 Text(
-                    text = status.message,
+                    text = when (status.reason) {
+                        ApiCheckException.Reason.NoKey -> stringResource(R.string.api_config_error_no_key)
+                        ApiCheckException.Reason.InvalidKey -> stringResource(R.string.api_config_error_invalid_key)
+                        ApiCheckException.Reason.QuotaExceeded -> stringResource(R.string.api_config_error_quota)
+                        ApiCheckException.Reason.ModelNotFound -> stringResource(R.string.api_config_error_model)
+                        ApiCheckException.Reason.Http, null ->
+                            stringResource(R.string.api_config_error_other, status.detail.orEmpty())
+                    },
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.error,
                 )

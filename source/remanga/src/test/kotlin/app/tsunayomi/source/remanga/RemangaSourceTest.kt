@@ -234,18 +234,18 @@ class RemangaSourceTest {
         val chapters = source.getChapters(manga)
 
         // Chapter 102 should be filtered out because it is paid and not bought.
-        // Remaining: 101 and 103. Sorted descending by chapter number: 103, then 101.
+        // Remaining: 101 and 103. In reading order: 101, then 103.
         assertEquals(2, chapters.size)
 
-        assertEquals("103", chapters[0].url)
-        assertEquals("Том 1 Гл. 3 - Строительство", chapters[0].name)
-        assertEquals(3.0f, chapters[0].number)
-        assertEquals("tfoxs", chapters[0].scanlator)
-        assertTrue((chapters[0].uploadedAt ?: 0L) > 0L)
+        assertEquals("103", chapters[1].url)
+        assertEquals("Том 1 Гл. 3 - Строительство", chapters[1].name)
+        assertEquals(3.0f, chapters[1].number)
+        assertEquals("tfoxs", chapters[1].scanlator)
+        assertTrue((chapters[1].uploadedAt ?: 0L) > 0L)
 
-        assertEquals("101", chapters[1].url)
-        assertEquals("Том 1 Гл. 1 - Пробуждение", chapters[1].name)
-        assertEquals(1.0f, chapters[1].number)
+        assertEquals("101", chapters[0].url)
+        assertEquals("Том 1 Гл. 1 - Пробуждение", chapters[0].name)
+        assertEquals(1.0f, chapters[0].number)
     }
 
     @Test

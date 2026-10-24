@@ -155,6 +155,6 @@ class UserPreferencesDataSource @Inject constructor(
         val appLockTimeoutMinutes = intPreferencesKey("app_lock_timeout_minutes")
         val secureScreen = booleanPreferencesKey("secure_screen")
         val onboardingCompleted = booleanPreferencesKey("onboarding_completed")
-        val defaultCategoriesInitialized = booleanPreferencesKey("default_categories_initialized")
+        val defaultCategoriesInitialized = booleanPreferencesKey("default_categories_initialized_v2")
     }
 }

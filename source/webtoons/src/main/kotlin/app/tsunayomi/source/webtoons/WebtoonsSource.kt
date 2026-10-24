@@ -108,7 +108,7 @@ class WebtoonsSource(
             coverUrl = coverUrl,
             status = if (isCompleted) SManga.Status.Completed else SManga.Status.Ongoing,
             readingDirection = ReadingDirection.Webtoon,
-            originalLang = "ko",
+            originalLang = "en",
         )
     }
 
@@ -210,7 +210,7 @@ class WebtoonsSource(
                 genres = genres,
                 status = SManga.Status.Ongoing,
                 readingDirection = ReadingDirection.Webtoon,
-                originalLang = "ko",
+                originalLang = "en",
             )
         }.distinctBy { it.url }
     }

@@ -129,9 +129,9 @@ class AsuraSourceTest {
         server.enqueue(MockResponse.Builder().body(json).build())
 
         val filters = FilterList(
-            Filter.Select("Сортировка", AsuraFilters.sortOptions.map { it.first }, state = 2), // rating
-            Filter.Select("Статус", AsuraFilters.statusOptions.map { it.first }, state = 2), // completed
-            Filter.Select("Тип", AsuraFilters.typeOptions.map { it.first }, state = 0), // comic
+            Filter.Select("Sort", AsuraFilters.sortOptions.map { it.first }, state = 2), // rating
+            Filter.Select("Status", AsuraFilters.statusOptions.map { it.first }, state = 2), // completed
+            Filter.Select("Type", AsuraFilters.typeOptions.map { it.first }, state = 0), // comic
         )
 
         val result = source.search("sword", filters, page = 2)
@@ -224,16 +224,16 @@ class AsuraSourceTest {
         // Chapter 345 is premium, so only 344.5 and 344 should be returned
         assertEquals(2, chapters.size)
 
-        assertEquals("overgeared/chapter-344-5", chapters[0].url)
-        assertEquals("Chapter 344.5 - Special Interlude", chapters[0].name)
-        assertEquals(344.5f, chapters[0].number)
-        assertEquals("Asura Scans", chapters[0].scanlator)
-        assertEquals("en", chapters[0].language)
-        assertTrue((chapters[0].uploadedAt ?: 0L) > 0L)
+        assertEquals("overgeared/chapter-344-5", chapters[1].url)
+        assertEquals("Chapter 344.5 - Special Interlude", chapters[1].name)
+        assertEquals(344.5f, chapters[1].number)
+        assertEquals("Asura Scans", chapters[1].scanlator)
+        assertEquals("en", chapters[1].language)
+        assertTrue((chapters[1].uploadedAt ?: 0L) > 0L)
 
-        assertEquals("overgeared/chapter-344", chapters[1].url)
-        assertEquals("Chapter 344 - Saharan vs. Valhalla", chapters[1].name)
-        assertEquals(344.0f, chapters[1].number)
+        assertEquals("overgeared/chapter-344", chapters[0].url)
+        assertEquals("Chapter 344 - Saharan vs. Valhalla", chapters[0].name)
+        assertEquals(344.0f, chapters[0].number)
     }
 
     @Test

@@ -8,6 +8,8 @@ import app.tsunayomi.core.common.Dispatcher
 import app.tsunayomi.core.common.NaturalOrderComparator
 import app.tsunayomi.core.common.TsunayomiDispatcher
 import com.github.junrar.Archive
+import com.github.junrar.exception.UnsupportedRarEncryptedException
+import com.github.junrar.exception.UnsupportedRarV5Exception
 import com.github.junrar.io.SeekableReadOnlyByteChannel
 import com.github.junrar.volume.Volume
 import com.github.junrar.volume.VolumeManager
@@ -67,7 +69,14 @@ class ArchiveReader @Inject constructor(
             channel.position(0)
             if (isRar) {
                 val volumeManager = SingleVolumeManager(channel, channel.size())
-                val rar = Archive(volumeManager, null, null)
+                val rar = try {
+                    Archive(volumeManager, null, null)
+                } catch (e: UnsupportedRarV5Exception) {
+                    // JUnrar only reads RAR4; there is no RAR5 decoder for the JVM we could use instead.
+                    throw UnsupportedArchiveException("RAR5 archives can't be opened. Repack the chapter as CBZ (ZIP).", e)
+                } catch (e: UnsupportedRarEncryptedException) {
+                    throw UnsupportedArchiveException("Password-protected RAR archives can't be opened.", e)
+                }
                 RarArchiveHandle(descriptor, channel, rar)
             } else {
                 val zip = ZipFile.builder().setSeekableByteChannel(channel).get()
@@ -248,3 +257,6 @@ class ArchiveReader @Inject constructor(
             name.startsWith("__MACOSX/") || name.substringAfterLast('/').startsWith(".")
     }
 }
+
+/** The archive is valid but in a variant the app can't read, e.g. RAR5. */
+class UnsupportedArchiveException(message: String, cause: Throwable? = null) : java.io.IOException(message, cause)

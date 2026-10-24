@@ -10,9 +10,9 @@ class NaverInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
         val host = request.url.host
-        return if (host.contains("image-comic.pstatic.net") || host.contains("comic.naver.com")) {
+        return if (host == "image-comic.pstatic.net") {
             val newRequest = request.newBuilder()
-                .header("Referer", "https://m.comic.naver.com/")
+                .header("Referer", "https://comic.naver.com/")
                 .build()
             chain.proceed(newRequest)
         } else {

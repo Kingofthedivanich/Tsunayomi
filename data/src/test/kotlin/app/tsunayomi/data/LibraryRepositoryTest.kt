@@ -71,6 +71,42 @@ class LibraryRepositoryTest {
     }
 
     @Test
+    fun `ensureDefaultCategories adds only the missing ones next to the user's own categories`() = runTest {
+        every { preferences.defaultCategoriesInitialized } returns flowOf(false)
+        coEvery { categoryDao.getAll() } returns listOf(
+            CategoryEntity(id = 7L, name = "Later", order = 0),
+            CategoryEntity(id = 8L, name = "Completed", order = 1),
+        )
+        coEvery { categoryDao.create(any()) } returnsMany listOf(11L, 12L, 13L)
+        coEvery { libraryDao.favoriteIds() } returns listOf(100L, 200L)
+        coEvery { categoryDao.getCategoryIds(100L) } returns emptyList()
+        coEvery { categoryDao.getCategoryIds(200L) } returns listOf(7L)
+
+        repository.ensureDefaultCategories()
+
+        // Reading, Plan to read and Dropped; Completed already exists.
+        coVerify(exactly = 3) { categoryDao.create(any()) }
+        coVerify { categoryDao.setMangaCategories(100L, listOf(11L)) }
+        coVerify(exactly = 0) { categoryDao.setMangaCategories(200L, any()) }
+    }
+
+    @Test
+    fun `ensureDefaultCategories leaves titles alone when Reading already exists`() = runTest {
+        every { preferences.defaultCategoriesInitialized } returns flowOf(false)
+        coEvery { categoryDao.getAll() } returns listOf(
+            CategoryEntity(id = 1L, name = "Reading", order = 0),
+            CategoryEntity(id = 2L, name = "Completed", order = 1),
+            CategoryEntity(id = 3L, name = "Plan to read", order = 2),
+            CategoryEntity(id = 4L, name = "Dropped", order = 3),
+        )
+
+        repository.ensureDefaultCategories()
+
+        coVerify(exactly = 0) { categoryDao.create(any()) }
+        coVerify(exactly = 0) { categoryDao.setMangaCategories(any(), any()) }
+    }
+
+    @Test
     fun `ensureDefaultCategories skips when already initialized`() = runTest {
         every { preferences.defaultCategoriesInitialized } returns flowOf(true)
 

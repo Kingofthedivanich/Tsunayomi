@@ -79,7 +79,7 @@ class AsuraSource(
         filters.forEach { filter ->
             if (filter is Filter.Select) {
                 when (filter.name) {
-                    "Сортировка" -> {
+                    "Sort" -> {
                         val option = AsuraFilters.sortOptions.getOrNull(filter.state)?.second
                         if (option != null) {
                             urlBuilder.addQueryParameter("sort", option.first)
@@ -87,13 +87,13 @@ class AsuraSource(
                             sortApplied = true
                         }
                     }
-                    "Статус" -> {
+                    "Status" -> {
                         val status = AsuraFilters.statusOptions.getOrNull(filter.state)?.second
                         if (!status.isNullOrEmpty() && status != "all") {
                             urlBuilder.addQueryParameter("status", status)
                         }
                     }
-                    "Тип" -> {
+                    "Type" -> {
                         val type = AsuraFilters.typeOptions.getOrNull(filter.state)?.second
                         if (!type.isNullOrEmpty() && type != "all") {
                             urlBuilder.addQueryParameter("type", type)
@@ -160,7 +160,8 @@ class AsuraSource(
                     language = "en",
                 )
             }
-            .sortedByDescending { it.number }
+            // Reading order: the first chapter first.
+            .sortedBy { it.number }
     }
 
     override suspend fun getPages(chapter: SChapter): List<SPage> {
@@ -204,7 +205,7 @@ class AsuraSource(
             genres = genres.map { it.name },
             status = statusEnum,
             readingDirection = ReadingDirection.Webtoon,
-            originalLang = "ko",
+            originalLang = "en",
         )
     }
 

@@ -5,28 +5,28 @@ import app.tsunayomi.source.api.FilterList
 
 object AsuraFilters {
     val sortOptions = listOf(
-        "По популярности" to ("popular" to "desc"),
-        "По дате обновления" to ("update" to "desc"),
-        "По рейтингу" to ("rating" to "desc"),
-        "По названию" to ("title" to "asc"),
+        "Popular" to ("popular" to "desc"),
+        "Latest update" to ("update" to "desc"),
+        "Rating" to ("rating" to "desc"),
+        "Title" to ("title" to "asc"),
     )
 
     val statusOptions = listOf(
-        "Все" to "all",
-        "Онгоинг" to "ongoing",
-        "Завершён" to "completed",
-        "Хиатус" to "hiatus",
+        "All" to "all",
+        "Ongoing" to "ongoing",
+        "Completed" to "completed",
+        "Hiatus" to "hiatus",
     )
 
     val typeOptions = listOf(
-        "Комиксы / Манхва" to "comic",
-        "Все" to "all",
-        "Новеллы" to "novel",
+        "Comics / Manhwa" to "comic",
+        "All" to "all",
+        "Novels" to "novel",
     )
 
     fun create(): FilterList = FilterList(
-        Filter.Select("Сортировка", sortOptions.map { it.first }, state = 0),
-        Filter.Select("Статус", statusOptions.map { it.first }, state = 0),
-        Filter.Select("Тип", typeOptions.map { it.first }, state = 0),
+        Filter.Select("Sort", sortOptions.map { it.first }, state = 0),
+        Filter.Select("Status", statusOptions.map { it.first }, state = 0),
+        Filter.Select("Type", typeOptions.map { it.first }, state = 0),
     )
 }

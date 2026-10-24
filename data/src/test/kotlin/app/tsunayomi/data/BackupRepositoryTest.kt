@@ -1,5 +1,6 @@
 package app.tsunayomi.data
 
+import app.tsunayomi.core.database.DatabaseTransactions
 import app.tsunayomi.core.database.dao.CategoryDao
 import app.tsunayomi.core.database.dao.ChapterDao
 import app.tsunayomi.core.database.dao.GlossaryDao
@@ -44,6 +45,9 @@ class BackupRepositoryTest {
             chapterDao = chapterDao,
             historyDao = historyDao,
             glossaryDao = glossaryDao,
+            transactions = object : DatabaseTransactions {
+                override suspend fun <T> run(block: suspend () -> T): T = block()
+            },
         )
     }
 

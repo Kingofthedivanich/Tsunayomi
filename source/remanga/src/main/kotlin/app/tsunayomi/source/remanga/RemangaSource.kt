@@ -214,8 +214,9 @@ class RemangaSource(
             }
         }
 
+        // Reading order: the first chapter first; a chapter several teams translated keeps its uploads together.
         return chaptersList.sortedWith(
-            compareByDescending<SChapter> { it.number }.thenByDescending { it.uploadedAt ?: 0L },
+            compareBy<SChapter> { it.number }.thenBy { it.uploadedAt ?: 0L },
         )
     }
 
