@@ -22,6 +22,7 @@ import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.SkipNext
 import androidx.compose.material.icons.outlined.SkipPrevious
 import androidx.compose.material.icons.outlined.Translate
+import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -63,6 +64,8 @@ internal fun ReaderMenu(
     onModeChange: (ReaderMode) -> Unit,
     translationOn: Boolean,
     onToggleTranslation: () -> Unit,
+    incognitoOn: Boolean,
+    onToggleIncognito: () -> Unit,
     onJumpTo: (Int) -> Unit,
     onPreviousChapter: () -> Unit,
     onNextChapter: () -> Unit,
@@ -88,6 +91,13 @@ internal fun ReaderMenu(
                     Column(Modifier.weight(1f)) {
                         Text(title, style = MaterialTheme.typography.titleMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
                         Text(chapterName, style = MaterialTheme.typography.bodySmall, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                    }
+                    IconToggleButton(checked = incognitoOn, onCheckedChange = { onToggleIncognito() }) {
+                        Icon(
+                            Icons.Outlined.VisibilityOff,
+                            stringResource(if (incognitoOn) R.string.feature_reader_incognito_off else R.string.feature_reader_incognito_on),
+                            tint = if (incognitoOn) MaterialTheme.colorScheme.primary else LocalContentColor.current,
+                        )
                     }
                     IconToggleButton(checked = translationOn, onCheckedChange = { onToggleTranslation() }) {
                         Icon(

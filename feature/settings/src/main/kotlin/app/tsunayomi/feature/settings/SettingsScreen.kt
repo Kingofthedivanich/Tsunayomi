@@ -92,6 +92,10 @@ internal fun SettingsScreen(
         onLibraryFolderPicked = viewModel::setLocalLibraryUri,
         onReaderModeChange = viewModel::setDefaultReaderMode,
         onVolumeKeysChange = viewModel::setVolumeKeysNavigation,
+        onIncognitoChange = viewModel::setIncognitoMode,
+        onAppLockEnabledChange = viewModel::setAppLockEnabled,
+        onAppLockTimeoutChange = viewModel::setAppLockTimeoutMinutes,
+        onSecureScreenChange = viewModel::setSecureScreen,
     )
 }
 
@@ -125,12 +129,17 @@ private fun SettingsContent(
     onLibraryFolderPicked: (String) -> Unit,
     onReaderModeChange: (ReaderMode) -> Unit,
     onVolumeKeysChange: (Boolean) -> Unit,
+    onIncognitoChange: (Boolean) -> Unit,
+    onAppLockEnabledChange: (Boolean) -> Unit,
+    onAppLockTimeoutChange: (Int) -> Unit,
+    onSecureScreenChange: (Boolean) -> Unit,
 ) {
     var showLanguageDialog by rememberSaveable { mutableStateOf(false) }
     var showReaderModeDialog by rememberSaveable { mutableStateOf(false) }
     var showEngineDialog by rememberSaveable { mutableStateOf(false) }
     var showTargetDialog by rememberSaveable { mutableStateOf(false) }
     var showIntervalDialog by rememberSaveable { mutableStateOf(false) }
+    var showLockTimeoutDialog by rememberSaveable { mutableStateOf(false) }
     val pickFolder = rememberLibraryFolderPicker { onLibraryFolderPicked(it.toString()) }
     val language = remember(showLanguageDialog) { AppLanguage.current() }
 
@@ -259,6 +268,33 @@ private fun SettingsContent(
                 switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
             )
 
+            SectionHeader(stringResource(R.string.feature_settings_section_security))
+            SwitchItem(
+                title = stringResource(R.string.feature_settings_incognito_title),
+                summary = stringResource(R.string.feature_settings_incognito_summary),
+                checked = settings?.incognitoMode == true,
+                onCheckedChange = onIncognitoChange,
+            )
+            SwitchItem(
+                title = stringResource(R.string.feature_settings_app_lock_title),
+                summary = stringResource(R.string.feature_settings_app_lock_summary),
+                checked = settings?.appLockEnabled == true,
+                onCheckedChange = onAppLockEnabledChange,
+            )
+            if (settings?.appLockEnabled == true) {
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.feature_settings_app_lock_timeout_title)) },
+                    supportingContent = { Text(lockTimeoutLabel(settings.appLockTimeoutMinutes)) },
+                    modifier = Modifier.clickable { showLockTimeoutDialog = true },
+                )
+            }
+            SwitchItem(
+                title = stringResource(R.string.feature_settings_secure_screen_title),
+                summary = stringResource(R.string.feature_settings_secure_screen_summary),
+                checked = settings?.secureScreen == true,
+                onCheckedChange = onSecureScreenChange,
+            )
+
             SectionHeader(stringResource(R.string.feature_settings_backup_title))
             ListItem(
                 headlineContent = { Text(stringResource(R.string.feature_settings_backup_title)) },
@@ -334,6 +370,20 @@ private fun SettingsContent(
                 it.apply()
             },
             onDismiss = { showLanguageDialog = false },
+        )
+    }
+
+    if (showLockTimeoutDialog && settings != null) {
+        ChoiceDialog(
+            title = stringResource(R.string.feature_settings_app_lock_timeout_title),
+            options = LOCK_TIMEOUTS,
+            selected = settings.appLockTimeoutMinutes,
+            label = { lockTimeoutLabel(it) },
+            onSelect = {
+                showLockTimeoutDialog = false
+                onAppLockTimeoutChange(it)
+            },
+            onDismiss = { showLockTimeoutDialog = false },
         )
     }
 }
@@ -426,6 +476,17 @@ internal fun <T> ChoiceDialog(
 
 /** Hours between library updates offered in settings; 0 is "off". */
 private val UPDATE_INTERVALS = listOf(0, 6, 12, 24, 48)
+
+private val LOCK_TIMEOUTS = listOf(0, 1, 5, 10)
+
+@Composable
+private fun lockTimeoutLabel(minutes: Int): String = when (minutes) {
+    0 -> stringResource(R.string.feature_settings_app_lock_timeout_immediately)
+    1 -> stringResource(R.string.feature_settings_app_lock_timeout_1_min)
+    5 -> stringResource(R.string.feature_settings_app_lock_timeout_5_min)
+    10 -> stringResource(R.string.feature_settings_app_lock_timeout_10_min)
+    else -> "$minutes min"
+}
 
 @Composable
 private fun intervalLabel(hours: Int): String =

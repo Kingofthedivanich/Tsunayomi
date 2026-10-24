@@ -1,5 +1,8 @@
 package app.tsunayomi.feature.settings
 
+import androidx.compose.runtime.getValue
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
@@ -25,7 +28,11 @@ internal data object AboutRoute
 fun NavGraphBuilder.moreGraph(navController: NavController) {
     navigation<MoreGraph>(startDestination = MoreRoute) {
         composable<MoreRoute> {
+            val viewModel: SettingsViewModel = hiltViewModel()
+            val settings by viewModel.settings.collectAsStateWithLifecycle()
             MoreScreen(
+                incognitoMode = settings?.incognitoMode == true,
+                onIncognitoChange = viewModel::setIncognitoMode,
                 onOpenSettings = { navController.navigate(SettingsRoute) },
                 onOpenBackup = { navController.navigate(BackupRoute) },
                 onOpenAbout = { navController.navigate(AboutRoute) },

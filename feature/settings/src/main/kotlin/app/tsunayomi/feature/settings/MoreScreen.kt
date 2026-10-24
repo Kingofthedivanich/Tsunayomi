@@ -7,10 +7,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Backup
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -21,6 +24,8 @@ import androidx.compose.ui.res.stringResource
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun MoreScreen(
+    incognitoMode: Boolean,
+    onIncognitoChange: (Boolean) -> Unit,
     onOpenSettings: () -> Unit,
     onOpenBackup: () -> Unit,
     onOpenAbout: () -> Unit,
@@ -29,6 +34,16 @@ internal fun MoreScreen(
         topBar = { TopAppBar(title = { Text(stringResource(R.string.feature_settings_more_title)) }) },
     ) { padding ->
         Column(Modifier.padding(padding)) {
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_incognito_title)) },
+                supportingContent = { Text(stringResource(R.string.feature_settings_incognito_summary)) },
+                leadingContent = { Icon(Icons.Outlined.VisibilityOff, contentDescription = null) },
+                trailingContent = {
+                    Switch(checked = incognitoMode, onCheckedChange = onIncognitoChange)
+                },
+                modifier = Modifier.clickable { onIncognitoChange(!incognitoMode) },
+            )
+            HorizontalDivider()
             MoreItem(Icons.Outlined.Settings, stringResource(R.string.feature_settings_title), onOpenSettings)
             MoreItem(Icons.Outlined.Backup, stringResource(R.string.feature_settings_backup_title), onOpenBackup)
             MoreItem(Icons.Outlined.Info, stringResource(R.string.feature_settings_about_title), onOpenAbout)

@@ -115,4 +115,20 @@ internal class SettingsViewModel @Inject constructor(
     fun setVolumeKeysNavigation(enabled: Boolean) {
         viewModelScope.launch { repository.setVolumeKeysNavigation(enabled) }
     }
+
+    fun setIncognitoMode(enabled: Boolean) {
+        viewModelScope.launch { repository.setIncognitoMode(enabled) }
+    }
+
+    fun setAppLockEnabled(enabled: Boolean) {
+        viewModelScope.launch { repository.setAppLockEnabled(enabled) }
+    }
+
+    fun setAppLockTimeoutMinutes(minutes: Int) {
+        viewModelScope.launch { repository.setAppLockTimeoutMinutes(minutes) }
+    }
+
+    fun setSecureScreen(enabled: Boolean) {
+        viewModelScope.launch { repository.setSecureScreen(enabled) }
+    }
 }

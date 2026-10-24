@@ -9,4 +9,8 @@
     <string name="crash_message">Отчёт хранится только на телефоне. Ничего не отправляется, пока вы сами не поделитесь им — это поможет исправить ошибку.</string>
     <string name="crash_share">Поделиться отчётом</string>
     <string name="crash_discard">Удалить</string>
+    <string name="app_lock_locked_title">Tsunayomi заблокирован</string>
+    <string name="app_lock_unlock">Разблокировать</string>
+    <string name="app_lock_prompt_title">Разблокировка Tsunayomi</string>
+    <string name="app_lock_prompt_subtitle">Подтвердите личность для продолжения</string>
 </resources>

@@ -56,6 +56,7 @@ internal fun ReaderScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val currentPage by viewModel.currentPage.collectAsStateWithLifecycle()
     val translationOn by viewModel.translationOn.collectAsStateWithLifecycle()
+    val incognitoOn by viewModel.incognitoOn.collectAsStateWithLifecycle()
     val translations by viewModel.translations.collectAsStateWithLifecycle()
     val translatedImage: (Int) -> Bitmap? = { index ->
         if (translationOn) (translations[index] as? PageTranslationState.Done)?.image else null
@@ -166,6 +167,8 @@ internal fun ReaderScreen(
             onModeChange = viewModel::setMode,
             translationOn = translationOn,
             onToggleTranslation = viewModel::toggleTranslation,
+            incognitoOn = incognitoOn,
+            onToggleIncognito = viewModel::toggleIncognito,
             onJumpTo = { navigator.jumpTo(it) },
             onPreviousChapter = viewModel::openPreviousChapter,
             onNextChapter = viewModel::openNextChapter,

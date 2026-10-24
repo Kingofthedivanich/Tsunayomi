@@ -3,6 +3,8 @@ package app.tsunayomi.data
 import app.tsunayomi.core.database.dao.ChapterDao
 import app.tsunayomi.core.database.dao.HistoryDao
 import app.tsunayomi.core.database.entity.HistoryEntity
+import app.tsunayomi.core.datastore.UserPreferencesDataSource
+import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -10,9 +12,13 @@ import javax.inject.Singleton
 class ReadingProgressRepository @Inject constructor(
     private val chapterDao: ChapterDao,
     private val historyDao: HistoryDao,
+    private val preferences: UserPreferencesDataSource,
 ) {
-    /** Records the page the reader is on. [finished] marks the chapter read. */
+    /** Records the page the reader is on. [finished] marks the chapter read. Ignored if incognito mode is on. */
     suspend fun saveProgress(chapterId: Long, page: Int, finished: Boolean) {
+        val settings = preferences.settings.first()
+        if (settings.incognitoMode) return
+
         val chapter = chapterDao.getById(chapterId) ?: return
         // Re-reading a finished chapter must not mark it unread again.
         chapterDao.updateProgress(chapterId, read = chapter.read || finished, lastPageRead = page)

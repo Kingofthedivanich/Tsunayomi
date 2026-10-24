@@ -12,4 +12,5 @@
     <string name="feature_history_clear_message">Reading progress in chapters is kept; only this list is cleared.</string>
     <string name="feature_history_cancel">Cancel</string>
     <string name="feature_history_local_source">Local files</string>
+    <string name="feature_history_incognito_active">Incognito mode is active. Reading history is not being saved.</string>
 </resources>

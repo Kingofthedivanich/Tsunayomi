@@ -20,4 +20,7 @@
     <string name="feature_reader_translation_error_quota">%s free limit reached</string>
     <string name="feature_reader_translation_error_language">language \"%s\" is not supported</string>
     <string name="feature_reader_translation_error_network">no connection (first use downloads a language pack)</string>
+    <string name="feature_reader_incognito_on">Turn on incognito</string>
+    <string name="feature_reader_incognito_off">Turn off incognito</string>
+    <string name="feature_reader_incognito_active">Incognito</string>
 </resources>

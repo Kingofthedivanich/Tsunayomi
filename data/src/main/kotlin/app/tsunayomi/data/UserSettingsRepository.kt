@@ -43,4 +43,12 @@ class UserSettingsRepository @Inject constructor(
     suspend fun setAutoDownloadNewChapters(enabled: Boolean) = preferences.setAutoDownloadNewChapters(enabled)
 
     suspend fun setLibrarySort(sort: LibrarySort, ascending: Boolean) = preferences.setLibrarySort(sort, ascending)
+
+    suspend fun setIncognitoMode(enabled: Boolean) = preferences.setIncognitoMode(enabled)
+
+    suspend fun setAppLockEnabled(enabled: Boolean) = preferences.setAppLockEnabled(enabled)
+
+    suspend fun setAppLockTimeoutMinutes(minutes: Int) = preferences.setAppLockTimeoutMinutes(minutes)
+
+    suspend fun setSecureScreen(enabled: Boolean) = preferences.setSecureScreen(enabled)
 }

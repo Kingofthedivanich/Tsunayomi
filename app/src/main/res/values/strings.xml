@@ -10,4 +10,8 @@
     <string name="crash_message">This report stays on your phone. Nothing is sent unless you share it yourself — it helps fix the bug.</string>
     <string name="crash_share">Share report</string>
     <string name="crash_discard">Delete</string>
+    <string name="app_lock_locked_title">Tsunayomi is locked</string>
+    <string name="app_lock_unlock">Unlock</string>
+    <string name="app_lock_prompt_title">Unlock Tsunayomi</string>
+    <string name="app_lock_prompt_subtitle">Confirm your identity to continue</string>
 </resources>

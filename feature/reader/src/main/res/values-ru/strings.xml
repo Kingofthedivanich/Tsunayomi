@@ -20,4 +20,7 @@
     <string name="feature_reader_translation_error_quota">исчерпан бесплатный лимит %s</string>
     <string name="feature_reader_translation_error_language">язык «%s» не поддерживается</string>
     <string name="feature_reader_translation_error_network">нет связи (при первом запуске скачивается языковой пакет)</string>
+    <string name="feature_reader_incognito_on">Включить режим инкогнито</string>
+    <string name="feature_reader_incognito_off">Выключить режим инкогнито</string>
+    <string name="feature_reader_incognito_active">Инкогнито</string>
 </resources>

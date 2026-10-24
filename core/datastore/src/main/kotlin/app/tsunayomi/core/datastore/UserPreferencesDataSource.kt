@@ -36,6 +36,10 @@ class UserPreferencesDataSource @Inject constructor(
             libraryUpdateIntervalHours = prefs[Keys.libraryUpdateInterval] ?: defaults.libraryUpdateIntervalHours,
             libraryUpdateWifiOnly = prefs[Keys.libraryUpdateWifiOnly] ?: defaults.libraryUpdateWifiOnly,
             autoDownloadNewChapters = prefs[Keys.autoDownloadNew] ?: defaults.autoDownloadNewChapters,
+            incognitoMode = prefs[Keys.incognitoMode] ?: defaults.incognitoMode,
+            appLockEnabled = prefs[Keys.appLockEnabled] ?: defaults.appLockEnabled,
+            appLockTimeoutMinutes = prefs[Keys.appLockTimeoutMinutes] ?: defaults.appLockTimeoutMinutes,
+            secureScreen = prefs[Keys.secureScreen] ?: defaults.secureScreen,
         )
     }
 
@@ -100,6 +104,22 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.translateByDefault] = enabled }
     }
 
+    suspend fun setIncognitoMode(enabled: Boolean) {
+        dataStore.edit { it[Keys.incognitoMode] = enabled }
+    }
+
+    suspend fun setAppLockEnabled(enabled: Boolean) {
+        dataStore.edit { it[Keys.appLockEnabled] = enabled }
+    }
+
+    suspend fun setAppLockTimeoutMinutes(minutes: Int) {
+        dataStore.edit { it[Keys.appLockTimeoutMinutes] = minutes }
+    }
+
+    suspend fun setSecureScreen(enabled: Boolean) {
+        dataStore.edit { it[Keys.secureScreen] = enabled }
+    }
+
     private inline fun <reified E : Enum<E>> String?.toEnum(default: E): E =
         this?.let { name -> enumValues<E>().firstOrNull { it.name == name } } ?: default
 
@@ -119,5 +139,9 @@ class UserPreferencesDataSource @Inject constructor(
         val libraryUpdateInterval = intPreferencesKey("library_update_interval_hours")
         val libraryUpdateWifiOnly = booleanPreferencesKey("library_update_wifi_only")
         val autoDownloadNew = booleanPreferencesKey("auto_download_new_chapters")
+        val incognitoMode = booleanPreferencesKey("incognito_mode")
+        val appLockEnabled = booleanPreferencesKey("app_lock_enabled")
+        val appLockTimeoutMinutes = intPreferencesKey("app_lock_timeout_minutes")
+        val secureScreen = booleanPreferencesKey("secure_screen")
     }
 }

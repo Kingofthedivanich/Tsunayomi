@@ -31,9 +31,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -85,6 +88,10 @@ internal class ReaderViewModel @Inject constructor(
 
     private val _translationOn = MutableStateFlow(false)
     val translationOn: StateFlow<Boolean> = _translationOn.asStateFlow()
+
+    val incognitoOn: StateFlow<Boolean> = settingsRepository.settings
+        .map { it.incognitoMode }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
 
     /** Per page index of the current chapter. */
     private val _translations = MutableStateFlow<Map<Int, PageTranslationState>>(emptyMap())
@@ -169,6 +176,13 @@ internal class ReaderViewModel @Inject constructor(
         val enabled = !_translationOn.value
         _translationOn.value = enabled
         if (enabled) translateAround(_currentPage.value)
+    }
+
+    fun toggleIncognito() {
+        viewModelScope.launch {
+            val current = settingsRepository.settings.first().incognitoMode
+            settingsRepository.setIncognitoMode(!current)
+        }
     }
 
     fun retryTranslation(index: Int) {

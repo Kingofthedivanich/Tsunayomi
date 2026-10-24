@@ -7,11 +7,13 @@ import app.tsunayomi.data.LibraryRepository
 import app.tsunayomi.data.MangaRepository
 import app.tsunayomi.data.ReadingOrder
 import app.tsunayomi.data.SourceManager
+import app.tsunayomi.data.UserSettingsRepository
 import app.tsunayomi.source.api.SourceIds
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -22,10 +24,15 @@ internal class HistoryViewModel @Inject constructor(
     private val libraryRepository: LibraryRepository,
     private val mangaRepository: MangaRepository,
     private val sourceManager: SourceManager,
+    private val userSettingsRepository: UserSettingsRepository,
 ) : ViewModel() {
     /** Source name for display; null for the local library, whose label is localized by the screen. */
     fun sourceName(sourceId: Long): String? =
         if (sourceId == SourceIds.LOCAL) null else sourceManager.get(sourceId)?.name
+
+    val isIncognito: StateFlow<Boolean> = userSettingsRepository.settings
+        .map { it.incognitoMode }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = false)
 
     /** Null while loading, so the empty state does not flash on start. */
     val items: StateFlow<List<HistoryItem>?> = libraryRepository.observeHistory()

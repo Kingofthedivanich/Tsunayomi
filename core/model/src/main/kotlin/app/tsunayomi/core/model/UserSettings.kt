@@ -21,6 +21,14 @@ data class UserSettings(
     val libraryUpdateWifiOnly: Boolean = false,
     /** Queue chapters found by a library update for download (and translation, if that is on). */
     val autoDownloadNewChapters: Boolean = false,
+    /** When enabled, reading progress and history are not saved. */
+    val incognitoMode: Boolean = false,
+    /** Require biometric authentication or device credential to open the app. */
+    val appLockEnabled: Boolean = false,
+    /** Inactivity timeout in minutes before requiring authentication again (0 = immediately). */
+    val appLockTimeoutMinutes: Int = 0,
+    /** Block screenshots and hide preview in recent apps switcher. */
+    val secureScreen: Boolean = false,
 )
 
 enum class ThemeMode {

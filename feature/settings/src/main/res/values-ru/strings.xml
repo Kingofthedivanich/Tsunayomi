@@ -107,4 +107,18 @@
     <string name="feature_settings_backup_error_title">Ошибка</string>
     <string name="feature_settings_backup_res_created">Резервная копия создана (%1$d тайтлов, %2$d категорий, %3$d глав)</string>
     <string name="feature_settings_backup_res_restored">Данные восстановлены (%1$d тайтлов, %2$d категорий, %3$d глав)</string>
+
+    <!-- Безопасность и приватность -->
+    <string name="feature_settings_section_security">Безопасность и приватность</string>
+    <string name="feature_settings_incognito_title">Режим инкогнито</string>
+    <string name="feature_settings_incognito_summary">Приостанавливает запись истории и прогресса чтения</string>
+    <string name="feature_settings_app_lock_title">Блокировка приложения</string>
+    <string name="feature_settings_app_lock_summary">Требовать биометрию или PIN-код для входа</string>
+    <string name="feature_settings_app_lock_timeout_title">Блокировать</string>
+    <string name="feature_settings_app_lock_timeout_immediately">Сразу</string>
+    <string name="feature_settings_app_lock_timeout_1_min">1 минута</string>
+    <string name="feature_settings_app_lock_timeout_5_min">5 минут</string>
+    <string name="feature_settings_app_lock_timeout_10_min">10 минут</string>
+    <string name="feature_settings_secure_screen_title">Безопасный экран</string>
+    <string name="feature_settings_secure_screen_summary">Запретить скриншоты и скрыть окно в недавних приложениях</string>
 </resources>

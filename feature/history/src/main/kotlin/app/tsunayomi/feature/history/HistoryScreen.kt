@@ -1,7 +1,11 @@
 package app.tsunayomi.feature.history
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.DeleteSweep
 import androidx.compose.material.icons.outlined.History
+import androidx.compose.material.icons.outlined.VisibilityOff
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -18,9 +23,11 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
+import androidx.compose.ui.Alignment
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -52,6 +59,7 @@ internal fun HistoryScreen(
     viewModel: HistoryViewModel = hiltViewModel(),
 ) {
     val items by viewModel.items.collectAsStateWithLifecycle()
+    val isIncognito by viewModel.isIncognito.collectAsStateWithLifecycle()
     LaunchedEffect(viewModel) { viewModel.openReader.collect { (manga, chapter) -> onOpenReader(manga, chapter) } }
     var confirmClear by rememberSaveable { mutableStateOf(false) }
 
@@ -71,12 +79,16 @@ internal fun HistoryScreen(
     ) { padding ->
         val list = items ?: return@Scaffold
         if (list.isEmpty()) {
-            EmptyState(
-                icon = Icons.Outlined.History,
-                title = stringResource(R.string.feature_history_empty_title),
-                message = stringResource(R.string.feature_history_empty_message),
-                modifier = Modifier.padding(padding),
-            )
+            Column(modifier = Modifier.padding(padding)) {
+                if (isIncognito) {
+                    IncognitoBanner()
+                }
+                EmptyState(
+                    icon = Icons.Outlined.History,
+                    title = stringResource(R.string.feature_history_empty_title),
+                    message = stringResource(R.string.feature_history_empty_message),
+                )
+            }
             return@Scaffold
         }
         val zone = remember { ZoneId.systemDefault() }
@@ -84,6 +96,11 @@ internal fun HistoryScreen(
         val dateFormat = remember { DateFormat.getDateInstance(DateFormat.LONG) }
         val timeFormat = remember { DateFormat.getTimeInstance(DateFormat.SHORT) }
         LazyColumn(contentPadding = padding) {
+            if (isIncognito) {
+                item(key = "incognito-banner") {
+                    IncognitoBanner()
+                }
+            }
             groups.forEach { (bucket, entries) ->
                 item(key = "header-$bucket") {
                     Text(
@@ -168,4 +185,32 @@ private fun HistoryRow(
         },
         modifier = Modifier.clickable(onClick = onResume),
     )
+}
+
+@Composable
+private fun IncognitoBanner(modifier: Modifier = Modifier) {
+    Surface(
+        color = MaterialTheme.colorScheme.secondaryContainer,
+        shape = RoundedCornerShape(12.dp),
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+    ) {
+        Row(
+            modifier = Modifier.padding(12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            Icon(
+                Icons.Outlined.VisibilityOff,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+            Text(
+                text = stringResource(R.string.feature_history_incognito_active),
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onSecondaryContainer,
+            )
+        }
+    }
 }

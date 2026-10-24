@@ -12,4 +12,5 @@
     <string name="feature_history_clear_message">Прогресс в главах сохранится, очистится только этот список.</string>
     <string name="feature_history_cancel">Отмена</string>
     <string name="feature_history_local_source">Локальные файлы</string>
+    <string name="feature_history_incognito_active">Режим инкогнито включён. История чтения не сохраняется.</string>
 </resources>
