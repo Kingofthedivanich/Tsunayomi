@@ -28,4 +28,8 @@
     <string name="feature_library_delete_category_message">Тайтлы останутся в библиотеке, просто выйдут из этой категории.</string>
     <string name="feature_library_ok">OK</string>
     <string name="feature_library_cancel">Отмена</string>
+    <string name="category_reading">Читаю</string>
+    <string name="category_completed">Прочитано</string>
+    <string name="category_plan_to_read">Буду читать</string>
+    <string name="category_dropped">Брошено</string>
 </resources>

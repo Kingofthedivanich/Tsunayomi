@@ -2,13 +2,17 @@ package app.tsunayomi.data
 
 import app.tsunayomi.core.database.dao.CategoryDao
 import app.tsunayomi.core.database.dao.LibraryDao
+import app.tsunayomi.core.datastore.UserPreferencesDataSource
 import app.tsunayomi.core.model.Category
+import app.tsunayomi.core.model.DefaultCategories
 import app.tsunayomi.core.model.HistoryItem
 import app.tsunayomi.core.model.LibraryManga
 import app.tsunayomi.core.model.UpdateItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import java.util.Locale
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,7 +20,44 @@ import javax.inject.Singleton
 class LibraryRepository @Inject constructor(
     private val libraryDao: LibraryDao,
     private val categoryDao: CategoryDao,
+    private val preferences: UserPreferencesDataSource,
 ) {
+    suspend fun ensureDefaultCategories() {
+        val initialized = preferences.defaultCategoriesInitialized.first()
+        if (initialized) return
+        preferences.setDefaultCategoriesInitialized(true)
+
+        val existing = categoryDao.getAll()
+        if (existing.isNotEmpty()) return
+
+        val isRu = Locale.getDefault().language == "ru"
+        val readingName = if (isRu) DefaultCategories.READING_RU else DefaultCategories.READING_EN
+        val completedName = if (isRu) DefaultCategories.COMPLETED_RU else DefaultCategories.COMPLETED_EN
+        val planToReadName = if (isRu) DefaultCategories.PLAN_TO_READ_RU else DefaultCategories.PLAN_TO_READ_EN
+        val droppedName = if (isRu) DefaultCategories.DROPPED_RU else DefaultCategories.DROPPED_EN
+
+        val readingId = categoryDao.create(readingName)
+        categoryDao.create(completedName)
+        categoryDao.create(planToReadName)
+        categoryDao.create(droppedName)
+
+        val favorites = libraryDao.favoriteIds()
+        if (favorites.isNotEmpty()) {
+            favorites.forEach { mangaId ->
+                if (categoryDao.getCategoryIds(mangaId).isEmpty()) {
+                    categoryDao.setMangaCategories(mangaId, listOf(readingId))
+                }
+            }
+        }
+    }
+
+    suspend fun getReadingMangaIds(): Set<Long> {
+        val readingCategoryIds = categoryDao.getAll()
+            .filter { DefaultCategories.isReading(it.name) }
+            .map { it.id }
+        if (readingCategoryIds.isEmpty()) return emptySet()
+        return categoryDao.getMangaIdsForCategories(readingCategoryIds).toSet()
+    }
     fun observeLibrary(): Flow<List<LibraryManga>> = combine(
         libraryDao.observeLibrary(),
         categoryDao.observeMangaCategories(),

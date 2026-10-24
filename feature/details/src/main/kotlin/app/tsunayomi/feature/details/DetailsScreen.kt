@@ -86,6 +86,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import app.tsunayomi.core.model.Category
+import app.tsunayomi.core.model.DefaultCategories
 import app.tsunayomi.core.model.ChapterDownload
 import app.tsunayomi.core.model.DownloadState
 import app.tsunayomi.core.model.Chapter
@@ -377,7 +378,18 @@ private fun CategoryDialog(
     onConfirm: (Set<Long>) -> Unit,
     onDismiss: () -> Unit,
 ) {
-    var selected by remember { mutableStateOf(initial) }
+    val effectiveInitial = remember(initial, categories) {
+        if (initial.isEmpty()) {
+            val readingCategory = categories.firstOrNull { DefaultCategories.isReading(it.name) }
+            if (readingCategory != null) setOf(readingCategory.id) else emptySet()
+        } else {
+            initial
+        }
+    }
+    var selected by remember { mutableStateOf(effectiveInitial) }
+    val statusCategoryIds = remember(categories) {
+        categories.filter { DefaultCategories.isStatusCategory(it.name) }.map { it.id }.toSet()
+    }
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(stringResource(R.string.feature_details_categories)) },
@@ -388,8 +400,16 @@ private fun CategoryDialog(
                     ListItem(
                         headlineContent = { Text(category.name) },
                         leadingContent = { Checkbox(checked = checked, onCheckedChange = null) },
-                        modifier = Modifier.toggleable(value = checked, role = Role.Checkbox) {
-                            selected = if (it) selected + category.id else selected - category.id
+                        modifier = Modifier.toggleable(value = checked, role = Role.Checkbox) { isChecked ->
+                            selected = if (isChecked) {
+                                if (category.id in statusCategoryIds) {
+                                    (selected - statusCategoryIds) + category.id
+                                } else {
+                                    selected + category.id
+                                }
+                            } else {
+                                selected - category.id
+                            }
                         },
                     )
                 }

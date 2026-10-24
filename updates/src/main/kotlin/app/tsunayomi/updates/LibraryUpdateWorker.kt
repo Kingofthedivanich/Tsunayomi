@@ -30,6 +30,8 @@ class LibraryUpdateWorker @AssistedInject constructor(
 ) : CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {
+        libraryRepository.ensureDefaultCategories()
+        val readingMangaIds = libraryRepository.getReadingMangaIds()
         val ids = libraryRepository.favoriteIds()
         val found = mutableListOf<NewChapters>()
         ids.forEachIndexed { index, mangaId ->
@@ -39,8 +41,10 @@ class LibraryUpdateWorker @AssistedInject constructor(
                 if (newIds.isNotEmpty()) {
                     val manga = mangaRepository.getManga(mangaId) ?: return@forEachIndexed
                     val chapters = mangaRepository.getChaptersById(newIds).sortedBy { it.sourceOrder }
-                    found += NewChapters(mangaId, manga.title, chapters.map { it.name })
-                    if (preferences.settings.first().autoDownloadNewChapters) downloadManager.enqueue(mangaId, chapters.map { it.id })
+                    if (mangaId in readingMangaIds) {
+                        found += NewChapters(mangaId, manga.title, chapters.map { it.name })
+                        if (preferences.settings.first().autoDownloadNewChapters) downloadManager.enqueue(mangaId, chapters.map { it.id })
+                    }
                 }
             } catch (e: CancellationException) {
                 throw e

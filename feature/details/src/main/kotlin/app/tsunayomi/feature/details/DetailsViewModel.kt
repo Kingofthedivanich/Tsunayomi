@@ -128,6 +128,7 @@ internal class DetailsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            libraryRepository.ensureDefaultCategories()
             if (mangaRepository.needsRefresh(mangaId)) refresh()
         }
     }

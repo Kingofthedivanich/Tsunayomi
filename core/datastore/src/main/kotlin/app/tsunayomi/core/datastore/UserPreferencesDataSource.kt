@@ -125,6 +125,12 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.onboardingCompleted] = completed }
     }
 
+    val defaultCategoriesInitialized: Flow<Boolean> = dataStore.data.map { it[Keys.defaultCategoriesInitialized] ?: false }
+
+    suspend fun setDefaultCategoriesInitialized(initialized: Boolean) {
+        dataStore.edit { it[Keys.defaultCategoriesInitialized] = initialized }
+    }
+
     private inline fun <reified E : Enum<E>> String?.toEnum(default: E): E =
         this?.let { name -> enumValues<E>().firstOrNull { it.name == name } } ?: default
 
@@ -149,5 +155,6 @@ class UserPreferencesDataSource @Inject constructor(
         val appLockTimeoutMinutes = intPreferencesKey("app_lock_timeout_minutes")
         val secureScreen = booleanPreferencesKey("secure_screen")
         val onboardingCompleted = booleanPreferencesKey("onboarding_completed")
+        val defaultCategoriesInitialized = booleanPreferencesKey("default_categories_initialized")
     }
 }

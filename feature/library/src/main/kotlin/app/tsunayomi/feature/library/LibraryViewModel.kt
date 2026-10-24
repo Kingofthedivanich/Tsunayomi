@@ -44,11 +44,17 @@ internal sealed interface LibraryEvent {
 
 @HiltViewModel
 internal class LibraryViewModel @Inject constructor(
-    libraryRepository: LibraryRepository,
+    private val libraryRepository: LibraryRepository,
     private val mangaRepository: MangaRepository,
     private val settingsRepository: UserSettingsRepository,
     private val updateScheduler: LibraryUpdateScheduler,
 ) : ViewModel() {
+    init {
+        viewModelScope.launch {
+            libraryRepository.ensureDefaultCategories()
+        }
+    }
+
     val updating: StateFlow<Boolean> = updateScheduler.isRunning
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), false)
 

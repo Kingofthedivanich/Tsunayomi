@@ -25,6 +25,9 @@ abstract class CategoryDao {
     @Query("SELECT category_id FROM manga_category WHERE manga_id = :mangaId")
     abstract suspend fun getCategoryIds(mangaId: Long): List<Long>
 
+    @Query("SELECT DISTINCT manga_id FROM manga_category WHERE category_id IN (:categoryIds)")
+    abstract suspend fun getMangaIdsForCategories(categoryIds: Collection<Long>): List<Long>
+
     @Query("SELECT COALESCE(MAX(sort_order), -1) + 1 FROM category")
     protected abstract suspend fun nextOrder(): Int
 

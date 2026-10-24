@@ -28,4 +28,8 @@
     <string name="feature_library_delete_category_message">Titles stay in your library; they just leave this category.</string>
     <string name="feature_library_ok">OK</string>
     <string name="feature_library_cancel">Cancel</string>
+    <string name="category_reading">Reading</string>
+    <string name="category_completed">Completed</string>
+    <string name="category_plan_to_read">Plan to read</string>
+    <string name="category_dropped">Dropped</string>
 </resources>
