@@ -79,6 +79,7 @@ class RemangaSourceTest {
         val item = result.items[0]
         assertEquals("solo-leveling_", item.url)
         assertEquals("Поднятие уровня в одиночку", item.title)
+        assertEquals("ru", item.originalLang)
         assertEquals("https://remanga.org/media/titles/solo-leveling_/cover_high.webp", item.coverUrl)
         assertEquals(listOf("Экшен", "Фэнтези"), item.genres)
     }
@@ -170,6 +171,7 @@ class RemangaSourceTest {
 
         assertEquals("/api/titles/estate-designer", recorded.url.encodedPath)
         assertEquals("Система всемогущего дизайнера", details.title)
+        assertEquals("ru", details.originalLang)
         assertEquals("https://remanga.org/media/estate_high.webp", details.coverUrl)
         assertEquals("Ким Сухо оказывается в теле дворянина-бездельника Ллойда.", details.description)
         assertEquals(SManga.Status.Ongoing, details.status)

@@ -161,6 +161,7 @@ class RemangaSource(
             description = description,
             genres = details.genres.map { it.name },
             status = status,
+            originalLang = PAGE_LANGUAGE,
         )
     }
 
@@ -254,6 +255,7 @@ class RemangaSource(
             coverUrl = coverUrl,
             status = SManga.Status.Unknown,
             genres = genres.map { it.name },
+            originalLang = PAGE_LANGUAGE,
         )
     }
 
@@ -277,6 +279,9 @@ class RemangaSource(
     }
 
     companion object {
+        /** Remanga hosts Russian translations: the text on the pages is Russian whatever the original was. */
+        const val PAGE_LANGUAGE = "ru"
+
         const val API_BASE_URL = "https://api.remanga.org/api/"
         private const val PAGE_SIZE = 30
         private val HTML_TAG_REGEX = Regex("<[^>]*>")
