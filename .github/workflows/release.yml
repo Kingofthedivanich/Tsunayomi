@@ -55,8 +55,20 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" dist/*.apk dist/SHA256SUMS.txt \
-            --title "Tsunayomi ${GITHUB_REF_NAME#v}" --generate-notes
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v ver="$VERSION" '
+            index($0, "## [" ver "]") == 1 { capture=1; next }
+            capture && index($0, "## [") == 1 { exit }
+            capture { print }
+          ' CHANGELOG.md > dist/release-notes.md
+
+          if [ -s dist/release-notes.md ]; then
+            gh release create "$GITHUB_REF_NAME" dist/*.apk dist/SHA256SUMS.txt \
+              --title "Tsunayomi $VERSION" --notes-file dist/release-notes.md
+          else
+            gh release create "$GITHUB_REF_NAME" dist/*.apk dist/SHA256SUMS.txt \
+              --title "Tsunayomi $VERSION" --generate-notes
+          fi
 
       - name: Keep mapping file
         uses: actions/upload-artifact@v4
