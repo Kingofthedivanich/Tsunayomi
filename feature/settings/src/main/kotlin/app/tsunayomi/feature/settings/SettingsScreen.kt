@@ -41,6 +41,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import app.tsunayomi.core.designsystem.component.labelRes
 import app.tsunayomi.core.designsystem.component.rememberLibraryFolderPicker
+import app.tsunayomi.core.model.DeepLConfig
+import app.tsunayomi.core.model.DeepLUsage
 import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.ReaderMode
@@ -59,10 +61,16 @@ internal fun SettingsScreen(
     val komgaUrl by viewModel.komgaUrl.collectAsStateWithLifecycle()
     val gemini by viewModel.gemini.collectAsStateWithLifecycle()
     val openAi by viewModel.openAi.collectAsStateWithLifecycle()
+    val deepL by viewModel.deepL.collectAsStateWithLifecycle()
+    val deepLUsage by viewModel.deepLUsage.collectAsStateWithLifecycle()
+    val isCheckingDeepLUsage by viewModel.isCheckingDeepLUsage.collectAsStateWithLifecycle()
     SettingsContent(
         settings = settings,
         gemini = gemini,
         openAi = openAi,
+        deepL = deepL,
+        deepLUsage = deepLUsage,
+        isCheckingDeepLUsage = isCheckingDeepLUsage,
         onTranslationEngineChange = viewModel::setTranslationEngine,
         onTranslationLangChange = viewModel::setTranslationTargetLang,
         onTranslateByDefaultChange = viewModel::setTranslateByDefault,
@@ -72,6 +80,8 @@ internal fun SettingsScreen(
         onAutoDownloadNewChange = viewModel::setAutoDownloadNewChapters,
         onGeminiChange = viewModel::setGemini,
         onOpenAiChange = viewModel::setOpenAi,
+        onDeepLChange = viewModel::setDeepL,
+        onRefreshDeepLUsage = viewModel::refreshDeepLUsage,
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
         onOpenBackup = onOpenBackup,
@@ -91,6 +101,9 @@ private fun SettingsContent(
     settings: UserSettings?,
     gemini: GeminiConfig?,
     openAi: OpenAiConfig?,
+    deepL: DeepLConfig?,
+    deepLUsage: DeepLUsage?,
+    isCheckingDeepLUsage: Boolean,
     onTranslationEngineChange: (TranslationEngine) -> Unit,
     onTranslationLangChange: (String) -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
@@ -100,6 +113,8 @@ private fun SettingsContent(
     onAutoDownloadNewChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
     onOpenAiChange: (OpenAiConfig) -> Unit,
+    onDeepLChange: (DeepLConfig) -> Unit,
+    onRefreshDeepLUsage: () -> Unit,
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
     onOpenBackup: () -> Unit,
@@ -230,12 +245,17 @@ private fun SettingsContent(
                 settings = settings,
                 gemini = gemini,
                 openAi = openAi,
+                deepL = deepL,
+                deepLUsage = deepLUsage,
+                isCheckingDeepLUsage = isCheckingDeepLUsage,
                 onPickEngine = { showEngineDialog = true },
                 onPickLanguage = { showTargetDialog = true },
                 onTranslateByDefaultChange = onTranslateByDefaultChange,
                 onTranslateOnDownloadChange = onTranslateOnDownloadChange,
                 onGeminiChange = onGeminiChange,
                 onOpenAiChange = onOpenAiChange,
+                onDeepLChange = onDeepLChange,
+                onRefreshDeepLUsage = onRefreshDeepLUsage,
                 switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
             )
 

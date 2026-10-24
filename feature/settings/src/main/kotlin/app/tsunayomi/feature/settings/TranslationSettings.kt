@@ -19,6 +19,8 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import app.tsunayomi.core.model.DeepLConfig
+import app.tsunayomi.core.model.DeepLUsage
 import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.TranslationEngine
@@ -44,6 +46,7 @@ internal fun TranslationEngine.label(): String = when (this) {
     TranslationEngine.MlKit -> stringResource(R.string.feature_settings_translation_engine_mlkit)
     TranslationEngine.Gemini -> stringResource(R.string.feature_settings_translation_engine_gemini)
     TranslationEngine.OpenAiCompatible -> stringResource(R.string.feature_settings_translation_engine_openai)
+    TranslationEngine.DeepL -> stringResource(R.string.feature_settings_translation_engine_deepl)
     else -> name
 }
 
@@ -53,12 +56,17 @@ internal fun TranslationSection(
     settings: UserSettings,
     gemini: GeminiConfig?,
     openAi: OpenAiConfig?,
+    deepL: DeepLConfig?,
+    deepLUsage: DeepLUsage?,
+    isCheckingDeepLUsage: Boolean,
     onPickEngine: () -> Unit,
     onPickLanguage: () -> Unit,
     onTranslateByDefaultChange: (Boolean) -> Unit,
     onTranslateOnDownloadChange: (Boolean) -> Unit,
     onGeminiChange: (GeminiConfig) -> Unit,
     onOpenAiChange: (OpenAiConfig) -> Unit,
+    onDeepLChange: (DeepLConfig) -> Unit,
+    onRefreshDeepLUsage: () -> Unit,
     switchItem: @Composable (title: String, summary: String, checked: Boolean, onChange: (Boolean) -> Unit) -> Unit,
 ) {
     var keyDialog by rememberSaveable { mutableStateOf(false) }
@@ -68,6 +76,8 @@ internal fun TranslationSection(
     var openAiUrlDialog by rememberSaveable { mutableStateOf(false) }
     var openAiKeyDialog by rememberSaveable { mutableStateOf(false) }
     var openAiModelDialog by rememberSaveable { mutableStateOf(false) }
+
+    var deepLKeyDialog by rememberSaveable { mutableStateOf(false) }
 
     ListItem(
         headlineContent = { Text(stringResource(R.string.feature_settings_translation_engine)) },
@@ -142,6 +152,57 @@ internal fun TranslationSection(
             headlineContent = { Text(stringResource(R.string.feature_settings_openai_model)) },
             supportingContent = { Text(openAi.model) },
             modifier = Modifier.clickable { openAiModelDialog = true },
+        )
+    }
+
+    if (settings.translationEngine == TranslationEngine.DeepL && deepL != null) {
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.feature_settings_deepl_key)) },
+            supportingContent = {
+                Text(
+                    if (deepL.apiKey.isBlank()) {
+                        stringResource(R.string.feature_settings_deepl_key_missing)
+                    } else if (deepL.isFreeTier) {
+                        stringResource(R.string.feature_settings_deepl_key_set_free)
+                    } else {
+                        stringResource(R.string.feature_settings_deepl_key_set_pro)
+                    },
+                    color = if (deepL.apiKey.isBlank()) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            },
+            modifier = Modifier.clickable { deepLKeyDialog = true },
+        )
+        ListItem(
+            headlineContent = { Text(stringResource(R.string.feature_settings_deepl_usage)) },
+            supportingContent = {
+                Text(
+                    when {
+                        isCheckingDeepLUsage -> stringResource(R.string.feature_settings_deepl_checking_usage)
+                        deepLUsage != null -> stringResource(
+                            R.string.feature_settings_deepl_usage_summary,
+                            deepLUsage.characterCount,
+                            deepLUsage.characterLimit,
+                            deepLUsage.percentage,
+                        )
+                        else -> stringResource(R.string.feature_settings_deepl_check_usage)
+                    },
+                )
+            },
+            modifier = Modifier.clickable(onClick = onRefreshDeepLUsage),
+        )
+    }
+
+    if (deepLKeyDialog && deepL != null) {
+        TextValueDialog(
+            title = stringResource(R.string.feature_settings_deepl_key),
+            hint = stringResource(R.string.feature_settings_deepl_key_hint),
+            initial = deepL.apiKey,
+            secret = true,
+            onConfirm = {
+                deepLKeyDialog = false
+                onDeepLChange(deepL.copy(apiKey = it))
+            },
+            onDismiss = { deepLKeyDialog = false },
         )
     }
 

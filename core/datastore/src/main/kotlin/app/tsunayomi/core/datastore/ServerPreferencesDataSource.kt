@@ -4,6 +4,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import app.tsunayomi.core.model.DeepLConfig
 import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.KomgaConfig
 import app.tsunayomi.core.model.OpenAiConfig
@@ -75,6 +76,18 @@ class ServerPreferencesDataSource @Inject constructor(
         }
     }
 
+    val deepL: Flow<DeepLConfig> = dataStore.data.map { prefs ->
+        DeepLConfig(
+            apiKey = prefs[Keys.deepLApiKey]?.let(cipher::decrypt).orEmpty(),
+        )
+    }.distinctUntilChanged()
+
+    suspend fun setDeepL(config: DeepLConfig) {
+        dataStore.edit { prefs ->
+            prefs.putSecret(Keys.deepLApiKey, config.apiKey.trim())
+        }
+    }
+
     private fun androidx.datastore.preferences.core.MutablePreferences.putSecret(
         key: Preferences.Key<String>,
         value: String,
@@ -92,5 +105,6 @@ class ServerPreferencesDataSource @Inject constructor(
         val openAiBaseUrl = stringPreferencesKey("openai_base_url")
         val openAiApiKey = stringPreferencesKey("openai_api_key")
         val openAiModel = stringPreferencesKey("openai_model")
+        val deepLApiKey = stringPreferencesKey("deepl_api_key")
     }
 }

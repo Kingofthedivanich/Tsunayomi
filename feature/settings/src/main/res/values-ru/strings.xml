@@ -47,6 +47,16 @@
     <string name="feature_settings_translation_engine_mlkit">ML Kit — офлайн, бесплатно, базовое качество</string>
     <string name="feature_settings_translation_engine_gemini">Gemini — свой бесплатный ключ, лучшее качество</string>
     <string name="feature_settings_translation_engine_openai">OpenAI-совместимый (DeepSeek, OpenRouter, Groq, Ollama)</string>
+    <string name="feature_settings_translation_engine_deepl">DeepL — бесплатный ключ API (500 тыс. симв/мес), высокое качество</string>
+    <string name="feature_settings_deepl_key">Ключ DeepL API</string>
+    <string name="feature_settings_deepl_key_missing">Не задан — получите бесплатный ключ на deepl.com/pro-api</string>
+    <string name="feature_settings_deepl_key_set_free">DeepL API Free (:fx) — сохранён (зашифрован)</string>
+    <string name="feature_settings_deepl_key_set_pro">DeepL API Pro — сохранён (зашифрован)</string>
+    <string name="feature_settings_deepl_key_hint">Ключ авторизации DeepL API. Ключи бесплатного тарифа оканчиваются на \':fx\'.</string>
+    <string name="feature_settings_deepl_usage">Расход лимита DeepL</string>
+    <string name="feature_settings_deepl_usage_summary">%1$,d / %2$,d символов (%3$d%%)</string>
+    <string name="feature_settings_deepl_check_usage">Проверить лимит</string>
+    <string name="feature_settings_deepl_checking_usage">Проверка лимита…</string>
     <string name="feature_settings_openai_preset">Провайдер</string>
     <string name="feature_settings_openai_url">Базовый URL API</string>
     <string name="feature_settings_openai_url_hint">URL OpenAI-совместимого эндпоинта (например, https://api.deepseek.com/v1 или http://192.168.1.5:11434/v1)</string>

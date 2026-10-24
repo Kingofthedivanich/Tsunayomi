@@ -2,6 +2,8 @@ package app.tsunayomi.feature.settings
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.tsunayomi.core.model.DeepLConfig
+import app.tsunayomi.core.model.DeepLUsage
 import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.ReaderMode
@@ -31,6 +33,25 @@ internal class SettingsViewModel @Inject constructor(
 
     fun setOpenAi(config: OpenAiConfig) {
         viewModelScope.launch { serverSettings.setOpenAi(config) }
+    }
+
+    val deepL: StateFlow<DeepLConfig?> = serverSettings.deepL
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), initialValue = null)
+
+    val deepLUsage = kotlinx.coroutines.flow.MutableStateFlow<DeepLUsage?>(null)
+    val isCheckingDeepLUsage = kotlinx.coroutines.flow.MutableStateFlow(false)
+
+    fun setDeepL(config: DeepLConfig) {
+        viewModelScope.launch { serverSettings.setDeepL(config) }
+    }
+
+    fun refreshDeepLUsage() {
+        viewModelScope.launch {
+            isCheckingDeepLUsage.value = true
+            val result = serverSettings.fetchDeepLUsage()
+            deepLUsage.value = result.getOrNull()
+            isCheckingDeepLUsage.value = false
+        }
     }
 
     fun setTranslationEngine(engine: TranslationEngine) {

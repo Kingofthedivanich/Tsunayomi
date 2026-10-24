@@ -61,6 +61,7 @@ include(":translation:core")
 include(":translation:mlkit")
 include(":translation:gemini")
 include(":translation:openai")
+include(":translation:deepl")
 
 include(":feature:library")
 include(":feature:updates")

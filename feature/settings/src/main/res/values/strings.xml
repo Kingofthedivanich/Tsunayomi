@@ -50,6 +50,16 @@
     <string name="feature_settings_translation_engine_mlkit">ML Kit — offline, free, basic quality</string>
     <string name="feature_settings_translation_engine_gemini">Gemini — your free API key, best quality</string>
     <string name="feature_settings_translation_engine_openai">OpenAI-compatible (DeepSeek, OpenRouter, Groq, Ollama)</string>
+    <string name="feature_settings_translation_engine_deepl">DeepL — free API key (500k chars/mo), high quality</string>
+    <string name="feature_settings_deepl_key">DeepL API key</string>
+    <string name="feature_settings_deepl_key_missing">Not set — get a free key at deepl.com/pro-api</string>
+    <string name="feature_settings_deepl_key_set_free">DeepL API Free (:fx) — saved (encrypted)</string>
+    <string name="feature_settings_deepl_key_set_pro">DeepL API Pro — saved (encrypted)</string>
+    <string name="feature_settings_deepl_key_hint">DeepL API Authentication Key. Free tier keys end with \':fx\'.</string>
+    <string name="feature_settings_deepl_usage">DeepL monthly limit</string>
+    <string name="feature_settings_deepl_usage_summary">%1$,d / %2$,d characters (%3$d%%)</string>
+    <string name="feature_settings_deepl_check_usage">Check usage limit</string>
+    <string name="feature_settings_deepl_checking_usage">Checking limit…</string>
     <string name="feature_settings_openai_preset">Provider preset</string>
     <string name="feature_settings_openai_url">API Base URL</string>
     <string name="feature_settings_openai_url_hint">Base URL for OpenAI-compatible endpoint (e.g. https://api.deepseek.com/v1 or http://192.168.1.5:11434/v1)</string>

@@ -5,8 +5,27 @@ enum class TranslationEngine(val requiresApiKey: Boolean, val implemented: Boole
     MlKit(requiresApiKey = false, implemented = true),
     Gemini(requiresApiKey = true, implemented = true),
     OpenAiCompatible(requiresApiKey = false, implemented = true),
-    DeepL(requiresApiKey = true, implemented = false),
+    DeepL(requiresApiKey = true, implemented = true),
     OfflineModel(requiresApiKey = false, implemented = false),
+}
+
+data class DeepLConfig(
+    val apiKey: String = "",
+) {
+    val isFreeTier: Boolean get() = apiKey.endsWith(":fx")
+    val endpoint: String get() = if (isFreeTier) FREE_ENDPOINT else PRO_ENDPOINT
+
+    companion object {
+        const val FREE_ENDPOINT = "https://api-free.deepl.com/v2"
+        const val PRO_ENDPOINT = "https://api.deepl.com/v2"
+    }
+}
+
+data class DeepLUsage(
+    val characterCount: Long = 0L,
+    val characterLimit: Long = 500_000L,
+) {
+    val percentage: Int get() = if (characterLimit > 0) ((characterCount * 100) / characterLimit).toInt() else 0
 }
 
 data class OpenAiConfig(
