@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application>
+        <!--
+        ML Kit queues usage events (log source FIREBASE_ML_SDK) and Google's datatransport library uploads them to
+        firebaselogging.googleapis.com. Upload backends are found through this service's metadata; without it the
+        uploader has no "cct" backend, drops the queued events and sends nothing. The scheduler service stays:
+        ML Kit schedules upload jobs against it and would crash if it were missing.
+        -->
+        <service
+            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+            tools:ignore="MissingClass"
+            tools:node="remove" />
+    </application>
+</manifest>
