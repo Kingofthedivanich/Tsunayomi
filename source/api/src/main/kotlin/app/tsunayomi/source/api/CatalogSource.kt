@@ -7,6 +7,12 @@ interface CatalogSource : Source {
     /** The source has its own settings screen (extensions that expose preferences). */
     val hasSettings: Boolean get() = false
 
+    /** Base web page for the source, for opening in WebView or browser. */
+    fun webUrl(): String? = null
+
+    /** Web page for the specific manga in this source. */
+    fun webUrl(manga: SManga): String? = null
+
     fun getFilters(): FilterList = FilterList()
 
     suspend fun getPopular(page: Int): MangaPage

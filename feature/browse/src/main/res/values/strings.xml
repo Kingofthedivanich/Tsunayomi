@@ -31,4 +31,10 @@
     <string name="feature_browse_multi_language_summary">All languages — pick chapter languages in the catalog filters</string>
     <string name="feature_browse_extensions">Extensions</string>
     <string name="feature_browse_source_settings">Source settings</string>
+    <string name="feature_browse_open_in_webview">Open in WebView</string>
+    <string name="feature_browse_more_options">More options</string>
+    <string name="feature_browse_webview_refresh">Refresh</string>
+    <string name="feature_browse_webview_open_in_browser">Open in browser</string>
+    <string name="feature_browse_webview_close">Close</string>
+    <string name="feature_browse_cloudflare_title">Cloudflare verification</string>
 </resources>

@@ -34,6 +34,7 @@ import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
@@ -103,6 +104,7 @@ import java.util.Locale
 internal fun DetailsScreen(
     onBack: () -> Unit,
     onRead: (mangaId: Long, chapterId: Long) -> Unit,
+    onOpenWebView: (url: String, sourceId: Long) -> Unit,
     viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -110,6 +112,7 @@ internal fun DetailsScreen(
     var categoryDialog by rememberSaveable { mutableStateOf(false) }
     var languageDialog by rememberSaveable { mutableStateOf(false) }
     var glossaryDialog by rememberSaveable { mutableStateOf(false) }
+    var moreMenuExpanded by remember { mutableStateOf(false) }
     val glossary by viewModel.glossary.collectAsStateWithLifecycle()
     val downloads by viewModel.downloads.collectAsStateWithLifecycle()
     // Ask once for the notification that shows download progress (Android 13+); downloads work either way.
@@ -123,10 +126,20 @@ internal fun DetailsScreen(
         }
     }
     LaunchedEffect(state.error) {
-        state.error?.let {
-            snackbarHostState.showSnackbar(it)
-            viewModel.dismissError()
+        val error = state.error ?: return@LaunchedEffect
+        if (state.isCloudflareError && state.webUrl != null && state.manga != null) {
+            val result = snackbarHostState.showSnackbar(
+                message = error,
+                actionLabel = context.getString(R.string.feature_details_open_in_webview),
+                duration = androidx.compose.material3.SnackbarDuration.Long,
+            )
+            if (result == androidx.compose.material3.SnackbarResult.ActionPerformed) {
+                onOpenWebView(state.webUrl!!, state.manga!!.sourceId)
+            }
+        } else {
+            snackbarHostState.showSnackbar(error)
         }
+        viewModel.dismissError()
     }
 
     Scaffold(
@@ -147,6 +160,27 @@ internal fun DetailsScreen(
                             },
                             onDeleteAll = viewModel::deleteAllDownloads,
                         )
+                    }
+                    if (state.webUrl != null) {
+                        Box {
+                            IconButton(onClick = { moreMenuExpanded = true }) {
+                                Icon(Icons.Outlined.MoreVert, stringResource(R.string.feature_details_more_options))
+                            }
+                            DropdownMenu(
+                                expanded = moreMenuExpanded,
+                                onDismissRequest = { moreMenuExpanded = false },
+                            ) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.feature_details_open_in_webview)) },
+                                    onClick = {
+                                        moreMenuExpanded = false
+                                        state.manga?.let { m ->
+                                            onOpenWebView(state.webUrl!!, m.sourceId)
+                                        }
+                                    },
+                                )
+                            }
+                        }
                     }
                 },
             )

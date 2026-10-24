@@ -38,6 +38,9 @@ class NaverSource(
     override val id: Long = sourceIdOf(name, lang)
     override val supportsLatest: Boolean = true
 
+    override fun webUrl(): String = baseUrl
+    override fun webUrl(manga: SManga): String = if (manga.url.startsWith("http")) manga.url else "$baseUrl${manga.url}"
+
     private val apiClient = client.newBuilder()
         .addInterceptor(RateLimitInterceptor(permits = 4, period = 1))
         .build()

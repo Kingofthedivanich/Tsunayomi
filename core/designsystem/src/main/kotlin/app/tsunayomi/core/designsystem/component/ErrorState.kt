@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,6 +28,8 @@ fun MessageWithAction(
     icon: ImageVector = Icons.Outlined.ErrorOutline,
     actionLabel: String? = null,
     onAction: (() -> Unit)? = null,
+    secondaryActionLabel: String? = null,
+    onSecondaryAction: (() -> Unit)? = null,
 ) {
     Column(
         modifier = modifier
@@ -47,6 +50,9 @@ fun MessageWithAction(
         }
         if (actionLabel != null && onAction != null) {
             Button(onClick = onAction) { Text(actionLabel) }
+        }
+        if (secondaryActionLabel != null && onSecondaryAction != null) {
+            OutlinedButton(onClick = onSecondaryAction) { Text(secondaryActionLabel) }
         }
     }
 }

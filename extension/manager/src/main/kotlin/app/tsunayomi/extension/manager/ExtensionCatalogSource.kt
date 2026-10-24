@@ -31,6 +31,12 @@ internal class ExtensionCatalogSource(
     override val supportsLatest: Boolean get() = delegate.supportsLatest
     override val hasSettings: Boolean get() = delegate is ConfigurableSource
 
+    override fun webUrl(): String? = (delegate as? HttpSource)?.getHomeUrl() ?: (delegate as? HttpSource)?.baseUrl
+
+    override fun webUrl(manga: SManga): String? = runCatching {
+        (delegate as? HttpSource)?.getMangaUrl(manga.toExtension())
+    }.getOrNull()
+
     // The filter objects shown to the user, mapped back to the extension's own ones (filters are compared by identity).
     private val filterLinks = Collections.synchronizedMap(WeakHashMap<Filter<*>, EFilter<*>>())
     private val listLinks = Collections.synchronizedMap(WeakHashMap<FilterList, EFilterList>())

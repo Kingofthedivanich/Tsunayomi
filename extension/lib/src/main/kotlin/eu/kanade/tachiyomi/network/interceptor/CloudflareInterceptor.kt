@@ -14,6 +14,7 @@ import androidx.webkit.ScriptHandler
 import androidx.webkit.WebViewCompat
 import androidx.webkit.WebViewFeature
 import eu.kanade.tachiyomi.network.AndroidCookieJar
+import eu.kanade.tachiyomi.network.CloudflareChallengeException
 import eu.kanade.tachiyomi.util.system.isOutdated
 import eu.kanade.tachiyomi.util.system.toWebViewHeaders
 import kotlinx.coroutines.CoroutineScope
@@ -107,7 +108,7 @@ class CloudflareInterceptor(
         // Because OkHttp's enqueue only handles IOExceptions, wrap the exception so that
         // we don't crash the entire app
         catch (e: CloudflareBypassException) {
-            throw IOException(context.getString(R.string.extension_lib_cloudflare_bypass_failure), e)
+            throw CloudflareChallengeException(context.getString(R.string.extension_lib_cloudflare_bypass_failure), e)
         } catch (e: Exception) {
             throw IOException(e)
         }

@@ -42,4 +42,6 @@
     <string name="feature_details_download_unread">Download unread chapters</string>
     <string name="feature_details_download_delete_all">Delete all downloads</string>
     <string name="feature_details_download_error">⚠ %s</string>
+    <string name="feature_details_open_in_webview">Open in WebView</string>
+    <string name="feature_details_more_options">More options</string>
 </resources>

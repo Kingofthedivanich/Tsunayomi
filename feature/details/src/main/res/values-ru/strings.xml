@@ -46,4 +46,6 @@
     <string name="feature_details_download_unread">Скачать непрочитанные</string>
     <string name="feature_details_download_delete_all">Удалить все загрузки</string>
     <string name="feature_details_download_error">⚠ %s</string>
+    <string name="feature_details_open_in_webview">Открыть в WebView</string>
+    <string name="feature_details_more_options">Ещё</string>
 </resources>

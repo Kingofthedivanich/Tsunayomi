@@ -12,6 +12,7 @@ import app.tsunayomi.source.api.FilterList
 import app.tsunayomi.source.api.SManga
 import app.tsunayomi.source.api.SourceNotConfiguredException
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.kanade.tachiyomi.network.isCloudflareChallenge
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,6 +34,7 @@ internal data class CatalogUiState(
     val hasNext: Boolean = true,
     val notConfigured: Boolean = false,
     val error: String? = null,
+    val isCloudflareError: Boolean = false,
     /** True once the user applied filters; listing chips then no longer apply. */
     val filtersApplied: Boolean = false,
     val filterVersion: Int = 0,
@@ -63,6 +65,14 @@ internal class CatalogViewModel @Inject constructor(
 
     init {
         reload()
+        viewModelScope.launch {
+            savedStateHandle.getStateFlow("reload_requested", false).collect { requested ->
+                if (requested) {
+                    savedStateHandle["reload_requested"] = false
+                    reload()
+                }
+            }
+        }
     }
 
     fun setListing(listing: CatalogListing) {
@@ -94,7 +104,7 @@ internal class CatalogViewModel @Inject constructor(
     fun reload() {
         loadJob?.cancel()
         nextPage = 1
-        _state.update { it.copy(items = emptyList(), hasNext = true, error = null, notConfigured = false) }
+        _state.update { it.copy(items = emptyList(), hasNext = true, error = null, notConfigured = false, isCloudflareError = false) }
         loadMore()
     }
 
@@ -102,7 +112,7 @@ internal class CatalogViewModel @Inject constructor(
         val current = _state.value
         if (current.loading && loadJob?.isActive == true || !current.hasNext) return
         loadJob = viewModelScope.launch {
-            _state.update { it.copy(loading = true, error = null) }
+            _state.update { it.copy(loading = true, error = null, isCloudflareError = false) }
             val page = nextPage
             try {
                 val result = when {
@@ -118,7 +128,14 @@ internal class CatalogViewModel @Inject constructor(
                 _state.update { it.copy(loading = false, hasNext = false, notConfigured = true) }
             } catch (e: Exception) {
                 if (e is kotlinx.coroutines.CancellationException) throw e
-                _state.update { it.copy(loading = false, error = e.message ?: e.toString()) }
+                val isCf = e.isCloudflareChallenge
+                _state.update {
+                    it.copy(
+                        loading = false,
+                        error = e.message ?: e.toString(),
+                        isCloudflareError = isCf,
+                    )
+                }
             }
         }
     }

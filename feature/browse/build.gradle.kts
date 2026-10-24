@@ -8,4 +8,9 @@ android {
 
 dependencies {
     implementation(projects.data)
+    implementation(projects.extension.lib)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.junit.jupiter)
 }

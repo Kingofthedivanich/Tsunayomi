@@ -11,8 +11,15 @@ data class DetailsRoute(val mangaId: Long)
 fun NavGraphBuilder.detailsScreen(
     onBack: () -> Unit,
     onRead: (mangaId: Long, chapterId: Long) -> Unit,
+    onOpenWebView: (url: String, sourceId: Long) -> Unit,
 ) {
-    composable<DetailsRoute> { DetailsScreen(onBack = onBack, onRead = onRead) }
+    composable<DetailsRoute> {
+        DetailsScreen(
+            onBack = onBack,
+            onRead = onRead,
+            onOpenWebView = onOpenWebView,
+        )
+    }
 }
 
 fun NavController.navigateToDetails(mangaId: Long) = navigate(DetailsRoute(mangaId))

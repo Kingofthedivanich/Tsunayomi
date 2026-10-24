@@ -15,11 +15,14 @@ import app.tsunayomi.data.ReadingOrder
 import app.tsunayomi.data.ReadingProgressRepository
 import app.tsunayomi.data.SourceManager
 import app.tsunayomi.downloads.DownloadManager
-import app.tsunayomi.source.api.SourceIds
+import app.tsunayomi.source.api.CatalogSource
 import app.tsunayomi.source.api.ChaptersOnlyExternalException
+import app.tsunayomi.source.api.SManga
+import app.tsunayomi.source.api.SourceIds
 import app.tsunayomi.translation.core.GlossaryEntry
 import app.tsunayomi.translation.core.GlossaryStore
 import dagger.hilt.android.lifecycle.HiltViewModel
+import eu.kanade.tachiyomi.network.isCloudflareChallenge
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -33,12 +36,14 @@ import javax.inject.Inject
 internal data class DetailsUiState(
     val manga: Manga? = null,
     val sourceName: String? = null,
+    val webUrl: String? = null,
     /** Newest first, as most readers list them. */
     val chapters: List<Chapter> = emptyList(),
     val continueChapter: Chapter? = null,
     val hasProgress: Boolean = false,
     val refreshing: Boolean = false,
     val error: String? = null,
+    val isCloudflareError: Boolean = false,
     val categories: List<Category> = emptyList(),
     val mangaCategoryIds: Set<Long> = emptySet(),
     /** Set when the source has chapters, but only on external sites. */
@@ -112,14 +117,30 @@ internal class DetailsViewModel @Inject constructor(
     ) { manga, chapters, refreshState, (categories, categoryIds) ->
         // chapters arrive in reading order (source_order ascending).
         val continueChapter = ReadingOrder.continueChapter(chapters)
+        val source = manga?.let { sourceManager.get(it.sourceId) as? CatalogSource }
+        val webUrl = manga?.let { m ->
+            val sManga = SManga(
+                url = m.url,
+                title = m.title,
+                coverUrl = m.coverUrl,
+                author = m.author,
+                artist = m.artist,
+                description = m.description,
+                genres = m.genres,
+                originalLang = m.originalLang,
+            )
+            source?.webUrl(sManga) ?: source?.webUrl()
+        }
         DetailsUiState(
             manga = manga,
             sourceName = manga?.let { sourceManager.get(it.sourceId)?.name },
+            webUrl = webUrl,
             chapters = chapters.asReversed(),
             continueChapter = continueChapter,
             hasProgress = chapters.any { it.read || it.lastPageRead > 0 },
             refreshing = refreshState.running,
             error = refreshState.error,
+            isCloudflareError = refreshState.isCloudflare,
             categories = categories,
             mangaCategoryIds = categoryIds,
             chaptersOnlyExternal = refreshState.onlyExternal,
@@ -130,6 +151,14 @@ internal class DetailsViewModel @Inject constructor(
         viewModelScope.launch {
             libraryRepository.ensureDefaultCategories()
             if (mangaRepository.needsRefresh(mangaId)) refresh()
+        }
+        viewModelScope.launch {
+            savedStateHandle.getStateFlow("reload_requested", false).collect { requested ->
+                if (requested) {
+                    savedStateHandle["reload_requested"] = false
+                    refresh()
+                }
+            }
         }
     }
 
@@ -145,12 +174,13 @@ internal class DetailsViewModel @Inject constructor(
             } catch (e: ChaptersOnlyExternalException) {
                 refresh.value = RefreshState(onlyExternal = true)
             } catch (e: Exception) {
-                refresh.value = RefreshState(error = e.message ?: e.toString())
+                val isCf = e.isCloudflareChallenge
+                refresh.value = RefreshState(error = e.message ?: e.toString(), isCloudflare = isCf)
             }
         }
     }
 
-    fun dismissError() = refresh.update { it.copy(error = null) }
+    fun dismissError() = refresh.update { it.copy(error = null, isCloudflare = false) }
 
     fun toggleFavorite() {
         val manga = state.value.manga ?: return
@@ -194,6 +224,7 @@ internal class DetailsViewModel @Inject constructor(
     private data class RefreshState(
         val running: Boolean = false,
         val error: String? = null,
+        val isCloudflare: Boolean = false,
         val onlyExternal: Boolean = false,
     )
 }

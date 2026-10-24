@@ -42,6 +42,9 @@ class MangaDexSource(
     override val id: Long = sourceIdOf(name, lang)
     override val supportsLatest: Boolean = true
 
+    override fun webUrl(): String = "https://mangadex.org"
+    override fun webUrl(manga: SManga): String = "https://mangadex.org/title/${manga.url}"
+
     /** The per-language sources this one replaced; their library and history entries resolve here. */
     override val legacyIds: Set<Long> = LEGACY_LANGUAGES.mapTo(HashSet()) { sourceIdOf(name, it) }
 

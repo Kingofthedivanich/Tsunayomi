@@ -33,6 +33,9 @@ class AsuraSource(
     override val id: Long = sourceIdOf(name, lang)
     override val supportsLatest: Boolean = true
 
+    override fun webUrl(): String = "https://asurascans.com"
+    override fun webUrl(manga: SManga): String = "https://asurascans.com/series/${manga.url}"
+
     private val apiClient = client.newBuilder()
         .addInterceptor(RateLimitInterceptor(permits = 5, period = 1))
         .build()

@@ -38,6 +38,9 @@ class WebtoonsSource(
     override val id: Long = sourceIdOf(name, lang)
     override val supportsLatest: Boolean = true
 
+    override fun webUrl(): String = baseUrl
+    override fun webUrl(manga: SManga): String = normalizeUrl(manga.url)
+
     // Rate-limit to 4 req/s to remain a polite client and avoid rate-limiting.
     private val apiClient = client.newBuilder()
         .addInterceptor(RateLimitInterceptor(permits = 4, period = 1))

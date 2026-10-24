@@ -27,6 +27,8 @@ import app.tsunayomi.feature.browse.catalogScreen
 import app.tsunayomi.feature.browse.globalSearchScreen
 import app.tsunayomi.feature.browse.navigateToCatalog
 import app.tsunayomi.feature.browse.navigateToGlobalSearch
+import app.tsunayomi.feature.browse.navigateToWebView
+import app.tsunayomi.feature.browse.webViewScreen
 import app.tsunayomi.feature.details.detailsScreen
 import app.tsunayomi.feature.details.navigateToDetails
 import app.tsunayomi.feature.history.HistoryRoute
@@ -109,11 +111,22 @@ fun TsunayomiApp(
                         navController.navigateToExtensionSourceSettings(sourceId)
                     }
                 },
+                onOpenWebView = navController::navigateToWebView,
             )
             globalSearchScreen(onBack = navController::popBackStack, onOpenManga = navController::navigateToDetails)
             komgaSettingsScreen(onBack = navController::popBackStack)
             historyScreen(onOpenManga = navController::navigateToDetails, onOpenReader = navController::navigateToReader)
-            detailsScreen(onBack = navController::popBackStack, onRead = navController::navigateToReader)
+            detailsScreen(
+                onBack = navController::popBackStack,
+                onRead = navController::navigateToReader,
+                onOpenWebView = navController::navigateToWebView,
+            )
+            webViewScreen(
+                onClose = {
+                    navController.previousBackStackEntry?.savedStateHandle?.set("reload_requested", true)
+                    navController.popBackStack()
+                },
+            )
             readerScreen(onBack = navController::popBackStack)
             moreGraph(navController)
         }

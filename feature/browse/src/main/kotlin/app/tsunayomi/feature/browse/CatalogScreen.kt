@@ -13,11 +13,14 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Close
 import androidx.compose.material.icons.outlined.Dns
 import androidx.compose.material.icons.outlined.FilterList
+import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.SearchOff
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
@@ -58,6 +61,7 @@ internal fun CatalogScreen(
     onBack: () -> Unit,
     onOpenManga: (Long) -> Unit,
     onOpenSourceSettings: (Long) -> Unit,
+    onOpenWebView: (url: String, sourceId: Long) -> Unit,
     viewModel: CatalogViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -67,7 +71,9 @@ internal fun CatalogScreen(
     var searching by rememberSaveable { mutableStateOf(false) }
     var query by rememberSaveable { mutableStateOf("") }
     var showFilters by rememberSaveable { mutableStateOf(false) }
+    var menuExpanded by remember { mutableStateOf(false) }
     val isLocal = viewModel.source.id == SourceIds.LOCAL
+    val webUrl = remember(viewModel.source) { viewModel.source.webUrl() }
 
     Scaffold(
         topBar = {
@@ -110,6 +116,22 @@ internal fun CatalogScreen(
                             Icon(Icons.Outlined.Settings, stringResource(R.string.feature_browse_source_settings))
                         }
                     }
+                    if (webUrl != null) {
+                        Box {
+                            IconButton(onClick = { menuExpanded = true }) {
+                                Icon(Icons.Outlined.MoreVert, stringResource(R.string.feature_browse_more_options))
+                            }
+                            DropdownMenu(expanded = menuExpanded, onDismissRequest = { menuExpanded = false }) {
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(R.string.feature_browse_open_in_webview)) },
+                                    onClick = {
+                                        menuExpanded = false
+                                        onOpenWebView(webUrl, viewModel.source.id)
+                                    },
+                                )
+                            }
+                        }
+                    }
                 },
             )
         },
@@ -138,12 +160,25 @@ internal fun CatalogScreen(
                         actionLabel = stringResource(R.string.feature_browse_configure),
                         onAction = { onOpenSourceSettings(viewModel.source.id) },
                     )
-                    state.error != null && state.items.isEmpty() -> MessageWithAction(
-                        title = stringResource(R.string.feature_browse_error_title),
-                        message = state.error,
-                        actionLabel = stringResource(R.string.feature_browse_retry),
-                        onAction = viewModel::reload,
-                    )
+                    state.error != null && state.items.isEmpty() -> {
+                        if (state.isCloudflareError && webUrl != null) {
+                            MessageWithAction(
+                                title = stringResource(R.string.feature_browse_cloudflare_title),
+                                message = state.error,
+                                actionLabel = stringResource(R.string.feature_browse_open_in_webview),
+                                onAction = { onOpenWebView(webUrl, viewModel.source.id) },
+                                secondaryActionLabel = stringResource(R.string.feature_browse_retry),
+                                onSecondaryAction = viewModel::reload,
+                            )
+                        } else {
+                            MessageWithAction(
+                                title = stringResource(R.string.feature_browse_error_title),
+                                message = state.error,
+                                actionLabel = stringResource(R.string.feature_browse_retry),
+                                onAction = viewModel::reload,
+                            )
+                        }
+                    }
                     state.loading && state.items.isEmpty() -> Box(Modifier.fillMaxSize(), Alignment.Center) {
                         CircularProgressIndicator()
                     }
