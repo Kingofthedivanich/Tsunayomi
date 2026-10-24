@@ -20,6 +20,7 @@ androidx-room = "2.8.5"
 androidx-work = "2.12.0"
 coil = "3.6.3"
 commons-compress = "1.28.0"
+junrar = "7.5.8"
 mlkit-text-recognition = "16.0.1"
 mlkit-translate = "17.0.3"
 mlkit-language-id = "17.0.6"
@@ -73,6 +74,7 @@ mlkit-text-recognition-chinese = { module = "com.google.mlkit:text-recognition-c
 mlkit-translate = { module = "com.google.mlkit:translate", version.ref = "mlkit-translate" }
 mlkit-language-id = { module = "com.google.mlkit:language-id", version.ref = "mlkit-language-id" }
 commons-compress = { module = "org.apache.commons:commons-compress", version.ref = "commons-compress" }
+junrar = { module = "com.github.junrar:junrar", version.ref = "junrar" }
 telephoto-zoomable-image-coil3 = { module = "me.saket.telephoto:zoomable-image-coil3", version.ref = "telephoto" }
 
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }

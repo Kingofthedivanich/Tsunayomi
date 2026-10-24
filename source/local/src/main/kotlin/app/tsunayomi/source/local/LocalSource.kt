@@ -7,6 +7,7 @@ import app.tsunayomi.core.common.NaturalOrderComparator
 import app.tsunayomi.core.common.TsunayomiDispatcher
 import app.tsunayomi.core.datastore.UserPreferencesDataSource
 import app.tsunayomi.core.image.ArchiveReader
+import app.tsunayomi.core.image.EpubMetadata
 import app.tsunayomi.core.image.ImageFiles
 import app.tsunayomi.core.image.LocalPageUri
 import app.tsunayomi.core.image.PdfPageRenderer
@@ -67,27 +68,44 @@ class LocalSource @Inject constructor(
         listSeries(query = query.trim().takeIf { it.isNotEmpty() }, newestFirst = false)
 
     override suspend fun getDetails(manga: SManga): SManga = withContext(io) {
-        val children = saf.children(manga.url.toUri())
+        val mangaUri = manga.url.toUri()
+        val document = saf.document(mangaUri)
+        val children = if (document != null && !document.isDirectory) listOf(document) else saf.children(mangaUri)
         val info = readComicInfo(children)
+        val epub = if (info == null) readEpubMetadata(children) else null
         manga.copy(
-            title = info?.series ?: manga.title,
-            coverUrl = manga.coverUrl ?: findCover(children),
-            author = info?.writer ?: manga.author,
+            title = info?.series ?: epub?.title ?: manga.title,
+            coverUrl = manga.coverUrl ?: findCover(children, epub),
+            author = info?.writer ?: epub?.author ?: manga.author,
             artist = info?.penciller ?: manga.artist,
-            description = info?.summary ?: manga.description,
+            description = info?.summary ?: epub?.description ?: manga.description,
             genres = info?.genres?.takeIf { it.isNotEmpty() } ?: manga.genres,
             status = info?.status?.toStatus() ?: manga.status,
-            readingDirection = when (info?.rightToLeft) {
-                true -> ReadingDirection.RightToLeft
-                false -> ReadingDirection.LeftToRight
-                null -> manga.readingDirection
+            readingDirection = when {
+                info?.rightToLeft == true -> ReadingDirection.RightToLeft
+                info?.rightToLeft == false -> ReadingDirection.LeftToRight
+                epub?.isRightToLeft == true -> ReadingDirection.RightToLeft
+                epub?.isRightToLeft == false -> ReadingDirection.LeftToRight
+                else -> manga.readingDirection
             },
             originalLang = info?.languageIso ?: manga.originalLang,
         )
     }
 
     override suspend fun getChapters(manga: SManga): List<SChapter> = withContext(io) {
-        val children = saf.children(manga.url.toUri())
+        val mangaUri = manga.url.toUri()
+        val document = saf.document(mangaUri)
+        if (document != null && !document.isDirectory) {
+            return@withContext listOf(
+                SChapter(
+                    url = manga.url,
+                    name = manga.title,
+                    number = ChapterNumberParser.parse(document.name),
+                    uploadedAt = document.lastModified.takeIf { it > 0 },
+                )
+            )
+        }
+        val children = saf.children(mangaUri)
         val chapters = children.filter { it.isChapter() }.sortedWith(compareBy(NaturalOrderComparator) { it.name })
         if (chapters.isEmpty() && children.any { ImageFiles.isImage(it.name) }) {
             return@withContext listOf(SChapter(url = manga.url, name = manga.title, number = 1f))
@@ -125,7 +143,7 @@ class LocalSource @Inject constructor(
         val library = preferences.settings.first().localLibraryUri
             ?: throw SourceNotConfiguredException("Local library folder is not selected")
         val series = saf.children(library.toUri())
-            .filter { it.isDirectory && !it.name.startsWith(".") }
+            .filter { !it.name.startsWith(".") && (it.isDirectory || it.isChapter()) }
             .filter { query == null || it.name.contains(query, ignoreCase = true) }
             .let { dirs ->
                 if (newestFirst) dirs.sortedByDescending { it.lastModified }
@@ -133,10 +151,17 @@ class LocalSource @Inject constructor(
             }
         val limiter = Semaphore(COVER_LOOKUP_PARALLELISM)
         val items = coroutineScope {
-            series.map { dir ->
+            series.map { item ->
                 async {
-                    val cover = limiter.withPermit { runCatching { findCover(saf.children(dir.uri)) }.getOrNull() }
-                    SManga(url = dir.uri.toString(), title = dir.name, coverUrl = cover)
+                    val cover = limiter.withPermit {
+                        val children = if (item.isDirectory) saf.children(item.uri) else listOf(item)
+                        val epub = if (item.extension == EPUB_EXTENSION) {
+                            runCatching { archives.readEpubMetadata(item.uri) }.getOrNull()
+                        } else null
+                        runCatching { findCover(children, epub) }.getOrNull()
+                    }
+                    val title = if (item.isDirectory) item.name else item.nameWithoutExtension
+                    SManga(url = item.uri.toString(), title = title, coverUrl = cover)
                 }
             }.awaitAll()
         }
@@ -144,9 +169,13 @@ class LocalSource @Inject constructor(
     }
 
     /** cover.* in the series folder, otherwise the first page of the first chapter. */
-    private fun findCover(seriesChildren: List<DocumentEntry>): String? {
+    private fun findCover(seriesChildren: List<DocumentEntry>, epub: EpubMetadata? = null): String? {
         seriesChildren.firstOrNull { ImageFiles.isImage(it.name) && it.nameWithoutExtension.equals("cover", true) }
             ?.let { return it.uri.toString() }
+        val firstEpub = seriesChildren.firstOrNull { it.extension == EPUB_EXTENSION }
+        if (firstEpub != null && epub?.coverEntry != null) {
+            return LocalPageUri.ArchiveEntry(firstEpub.uri, epub.coverEntry).toUriString()
+        }
         val firstChapter = seriesChildren.filter { it.isChapter() }.minWithOrNull(compareBy(NaturalOrderComparator) { it.name })
             ?: return seriesChildren.filter { ImageFiles.isImage(it.name) }
                 .minWithOrNull(compareBy(NaturalOrderComparator) { it.name })?.uri?.toString()
@@ -171,6 +200,11 @@ class LocalSource @Inject constructor(
             ?.let { ComicInfo.parse(it.byteInputStream()) }
     }
 
+    private suspend fun readEpubMetadata(seriesChildren: List<DocumentEntry>): EpubMetadata? {
+        val firstEpub = seriesChildren.firstOrNull { it.extension == EPUB_EXTENSION } ?: return null
+        return runCatching { archives.readEpubMetadata(firstEpub.uri) }.getOrNull()
+    }
+
     private fun DocumentEntry.isChapter(): Boolean =
         !name.startsWith(".") && (isDirectory || extension in ARCHIVE_EXTENSIONS || extension == PDF_EXTENSION)
 
@@ -188,7 +222,8 @@ class LocalSource @Inject constructor(
 
         private const val COMIC_INFO = "ComicInfo.xml"
         private const val PDF_EXTENSION = "pdf"
-        private val ARCHIVE_EXTENSIONS = setOf("cbz", "zip")
+        private const val EPUB_EXTENSION = "epub"
+        private val ARCHIVE_EXTENSIONS = setOf("cbz", "zip", "cbr", "rar", "epub")
         private const val COVER_LOOKUP_PARALLELISM = 8
     }
 }

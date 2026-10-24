@@ -15,4 +15,8 @@ dependencies {
     api(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.commons.compress)
+    implementation(libs.junrar)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 }

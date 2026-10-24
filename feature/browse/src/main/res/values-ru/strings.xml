@@ -4,7 +4,7 @@
     <string name="feature_browse_empty_title">Источников пока нет</string>
     <string name="feature_browse_empty_message">Источники не установлены.</string>
     <string name="feature_browse_local_source">Локальные файлы</string>
-    <string name="feature_browse_local_source_summary">Папки, CBZ/ZIP и PDF на устройстве</string>
+    <string name="feature_browse_local_source_summary">Папки, CBZ, CBR, EPUB и PDF на устройстве</string>
     <string name="feature_browse_back">Назад</string>
     <string name="feature_browse_search">Поиск</string>
     <string name="feature_browse_search_hint">Поиск…</string>
@@ -12,7 +12,7 @@
     <string name="feature_browse_popular">Популярное</string>
     <string name="feature_browse_latest">Новое</string>
     <string name="feature_browse_local_not_configured_title">Выберите папку с мангой</string>
-    <string name="feature_browse_local_not_configured_message">Каждая серия — отдельная подпапка; главы — папки с картинками, файлы CBZ/ZIP или PDF.</string>
+    <string name="feature_browse_local_not_configured_message">Каждая серия — отдельная подпапка; главы — папки с картинками, архивы CBZ/CBR/EPUB или PDF.</string>
     <string name="feature_browse_choose_folder">Выбрать папку</string>
     <string name="feature_browse_error_title">Не удалось загрузить</string>
     <string name="feature_browse_retry">Повторить</string>
