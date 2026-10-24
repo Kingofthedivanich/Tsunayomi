@@ -49,10 +49,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 private enum class OnboardingStep {
     Welcome,
     ApiConfig,
+    MangaOcr,
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,7 +68,7 @@ fun OnboardingScreen(
     AnimatedContent(
         targetState = step,
         transitionSpec = {
-            if (targetState == OnboardingStep.ApiConfig) {
+            if (targetState.ordinal > initialState.ordinal) {
                 (slideInHorizontally { it } + fadeIn()).togetherWith(slideOutHorizontally { -it } + fadeOut())
             } else {
                 (slideInHorizontally { -it } + fadeIn()).togetherWith(slideOutHorizontally { it } + fadeOut())
@@ -99,8 +101,31 @@ fun OnboardingScreen(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(padding),
-                    onSaveCompleted = onFinish,
-                    onSkip = onFinish,
+                    onSaveCompleted = { step = OnboardingStep.MangaOcr },
+                    onSkip = { step = OnboardingStep.MangaOcr },
+                )
+            }
+            OnboardingStep.MangaOcr -> Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { Text(stringResource(R.string.onboarding_manga_ocr_title)) },
+                        navigationIcon = {
+                            IconButton(onClick = { step = OnboardingStep.ApiConfig }) {
+                                Icon(
+                                    Icons.AutoMirrored.Outlined.ArrowBack,
+                                    contentDescription = stringResource(R.string.feature_settings_back),
+                                )
+                            }
+                        },
+                    )
+                },
+            ) { padding ->
+                MangaOcrStep(
+                    viewModel = viewModel,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding),
+                    onFinish = onFinish,
                 )
             }
         }
@@ -194,6 +219,83 @@ private fun WelcomeStep(
                 Button(onClick = onNext) {
                     Text(stringResource(R.string.onboarding_btn_setup_api))
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MangaOcrStep(
+    viewModel: ApiConfigViewModel,
+    modifier: Modifier = Modifier,
+    onFinish: () -> Unit,
+) {
+    val status by viewModel.mangaOcrStatus.collectAsStateWithLifecycle()
+
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Spacer(Modifier.height(16.dp))
+
+        Surface(
+            shape = CircleShape,
+            color = MaterialTheme.colorScheme.tertiaryContainer,
+            modifier = Modifier.size(80.dp),
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.Translate,
+                contentDescription = null,
+                tint = MaterialTheme.colorScheme.onTertiaryContainer,
+                modifier = Modifier
+                    .padding(20.dp)
+                    .fillMaxSize(),
+            )
+        }
+
+        Spacer(Modifier.height(16.dp))
+
+        Text(
+            text = stringResource(R.string.onboarding_manga_ocr_title),
+            style = MaterialTheme.typography.headlineSmall,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+        )
+
+        Spacer(Modifier.height(8.dp))
+
+        Text(
+            text = stringResource(R.string.onboarding_manga_ocr_subtitle),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+        )
+
+        Spacer(Modifier.height(32.dp))
+
+        MangaOcrCard(
+            status = status,
+            onDownload = viewModel::downloadMangaOcr,
+            onCancel = viewModel::cancelMangaOcr,
+            onDelete = viewModel::deleteMangaOcr,
+        )
+
+        Spacer(Modifier.weight(1f))
+        Spacer(Modifier.height(32.dp))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            TextButton(onClick = onFinish) {
+                Text(stringResource(R.string.onboarding_btn_skip))
+            }
+
+            Button(onClick = onFinish) {
+                Text(stringResource(R.string.onboarding_btn_finish))
             }
         }
     }

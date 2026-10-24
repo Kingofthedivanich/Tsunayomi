@@ -4,8 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.tsunayomi.core.model.DeepLConfig
 import app.tsunayomi.core.model.GeminiConfig
+import app.tsunayomi.core.model.MangaOcrStatus
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.TranslationEngine
+import app.tsunayomi.data.MangaOcrModelManager
 import app.tsunayomi.data.ServerSettingsRepository
 import app.tsunayomi.data.UserSettingsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,7 +29,10 @@ sealed interface VerificationState {
 class ApiConfigViewModel @Inject constructor(
     private val serverSettings: ServerSettingsRepository,
     private val userSettings: UserSettingsRepository,
+    private val mangaOcrManager: MangaOcrModelManager,
 ) : ViewModel() {
+
+    val mangaOcrStatus: StateFlow<MangaOcrStatus> = mangaOcrManager.status
 
     private val _selectedEngine = MutableStateFlow(TranslationEngine.Gemini)
     val selectedEngine: StateFlow<TranslationEngine> = _selectedEngine.asStateFlow()
@@ -211,4 +216,10 @@ class ApiConfigViewModel @Inject constructor(
             onCompleted()
         }
     }
+
+    fun downloadMangaOcr() = mangaOcrManager.download()
+
+    fun cancelMangaOcr() = mangaOcrManager.cancel()
+
+    fun deleteMangaOcr() = mangaOcrManager.delete()
 }

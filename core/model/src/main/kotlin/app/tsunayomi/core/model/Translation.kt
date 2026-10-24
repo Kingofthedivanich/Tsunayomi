@@ -65,3 +65,11 @@ data class GeminiConfig(
         val DEFAULT_MODELS = listOf("gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemma-4-31b-it")
     }
 }
+
+sealed interface MangaOcrStatus {
+    data object NotDownloaded : MangaOcrStatus
+    data class Downloading(val progress: Float, val downloadedBytes: Long, val totalBytes: Long) : MangaOcrStatus
+    data class Ready(val sizeBytes: Long) : MangaOcrStatus
+    data class Error(val message: String) : MangaOcrStatus
+}
+

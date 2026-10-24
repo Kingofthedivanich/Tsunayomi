@@ -1,5 +1,6 @@
 package app.tsunayomi.translation.mlkit
 
+import app.tsunayomi.translation.api.JapaneseOcrProvider
 import app.tsunayomi.translation.api.TextRecognizer
 import app.tsunayomi.translation.api.Translator
 import dagger.Binds
@@ -13,6 +14,9 @@ import dagger.multibindings.IntoSet
 internal abstract class MlKitModule {
     @Binds
     abstract fun bindsTextRecognizer(recognizer: MlKitTextRecognizer): TextRecognizer
+
+    @Binds
+    abstract fun bindsJapaneseOcrProvider(provider: DefaultJapaneseOcrProvider): JapaneseOcrProvider
 
     @Binds
     @IntoSet

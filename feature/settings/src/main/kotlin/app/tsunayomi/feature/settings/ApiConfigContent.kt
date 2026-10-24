@@ -265,6 +265,21 @@ internal fun ApiConfigContent(
             content = null,
         )
 
+        if (onSkip == null) {
+            val mangaOcrStatus by viewModel.mangaOcrStatus.collectAsStateWithLifecycle()
+            Text(
+                text = stringResource(R.string.onboarding_manga_ocr_title),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.SemiBold,
+            )
+            MangaOcrCard(
+                status = mangaOcrStatus,
+                onDownload = viewModel::downloadMangaOcr,
+                onCancel = viewModel::cancelMangaOcr,
+                onDelete = viewModel::deleteMangaOcr,
+            )
+        }
+
         Spacer(Modifier.height(16.dp))
 
         // Action buttons

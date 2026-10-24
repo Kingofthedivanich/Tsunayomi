@@ -159,4 +159,18 @@
     <string name="api_config_api_key_hint">Вставьте ваш API-ключ</string>
     <string name="api_config_paste">Вставить</string>
     <string name="api_config_clear">Очистить</string>
+
+    <!-- Модель вертикального японского manga-ocr -->
+    <string name="onboarding_manga_ocr_title">Распознавание вертикального японского</string>
+    <string name="onboarding_manga_ocr_subtitle">Специализированная нейросеть manga-ocr (~140 МБ) для качественного распознавания вертикального текста в пузырях и фуриганы полностью офлайн на телефоне. Рекомендуется, если вы читаете мангу в оригинале на японском.</string>
+    <string name="onboarding_btn_finish">Завершить</string>
+    <string name="manga_ocr_download">Скачать модель (~140 МБ)</string>
+    <string name="manga_ocr_downloading">Загрузка… %1$d%% (%2$.1f МБ / %3$.1f МБ)</string>
+    <string name="manga_ocr_ready">✓ Модель готова к работе (%1$.1f МБ)</string>
+    <string name="manga_ocr_delete">Удалить модель</string>
+    <string name="manga_ocr_cancel">Отмена</string>
+    <string name="manga_ocr_retry">Повторить</string>
+    <string name="feature_settings_manga_ocr_title">Модель вертикального японского (manga-ocr)</string>
+    <string name="feature_settings_manga_ocr_summary_not_downloaded">Не загружена (~140 МБ). Нажмите для загрузки</string>
+    <string name="feature_settings_manga_ocr_summary_ready">Готова к работе офлайн (%1$.1f МБ)</string>
 </resources>
