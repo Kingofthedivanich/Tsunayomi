@@ -60,6 +60,7 @@ include(":translation:api")
 include(":translation:core")
 include(":translation:mlkit")
 include(":translation:gemini")
+include(":translation:mangaocr")
 include(":translation:openai")
 include(":translation:deepl")
 

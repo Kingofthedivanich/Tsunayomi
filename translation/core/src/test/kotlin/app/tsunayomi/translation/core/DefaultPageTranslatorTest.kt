@@ -2,6 +2,7 @@ package app.tsunayomi.translation.core
 
 import android.graphics.Bitmap
 import app.tsunayomi.core.model.TranslationEngine
+import app.tsunayomi.translation.api.JapaneseOcrProvider
 import app.tsunayomi.translation.api.NormalizedBox
 import app.tsunayomi.translation.api.PageRequest
 import app.tsunayomi.translation.api.RecognizedBlock
@@ -31,9 +32,20 @@ class DefaultPageTranslatorTest {
         override suspend fun recognize(page: Bitmap, sourceLang: String?): List<RecognizedBlock> {
             recognizeCalls++
             return listOf(
-                RecognizedBlock(NormalizedBox(0.1f, 0.1f, 0.4f, 0.15f), "Hello"),
+                RecognizedBlock(NormalizedBox(0.1f, 0.1f, 0.4f, 0.15f), firstText),
                 RecognizedBlock(NormalizedBox(0.1f, 0.6f, 0.4f, 0.65f), "World"),
             )
+        }
+    }
+    private var firstText = "Hello"
+
+    private val japaneseOcr = object : JapaneseOcrProvider {
+        var available = false
+        val reads = mutableListOf<NormalizedBox>()
+        override fun isAvailable() = available
+        override suspend fun recognize(page: Bitmap, box: NormalizedBox): String {
+            reads += box
+            return "おはよう"
         }
     }
 
@@ -85,9 +97,32 @@ class DefaultPageTranslatorTest {
     private val bitmap: Bitmap = mockk(relaxed = true)
 
     private fun translator(vararg translators: Translator = arrayOf(mlKit, gemini)) =
-        DefaultPageTranslator(recognizer, translators.toSet(), cache, glossary) { engine to "ru" }
+        DefaultPageTranslator(recognizer, translators.toSet(), cache, glossary, { engine to "ru" }, japaneseOcr)
 
     private fun pages(vararg keys: String) = keys.map { PageRequest(it) { bitmap } }
+
+    @Test
+    fun `japanese bubbles are read again by the japanese model and cached apart`() = runTest {
+        japaneseOcr.available = true
+        firstText = "おは よう"
+
+        val result = translator().translate(pages("p1"), "ja", mangaId = null)
+
+        assertEquals(1, japaneseOcr.reads.size) // "World" has no kana or kanji
+        assertEquals(listOf("おはよう", "World"), result.single().regions.map { it.sourceText })
+        assertTrue(cache.entries.keys.any { it.third == "Gemini:3:p2:mocr1:ja" })
+    }
+
+    @Test
+    fun `the japanese model is not used for other languages`() = runTest {
+        japaneseOcr.available = true
+        firstText = "漢字"
+
+        translator().translate(pages("p1"), "en", mangaId = null)
+
+        assertEquals(0, japaneseOcr.reads.size)
+        assertTrue(cache.entries.keys.any { it.third == "Gemini:3:p2:en" })
+    }
 
     @Test
     fun `a run of pages goes to a batch engine in one request with page numbers`() = runTest {

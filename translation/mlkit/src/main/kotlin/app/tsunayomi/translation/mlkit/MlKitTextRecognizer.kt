@@ -1,7 +1,6 @@
 package app.tsunayomi.translation.mlkit
 
 import android.graphics.Bitmap
-import app.tsunayomi.translation.api.JapaneseOcrProvider
 import app.tsunayomi.translation.api.NormalizedBox
 import app.tsunayomi.translation.api.RecognizedBlock
 import app.tsunayomi.translation.api.TextJoining
@@ -24,9 +23,7 @@ import com.google.mlkit.vision.text.TextRecognizer as MlKitClient
  * a dedicated bubble detector and manga-ocr for vertical Japanese can replace it later behind [TextRecognizer].
  */
 @Singleton
-class MlKitTextRecognizer @Inject constructor(
-    private val japaneseOcr: JapaneseOcrProvider,
-) : TextRecognizer {
+class MlKitTextRecognizer @Inject constructor() : TextRecognizer {
     private val clients = ConcurrentHashMap<Script, MlKitClient>()
 
     override suspend fun recognize(page: Bitmap, sourceLang: String?): List<RecognizedBlock> {
@@ -46,20 +43,7 @@ class MlKitTextRecognizer @Inject constructor(
         val height = page.height.toFloat()
         return result.textBlocks.mapNotNull { block ->
             val rect = block.boundingBox ?: return@mapNotNull null
-            var text = TextJoining.join(block.lines.map { it.text })
-            if (script == Script.Japanese && japaneseOcr.isAvailable()) {
-                val cropLeft = rect.left.coerceIn(0, page.width - 1)
-                val cropTop = rect.top.coerceIn(0, page.height - 1)
-                val cropWidth = rect.width().coerceIn(1, page.width - cropLeft)
-                val cropHeight = rect.height().coerceIn(1, page.height - cropTop)
-                if (cropWidth > 5 && cropHeight > 5) {
-                    val crop = Bitmap.createBitmap(page, cropLeft, cropTop, cropWidth, cropHeight)
-                    val refined = japaneseOcr.recognize(crop)
-                    if (!refined.isNullOrBlank()) {
-                        text = refined
-                    }
-                }
-            }
+            val text = TextJoining.join(block.lines.map { it.text })
             if (!TextJoining.isMeaningful(text)) return@mapNotNull null
             val lineHeights = block.lines.mapNotNull { it.boundingBox?.height()?.toFloat() }
             RecognizedBlock(

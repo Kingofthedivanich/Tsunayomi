@@ -1,6 +1,8 @@
 package app.tsunayomi.translation.core
 
 import app.tsunayomi.core.model.TranslationEngine
+import android.graphics.Bitmap
+import app.tsunayomi.translation.api.JapaneseOcrProvider
 import app.tsunayomi.translation.api.PageRequest
 import app.tsunayomi.translation.api.PageTranslation
 import app.tsunayomi.translation.api.PageTranslator
@@ -36,6 +38,7 @@ class DefaultPageTranslator @Inject constructor(
     private val cache: TranslationCache,
     private val glossary: GlossaryStore,
     private val target: TranslationTarget,
+    private val japaneseOcr: JapaneseOcrProvider,
 ) : PageTranslator {
     private val byEngine = translators.associateBy { it.engine }
     private val offline = byEngine[TranslationEngine.MlKit] ?: error("ML Kit translator is required as the fallback")
@@ -57,7 +60,12 @@ class DefaultPageTranslator @Inject constructor(
         fillFromCache()
         val toRecognize = pages.indices.filter { results[it] == null }
         if (toRecognize.isEmpty()) return results.requireNoNulls().toList()
-        val recognized = toRecognize.associateWith { BubbleGrouping.group(recognizer.recognize(pages[it].load(), sourceLang)) }
+        val japanese = japaneseOcr.isAvailable() && sourceLang in JAPANESE_OR_AUTO
+        val recognized = toRecognize.associateWith { index ->
+            val bitmap = pages[index].load()
+            val bubbles = BubbleGrouping.group(recognizer.recognize(bitmap, sourceLang))
+            if (japanese) rereadJapanese(bitmap, bubbles) else bubbles
+        }
 
         return translateMutex.withLock {
             // An overlapping request may have translated some of these pages while we were recognizing.
@@ -84,6 +92,17 @@ class DefaultPageTranslator @Inject constructor(
             results.requireNoNulls().toList()
         }
     }
+
+    /**
+     * ML Kit finds Japanese bubbles well enough but reads vertical text poorly, often column by column in the
+     * wrong order. Each grouped bubble that looks Japanese is read again, as a whole, by the specialised model.
+     */
+    private suspend fun rereadJapanese(page: Bitmap, bubbles: List<RecognizedBlock>): List<RecognizedBlock> =
+        bubbles.map { bubble ->
+            if (!JAPANESE_TEXT.containsMatchIn(bubble.text)) return@map bubble
+            val text = japaneseOcr.recognize(page, bubble.box)
+            if (text.isNullOrBlank()) bubble else bubble.copy(text = text)
+        }
 
     /** Translates the blocks of several pages; keys are positions in the request list. */
     private suspend fun translateBlocks(
@@ -146,7 +165,9 @@ class DefaultPageTranslator @Inject constructor(
     /** Engine, its prompt version and settings, the pipeline version and the source language all change the result. */
     private suspend fun Translator.cacheKey(sourceLang: String?): String {
         val tag = cacheTag().let { if (it.isEmpty()) "" else ":$it" }
-        return "${engine.name}:$cacheVersion$tag:p$PIPELINE_VERSION:${sourceLang ?: "auto"}"
+        // Pages read with manga-ocr differ from ML Kit's, so they are cached apart.
+        val ocr = if (japaneseOcr.isAvailable() && sourceLang in JAPANESE_OR_AUTO) ":$MANGA_OCR_TAG" else ""
+        return "${engine.name}:$cacheVersion$tag:p$PIPELINE_VERSION$ocr:${sourceLang ?: "auto"}"
     }
 
     private companion object {
@@ -154,6 +175,12 @@ class DefaultPageTranslator @Inject constructor(
         const val PIPELINE_VERSION = 2
 
         const val MAX_ITEMS_PER_REQUEST = 200
+
+        const val MANGA_OCR_TAG = "mocr1"
+        val JAPANESE_OR_AUTO = setOf("ja", null)
+
+        /** Kana or kanji: worth a second read with the Japanese model. */
+        val JAPANESE_TEXT = Regex("[\\u3040-\\u30FF\\u4E00-\\u9FFF]")
         const val MAX_CHARS_PER_REQUEST = 12_000
     }
 }

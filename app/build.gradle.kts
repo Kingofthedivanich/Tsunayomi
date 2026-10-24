@@ -97,6 +97,7 @@ dependencies {
     implementation(projects.translation.core)
     implementation(projects.translation.mlkit)
     implementation(projects.translation.gemini)
+    implementation(projects.translation.mangaocr)
     implementation(projects.translation.openai)
     implementation(projects.translation.deepl)
 

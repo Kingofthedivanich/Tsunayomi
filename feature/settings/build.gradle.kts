@@ -7,6 +7,7 @@ android {
 }
 
 dependencies {
+    implementation(projects.translation.mangaocr)
     implementation(projects.data)
     implementation(libs.androidx.appcompat)
 }

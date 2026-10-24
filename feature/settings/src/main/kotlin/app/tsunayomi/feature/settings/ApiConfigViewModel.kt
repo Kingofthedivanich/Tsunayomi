@@ -7,6 +7,8 @@ import app.tsunayomi.core.model.GeminiConfig
 import app.tsunayomi.core.model.OpenAiConfig
 import app.tsunayomi.core.model.TranslationEngine
 import app.tsunayomi.core.model.DeepLUsage
+import app.tsunayomi.core.model.MangaOcrStatus
+import app.tsunayomi.translation.mangaocr.MangaOcrModelManager
 import app.tsunayomi.data.ApiCheckException
 import app.tsunayomi.data.ServerSettingsRepository
 import app.tsunayomi.data.UserSettingsRepository
@@ -36,7 +38,16 @@ sealed interface VerificationState {
 class ApiConfigViewModel @Inject constructor(
     private val serverSettings: ServerSettingsRepository,
     private val userSettings: UserSettingsRepository,
+    private val mangaOcrManager: MangaOcrModelManager,
 ) : ViewModel() {
+    val mangaOcrStatus: StateFlow<MangaOcrStatus> = mangaOcrManager.status
+
+    fun downloadMangaOcr() = mangaOcrManager.download()
+
+    fun cancelMangaOcr() = mangaOcrManager.cancel()
+
+    fun deleteMangaOcr() = mangaOcrManager.delete()
+
 
 
     private val _selectedEngine = MutableStateFlow(TranslationEngine.Gemini)
