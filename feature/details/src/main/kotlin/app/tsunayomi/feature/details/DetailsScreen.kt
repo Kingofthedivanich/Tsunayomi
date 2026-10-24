@@ -125,12 +125,13 @@ internal fun DetailsScreen(
             notificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
         }
     }
+    val openInWebViewLabel = stringResource(R.string.feature_details_open_in_webview)
     LaunchedEffect(state.error) {
         val error = state.error ?: return@LaunchedEffect
         if (state.isCloudflareError && state.webUrl != null && state.manga != null) {
             val result = snackbarHostState.showSnackbar(
                 message = error,
-                actionLabel = context.getString(R.string.feature_details_open_in_webview),
+                actionLabel = openInWebViewLabel,
                 duration = androidx.compose.material3.SnackbarDuration.Long,
             )
             if (result == androidx.compose.material3.SnackbarResult.ActionPerformed) {
