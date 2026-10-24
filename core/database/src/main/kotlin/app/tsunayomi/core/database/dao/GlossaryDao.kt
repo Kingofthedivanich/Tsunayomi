@@ -12,6 +12,9 @@ interface GlossaryDao {
     @Query("SELECT * FROM glossary_term WHERE manga_id = :mangaId AND target_lang = :targetLang ORDER BY created_at")
     suspend fun get(mangaId: Long, targetLang: String): List<GlossaryTermEntity>
 
+    @Query("SELECT * FROM glossary_term WHERE manga_id = :mangaId ORDER BY created_at")
+    suspend fun getAllForManga(mangaId: Long): List<GlossaryTermEntity>
+
     @Query("SELECT * FROM glossary_term WHERE manga_id = :mangaId ORDER BY target_lang, source COLLATE NOCASE")
     fun observe(mangaId: Long): Flow<List<GlossaryTermEntity>>
 

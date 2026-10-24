@@ -1,5 +1,7 @@
 package app.tsunayomi.core.model
 
+import kotlinx.serialization.Serializable
+
 data class Manga(
     val id: Long,
     val sourceId: Long,
@@ -17,6 +19,7 @@ data class Manga(
     val originalLang: String? = null,
 )
 
+@Serializable
 enum class MangaStatus {
     Unknown,
     Ongoing,

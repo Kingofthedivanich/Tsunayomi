@@ -22,6 +22,9 @@ abstract class CategoryDao {
     @Query("SELECT category_id FROM manga_category WHERE manga_id = :mangaId")
     abstract fun observeCategoryIds(mangaId: Long): Flow<List<Long>>
 
+    @Query("SELECT category_id FROM manga_category WHERE manga_id = :mangaId")
+    abstract suspend fun getCategoryIds(mangaId: Long): List<Long>
+
     @Query("SELECT COALESCE(MAX(sort_order), -1) + 1 FROM category")
     protected abstract suspend fun nextOrder(): Int
 

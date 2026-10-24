@@ -61,4 +61,27 @@ abstract class ChapterDao {
         )
         return insert(fresh.map { it.copy(fetchedAt = if (firstList) 0 else now) })
     }
+
+    @Transaction
+    open suspend fun restoreChapters(mangaId: Long, incoming: List<ChapterEntity>) {
+        val existing = getByManga(mangaId).associateBy { it.url }
+        val toUpdate = mutableListOf<ChapterEntity>()
+        val toInsert = mutableListOf<ChapterEntity>()
+        for (inc in incoming) {
+            val old = existing[inc.url]
+            if (old != null) {
+                toUpdate.add(
+                    old.copy(
+                        read = old.read || inc.read,
+                        lastPageRead = maxOf(old.lastPageRead, inc.lastPageRead),
+                        bookmark = old.bookmark || inc.bookmark,
+                    ),
+                )
+            } else {
+                toInsert.add(inc.copy(id = 0, mangaId = mangaId))
+            }
+        }
+        if (toUpdate.isNotEmpty()) update(toUpdate)
+        if (toInsert.isNotEmpty()) insert(toInsert)
+    }
 }

@@ -17,6 +17,9 @@ internal data object MoreRoute
 internal data object SettingsRoute
 
 @Serializable
+internal data object BackupRoute
+
+@Serializable
 internal data object AboutRoute
 
 fun NavGraphBuilder.moreGraph(navController: NavController) {
@@ -24,11 +27,19 @@ fun NavGraphBuilder.moreGraph(navController: NavController) {
         composable<MoreRoute> {
             MoreScreen(
                 onOpenSettings = { navController.navigate(SettingsRoute) },
+                onOpenBackup = { navController.navigate(BackupRoute) },
                 onOpenAbout = { navController.navigate(AboutRoute) },
             )
         }
         composable<SettingsRoute> {
-            SettingsScreen(onBack = navController::popBackStack, onOpenKomga = navController::navigateToKomgaSettings)
+            SettingsScreen(
+                onBack = navController::popBackStack,
+                onOpenKomga = navController::navigateToKomgaSettings,
+                onOpenBackup = { navController.navigate(BackupRoute) },
+            )
+        }
+        composable<BackupRoute> {
+            BackupScreen(onBack = navController::popBackStack)
         }
         composable<AboutRoute> {
             AboutScreen(onBack = navController::popBackStack)

@@ -86,4 +86,18 @@
     <string name="feature_settings_update_wifi_only_summary">Skip automatic checks on mobile data</string>
     <string name="feature_settings_auto_download">Download new chapters</string>
     <string name="feature_settings_auto_download_summary">Chapters found by an update are downloaded (and translated, if that is on)</string>
+    <string name="feature_settings_backup_title">Backup and restore</string>
+    <string name="feature_settings_backup_desc">Create backups to transfer your library, reading progress, categories and history to another device.</string>
+    <string name="feature_settings_backup_create_title">Create backup</string>
+    <string name="feature_settings_backup_create_summary">Save library, progress, and history to a file</string>
+    <string name="feature_settings_backup_restore_title">Restore backup</string>
+    <string name="feature_settings_backup_restore_summary">Restore data from a backup file</string>
+    <string name="feature_settings_backup_creating">Creating backup…</string>
+    <string name="feature_settings_backup_restoring">Restoring…</string>
+    <string name="feature_settings_backup_please_wait">Please wait…</string>
+    <string name="feature_settings_backup_reading_file">Reading backup file…</string>
+    <string name="feature_settings_backup_success_title">Success</string>
+    <string name="feature_settings_backup_error_title">Error</string>
+    <string name="feature_settings_backup_res_created">Backup created successfully (%1$d titles, %2$d categories, %3$d chapters)</string>
+    <string name="feature_settings_backup_res_restored">Data restored successfully (%1$d titles, %2$d categories, %3$d chapters)</string>
 </resources>

@@ -13,6 +13,9 @@ interface MangaDao {
     @Query("SELECT * FROM manga WHERE favorite = 1 ORDER BY title COLLATE NOCASE")
     fun observeFavorites(): Flow<List<MangaEntity>>
 
+    @Query("SELECT * FROM manga WHERE favorite = 1 ORDER BY title COLLATE NOCASE")
+    suspend fun getFavorites(): List<MangaEntity>
+
     @Query("SELECT * FROM manga WHERE id = :id")
     fun observeById(id: Long): Flow<MangaEntity?>
 

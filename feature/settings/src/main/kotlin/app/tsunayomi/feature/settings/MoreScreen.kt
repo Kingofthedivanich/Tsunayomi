@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Backup
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 @Composable
 internal fun MoreScreen(
     onOpenSettings: () -> Unit,
+    onOpenBackup: () -> Unit,
     onOpenAbout: () -> Unit,
 ) {
     Scaffold(
@@ -28,6 +30,7 @@ internal fun MoreScreen(
     ) { padding ->
         Column(Modifier.padding(padding)) {
             MoreItem(Icons.Outlined.Settings, stringResource(R.string.feature_settings_title), onOpenSettings)
+            MoreItem(Icons.Outlined.Backup, stringResource(R.string.feature_settings_backup_title), onOpenBackup)
             MoreItem(Icons.Outlined.Info, stringResource(R.string.feature_settings_about_title), onOpenAbout)
         }
     }

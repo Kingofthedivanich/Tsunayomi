@@ -52,6 +52,7 @@ import app.tsunayomi.core.model.UserSettings
 internal fun SettingsScreen(
     onBack: () -> Unit,
     onOpenKomga: () -> Unit,
+    onOpenBackup: () -> Unit = {},
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
@@ -73,6 +74,7 @@ internal fun SettingsScreen(
         onOpenAiChange = viewModel::setOpenAi,
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
+        onOpenBackup = onOpenBackup,
         onBack = onBack,
         onThemeModeChange = viewModel::setThemeMode,
         onDynamicColorChange = viewModel::setDynamicColor,
@@ -100,6 +102,7 @@ private fun SettingsContent(
     onOpenAiChange: (OpenAiConfig) -> Unit,
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
+    onOpenBackup: () -> Unit,
     onBack: () -> Unit,
     onThemeModeChange: (ThemeMode) -> Unit,
     onDynamicColorChange: (Boolean) -> Unit,
@@ -234,6 +237,13 @@ private fun SettingsContent(
                 onGeminiChange = onGeminiChange,
                 onOpenAiChange = onOpenAiChange,
                 switchItem = { title, summary, checked, onChange -> SwitchItem(title, summary, checked, onChange) },
+            )
+
+            SectionHeader(stringResource(R.string.feature_settings_backup_title))
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_backup_title)) },
+                supportingContent = { Text(stringResource(R.string.feature_settings_backup_create_summary)) },
+                modifier = Modifier.clickable(onClick = onOpenBackup),
             )
         }
     }
