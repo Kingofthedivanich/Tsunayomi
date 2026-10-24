@@ -14,4 +14,7 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.telephoto.zoomable.image.coil3)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
 }

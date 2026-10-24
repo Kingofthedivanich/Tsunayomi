@@ -25,6 +25,7 @@ internal fun MangaEntity.toModel() = Manga(
     dateAdded = dateAdded,
     readerMode = readerMode,
     originalLang = originalLang,
+    translatePages = translatePages,
 )
 
 internal fun Manga.toSManga() = SManga(

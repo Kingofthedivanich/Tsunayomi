@@ -91,6 +91,7 @@ class BackupRepository @Inject constructor(
                     readerMode = manga.readerMode,
                     originalLang = manga.originalLang,
                     detailsUpdatedAt = manga.detailsUpdatedAt,
+                    translatePages = manga.translatePages,
                     categories = categoryNames,
                     chapters = chapters.map {
                         BackupChapter(
@@ -182,6 +183,7 @@ class BackupRepository @Inject constructor(
                         dateAdded = if (existing.dateAdded > 0) existing.dateAdded else bManga.dateAdded,
                         readerMode = bManga.readerMode ?: existing.readerMode,
                         originalLang = bManga.originalLang ?: existing.originalLang,
+                        translatePages = bManga.translatePages ?: existing.translatePages,
                     )
                     mangaDao.update(updated)
                     existing.id
@@ -202,6 +204,7 @@ class BackupRepository @Inject constructor(
                             readerMode = bManga.readerMode,
                             originalLang = bManga.originalLang,
                             detailsUpdatedAt = bManga.detailsUpdatedAt,
+                            translatePages = bManga.translatePages,
                         ),
                     )
                 }

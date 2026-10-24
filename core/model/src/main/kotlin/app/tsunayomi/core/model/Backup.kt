@@ -41,6 +41,7 @@ data class BackupManga(
     val chapters: List<BackupChapter> = emptyList(),
     val history: List<BackupHistory> = emptyList(),
     val glossary: List<BackupGlossaryTerm> = emptyList(),
+    val translatePages: Boolean? = null,
 )
 
 @Serializable

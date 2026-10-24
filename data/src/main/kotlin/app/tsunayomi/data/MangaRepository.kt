@@ -109,6 +109,10 @@ class MangaRepository @Inject constructor(
         mangaDao.setReaderMode(mangaId, mode?.name)
     }
 
+    suspend fun setTranslatePages(mangaId: Long, translatePages: Boolean?) {
+        mangaDao.setTranslatePages(mangaId, translatePages)
+    }
+
     suspend fun getPages(manga: Manga, chapter: Chapter): List<SPage> = withContext(io) {
         sourceManager.getCatalog(manga.sourceId).getPages(chapter.toSChapter())
     }

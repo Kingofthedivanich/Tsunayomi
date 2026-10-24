@@ -17,6 +17,7 @@ data class Manga(
     val dateAdded: Long = 0,
     val readerMode: ReaderMode? = null,
     val originalLang: String? = null,
+    val translatePages: Boolean? = null,
 )
 
 @Serializable

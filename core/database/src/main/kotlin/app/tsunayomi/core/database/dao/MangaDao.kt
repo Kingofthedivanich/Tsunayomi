@@ -39,4 +39,7 @@ interface MangaDao {
 
     @Query("UPDATE manga SET reader_mode = :readerMode WHERE id = :id")
     suspend fun setReaderMode(id: Long, readerMode: String?)
+
+    @Query("UPDATE manga SET translate_pages = :translatePages WHERE id = :id")
+    suspend fun setTranslatePages(id: Long, translatePages: Boolean?)
 }

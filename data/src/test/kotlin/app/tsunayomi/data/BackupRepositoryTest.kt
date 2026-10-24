@@ -132,6 +132,7 @@ class BackupRepositoryTest {
             readerMode = ReaderMode.PagedRightToLeft,
             originalLang = "ja",
             detailsUpdatedAt = 2222L,
+            translatePages = true,
         )
         coEvery { mangaDao.getFavorites() } returns listOf(manga)
         coEvery { categoryDao.getCategoryIds(10L) } returns listOf(1L)
@@ -188,11 +189,52 @@ class BackupRepositoryTest {
         assertEquals(1, success.chapterCount)
 
         coVerify { categoryDao.create("Shonen") }
-        coVerify { mangaDao.insert(match { it.title == "One Piece" && it.sourceId == 200L }) }
+        coVerify { mangaDao.insert(match { it.title == "One Piece" && it.sourceId == 200L && it.translatePages == true }) }
         coVerify { categoryDao.setMangaCategories(77L, setOf(99L)) }
         coVerify { chapterDao.restoreChapters(77L, match { it.size == 1 && it[0].name == "Chapter 1000" }) }
         coVerify { historyDao.upsert(match { it.chapterId == 888L && it.lastReadAt == 4444L }) }
         coVerify { glossaryDao.insertIfAbsent(match { it.size == 1 && it[0].source == "Luffy" }) }
+    }
+
+    @Test
+    fun `restore handles uncompressed plain json without translatePages field`() = runTest {
+        val plainJson = """
+            {
+              "version": 1,
+              "createdAt": 1000,
+              "categories": [{"name": "Favorites", "order": 0}],
+              "manga": [{
+                "sourceId": 1,
+                "url": "/manga/1",
+                "title": "Legacy Manga",
+                "status": "Ongoing",
+                "favorite": true,
+                "dateAdded": 100,
+                "categories": ["Favorites"],
+                "chapters": [],
+                "history": [],
+                "glossary": []
+              }]
+            }
+        """.trimIndent()
+
+        coEvery { categoryDao.getAll() } returns emptyList()
+        coEvery { categoryDao.create("Favorites") } returns 1L
+        coEvery { mangaDao.getBySourceAndUrl(1L, "/manga/1") } returns null
+        coEvery { mangaDao.insert(any()) } returns 55L
+        coEvery { categoryDao.getCategoryIds(55L) } returns emptyList()
+        coEvery { categoryDao.setMangaCategories(55L, setOf(1L)) } returns Unit
+        coEvery { chapterDao.restoreChapters(55L, any()) } returns Unit
+        coEvery { chapterDao.getByManga(55L) } returns emptyList()
+
+        val steps = repository.restoreBackup(ByteArrayInputStream(plainJson.toByteArray())).toList()
+        val last = steps.last() as RestoreStep.Finished
+        assertTrue(last.result is RestoreResult.Success)
+        val success = last.result as RestoreResult.Success
+        assertEquals(1, success.categoryCount)
+        assertEquals(1, success.mangaCount)
+
+        coVerify { mangaDao.insert(match { it.title == "Legacy Manga" && it.translatePages == null }) }
     }
 
     @Test

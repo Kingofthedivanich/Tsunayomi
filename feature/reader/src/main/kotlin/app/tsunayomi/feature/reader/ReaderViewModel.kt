@@ -121,7 +121,7 @@ internal class ReaderViewModel @Inject constructor(
                     volumeKeys = settings.volumeKeysNavigation,
                 )
             }
-            _translationOn.value = settings.translateByDefault
+            _translationOn.value = manga.translatePages ?: settings.translateByDefault
             loadChapter(route.chapterId)
         }
     }
@@ -175,6 +175,11 @@ internal class ReaderViewModel @Inject constructor(
     fun toggleTranslation() {
         val enabled = !_translationOn.value
         _translationOn.value = enabled
+        val manga = _state.value.manga
+        if (manga != null) {
+            _state.update { it.copy(manga = manga.copy(translatePages = enabled)) }
+            viewModelScope.launch { mangaRepository.setTranslatePages(manga.id, enabled) }
+        }
         if (enabled) translateAround(_currentPage.value)
     }
 
