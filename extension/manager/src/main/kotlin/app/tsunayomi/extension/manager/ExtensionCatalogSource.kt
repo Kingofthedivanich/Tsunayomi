@@ -33,6 +33,8 @@ internal class ExtensionCatalogSource(
 
     override fun webUrl(): String? = (delegate as? HttpSource)?.getHomeUrl() ?: (delegate as? HttpSource)?.baseUrl
 
+    override fun webHeaders(): Map<String, String> = (delegate as? HttpSource)?.headers?.toMap() ?: emptyMap()
+
     override fun webUrl(manga: SManga): String? = runCatching {
         (delegate as? HttpSource)?.getMangaUrl(manga.toExtension())
     }.getOrNull()

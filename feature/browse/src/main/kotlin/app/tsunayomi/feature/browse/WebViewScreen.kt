@@ -37,15 +37,33 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import eu.kanade.tachiyomi.network.NetworkHelper
 import eu.kanade.tachiyomi.util.system.setDefaultSettings
 import eu.kanade.tachiyomi.util.system.setUserAgent
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WebViewScreen(
+internal fun WebViewScreen(
     url: String,
     sourceId: Long,
+    onClose: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: WebViewViewModel = hiltViewModel(),
+) {
+    val headers = remember(sourceId) { viewModel.getHeaders(sourceId) }
+    WebViewScreenContent(
+        url = url,
+        headers = headers,
+        onClose = onClose,
+        modifier = modifier,
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+internal fun WebViewScreenContent(
+    url: String,
+    headers: Map<String, String>,
     onClose: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -133,7 +151,8 @@ fun WebViewScreen(
                 factory = { ctx ->
                     WebView(ctx).apply {
                         setDefaultSettings()
-                        setUserAgent(NetworkHelper.defaultUserAgent())
+                        val userAgent = headers["User-Agent"] ?: NetworkHelper.defaultUserAgent()
+                        setUserAgent(userAgent)
                         webChromeClient = object : WebChromeClient() {
                             override fun onReceivedTitle(view: WebView?, title: String?) {
                                 pageTitle = title.orEmpty()
@@ -154,7 +173,12 @@ fun WebViewScreen(
                                 CookieManager.getInstance().flush()
                             }
                         }
-                        loadUrl(url)
+                        val extraHeaders = headers - "User-Agent"
+                        if (extraHeaders.isNotEmpty()) {
+                            loadUrl(url, extraHeaders)
+                        } else {
+                            loadUrl(url)
+                        }
                         webView = this
                     }
                 },
