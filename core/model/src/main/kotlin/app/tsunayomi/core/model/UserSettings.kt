@@ -29,6 +29,8 @@ data class UserSettings(
     val appLockTimeoutMinutes: Int = 0,
     /** Block screenshots and hide preview in recent apps switcher. */
     val secureScreen: Boolean = false,
+    /** Whether the user completed or skipped the first-launch welcome/setup wizard. */
+    val onboardingCompleted: Boolean = false,
 )
 
 enum class ThemeMode {

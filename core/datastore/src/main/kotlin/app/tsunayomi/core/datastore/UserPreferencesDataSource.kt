@@ -40,6 +40,7 @@ class UserPreferencesDataSource @Inject constructor(
             appLockEnabled = prefs[Keys.appLockEnabled] ?: defaults.appLockEnabled,
             appLockTimeoutMinutes = prefs[Keys.appLockTimeoutMinutes] ?: defaults.appLockTimeoutMinutes,
             secureScreen = prefs[Keys.secureScreen] ?: defaults.secureScreen,
+            onboardingCompleted = prefs[Keys.onboardingCompleted] ?: defaults.onboardingCompleted,
         )
     }
 
@@ -120,6 +121,10 @@ class UserPreferencesDataSource @Inject constructor(
         dataStore.edit { it[Keys.secureScreen] = enabled }
     }
 
+    suspend fun setOnboardingCompleted(completed: Boolean) {
+        dataStore.edit { it[Keys.onboardingCompleted] = completed }
+    }
+
     private inline fun <reified E : Enum<E>> String?.toEnum(default: E): E =
         this?.let { name -> enumValues<E>().firstOrNull { it.name == name } } ?: default
 
@@ -143,5 +148,6 @@ class UserPreferencesDataSource @Inject constructor(
         val appLockEnabled = booleanPreferencesKey("app_lock_enabled")
         val appLockTimeoutMinutes = intPreferencesKey("app_lock_timeout_minutes")
         val secureScreen = booleanPreferencesKey("secure_screen")
+        val onboardingCompleted = booleanPreferencesKey("onboarding_completed")
     }
 }

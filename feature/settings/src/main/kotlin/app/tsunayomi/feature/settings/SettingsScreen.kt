@@ -12,6 +12,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.Key
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -55,6 +56,7 @@ internal fun SettingsScreen(
     onBack: () -> Unit,
     onOpenKomga: () -> Unit,
     onOpenBackup: () -> Unit = {},
+    onOpenApiConfig: () -> Unit = {},
     viewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val settings by viewModel.settings.collectAsStateWithLifecycle()
@@ -85,6 +87,7 @@ internal fun SettingsScreen(
         komgaUrl = komgaUrl,
         onOpenKomga = onOpenKomga,
         onOpenBackup = onOpenBackup,
+        onOpenApiConfig = onOpenApiConfig,
         onBack = onBack,
         onThemeModeChange = viewModel::setThemeMode,
         onDynamicColorChange = viewModel::setDynamicColor,
@@ -122,6 +125,7 @@ private fun SettingsContent(
     komgaUrl: String?,
     onOpenKomga: () -> Unit,
     onOpenBackup: () -> Unit,
+    onOpenApiConfig: () -> Unit,
     onBack: () -> Unit,
     onThemeModeChange: (ThemeMode) -> Unit,
     onDynamicColorChange: (Boolean) -> Unit,
@@ -250,6 +254,12 @@ private fun SettingsContent(
             )
 
             SectionHeader(stringResource(R.string.feature_settings_section_translation))
+            ListItem(
+                headlineContent = { Text(stringResource(R.string.feature_settings_api_config_title)) },
+                supportingContent = { Text(stringResource(R.string.feature_settings_api_config_summary)) },
+                leadingContent = { Icon(Icons.Outlined.Key, contentDescription = null) },
+                modifier = Modifier.clickable(onClick = onOpenApiConfig),
+            )
             TranslationSection(
                 settings = settings,
                 gemini = gemini,

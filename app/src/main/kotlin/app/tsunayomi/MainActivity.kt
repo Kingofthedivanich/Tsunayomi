@@ -28,6 +28,7 @@ import app.tsunayomi.core.designsystem.theme.TsunayomiTheme
 import app.tsunayomi.core.model.ThemeMode
 import app.tsunayomi.crash.CrashReportDialog
 import app.tsunayomi.crash.CrashReporter
+import app.tsunayomi.feature.settings.OnboardingScreen
 import app.tsunayomi.navigation.TsunayomiApp
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -116,16 +117,20 @@ class MainActivity : AppCompatActivity() {
                 dynamicColor = current.dynamicColor,
                 pureBlack = current.pureBlack,
             ) {
-                Box(Modifier.fillMaxSize()) {
-                    TsunayomiApp(openUpdates = openUpdates, onUpdatesOpened = { openUpdatesRequest = false })
-                    if (isLocked) {
-                        AppLockScreen(onUnlock = ::promptBiometricUnlock)
-                    }
-                    if (!isLocked) {
-                        crashReport?.let { report ->
-                            CrashReportDialog(report) {
-                                CrashReporter.discard(this@MainActivity)
-                                crashReport = null
+                if (!current.onboardingCompleted) {
+                    OnboardingScreen(onFinish = viewModel::completeOnboarding)
+                } else {
+                    Box(Modifier.fillMaxSize()) {
+                        TsunayomiApp(openUpdates = openUpdates, onUpdatesOpened = { openUpdatesRequest = false })
+                        if (isLocked) {
+                            AppLockScreen(onUnlock = ::promptBiometricUnlock)
+                        }
+                        if (!isLocked) {
+                            crashReport?.let { report ->
+                                CrashReportDialog(report) {
+                                    CrashReporter.discard(this@MainActivity)
+                                    crashReport = null
+                                }
                             }
                         }
                     }

@@ -121,4 +121,42 @@
     <string name="feature_settings_app_lock_timeout_10_min">10 минут</string>
     <string name="feature_settings_secure_screen_title">Безопасный экран</string>
     <string name="feature_settings_secure_screen_summary">Запретить скриншоты и скрыть окно в недавних приложениях</string>
+
+    <!-- Онбординг и конфигурация API -->
+    <string name="onboarding_welcome_title">Tsunayomi</string>
+    <string name="onboarding_welcome_subtitle">Чтение манги и комиксов с автопереводом</string>
+    <string name="onboarding_feature_catalogs_title">Каталоги и локальные файлы</string>
+    <string name="onboarding_feature_catalogs_desc">Онлайн-источники (MangaDex, Remanga, Webtoons, Naver, Asura, расширения Tachiyomi/Mihon) и локальные форматы (.cbz, .cbr, .epub, .zip, .pdf).</string>
+    <string name="onboarding_feature_translation_title">Автоперевод на лету</string>
+    <string name="onboarding_feature_translation_desc">Встроенный офлайн-переводчик Google ML Kit или перевод нейросетью по API (Gemini, OpenRouter, DeepL) с сохранением имён.</string>
+    <string name="onboarding_feature_privacy_title">Приватность и безопасность</string>
+    <string name="onboarding_feature_privacy_desc">Режим инкогнито в один клик, биометрическая защита отпечатком пальца или PIN-кодом и безопасный экран.</string>
+    <string name="onboarding_btn_setup_api">Настроить API</string>
+    <string name="onboarding_btn_skip">Пропустить</string>
+    <string name="onboarding_api_title">Настройка API-ключей</string>
+    <string name="onboarding_api_subtitle">По умолчанию страницы можно переводить бесплатно и без интернета через встроенный Google ML Kit. Чтобы использовать более качественные модели нейросетей, подключите API-ключи.</string>
+    <string name="onboarding_btn_save_continue">Сохранить и продолжить</string>
+
+    <string name="feature_settings_api_config_title">Конфигурация API</string>
+    <string name="feature_settings_api_config_summary">Проверка ключей и выбор моделей OpenRouter, Gemini, DeepL</string>
+    <string name="api_config_engine_gemini">Google Gemini (Рекомендуется)</string>
+    <string name="api_config_engine_gemini_desc">Бесплатный ключ в Google AI Studio. Цепочка моделей: Flash-Lite 3.5 → Flash-Lite 3.1 → Gemma 4</string>
+    <string name="api_config_engine_openrouter">OpenRouter (Бесплатные модели)</string>
+    <string name="api_config_engine_openrouter_desc">Доступ к открытым моделям с автоматической проверкой доступности</string>
+    <string name="api_config_engine_deepl">DeepL</string>
+    <string name="api_config_engine_deepl_desc">Поддерживаются бесплатные (:fx) и Pro ключи перевода</string>
+    <string name="api_config_engine_mlkit">Google ML Kit (Только офлайн)</string>
+    <string name="api_config_engine_mlkit_desc">Работает локально на телефоне, без интернета и без API-ключей</string>
+    <string name="api_config_verify_key">Проверить</string>
+    <string name="api_config_verifying">Проверка…</string>
+    <string name="api_config_key_valid">✓ Ключ активен и проверен</string>
+    <string name="api_config_model_valid">✓ Модель отвечает и готова к работе</string>
+    <string name="api_config_model_failed">Модель недоступна: %s</string>
+    <string name="api_config_suggest_alternative">Предлагаем переключиться на другую бесплатную модель:</string>
+    <string name="api_config_fetch_free_models">Обновить список моделей</string>
+    <string name="api_config_model_label">Модель</string>
+    <string name="api_config_api_key_label">API-ключ</string>
+    <string name="api_config_api_key_hint">Вставьте ваш API-ключ</string>
+    <string name="api_config_paste">Вставить</string>
+    <string name="api_config_clear">Очистить</string>
 </resources>

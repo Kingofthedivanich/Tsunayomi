@@ -51,4 +51,6 @@ class UserSettingsRepository @Inject constructor(
     suspend fun setAppLockTimeoutMinutes(minutes: Int) = preferences.setAppLockTimeoutMinutes(minutes)
 
     suspend fun setSecureScreen(enabled: Boolean) = preferences.setSecureScreen(enabled)
+
+    suspend fun setOnboardingCompleted(completed: Boolean) = preferences.setOnboardingCompleted(completed)
 }

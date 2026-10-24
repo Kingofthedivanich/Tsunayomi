@@ -37,8 +37,14 @@ data class OpenAiConfig(
         const val DEFAULT_BASE_URL = "https://api.openai.com/v1"
         const val DEFAULT_MODEL = "gpt-4o-mini"
 
+        val DEFAULT_OPENROUTER_FREE_MODELS = listOf(
+            "nvidia/nemotron-3-ultra-550b-a55b:free",
+            "google/gemma-4-31b-it:free",
+            "thinkingmachines/inkling:free",
+        )
+
         val PRESET_DEEPSEEK = OpenAiConfig("https://api.deepseek.com/v1", "", "deepseek-chat")
-        val PRESET_OPENROUTER = OpenAiConfig("https://openrouter.ai/api/v1", "", "deepseek/deepseek-chat")
+        val PRESET_OPENROUTER = OpenAiConfig("https://openrouter.ai/api/v1", "", "nvidia/nemotron-3-ultra-550b-a55b:free")
         val PRESET_GROQ = OpenAiConfig("https://api.groq.com/openai/v1", "", "llama-3.3-70b-versatile")
         val PRESET_OLLAMA = OpenAiConfig("http://192.168.1.100:11434/v1", "", "qwen2.5:7b")
         val PRESET_OPENAI = OpenAiConfig("https://api.openai.com/v1", "", "gpt-4o-mini")

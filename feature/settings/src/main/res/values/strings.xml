@@ -124,4 +124,42 @@
     <string name="feature_settings_app_lock_timeout_10_min">10 minutes</string>
     <string name="feature_settings_secure_screen_title">Secure screen</string>
     <string name="feature_settings_secure_screen_summary">Block screenshots and hide app preview in recent apps</string>
+
+    <!-- Onboarding & API Configuration -->
+    <string name="onboarding_welcome_title">Tsunayomi</string>
+    <string name="onboarding_welcome_subtitle">Manga and comic reader with auto-translation</string>
+    <string name="onboarding_feature_catalogs_title">Catalogs &amp; local files</string>
+    <string name="onboarding_feature_catalogs_desc">Online sources (MangaDex, Remanga, Webtoons, Naver, Asura, Tachiyomi/Mihon extensions) and local formats (.cbz, .cbr, .epub, .zip, .pdf).</string>
+    <string name="onboarding_feature_translation_title">Auto-translation on the fly</string>
+    <string name="onboarding_feature_translation_desc">Built-in offline Google ML Kit or AI translation via API (Gemini, OpenRouter, DeepL) with name retention.</string>
+    <string name="onboarding_feature_privacy_title">Privacy &amp; security</string>
+    <string name="onboarding_feature_privacy_desc">One-tap incognito mode, biometric or PIN app lock, and secure screen protection.</string>
+    <string name="onboarding_btn_setup_api">Configure API</string>
+    <string name="onboarding_btn_skip">Skip</string>
+    <string name="onboarding_api_title">API Keys Setup</string>
+    <string name="onboarding_api_subtitle">By default, pages can be translated offline for free with Google ML Kit. To use higher-quality AI models, connect your API keys.</string>
+    <string name="onboarding_btn_save_continue">Save &amp; continue</string>
+
+    <string name="feature_settings_api_config_title">API Configuration</string>
+    <string name="feature_settings_api_config_summary">Verify keys and configure OpenRouter, Gemini, and DeepL models</string>
+    <string name="api_config_engine_gemini">Google Gemini (Recommended)</string>
+    <string name="api_config_engine_gemini_desc">Free key from Google AI Studio. Model chain: Flash-Lite 3.5 → Flash-Lite 3.1 → Gemma 4</string>
+    <string name="api_config_engine_openrouter">OpenRouter (Free models)</string>
+    <string name="api_config_engine_openrouter_desc">Access open models with automatic availability checking</string>
+    <string name="api_config_engine_deepl">DeepL</string>
+    <string name="api_config_engine_deepl_desc">Supports free (:fx) and Pro translation keys</string>
+    <string name="api_config_engine_mlkit">Google ML Kit (Offline only)</string>
+    <string name="api_config_engine_mlkit_desc">Runs locally on device, no internet or API keys required</string>
+    <string name="api_config_verify_key">Verify</string>
+    <string name="api_config_verifying">Verifying…</string>
+    <string name="api_config_key_valid">✓ Key is valid and active</string>
+    <string name="api_config_model_valid">✓ Model is responding and ready</string>
+    <string name="api_config_model_failed">Model unavailable: %s</string>
+    <string name="api_config_suggest_alternative">Suggested alternative free models:</string>
+    <string name="api_config_fetch_free_models">Refresh models list</string>
+    <string name="api_config_model_label">Model</string>
+    <string name="api_config_api_key_label">API Key</string>
+    <string name="api_config_api_key_hint">Paste your API key</string>
+    <string name="api_config_paste">Paste</string>
+    <string name="api_config_clear">Clear</string>
 </resources>
