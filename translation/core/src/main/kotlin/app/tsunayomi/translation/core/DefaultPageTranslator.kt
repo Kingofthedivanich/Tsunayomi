@@ -64,7 +64,7 @@ class DefaultPageTranslator @Inject constructor(
         val recognized = toRecognize.associateWith { index ->
             val bitmap = pages[index].load()
             val bubbles = BubbleGrouping.group(recognizer.recognize(bitmap, sourceLang))
-            if (japanese) rereadJapanese(bitmap, bubbles) else bubbles
+            if (japanese) rereadJapanese(bitmap, bubbles, sourceLang) else bubbles
         }
 
         return translateMutex.withLock {
@@ -97,12 +97,15 @@ class DefaultPageTranslator @Inject constructor(
      * ML Kit finds Japanese bubbles well enough but reads vertical text poorly, often column by column in the
      * wrong order. Each grouped bubble that looks Japanese is read again, as a whole, by the specialised model.
      */
-    private suspend fun rereadJapanese(page: Bitmap, bubbles: List<RecognizedBlock>): List<RecognizedBlock> =
-        bubbles.map { bubble ->
+    private suspend fun rereadJapanese(page: Bitmap, bubbles: List<RecognizedBlock>, sourceLang: String?): List<RecognizedBlock> {
+        // With the language left to detection, kanji alone could be Chinese: only a page with kana is Japanese.
+        if (sourceLang == null && bubbles.none { KANA.containsMatchIn(it.text) }) return bubbles
+        return bubbles.map { bubble ->
             if (!JAPANESE_TEXT.containsMatchIn(bubble.text)) return@map bubble
             val text = japaneseOcr.recognize(page, bubble.box)
             if (text.isNullOrBlank()) bubble else bubble.copy(text = text)
         }
+    }
 
     /** Translates the blocks of several pages; keys are positions in the request list. */
     private suspend fun translateBlocks(
@@ -181,6 +184,7 @@ class DefaultPageTranslator @Inject constructor(
 
         /** Kana or kanji: worth a second read with the Japanese model. */
         val JAPANESE_TEXT = Regex("[\\u3040-\\u30FF\\u4E00-\\u9FFF]")
+        val KANA = Regex("[\\u3040-\\u30FF]")
         const val MAX_CHARS_PER_REQUEST = 12_000
     }
 }

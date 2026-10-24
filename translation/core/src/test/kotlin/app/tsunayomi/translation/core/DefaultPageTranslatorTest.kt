@@ -114,6 +114,26 @@ class DefaultPageTranslatorTest {
     }
 
     @Test
+    fun `with detected language a page of kanji without kana is taken for chinese`() = runTest {
+        japaneseOcr.available = true
+        firstText = "你好世界"
+
+        translator().translate(pages("p1"), null, mangaId = null)
+
+        assertEquals(0, japaneseOcr.reads.size)
+    }
+
+    @Test
+    fun `with detected language a page with kana is read by the japanese model`() = runTest {
+        japaneseOcr.available = true
+        firstText = "おは よう"
+
+        translator().translate(pages("p1"), null, mangaId = null)
+
+        assertEquals(1, japaneseOcr.reads.size)
+    }
+
+    @Test
     fun `the japanese model is not used for other languages`() = runTest {
         japaneseOcr.available = true
         firstText = "漢字"
