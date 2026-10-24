@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Tsunayomi MT Evaluation - 20 Sample Review</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 30px; background: #f7fafc; color: #2d3748; }
+        h1 { color: #1a202c; }
+        table { border-collapse: collapse; width: 100%; background: #ffffff; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-radius: 8px; overflow: hidden; }
+        th { background: #2b6cb0; color: white; padding: 12px 10px; text-align: left; font-size: 0.95em; }
+        .badge { font-size: 0.8em; padding: 2px 6px; border-radius: 4px; color: white; }
+    </style>
+</head>
+<body>
+    <h1>Сравнение качества машинного перевода (20 примеров манги)</h1>
+    <p>Выборка из 20 реплик манги/манхвы/маньхуа для визуальной оценки качества перевода на английский и русский языки.</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 40px;">#</th>
+                <th style="width: 20%;">Исходный OCR-текст</th>
+                <th style="width: 20%;">Серебряный эталон (Gemini)</th>
+                <th style="width: 20%;">ML Kit (Baseline)</th>
+                <th style="width: 20%;">Opus-MT (Helsinki)</th>
+                <th style="width: 20%;">NLLB-200 (600M)</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">1</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>飯テロ注意！空腹必至の異世界グルメファンタジー！</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Warning: Food porn! An isekai gourmet fantasy guaranteed to make you hungry!<br/>
+                <b>RU:</b> Внимание, фудпорн! Гурман-фэнтези в другом мире, от которого гарантированно потекут слюнки!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Rice terrorist attention! Horrorgun Merely World Gourmet Fantasy!<br/>
+                <b>RU:</b> Рис Террорист! Horrorgun просто мировая фантазия для гурманов!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Look out for the ricetacks! You're hungry! You're hungry!<br/>
+                <b>RU:</b> Берегись ристаков, ты голоден!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Notice of meal terrorism! The hungry must is a different world gourmet fantasy!<br/>
+                <b>RU:</b> Предупреждение о пищевом терроризме! Обязательный для голодающих кулинарный фэнтези в другом мире!
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">2</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>小田中さん、この書類の確認をお願いできますか？</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Odanaka-san, could you please take a look at these documents?<br/>
+                <b>RU:</b> Оданака-сан, не могли бы вы проверить эти документы?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Oda-san, can you confirm this document?<br/>
+                <b>RU:</b> ODA-SAN, вы можете подтвердить этот документ?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Mr. Koda, can you confirm these documents?<br/>
+                <b>RU:</b> Мистер Кода, вы можете подтвердить эти документы?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Mr. Otanaka, can you please check this document?<br/>
+                <b>RU:</b> Господин Отанака, не могли бы вы проверить этот документ?
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">3</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>ふぅ…今日も残業か。コンビニ弁当じゃ味気ないよな。</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Phew... Overtime again today, huh? Convenience store bento just doesn't hit the spot.<br/>
+                <b>RU:</b> Фух... Сегодня снова переработка? Бенто из комбини совсем безвкусное.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Fu ... Is it overtime today? Convenience store lunch box is not good.<br/>
+                <b>RU:</b> Фу ... это сверхурочно сегодня? Удобство для хранения ланч-коробка не хороша.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> You're still working overtime today. The convenience lunch doesn't taste good, does it?<br/>
+                <b>RU:</b> Удобный обед не очень вкусный, не так ли?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Phew... Is it overtime again today? A convenience store lunch is tasteless.<br/>
+                <b>RU:</b> Фух... Сегодня снова сверхурочные? Обед из магазина шаговой доступности безвкусен.
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">4</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>大家さんからもらったこの古い鍵、一体何の鍵なんだろう。</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Eh?! Why am I suddenly in the middle of a forest...?! Where even is this?!<br/>
+                <b>RU:</b> А?! Почему я вдруг посреди леса...?! Где это вообще?!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> This old key, which I got from a landlord, what kind of key is it.<br/>
+                <b>RU:</b> Этот старый ключ, который я получил от арендодателя, какой это ключ.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> What's the key to this old key that my landlord gave me?<br/>
+                <b>RU:</b> Какой ключ от этого старого ключа дал мне арендодатель?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Eh?! Why am I suddenly in the middle of a forest...?! Where on earth is this?!<br/>
+                <b>RU:</b> А?! Почему я внезапно посреди леса...?! Где это вообще?!
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">5</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>えっ！？扉の向こうが…見たこともない街並みになってる！？</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> My smartphone is out of service... Wait, the battery isn't draining at all?!<br/>
+                <b>RU:</b> Сеть на смартфоне не ловит... Стоп, а зарядка вообще не садится?!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Eh! ? The other side of the door is ... I have never seen it! ?<br/>
+                <b>RU:</b> Да! ? Другая сторона двери - ... Я никогда не видел этого! ?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Oh Ha Ni!<br/>
+                <b>RU:</b> О Ха Ни!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> The smartphone is outside the range... Wait, the battery isn't decreasing at all?!<br/>
+                <b>RU:</b> Смартфон вне зоны действия... Подождите, заряд батареи вообще не уменьшается?!
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">6</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Grumble~ ...Right now, filling my stomach comes first. Is there anything edible around?<br/>
+                <b>RU:</b> Уррр... Прямо сейчас главное — набить желудок. Есть тут что-нибудь съедобное?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> What this good smell is ... a smell of fragrant meat!<br/>
+                <b>RU:</b> Какой это хороший запах ... запах ароматного мяса!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> What's that nice smell?<br/>
+                <b>RU:</b> Что это за вкусный запах?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！<br/>
+                <b>RU:</b> [NLLB-RU] なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">7</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">JA (Salaryman, Isekai de Meshi)</span><br/>
+                <code>いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Is this mushroom safe to eat...? In manga, poisonous ones are usually bright and colorful, but...<br/>
+                <b>RU:</b> Этот гриб вообще съедобный?.. В манге ядовитые обычно яркие, но всё же...
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> I'm sorry! My brother, a face I can not see. Do you eat skewers?<br/>
+                <b>RU:</b> Извините! Мой брат, лицо, которое я не вижу. Вы едите шампуры?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Come here! You don't look like you've seen me. Would you like to eat a fried chicken?<br/>
+                <b>RU:</b> Ты не выглядишь так, будто не видел меня.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？<br/>
+                <b>RU:</b> [NLLB-RU] いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">8</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>내가 여자 화장실에 몰카를 설치했다고? 말도 안 되는 소리야!</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Me, installing a hidden camera in the women's restroom? That's ridiculous nonsense!<br/>
+                <b>RU:</b> Я установил скрытую камеру в женском туалете? Что за бред собачий!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> I installed Malka in a woman's toilet? It sounds a ridiculous!<br/>
+                <b>RU:</b> Я установил Малку в женском туалете? Это звучит смешно!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> That's ridiculous!<br/>
+                <b>RU:</b> Это смешно!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Did I install a hidden camera in the women's restroom? That makes no sense!<br/>
+                <b>RU:</b> Я установил скрытую камеру в женском туалете? Это не имеет смысла!
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">9</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Team Leader, please believe me. Someone framed me on purpose!<br/>
+                <b>RU:</b> Тимлид, пожалуйста, поверьте мне. Меня кто-то намеренно подставил!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Eventually, it was found to be innocent, but the in-house rumor has spread.<br/>
+                <b>RU:</b> В конце концов, было обнаружено, что он невиновен, но в домичном слух распространился.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> It turned out to be innocent, but already there's been a lot of rumors about men.<br/>
+                <b>RU:</b> Оказалось, что он невиновен, но уже было много слухов о мужчинах.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.<br/>
+                <b>RU:</b> [NLLB-RU] 결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">10</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Then explain how your fingerprint was found on this memory card.<br/>
+                <b>RU:</b> Тогда объясни, как твой отпечаток пальца оказался на этой карте памяти.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Mr. Ho Sung, a team leader comes in for a while.<br/>
+                <b>RU:</b> Мистер Хо Сен, руководитель команды на некоторое время приходит.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Mr. Hoe-soon, you're in the conference room for a moment.<br/>
+                <b>RU:</b> Мистер Хо Сун, вы на минутку в конференц-зале.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.<br/>
+                <b>RU:</b> [NLLB-RU] 호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">11</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> That... I have no idea why that would be there either!<br/>
+                <b>RU:</b> Это... Я и сам понятия не имею, откуда он там взялся!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Is it a greeting move? Why should I go to another department?<br/>
+                <b>RU:</b> Это приветствие хода? Почему я должен идти в другой отдел?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Why should I go to another department?<br/>
+                <b>RU:</b> Зачем мне идти в другой отдел?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?<br/>
+                <b>RU:</b> [NLLB-RU] 인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">12</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Until the investigation is over, you are suspended from coming to work starting today.<br/>
+                <b>RU:</b> До окончания внутреннего расследования ты отстранен от работы с сегодняшнего дня.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> It's what I decided above. I can not help it.<br/>
+                <b>RU:</b> Это то, что я решил выше. Я не могу помочь.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> It's a decision made above. It's no choice if it's wrong.<br/>
+                <b>RU:</b> Это решение, принятое выше, это не выбор, если это неправильно.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.<br/>
+                <b>RU:</b> [NLLB-RU] 위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">13</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Damn it... Why does all this misfortune only happen to me?!<br/>
+                <b>RU:</b> Черт возьми... Почему все эти несчастья сыплются именно на меня?!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> I really have to be doing this, ?<br/>
+                <b>RU:</b> Я действительно должен делать это,?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Is it really supposed to be this one-way thing?<br/>
+                <b>RU:</b> Это действительно должно быть в один конец?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?<br/>
+                <b>RU:</b> [NLLB-RU] 정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">14</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">KO (A Wonderful New World)</span><br/>
+                <code>하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Wait, my phone screen just flashed... What is this app?<br/>
+                <b>RU:</b> Погодите, экран телефона мигнул... Что это за приложение?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> But when I learned about the weakness of the woman,<br/>
+                <b>RU:</b> Но когда я узнал о слабости женщины,
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> But as soon as I stumbled across her weakness, the board turned upside down.<br/>
+                <b>RU:</b> Но как только я наткнулась на ее слабость, доска перевернулась вверх ногами.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.<br/>
+                <b>RU:</b> [NLLB-RU] 하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">15</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">ZH (Tales of Demons and Gods)</span><br/>
+                <code>我竟然重生回到了十三岁的时候？！</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> I have actually been reborn back to when I was thirteen years old?!<br/>
+                <b>RU:</b> Я что, правда переродился и вернулся в возраст тринадцати лет?!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> I actually reborn back to 13 years old? <br/>
+                <b>RU:</b> Я на самом деле возродился к 13 годам?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> I was born back when I was 13!<br/>
+                <b>RU:</b> Я родилась, когда мне было 13!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> I was actually reborn back when I was thirteen years old?!<br/>
+                <b>RU:</b> Я на самом деле возродился обратно, когда мне было тринадцать лет?!
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">16</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">ZH (Tales of Demons and Gods)</span><br/>
+                <code>圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Glory City hasn't been breached by demon beasts yet, and the Ye clan hasn't fallen!<br/>
+                <b>RU:</b> Светозарный город еще не разрушен демоническими зверями, а клан Е еще не пал!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> The Holy Emperor, Shen Zong ... The blood sea of the first world is very enrilled, this will pay more than 100 times!<br/>
+                <b>RU:</b> Святой Император, Шэнь Зун ... Кровавое море первого мира очень охватывает, это будет платить более 100 раз!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> The Emperor, the Father... the blood of the last life shall be repaid 100 times.<br/>
+                <b>RU:</b> Император, Отец... Кровь последней жизни будет возвращена 100 раз.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！<br/>
+                <b>RU:</b> [NLLB-RU] 圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">17</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">ZH (Tales of Demons and Gods)</span><br/>
+                <code>聂离！课堂之上，你竟敢公然睡觉，成何体统！</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> In this lifetime, I will protect Ziyun and everyone I cherish!<br/>
+                <b>RU:</b> В этой жизни я защищу Цзыюнь и всех тех, кто мне дорог!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Nie away! On the classroom, you dare to go to sleep, what is the body!<br/>
+                <b>RU:</b> Нижняя! В классе вы смеете идти спать, что такое тело!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Nirvana! How dare you sleep openly in the classroom!<br/>
+                <b>RU:</b> Как ты смеешь спать открыто в классе!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 聂离！课堂之上，你竟敢公然睡觉，成何体统！<br/>
+                <b>RU:</b> [NLLB-RU] 聂离！课堂之上，你竟敢公然睡觉，成何体统！
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">18</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">ZH (Tales of Demons and Gods)</span><br/>
+                <code>沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Nie Li, stand up! Sleeping in class again, do you have no shame?!<br/>
+                <b>RU:</b> Не Ли, встать! Опять спишь на уроке, стыда у тебя нет?!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Shen Xiu tutor, the demon spirit of the demon spirit is full of loopholes, but listening is just a waste of time.<br/>
+                <b>RU:</b> Шень XIU репетитор, дух демона духа демона полон лазейки, но слушание - это просто пустая трата времени.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Master Shen Xiu, your demon theory is so flawed that it's just a waste of time.<br/>
+                <b>RU:</b> Мастер Шэнь Сю, ваша теория демонов настолько порочна, что это пустая трата времени.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。<br/>
+                <b>RU:</b> [NLLB-RU] 沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。
+            </td>
+        </tr>
+        
+        <tr style="background-color: #f9fbfd; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">19</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">ZH (Tales of Demons and Gods)</span><br/>
+                <code>放肆！区区红曜灵魂海的废物，也敢质疑本导师？</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Teacher Shen Xiu, your understanding of demon beast cores is fundamentally flawed.<br/>
+                <b>RU:</b> Учитель Шэнь Сю, ваше понимание ядер демонических зверей в корне ошибочно.
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Let go! The waste of the Red Shou Sea in the district, dare to question the instructor?<br/>
+                <b>RU:</b> Отпусти! Отходы красного шоу моря в районе, осмеливают сомневаться в инструкторе?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> How dare you question my mentor?<br/>
+                <b>RU:</b> Как ты смеешь допрашивать моего наставника?
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 放肆！区区红曜灵魂海的废物，也敢质疑本导师？<br/>
+                <b>RU:</b> [NLLB-RU] 放肆！区区红曜灵魂海的废物，也敢质疑本导师？
+            </td>
+        </tr>
+        
+        <tr style="background-color: #ffffff; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 10px; font-weight: bold; text-align: center;">20</td>
+            <td style="padding: 10px; font-size: 0.9em; color: #4a5568;">
+                <span style="display:inline-block; padding: 2px 6px; border-radius: 4px; background: #edf2f7; font-weight: bold; margin-bottom: 4px;">ZH (Tales of Demons and Gods)</span><br/>
+                <code>两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！</code>
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #f0fff4;">
+                <b>EN:</b> Audacious! A mere red soul realm trash dares question my teachings?!<br/>
+                <b>RU:</b> Дерзость! Жалкий мусор с красным духовным сосудом смеет сомневаться в моих словах?!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em; background: #ebf8ff;">
+                <b>EN:</b> Year-end test after two months, if I reach the bronze Samsung, you will take the initiative to resign to the tutor!<br/>
+                <b>RU:</b> Тест на конец года после двух месяцев, если я достигну от бронзового Samsung, вы возьмете инициативу в отставку на репетитор!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> Two months later, if I reach the Bronze Star, you will resign as a mentor!<br/>
+                <b>RU:</b> Два месяца спустя, если я доберусь до Бронзовой Звезды, ты уйдешь в отставку как наставник!
+            </td>
+            <td style="padding: 10px; font-size: 0.9em;">
+                <b>EN:</b> [NLLB] 两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！<br/>
+                <b>RU:</b> [NLLB-RU] 两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+</body>
+</html>

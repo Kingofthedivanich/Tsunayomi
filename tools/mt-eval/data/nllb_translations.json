@@ -1,0 +1,1819 @@
+{
+  "model": "facebook/nllb-200-distilled-600M",
+  "sample_count": 201,
+  "avg_bubble_latency_en_sec": 0.8286,
+  "avg_bubble_latency_ru_sec": 0.9943,
+  "simulated_page_12_bubbles_en_sec": 9.9433,
+  "simulated_page_12_bubbles_ru_sec": 11.9319,
+  "translations": [
+    {
+      "id": "ja_001",
+      "lang": "ja",
+      "source_text": "飯テロ注意！空腹必至の異世界グルメファンタジー！",
+      "nllb_en": "Notice of meal terrorism! The hungry must is a different world gourmet fantasy!",
+      "nllb_ru": "Предупреждение о пищевом терроризме! Обязательный для голодающих кулинарный фэнтези в другом мире!",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ja_002",
+      "lang": "ja",
+      "source_text": "小田中さん、この書類の確認をお願いできますか？",
+      "nllb_en": "Mr. Otanaka, can you please check this document?",
+      "nllb_ru": "Господин Отанака, не могли бы вы проверить этот документ?",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ja_003",
+      "lang": "ja",
+      "source_text": "ふぅ…今日も残業か。コンビニ弁当じゃ味気ないよな。",
+      "nllb_en": "Phew... Is it overtime again today? A convenience store lunch is tasteless.",
+      "nllb_ru": "Фух... Сегодня снова сверхурочные? Обед из магазина шаговой доступности безвкусен.",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ja_004",
+      "lang": "ja",
+      "source_text": "大家さんからもらったこの古い鍵、一体何の鍵なんだろう。",
+      "nllb_en": "Eh?! Why am I suddenly in the middle of a forest...?! Where on earth is this?!",
+      "nllb_ru": "А?! Почему я внезапно посреди леса...?! Где это вообще?!",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ja_005",
+      "lang": "ja",
+      "source_text": "えっ！？扉の向こうが…見たこともない街並みになってる！？",
+      "nllb_en": "The smartphone is outside the range... Wait, the battery isn't decreasing at all?!",
+      "nllb_ru": "Смартфон вне зоны действия... Подождите, заряд батареи вообще не уменьшается?!",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "ja_006",
+      "lang": "ja",
+      "source_text": "なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！",
+      "nllb_en": "[NLLB] なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！",
+      "nllb_ru": "[NLLB-RU] なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ja_007",
+      "lang": "ja",
+      "source_text": "いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？",
+      "nllb_en": "[NLLB] いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？",
+      "nllb_ru": "[NLLB-RU] いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_008",
+      "lang": "ja",
+      "source_text": "う、うまい！外はカリッとしてるのに中は信じられないほどジューシーだ…！",
+      "nllb_en": "[NLLB] う、うまい！外はカリッとしてるのに中は信じられないほどジューシーだ…！",
+      "nllb_ru": "[NLLB-RU] う、うまい！外はカリッとしてるのに中は信じられないほどジューシーだ…！",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ja_009",
+      "lang": "ja",
+      "source_text": "これ、何の肉ですか？",
+      "nllb_en": "[NLLB] これ、何の肉ですか？",
+      "nllb_ru": "[NLLB-RU] これ、何の肉ですか？",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ja_010",
+      "lang": "ja",
+      "source_text": "ロック鳥のモモ肉さ！森で今朝獲れたてだから新鮮だよ。",
+      "nllb_en": "[NLLB] ロック鳥のモモ肉さ！森で今朝獲れたてだから新鮮だよ。",
+      "nllb_ru": "[NLLB-RU] ロック鳥のモモ肉さ！森で今朝獲れたてだから新鮮だよ。",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ja_011",
+      "lang": "ja",
+      "source_text": "貴殿、見慣れぬ身なりをしているが…何者だ？",
+      "nllb_en": "Your Honor, you have unfamiliar attire... Who are you?",
+      "nllb_ru": "Ваша светлость, у вас непривычная одежда... Кто вы?",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ja_012",
+      "lang": "ja",
+      "source_text": "め、女騎士さん！？いや、ただの通りすがりの会社員です…！",
+      "nllb_en": "[NLLB] め、女騎士さん！？いや、ただの通りすがりの会社員です…！",
+      "nllb_ru": "[NLLB-RU] め、女騎士さん！？いや、ただの通りすがりの会社員です…！",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "ja_013",
+      "lang": "ja",
+      "source_text": "くっ…お腹の音が…すまぬ、任務続きで三日何も食しておらぬのだ。",
+      "nllb_en": "[NLLB] くっ…お腹の音が…すまぬ、任務続きで三日何も食しておらぬのだ。",
+      "nllb_ru": "[NLLB-RU] くっ…お腹の音が…すまぬ、任務続きで三日何も食しておらぬのだ。",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ja_014",
+      "lang": "ja",
+      "source_text": "よかったらこれ、半分食べますか？熱々ですよ。",
+      "nllb_en": "[NLLB] よかったらこれ、半分食べますか？熱々ですよ。",
+      "nllb_ru": "[NLLB-RU] よかったらこれ、半分食べますか？熱々ですよ。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_015",
+      "lang": "ja",
+      "source_text": "な、なんたる美味…！こんな料理、王宮でも口にしたことがない！",
+      "nllb_en": "[NLLB] な、なんたる美味…！こんな料理、王宮でも口にしたことがない！",
+      "nllb_ru": "[NLLB-RU] な、なんたる美味…！こんな料理、王宮でも口にしたことがない！",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ja_016",
+      "lang": "ja",
+      "source_text": "圧倒的な力ってのは…つまらないもんだな。",
+      "nllb_en": "[NLLB] 圧倒的な力ってのは…つまらないもんだな。",
+      "nllb_ru": "[NLLB-RU] 圧倒的な力ってのは…つまらないもんだな。",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ja_017",
+      "lang": "ja",
+      "source_text": "趣味でヒーローをやっている者だ。",
+      "nllb_en": "[NLLB] 趣味でヒーローをやっている者だ。",
+      "nllb_ru": "[NLLB-RU] 趣味でヒーローをやっている者だ。",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ja_018",
+      "lang": "ja",
+      "source_text": "またワンパンで終わっちまった…！",
+      "nllb_en": "[NLLB] またワンパンで終わっちまった…！",
+      "nllb_ru": "[NLLB-RU] またワンパンで終わっちまった…！",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ja_019",
+      "lang": "ja",
+      "source_text": "先生！どうか私を弟子にしてください！",
+      "nllb_en": "[NLLB] 先生！どうか私を弟子にしてください！",
+      "nllb_ru": "[NLLB-RU] 先生！どうか私を弟子にしてください！",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ja_020",
+      "lang": "ja",
+      "source_text": "いや、断る。面倒くさいし。",
+      "nllb_en": "[NLLB] いや、断る。面倒くさいし。",
+      "nllb_ru": "[NLLB-RU] いや、断る。面倒くさいし。",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "ja_021",
+      "lang": "ja",
+      "source_text": "家賃を折半で払うというのはどうでしょうか？",
+      "nllb_en": "How about paying half of the rent?",
+      "nllb_ru": "Как насчет того, чтобы платить половину арендной платы?",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ja_022",
+      "lang": "ja",
+      "source_text": "よし、合格だ。明日からよろしくな。",
+      "nllb_en": "W-Wait a minute! A boy and a girl living together under one roof... That's impossible!",
+      "nllb_ru": "П-Подождите минуту! Мальчик и девочка живут вместе под одной крышей... Это невозможно!",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ja_023",
+      "lang": "ja",
+      "source_text": "おいジェノス、スーパーの特売日忘れてた！急ぐぞ！",
+      "nllb_en": "[NLLB] おいジェノス、スーパーの特売日忘れてた！急ぐぞ！",
+      "nllb_ru": "[NLLB-RU] おいジェノス、スーパーの特売日忘れてた！急ぐぞ！",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ja_024",
+      "lang": "ja",
+      "source_text": "了解しました先生。最大出力で追従します。",
+      "nllb_en": "[NLLB] 了解しました先生。最大出力で追従します。",
+      "nllb_ru": "[NLLB-RU] 了解しました先生。最大出力で追従します。",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ja_025",
+      "lang": "ja",
+      "source_text": "貴様ごときB級ヒーローが、この怪人協会に勝てると思うなよ！",
+      "nllb_en": "[NLLB] 貴様ごときB級ヒーローが、この怪人協会に勝てると思うなよ！",
+      "nllb_ru": "[NLLB-RU] 貴様ごときB級ヒーローが、この怪人協会に勝てると思うなよ！",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_026",
+      "lang": "ja",
+      "source_text": "うるせえな、キャベツ落としただろ弁償しろ。",
+      "nllb_en": "[NLLB] うるせえな、キャベツ落としただろ弁償しろ。",
+      "nllb_ru": "[NLLB-RU] うるせえな、キャベツ落としただろ弁償しろ。",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ja_027",
+      "lang": "ja",
+      "source_text": "この遺跡の奥に伝説の金貨が眠っているはずだ。",
+      "nllb_en": "[NLLB] この遺跡の奥に伝説の金貨が眠っているはずだ。",
+      "nllb_ru": "[NLLB-RU] この遺跡の奥に伝説の金貨が眠っているはずだ。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_028",
+      "lang": "ja",
+      "source_text": "罠だ！足元に気をつけろ！",
+      "nllb_en": "[NLLB] 罠だ！足元に気をつけろ！",
+      "nllb_ru": "[NLLB-RU] 罠だ！足元に気をつけろ！",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ja_029",
+      "lang": "ja",
+      "source_text": "へっ、オレの俊敏性をなめるなよ。",
+      "nllb_en": "[NLLB] へっ、オレの俊敏性をなめるなよ。",
+      "nllb_ru": "[NLLB-RU] へっ、オレの俊敏性をなめるなよ。",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ja_030",
+      "lang": "ja",
+      "source_text": "扉が開かない…何か古代の文字が刻まれているぞ。",
+      "nllb_en": "[NLLB] 扉が開かない…何か古代の文字が刻まれているぞ。",
+      "nllb_ru": "[NLLB-RU] 扉が開かない…何か古代の文字が刻まれているぞ。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ja_031",
+      "lang": "ja",
+      "source_text": "『真の勇気を持つ者のみ、黄金の道を進むべし』",
+      "nllb_en": "[NLLB] 『真の勇気を持つ者のみ、黄金の道を進むべし』",
+      "nllb_ru": "[NLLB-RU] 『真の勇気を持つ者のみ、黄金の道を進むべし』",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_032",
+      "lang": "ja",
+      "source_text": "ふん、謎解きなら任せておけ！",
+      "nllb_en": "[NLLB] ふん、謎解きなら任せておけ！",
+      "nllb_ru": "[NLLB-RU] ふん、謎解きなら任せておけ！",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_033",
+      "lang": "ja",
+      "source_text": "目が覚めたら深い森の中だった。",
+      "nllb_en": "[NLLB] 目が覚めたら深い森の中だった。",
+      "nllb_ru": "[NLLB-RU] 目が覚めたら深い森の中だった。",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ja_034",
+      "lang": "ja",
+      "source_text": "神様からもらったこの『万能農具』、本当に何でも耕せるな。",
+      "nllb_en": "[NLLB] 神様からもらったこの『万能農具』、本当に何でも耕せるな。",
+      "nllb_ru": "[NLLB-RU] 神様からもらったこの『万能農具』、本当に何でも耕せるな。",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "ja_035",
+      "lang": "ja",
+      "source_text": "まずは寝床と水源の確保から始めよう。",
+      "nllb_en": "[NLLB] まずは寝床と水源の確保から始めよう。",
+      "nllb_ru": "[NLLB-RU] まずは寝床と水源の確保から始めよう。",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ja_036",
+      "lang": "ja",
+      "source_text": "くぅ〜ん…怪我をした大きな犬？いや、狼か！？",
+      "nllb_en": "[NLLB] くぅ〜ん…怪我をした大きな犬？いや、狼か！？",
+      "nllb_ru": "[NLLB-RU] くぅ〜ん…怪我をした大きな犬？いや、狼か！？",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_037",
+      "lang": "ja",
+      "source_text": "大丈夫だ、敵意はないよ。傷口を洗って手当てしてあげるからな。",
+      "nllb_en": "[NLLB] 大丈夫だ、敵意はないよ。傷口を洗って手当てしてあげるからな。",
+      "nllb_ru": "[NLLB-RU] 大丈夫だ、敵意はないよ。傷口を洗って手当てしてあげるからな。",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ja_038",
+      "lang": "ja",
+      "source_text": "なついてくれたみたいだ。クロって名前にしよう。",
+      "nllb_en": "[NLLB] なついてくれたみたいだ。クロって名前にしよう。",
+      "nllb_ru": "[NLLB-RU] なついてくれたみたいだ。クロって名前にしよう。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ja_039",
+      "lang": "ja",
+      "source_text": "畑のトマトが赤く熟してきたぞ！",
+      "nllb_en": "[NLLB] 畑のトマトが赤く熟してきたぞ！",
+      "nllb_ru": "[NLLB-RU] 畑のトマトが赤く熟してきたぞ！",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ja_040",
+      "lang": "ja",
+      "source_text": "採れたてを丸かじり…甘くてみずみずしい！最高だ！",
+      "nllb_en": "[NLLB] 採れたてを丸かじり…甘くてみずみずしい！最高だ！",
+      "nllb_ru": "[NLLB-RU] 採れたてを丸かじり…甘くてみずみずしい！最高だ！",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ja_041",
+      "lang": "ja",
+      "source_text": "記憶を失う代わりに、神級のスキルを獲得しただと…？",
+      "nllb_en": "[NLLB] 記憶を失う代わりに、神級のスキルを獲得しただと…？",
+      "nllb_ru": "[NLLB-RU] 記憶を失う代わりに、神級のスキルを獲得しただと…？",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ja_042",
+      "lang": "ja",
+      "source_text": "転生前のオレは、一体どれだけバトルジャンキーだったんだよ。",
+      "nllb_en": "[NLLB] 転生前のオレは、一体どれだけバトルジャンキーだったんだよ。",
+      "nllb_ru": "[NLLB-RU] 転生前のオレは、一体どれだけバトルジャンキーだったんだよ。",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_043",
+      "lang": "ja",
+      "source_text": "メルフィーナ、お前の声は頭の中に直接響いてくるな。",
+      "nllb_en": "[NLLB] メルフィーナ、お前の声は頭の中に直接響いてくるな。",
+      "nllb_ru": "[NLLB-RU] メルフィーナ、お前の声は頭の中に直接響いてくるな。",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ja_044",
+      "lang": "ja",
+      "source_text": "冒険者ギルドの登録試験を受けに来ました。",
+      "nllb_en": "[NLLB] 冒険者ギルドの登録試験を受けに来ました。",
+      "nllb_ru": "[NLLB-RU] 冒険者ギルドの登録試験を受けに来ました。",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ja_045",
+      "lang": "ja",
+      "source_text": "新人かい？死にたくなきゃゴブリン退治から地道にやることね。",
+      "nllb_en": "[NLLB] 新人かい？死にたくなきゃゴブリン退治から地道にやることね。",
+      "nllb_ru": "[NLLB-RU] 新人かい？死にたくなきゃゴブリン退治から地道にやることね。",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_046",
+      "lang": "ja",
+      "source_text": "出でよ、我が契約の魔獣――クロト！",
+      "nllb_en": "[NLLB] 出でよ、我が契約の魔獣――クロト！",
+      "nllb_ru": "[NLLB-RU] 出でよ、我が契約の魔獣――クロト！",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ja_047",
+      "lang": "ja",
+      "source_text": "スライムだと馬鹿にしていた相手が一瞬で消炭に…！？",
+      "nllb_en": "[NLLB] スライムだと馬鹿にしていた相手が一瞬で消炭に…！？",
+      "nllb_ru": "[NLLB-RU] スライムだと馬鹿にしていた相手が一瞬で消炭に…！？",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ja_048",
+      "lang": "ja",
+      "source_text": "さあ、次は誰が相手をしてくれるんだ？",
+      "nllb_en": "[NLLB] さあ、次は誰が相手をしてくれるんだ？",
+      "nllb_ru": "[NLLB-RU] さあ、次は誰が相手をしてくれるんだ？",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ja_049",
+      "lang": "ja",
+      "source_text": "現代の調味料を持ってきたらもっと美味しくなるかもしれない。",
+      "nllb_en": "[NLLB] 現代の調味料を持ってきたらもっと美味しくなるかもしれない。",
+      "nllb_ru": "[NLLB-RU] 現代の調味料を持ってきたらもっと美味しくなるかもしれない。",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_050",
+      "lang": "ja",
+      "source_text": "醤油とマヨネーズは万国共通の最強タッグだな。",
+      "nllb_en": "[NLLB] 醤油とマヨネーズは万国共通の最強タッグだな。",
+      "nllb_ru": "[NLLB-RU] 醤油とマヨネーズは万国共通の最強タッグだな。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_051",
+      "lang": "ja",
+      "source_text": "うわっ、なにこれ！？舌がとろけそう…！",
+      "nllb_en": "[NLLB] うわっ、なにこれ！？舌がとろけそう…！",
+      "nllb_ru": "[NLLB-RU] うわっ、なにこれ！？舌がとろけそう…！",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "ja_052",
+      "lang": "ja",
+      "source_text": "今日のおすすめはドワーフ特製の黒ビールと燻製肉だよ！",
+      "nllb_en": "[NLLB] 今日のおすすめはドワーフ特製の黒ビールと燻製肉だよ！",
+      "nllb_ru": "[NLLB-RU] 今日のおすすめはドワーフ特製の黒ビールと燻製肉だよ！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ja_053",
+      "lang": "ja",
+      "source_text": "ぷはぁーっ！仕事終わりの一杯はどの世界でも至高だな！",
+      "nllb_en": "[NLLB] ぷはぁーっ！仕事終わりの一杯はどの世界でも至高だな！",
+      "nllb_ru": "[NLLB-RU] ぷはぁーっ！仕事終わりの一杯はどの世界でも至高だな！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ja_054",
+      "lang": "ja",
+      "source_text": "お前さん、いい飲みっぷりだ！気に入ったぞ！",
+      "nllb_en": "[NLLB] お前さん、いい飲みっぷりだ！気に入ったぞ！",
+      "nllb_ru": "[NLLB-RU] お前さん、いい飲みっぷりだ！気に入ったぞ！",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ja_055",
+      "lang": "ja",
+      "source_text": "ヒーローネーム『ハゲマント』…なんだそのダサい名前は！",
+      "nllb_en": "[NLLB] ヒーローネーム『ハゲマント』…なんだそのダサい名前は！",
+      "nllb_ru": "[NLLB-RU] ヒーローネーム『ハゲマント』…なんだそのダサい名前は！",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ja_056",
+      "lang": "ja",
+      "source_text": "事実をありのままに表現した素晴らしい呼称かと。",
+      "nllb_en": "[NLLB] 事実をありのままに表現した素晴らしい呼称かと。",
+      "nllb_ru": "[NLLB-RU] 事実をありのままに表現した素晴らしい呼称かと。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ja_057",
+      "lang": "ja",
+      "source_text": "慰めになってねえよジェノス！",
+      "nllb_en": "[NLLB] 慰めになってねえよジェノス！",
+      "nllb_ru": "[NLLB-RU] 慰めになってねえよジェノス！",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ja_058",
+      "lang": "ja",
+      "source_text": "隕石が…Z市に向けて落下しているだと！？",
+      "nllb_en": "[NLLB] 隕石が…Z市に向けて落下しているだと！？",
+      "nllb_ru": "[NLLB-RU] 隕石が…Z市に向けて落下しているだと！？",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ja_059",
+      "lang": "ja",
+      "source_text": "避難警報が鳴り響いている。全市民直ちに地下シェルターへ退避を！",
+      "nllb_en": "[NLLB] 避難警報が鳴り響いている。全市民直ちに地下シェルターへ退避を！",
+      "nllb_ru": "[NLLB-RU] 避難警報が鳴り響いている。全市民直ちに地下シェルターへ退避を！",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ja_060",
+      "lang": "ja",
+      "source_text": "オレの家が壊れるだろ。ちょっと止めてくるわ。",
+      "nllb_en": "[NLLB] オレの家が壊れるだろ。ちょっと止めてくるわ。",
+      "nllb_ru": "[NLLB-RU] オレの家が壊れるだろ。ちょっと止めてくるわ。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_061",
+      "lang": "ja",
+      "source_text": "宝箱を発見したぞ！ミミックじゃないだろうな…？",
+      "nllb_en": "[NLLB] 宝箱を発見したぞ！ミミックじゃないだろうな…？",
+      "nllb_ru": "[NLLB-RU] 宝箱を発見したぞ！ミミックじゃないだろうな…？",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ja_062",
+      "lang": "ja",
+      "source_text": "ツンツン…よし、動かない！開けるぞ！",
+      "nllb_en": "[NLLB] ツンツン…よし、動かない！開けるぞ！",
+      "nllb_ru": "[NLLB-RU] ツンツン…よし、動かない！開けるぞ！",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ja_063",
+      "lang": "ja",
+      "source_text": "金貨と…見たこともない輝きの魔石だ！大金星だぜ！",
+      "nllb_en": "[NLLB] 金貨と…見たこともない輝きの魔石だ！大金星だぜ！",
+      "nllb_ru": "[NLLB-RU] 金貨と…見たこともない輝きの魔石だ！大金星だぜ！",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ja_064",
+      "lang": "ja",
+      "source_text": "エルフの村から移住希望者が来た？歓迎するよ。",
+      "nllb_en": "[NLLB] エルフの村から移住希望者が来た？歓迎するよ。",
+      "nllb_ru": "[NLLB-RU] エルフの村から移住希望者が来た？歓迎するよ。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_065",
+      "lang": "ja",
+      "source_text": "村長さん、私たちは大工仕事と裁縫が得意です。",
+      "nllb_en": "[NLLB] 村長さん、私たちは大工仕事と裁縫が得意です。",
+      "nllb_ru": "[NLLB-RU] 村長さん、私たちは大工仕事と裁縫が得意です。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ja_066",
+      "lang": "ja",
+      "source_text": "お前の強さは本物だ。だがこの先へ進むなら覚悟しろよ。",
+      "nllb_en": "[NLLB] お前の強さは本物だ。だがこの先へ進むなら覚悟しろよ。",
+      "nllb_ru": "[NLLB-RU] お前の強さは本物だ。だがこの先へ進むなら覚悟しろよ。",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ja_067",
+      "lang": "ja",
+      "source_text": "望むところだ。強敵と戦えるならこれ以上の喜びはない！",
+      "nllb_en": "[NLLB] 望むところだ。強敵と戦えるならこれ以上の喜びはない！",
+      "nllb_ru": "[NLLB-RU] 望むところだ。強敵と戦えるならこれ以上の喜びはない！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_001",
+      "lang": "ko",
+      "source_text": "내가 여자 화장실에 몰카를 설치했다고? 말도 안 되는 소리야!",
+      "nllb_en": "Did I install a hidden camera in the women's restroom? That makes no sense!",
+      "nllb_ru": "Я установил скрытую камеру в женском туалете? Это не имеет смысла!",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "ko_002",
+      "lang": "ko",
+      "source_text": "결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.",
+      "nllb_en": "[NLLB] 결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.",
+      "nllb_ru": "[NLLB-RU] 결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ko_003",
+      "lang": "ko",
+      "source_text": "호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.",
+      "nllb_en": "[NLLB] 호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.",
+      "nllb_ru": "[NLLB-RU] 호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ko_004",
+      "lang": "ko",
+      "source_text": "인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?",
+      "nllb_en": "[NLLB] 인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?",
+      "nllb_ru": "[NLLB-RU] 인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_005",
+      "lang": "ko",
+      "source_text": "위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.",
+      "nllb_en": "[NLLB] 위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.",
+      "nllb_ru": "[NLLB-RU] 위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_006",
+      "lang": "ko",
+      "source_text": "정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?",
+      "nllb_en": "[NLLB] 정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?",
+      "nllb_ru": "[NLLB-RU] 정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_007",
+      "lang": "ko",
+      "source_text": "하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.",
+      "nllb_en": "[NLLB] 하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.",
+      "nllb_ru": "[NLLB-RU] 하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ko_008",
+      "lang": "ko",
+      "source_text": "팀장님, 지난주 금요일 저녁에 어디 계셨는지 기억나십니까?",
+      "nllb_en": "[NLLB] 팀장님, 지난주 금요일 저녁에 어디 계셨는지 기억나십니까?",
+      "nllb_ru": "[NLLB-RU] 팀장님, 지난주 금요일 저녁에 어디 계셨는지 기억나십니까?",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ko_009",
+      "lang": "ko",
+      "source_text": "너… 그걸 어떻게 알고 있는 거지?!",
+      "nllb_en": "[NLLB] 너… 그걸 어떻게 알고 있는 거지?!",
+      "nllb_ru": "[NLLB-RU] 너… 그걸 어떻게 알고 있는 거지?!",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_010",
+      "lang": "ko",
+      "source_text": "이제 제 이야기를 들으실 준비가 되셨습니까?",
+      "nllb_en": "[NLLB] 이제 제 이야기를 들으실 준비가 되셨습니까?",
+      "nllb_ru": "[NLLB-RU] 이제 제 이야기를 들으실 준비가 되셨습니까?",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ko_011",
+      "lang": "ko",
+      "source_text": "[유료 서비스가 시작되었습니다.]",
+      "nllb_en": "[Paid service has started.]",
+      "nllb_ru": "[Платная услуга началась.]",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ko_012",
+      "lang": "ko",
+      "source_text": "퇴근길 만원 지하철 안에서 익숙한 소설의 문장이 눈앞에 떠올랐다.",
+      "nllb_en": "[NLLB] 퇴근길 만원 지하철 안에서 익숙한 소설의 문장이 눈앞에 떠올랐다.",
+      "nllb_ru": "[NLLB-RU] 퇴근길 만원 지하철 안에서 익숙한 소설의 문장이 눈앞에 떠올랐다.",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ko_013",
+      "lang": "ko",
+      "source_text": "설마… 10년 넘게 나 혼자 읽던 그 삼류 소설이 현실이 된다고?",
+      "nllb_en": "[NLLB] 설마… 10년 넘게 나 혼자 읽던 그 삼류 소설이 현실이 된다고?",
+      "nllb_ru": "[NLLB-RU] 설마… 10년 넘게 나 혼자 읽던 그 삼류 소설이 현실이 된다고?",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ko_014",
+      "lang": "ko",
+      "source_text": "창밖 하늘에 거대한 도깨비가 나타났다.",
+      "nllb_en": "[NLLB] 창밖 하늘에 거대한 도깨비가 나타났다.",
+      "nllb_ru": "[NLLB-RU] 창밖 하늘에 거대한 도깨비가 나타났다.",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ko_015",
+      "lang": "ko",
+      "source_text": "\"자자, 인간 여러분! 긴장 푸세요. 아주 간단한 게임입니다.\"",
+      "nllb_en": "I am the only reader who knows the end of this novel.",
+      "nllb_ru": "Я единственный читатель, который знает конец этого романа.",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_016",
+      "lang": "ko",
+      "source_text": "[메인 시나리오 #1 - 가치 증명]",
+      "nllb_en": "[NLLB] [메인 시나리오 #1 - 가치 증명]",
+      "nllb_ru": "[NLLB-RU] [메인 시나리오 #1 - 가치 증명]",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_017",
+      "lang": "ko",
+      "source_text": "제한 시간 내에 하나 이상의 생명체를 죽이십시오.",
+      "nllb_en": "[NLLB] 제한 시간 내에 하나 이상의 생명체를 죽이십시오.",
+      "nllb_ru": "[NLLB-RU] 제한 시간 내에 하나 이상의 생명체를 죽이십시오.",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ko_018",
+      "lang": "ko",
+      "source_text": "사람들이 서로를 향해 흉기를 휘두르기 시작했다.",
+      "nllb_en": "[NLLB] 사람들이 서로를 향해 흉기를 휘두르기 시작했다.",
+      "nllb_ru": "[NLLB-RU] 사람들이 서로를 향해 흉기를 휘두르기 시작했다.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_019",
+      "lang": "ko",
+      "source_text": "살기 위해선 반드시 룰의 틈새를 찾아야 해.",
+      "nllb_en": "[NLLB] 살기 위해선 반드시 룰의 틈새를 찾아야 해.",
+      "nllb_ru": "[NLLB-RU] 살기 위해선 반드시 룰의 틈새를 찾아야 해.",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ko_020",
+      "lang": "ko",
+      "source_text": "메뚜기 채집통! 소년의 손에 들려 있던 곤충 채집통을 떠올렸다.",
+      "nllb_en": "[NLLB] 메뚜기 채집통! 소년의 손에 들려 있던 곤충 채집통을 떠올렸다.",
+      "nllb_ru": "[NLLB-RU] 메뚜기 채집통! 소년의 손에 들려 있던 곤충 채집통을 떠올렸다.",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_021",
+      "lang": "ko",
+      "source_text": "\"꼬마야, 그 통 나한테 잠깐만 빌려줄래?\"",
+      "nllb_en": "\"Little child, can you lend me that bucket for a moment?\"",
+      "nllb_ru": "«Маленький ребенок, можешь одолжить мне это ведро на мгновение?»",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "ko_022",
+      "lang": "ko",
+      "source_text": "[생명체(메뚜기)를 살해하셨습니다. 100코인을 획득했습니다.]",
+      "nllb_en": "[NLLB] [생명체(메뚜기)를 살해하셨습니다. 100코인을 획득했습니다.]",
+      "nllb_ru": "[NLLB-RU] [생명체(메뚜기)를 살해하셨습니다. 100코인을 획득했습니다.]",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_023",
+      "lang": "ko",
+      "source_text": "시나리오 클리어! 살아남은 사람은 우리 칸에서 단 세 명뿐이었다.",
+      "nllb_en": "[NLLB] 시나리오 클리어! 살아남은 사람은 우리 칸에서 단 세 명뿐이었다.",
+      "nllb_ru": "[NLLB-RU] 시나리오 클리어! 살아남은 사람은 우리 칸에서 단 세 명뿐이었다.",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ko_024",
+      "lang": "ko",
+      "source_text": "이 세계의 결말을 아는 사람은 오직 나 하나뿐이다.",
+      "nllb_en": "Sung Jin-woo, are you entering the dungeon again today? Don't overdo it.",
+      "nllb_ru": "Сон Джин Ву, ты сегодня снова входишь в подземелье? Не переусердствуй.",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "ko_025",
+      "lang": "ko",
+      "source_text": "나는 멸망 이후의 세계를 살아가는 유일한 독자다.",
+      "nllb_en": "[NLLB] 나는 멸망 이후의 세계를 살아가는 유일한 독자다.",
+      "nllb_ru": "[NLLB-RU] 나는 멸망 이후의 세계를 살아가는 유일한 독자다.",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ko_026",
+      "lang": "ko",
+      "source_text": "거울을 볼 때마다 죽고 싶다는 생각밖에 안 든다.",
+      "nllb_en": "[NLLB] 거울을 볼 때마다 죽고 싶다는 생각밖에 안 든다.",
+      "nllb_ru": "[NLLB-RU] 거울을 볼 때마다 죽고 싶다는 생각밖에 안 든다.",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "ko_027",
+      "lang": "ko",
+      "source_text": "뚱뚱하고 못생겼다는 이유로 날마다 매를 맞아야 했다.",
+      "nllb_en": "[NLLB] 뚱뚱하고 못생겼다는 이유로 날마다 매를 맞아야 했다.",
+      "nllb_ru": "[NLLB-RU] 뚱뚱하고 못생겼다는 이유로 날마다 매를 맞아야 했다.",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_028",
+      "lang": "ko",
+      "source_text": "엄마, 나 서울로 전학 보내줘. 제발 부탁이야.",
+      "nllb_en": "[NLLB] 엄마, 나 서울로 전학 보내줘. 제발 부탁이야.",
+      "nllb_ru": "[NLLB-RU] 엄마, 나 서울로 전학 보내줘. 제발 부탁이야.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_029",
+      "lang": "ko",
+      "source_text": "자고 일어났더니… 내 앞에 또 다른 내가 누워있다?!",
+      "nllb_en": "[NLLB] 자고 일어났더니… 내 앞에 또 다른 내가 누워있다?!",
+      "nllb_ru": "[NLLB-RU] 자고 일어났더니… 내 앞에 또 다른 내가 누워있다?!",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_030",
+      "lang": "ko",
+      "source_text": "키 크고 잘생긴 완벽한 몸… 이게 진짜 내 몸이라고?!",
+      "nllb_en": "[NLLB] 키 크고 잘생긴 완벽한 몸… 이게 진짜 내 몸이라고?!",
+      "nllb_ru": "[NLLB-RU] 키 크고 잘생긴 완벽한 몸… 이게 진짜 내 몸이라고?!",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ko_031",
+      "lang": "ko",
+      "source_text": "한쪽 몸이 잠들면 다른 쪽 몸으로 의식이 옮겨가는 기묘한 2중 생활.",
+      "nllb_en": "[NLLB] 한쪽 몸이 잠들면 다른 쪽 몸으로 의식이 옮겨가는 기묘한 2중 생활.",
+      "nllb_ru": "[NLLB-RU] 한쪽 몸이 잠들면 다른 쪽 몸으로 의식이 옮겨가는 기묘한 2중 생활.",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ko_032",
+      "lang": "ko",
+      "source_text": "길을 걷는 것뿐인데 사람들의 시선이 전부 나에게 쏟아진다.",
+      "nllb_en": "[NLLB] 길을 걷는 것뿐인데 사람들의 시선이 전부 나에게 쏟아진다.",
+      "nllb_ru": "[NLLB-RU] 길을 걷는 것뿐인데 사람들의 시선이 전부 나에게 쏟아진다.",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ko_033",
+      "lang": "ko",
+      "source_text": "세상이 이렇게 친절한 곳이었나? 외모 하나 바뀌었을 뿐인데.",
+      "nllb_en": "[NLLB] 세상이 이렇게 친절한 곳이었나? 외모 하나 바뀌었을 뿐인데.",
+      "nllb_ru": "[NLLB-RU] 세상이 이렇게 친절한 곳이었나? 외모 하나 바뀌었을 뿐인데.",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ko_034",
+      "lang": "ko",
+      "source_text": "\"야, 전학생! 너 복싱 좀 배웠냐? 자세가 장난 아닌데?\"",
+      "nllb_en": "[NLLB] \"야, 전학생! 너 복싱 좀 배웠냐? 자세가 장난 아닌데?\"",
+      "nllb_ru": "[NLLB-RU] \"야, 전학생! 너 복싱 좀 배웠냐? 자세가 장난 아닌데?\"",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ko_035",
+      "lang": "ko",
+      "source_text": "아니요, 저 싸움 같은 거 한 번도 안 해봤는데요…!",
+      "nllb_en": "[NLLB] 아니요, 저 싸움 같은 거 한 번도 안 해봤는데요…!",
+      "nllb_ru": "[NLLB-RU] 아니요, 저 싸움 같은 거 한 번도 안 해봤는데요…!",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_036",
+      "lang": "ko",
+      "source_text": "위협적인 펀치가 슬로우 모션처럼 느리게 보인다.",
+      "nllb_en": "[NLLB] 위협적인 펀치가 슬로우 모션처럼 느리게 보인다.",
+      "nllb_ru": "[NLLB-RU] 위협적인 펀치가 슬로우 모션처럼 느리게 보인다.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_037",
+      "lang": "ko",
+      "source_text": "가볍게 피하고 내지른 주먹 한 방에 일진 짱이 쓰러졌다.",
+      "nllb_en": "[NLLB] 가볍게 피하고 내지른 주먹 한 방에 일진 짱이 쓰러졌다.",
+      "nllb_ru": "[NLLB-RU] 가볍게 피하고 내지른 주먹 한 방에 일진 짱이 쓰러졌다.",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ko_038",
+      "lang": "ko",
+      "source_text": "\"말도 안 돼… 바스코마저 저 녀석을 경계하고 있어!\"",
+      "nllb_en": "[NLLB] \"말도 안 돼… 바스코마저 저 녀석을 경계하고 있어!\"",
+      "nllb_ru": "[NLLB-RU] \"말도 안 돼… 바스코마저 저 녀석을 경계하고 있어!\"",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ko_039",
+      "lang": "ko",
+      "source_text": "배후성 선택의 시간입니다. 당신을 후원할 성좌를 고르세요.",
+      "nllb_en": "[NLLB] 배후성 선택의 시간입니다. 당신을 후원할 성좌를 고르세요.",
+      "nllb_ru": "[NLLB-RU] 배후성 선택의 시간입니다. 당신을 후원할 성좌를 고르세요.",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ko_040",
+      "lang": "ko",
+      "source_text": "[성좌, '심연의 흑염룡'이 당신의 대담함에 흥미를 보입니다.]",
+      "nllb_en": "[NLLB] [성좌, '심연의 흑염룡'이 당신의 대담함에 흥미를 보입니다.]",
+      "nllb_ru": "[NLLB-RU] [성좌, '심연의 흑염룡'이 당신의 대담함에 흥미를 보입니다.]",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_041",
+      "lang": "ko",
+      "source_text": "[성좌, '은밀한 모략가'가 당신의 선택을 관망합니다.]",
+      "nllb_en": "[NLLB] [성좌, '은밀한 모략가'가 당신의 선택을 관망합니다.]",
+      "nllb_ru": "[NLLB-RU] [성좌, '은밀한 모략가'가 당신의 선택을 관망합니다.]",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ko_042",
+      "lang": "ko",
+      "source_text": "나는 어떤 성좌의 후원도 받지 않기로 결정했다.",
+      "nllb_en": "[NLLB] 나는 어떤 성좌의 후원도 받지 않기로 결정했다.",
+      "nllb_ru": "[NLLB-RU] 나는 어떤 성좌의 후원도 받지 않기로 결정했다.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_043",
+      "lang": "ko",
+      "source_text": "\"선택을 보류하겠습니다.\"",
+      "nllb_en": "[NLLB] \"선택을 보류하겠습니다.\"",
+      "nllb_ru": "[NLLB-RU] \"선택을 보류하겠습니다.\"",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_044",
+      "lang": "ko",
+      "source_text": "[모든 성좌들이 당신의 오만함에 경악을 금치 못합니다!]",
+      "nllb_en": "Rise... My shadow soldiers!",
+      "nllb_ru": "Восстаньте... Мои теневые солдаты!",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ko_045",
+      "lang": "ko",
+      "source_text": "앞으로 닥쳐올 시나리오를 헤쳐나가려면 주인공 유중혁을 만나야 한다.",
+      "nllb_en": "[NLLB] 앞으로 닥쳐올 시나리오를 헤쳐나가려면 주인공 유중혁을 만나야 한다.",
+      "nllb_ru": "[NLLB-RU] 앞으로 닥쳐올 시나리오를 헤쳐나가려면 주인공 유중혁을 만나야 한다.",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ko_046",
+      "lang": "ko",
+      "source_text": "하지만 그 녀석은 3회차 회귀자… 성격이 완전히 파탄 나 있을 텐데.",
+      "nllb_en": "[NLLB] 하지만 그 녀석은 3회차 회귀자… 성격이 완전히 파탄 나 있을 텐데.",
+      "nllb_ru": "[NLLB-RU] 하지만 그 녀석은 3회차 회귀자… 성격이 완전히 파탄 나 있을 텐데.",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "ko_047",
+      "lang": "ko",
+      "source_text": "\"너는 누구지? 내 회귀 정보를 어떻게 알고 있는 거냐?\"",
+      "nllb_en": "[NLLB] \"너는 누구지? 내 회귀 정보를 어떻게 알고 있는 거냐?\"",
+      "nllb_ru": "[NLLB-RU] \"너는 누구지? 내 회귀 정보를 어떻게 알고 있는 거냐?\"",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ko_048",
+      "lang": "ko",
+      "source_text": "목덜미를 틀어쥐는 손아귀 힘이 장난이 아니다.",
+      "nllb_en": "[NLLB] 목덜미를 틀어쥐는 손아귀 힘이 장난이 아니다.",
+      "nllb_ru": "[NLLB-RU] 목덜미를 틀어쥐는 손아귀 힘이 장난이 아니다.",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ko_049",
+      "lang": "ko",
+      "source_text": "\"유중혁, 날 죽이면 너는 절대로 이 시나리오를 깰 수 없어.\"",
+      "nllb_en": "[NLLB] \"유중혁, 날 죽이면 너는 절대로 이 시나리오를 깰 수 없어.\"",
+      "nllb_ru": "[NLLB-RU] \"유중혁, 날 죽이면 너는 절대로 이 시나리오를 깰 수 없어.\"",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "ko_050",
+      "lang": "ko",
+      "source_text": "업무 시간 외에 따로 연락하시는 건 자제해 주셨으면 합니다.",
+      "nllb_en": "[NLLB] 업무 시간 외에 따로 연락하시는 건 자제해 주셨으면 합니다.",
+      "nllb_ru": "[NLLB-RU] 업무 시간 외에 따로 연락하시는 건 자제해 주셨으면 합니다.",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ko_051",
+      "lang": "ko",
+      "source_text": "네가 감히 날 협박해? 본사 감사팀에 찌르면 너만 다쳐!",
+      "nllb_en": "[NLLB] 네가 감히 날 협박해? 본사 감사팀에 찌르면 너만 다쳐!",
+      "nllb_ru": "[NLLB-RU] 네가 감히 날 협박해? 본사 감사팀에 찌르면 너만 다쳐!",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "ko_052",
+      "lang": "ko",
+      "source_text": "어디 한번 해보세요. 녹취 파일이 누구한테 더 치명적일지.",
+      "nllb_en": "[NLLB] 어디 한번 해보세요. 녹취 파일이 누구한테 더 치명적일지.",
+      "nllb_ru": "[NLLB-RU] 어디 한번 해보세요. 녹취 파일이 누구한테 더 치명적일지.",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ko_053",
+      "lang": "ko",
+      "source_text": "커피 한잔 사 올 테니까 여기서 잠깐 기다려요.",
+      "nllb_en": "[NLLB] 커피 한잔 사 올 테니까 여기서 잠깐 기다려요.",
+      "nllb_ru": "[NLLB-RU] 커피 한잔 사 올 테니까 여기서 잠깐 기다려요.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_054",
+      "lang": "ko",
+      "source_text": "갑자기 태도가 이렇게 바뀌니 오히려 더 무섭네.",
+      "nllb_en": "[NLLB] 갑자기 태도가 이렇게 바뀌니 오히려 더 무섭네.",
+      "nllb_ru": "[NLLB-RU] 갑자기 태도가 이렇게 바뀌니 오히려 더 무섭네.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_055",
+      "lang": "ko",
+      "source_text": "보컬 트레이닝 수업에 참가하러 엔터테인먼트 사옥에 들어섰다.",
+      "nllb_en": "[NLLB] 보컬 트레이닝 수업에 참가하러 엔터테인먼트 사옥에 들어섰다.",
+      "nllb_ru": "[NLLB-RU] 보컬 트레이닝 수업에 참가하러 엔터테인먼트 사옥에 들어섰다.",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "ko_056",
+      "lang": "ko",
+      "source_text": "\"와, 쟤 피지컬 좀 봐… 모델 지망생인가?\"",
+      "nllb_en": "[NLLB] \"와, 쟤 피지컬 좀 봐… 모델 지망생인가?\"",
+      "nllb_ru": "[NLLB-RU] \"와, 쟤 피지컬 좀 봐… 모델 지망생인가?\"",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "ko_057",
+      "lang": "ko",
+      "source_text": "사람들의 칭찬이 아직도 어색하고 낯설기만 하다.",
+      "nllb_en": "[NLLB] 사람들의 칭찬이 아직도 어색하고 낯설기만 하다.",
+      "nllb_ru": "[NLLB-RU] 사람들의 칭찬이 아직도 어색하고 낯설기만 하다.",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "ko_058",
+      "lang": "ko",
+      "source_text": "원래 내 몸으로 돌아왔을 땐 편의점 야간 알바를 뛰어야 한다.",
+      "nllb_en": "[NLLB] 원래 내 몸으로 돌아왔을 땐 편의점 야간 알바를 뛰어야 한다.",
+      "nllb_ru": "[NLLB-RU] 원래 내 몸으로 돌아왔을 땐 편의점 야간 알바를 뛰어야 한다.",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "ko_059",
+      "lang": "ko",
+      "source_text": "손님, 계산 도와드리겠습니다. 도시락 데워드릴까요?",
+      "nllb_en": "[NLLB] 손님, 계산 도와드리겠습니다. 도시락 데워드릴까요?",
+      "nllb_ru": "[NLLB-RU] 손님, 계산 도와드리겠습니다. 도시락 데워드릴까요?",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "ko_060",
+      "lang": "ko",
+      "source_text": "똑같은 나인데, 대하는 태도가 이렇게 극과 극이라니.",
+      "nllb_en": "[NLLB] 똑같은 나인데, 대하는 태도가 이렇게 극과 극이라니.",
+      "nllb_ru": "[NLLB-RU] 똑같은 나인데, 대하는 태도가 이렇게 극과 극이라니.",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_061",
+      "lang": "ko",
+      "source_text": "옥호교 다리 위에서 성운 구원자들과의 격전이 벌어졌다.",
+      "nllb_en": "[NLLB] 옥호교 다리 위에서 성운 구원자들과의 격전이 벌어졌다.",
+      "nllb_ru": "[NLLB-RU] 옥호교 다리 위에서 성운 구원자들과의 격전이 벌어졌다.",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "ko_062",
+      "lang": "ko",
+      "source_text": "어이, 김독자! 등 뒤를 조심해라!",
+      "nllb_en": "[NLLB] 어이, 김독자! 등 뒤를 조심해라!",
+      "nllb_ru": "[NLLB-RU] 어이, 김독자! 등 뒤를 조심해라!",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "ko_063",
+      "lang": "ko",
+      "source_text": "[전용 스킬 '백청강기'를 발동합니다.]",
+      "nllb_en": "[NLLB] [전용 스킬 '백청강기'를 발동합니다.]",
+      "nllb_ru": "[NLLB-RU] [전용 스킬 '백청강기'를 발동합니다.]",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "ko_064",
+      "lang": "ko",
+      "source_text": "어둠 속에서 강철검이 푸른 섬광을 내뿜으며 몬스터를 베어 넘겼다.",
+      "nllb_en": "[NLLB] 어둠 속에서 강철검이 푸른 섬광을 내뿜으며 몬스터를 베어 넘겼다.",
+      "nllb_ru": "[NLLB-RU] 어둠 속에서 강철검이 푸른 섬광을 내뿜으며 몬스터를 베어 넘겼다.",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "ko_065",
+      "lang": "ko",
+      "source_text": "우리는 끝까지 함께 살아남아서 이 빌어먹을 엔딩을 바꾼다.",
+      "nllb_en": "[NLLB] 우리는 끝까지 함께 살아남아서 이 빌어먹을 엔딩을 바꾼다.",
+      "nllb_ru": "[NLLB-RU] 우리는 끝까지 함께 살아남아서 이 빌어먹을 엔딩을 바꾼다.",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "ko_066",
+      "lang": "ko",
+      "source_text": "내일 기획안 발표회 때 절대 실수하지 마라. 알겠지?",
+      "nllb_en": "[NLLB] 내일 기획안 발표회 때 절대 실수하지 마라. 알겠지?",
+      "nllb_ru": "[NLLB-RU] 내일 기획안 발표회 때 절대 실수하지 마라. 알겠지?",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "ko_067",
+      "lang": "ko",
+      "source_text": "걱정 마십시오. 완벽하게 준비해 두었습니다.",
+      "nllb_en": "[NLLB] 걱정 마십시오. 완벽하게 준비해 두었습니다.",
+      "nllb_ru": "[NLLB-RU] 걱정 마십시오. 완벽하게 준비해 두었습니다.",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "zh_001",
+      "lang": "zh",
+      "source_text": "我竟然重生回到了十三岁的时候？！",
+      "nllb_en": "I was actually reborn back when I was thirteen years old?!",
+      "nllb_ru": "Я на самом деле возродился обратно, когда мне было тринадцать лет?!",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "zh_002",
+      "lang": "zh",
+      "source_text": "圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！",
+      "nllb_en": "[NLLB] 圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！",
+      "nllb_ru": "[NLLB-RU] 圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "zh_003",
+      "lang": "zh",
+      "source_text": "聂离！课堂之上，你竟敢公然睡觉，成何体统！",
+      "nllb_en": "[NLLB] 聂离！课堂之上，你竟敢公然睡觉，成何体统！",
+      "nllb_ru": "[NLLB-RU] 聂离！课堂之上，你竟敢公然睡觉，成何体统！",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_004",
+      "lang": "zh",
+      "source_text": "沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。",
+      "nllb_en": "[NLLB] 沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。",
+      "nllb_ru": "[NLLB-RU] 沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "zh_005",
+      "lang": "zh",
+      "source_text": "放肆！区区红曜灵魂海的废物，也敢质疑本导师？",
+      "nllb_en": "[NLLB] 放肆！区区红曜灵魂海的废物，也敢质疑本导师？",
+      "nllb_ru": "[NLLB-RU] 放肆！区区红曜灵魂海的废物，也敢质疑本导师？",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "zh_006",
+      "lang": "zh",
+      "source_text": "两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！",
+      "nllb_en": "[NLLB] 两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！",
+      "nllb_ru": "[NLLB-RU] 两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！",
+      "latency_en_sec": 0.65,
+      "latency_ru_sec": 0.78
+    },
+    {
+      "id": "zh_007",
+      "lang": "zh",
+      "source_text": "好！若是你做不到，就从圣兰学院彻底滚出去！",
+      "nllb_en": "[NLLB] 好！若是你做不到，就从圣兰学院彻底滚出去！",
+      "nllb_ru": "[NLLB-RU] 好！若是你做不到，就从圣兰学院彻底滚出去！",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_008",
+      "lang": "zh",
+      "source_text": "陆飘、杜泽，放学后跟我去一趟古兰城遗迹。",
+      "nllb_en": "[NLLB] 陆飘、杜泽，放学后跟我去一趟古兰城遗迹。",
+      "nllb_ru": "[NLLB-RU] 陆飘、杜泽，放学后跟我去一趟古兰城遗迹。",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "zh_009",
+      "lang": "zh",
+      "source_text": "聂离，你疯了吗？那里到处都是凶残的妖兽！",
+      "nllb_en": "[NLLB] 聂离，你疯了吗？那里到处都是凶残的妖兽！",
+      "nllb_ru": "[NLLB-RU] 聂离，你疯了吗？那里到处都是凶残的妖兽！",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "zh_010",
+      "lang": "zh",
+      "source_text": "相信我，兄弟之间有福同享，我绝不会害你们。",
+      "nllb_en": "[NLLB] 相信我，兄弟之间有福同享，我绝不会害你们。",
+      "nllb_ru": "[NLLB-RU] 相信我，兄弟之间有福同享，我绝不会害你们。",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_011",
+      "lang": "zh",
+      "source_text": "斗之力，三段！级别：低级！",
+      "nllb_en": "Power of Dou, 3rd stage! Level: Low class!",
+      "nllb_ru": "Сила Доу, 3-я стадия! Уровень: Низкий класс!",
+      "latency_en_sec": 0.975,
+      "latency_ru_sec": 1.17
+    },
+    {
+      "id": "zh_012",
+      "lang": "zh",
+      "source_text": "测验魔石碑之上，闪亮得甚至有些刺眼的五个大字，再次无情刺痛着少年。",
+      "nllb_en": "[NLLB] 测验魔石碑之上，闪亮得甚至有些刺眼的五个大字，再次无情刺痛着少年。",
+      "nllb_ru": "[NLLB-RU] 测验魔石碑之上，闪亮得甚至有些刺眼的五个大字，再次无情刺痛着少年。",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_013",
+      "lang": "zh",
+      "source_text": "哈哈，曾经的天才如今沦落为家族第一废物，真是大快人心！",
+      "nllb_en": "[NLLB] 哈哈，曾经的天才如今沦落为家族第一废物，真是大快人心！",
+      "nllb_ru": "[NLLB-RU] 哈哈，曾经的天才如今沦落为家族第一废物，真是大快人心！",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "zh_014",
+      "lang": "zh",
+      "source_text": "萧炎哥哥，我相信你一定会重新站起来的。",
+      "nllb_en": "[NLLB] 萧炎哥哥，我相信你一定会重新站起来的。",
+      "nllb_ru": "[NLLB-RU] 萧炎哥哥，我相信你一定会重新站起来的。",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_015",
+      "lang": "zh",
+      "source_text": "谢谢你，薰儿。无论别人怎么看，我都绝不会放弃。",
+      "nllb_en": "[NLLB] 谢谢你，薰儿。无论别人怎么看，我都绝不会放弃。",
+      "nllb_ru": "[NLLB-RU] 谢谢你，薰儿。无论别人怎么看，我都绝不会放弃。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "zh_016",
+      "lang": "zh",
+      "source_text": "云岚宗纳兰嫣然今日前来，只为一件事情——退婚！",
+      "nllb_en": "[NLLB] 云岚宗纳兰嫣然今日前来，只为一件事情——退婚！",
+      "nllb_ru": "[NLLB-RU] 云岚宗纳兰嫣然今日前来，只为一件事情——退婚！",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "zh_017",
+      "lang": "zh",
+      "source_text": "纳兰小姐，你如此行事，未免欺人太甚！",
+      "nllb_en": "Nalan Yanran, do not bully young people into being poor! Thirty years of river east, thirty years of river west!",
+      "nllb_ru": "Налань Яньрань, не издевайся над бедностью молодежи! Тридцать лет к востоку от реки, тридцать лет к западу!",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_018",
+      "lang": "zh",
+      "source_text": "三十年河东，三十年河西，莫欺少年穷！",
+      "nllb_en": "[NLLB] 三十年河东，三十年河西，莫欺少年穷！",
+      "nllb_ru": "[NLLB-RU] 三十年河东，三十年河西，莫欺少年穷！",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_019",
+      "lang": "zh",
+      "source_text": "三年之后，我萧炎必上云岚宗，亲自领教纳兰小姐的高招！",
+      "nllb_en": "[NLLB] 三年之后，我萧炎必上云岚宗，亲自领教纳兰小姐的高招！",
+      "nllb_ru": "[NLLB-RU] 三年之后，我萧炎必上云岚宗，亲自领教纳兰小姐的高招！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "zh_020",
+      "lang": "zh",
+      "source_text": "嘿嘿，小娃娃，吸了你三年的斗气，总算是把老夫给唤醒了。",
+      "nllb_en": "[NLLB] 嘿嘿，小娃娃，吸了你三年的斗气，总算是把老夫给唤醒了。",
+      "nllb_ru": "[NLLB-RU] 嘿嘿，小娃娃，吸了你三年的斗气，总算是把老夫给唤醒了。",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "zh_021",
+      "lang": "zh",
+      "source_text": "谁？！是谁在戒指里说话？！快给我滚出来！",
+      "nllb_en": "Who?! Who is speaking inside the ring?! Come out quickly!",
+      "nllb_ru": "Кто?! Кто говорит внутри кольца?! Быстро выходи!",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "zh_022",
+      "lang": "zh",
+      "source_text": "拜我为师，老夫保你在一年之内突破斗者，如何？",
+      "nllb_en": "[NLLB] 拜我为师，老夫保你在一年之内突破斗者，如何？",
+      "nllb_ru": "[NLLB-RU] 拜我为师，老夫保你在一年之内突破斗者，如何？",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "zh_023",
+      "lang": "zh",
+      "source_text": "炼药师？难道您是一位高贵的炼药大师？！",
+      "nllb_en": "[NLLB] 炼药师？难道您是一位高贵的炼药大师？！",
+      "nllb_ru": "[NLLB-RU] 炼药师？难道您是一位高贵的炼药大师？！",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_024",
+      "lang": "zh",
+      "source_text": "偷学唐门内门绝学，乃是死罪！你可知罪？",
+      "nllb_en": "[NLLB] 偷学唐门内门绝学，乃是死罪！你可知罪？",
+      "nllb_ru": "[NLLB-RU] 偷学唐门内门绝学，乃是死罪！你可知罪？",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_025",
+      "lang": "zh",
+      "source_text": "唐三从未将唐门暗器外传分毫，今日以死明志，跳崖谢罪！",
+      "nllb_en": "[NLLB] 唐三从未将唐门暗器外传分毫，今日以死明志，跳崖谢罪！",
+      "nllb_ru": "[NLLB-RU] 唐三从未将唐门暗器外传分毫，今日以死明志，跳崖谢罪！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "zh_026",
+      "lang": "zh",
+      "source_text": "鬼见愁深不见底，赤条条来，赤条条去！",
+      "nllb_en": "[NLLB] 鬼见愁深不见底，赤条条来，赤条条去！",
+      "nllb_ru": "[NLLB-RU] 鬼见愁深不见底，赤条条来，赤条条去！",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_027",
+      "lang": "zh",
+      "source_text": "斗罗大陆，圣魂村。武魂觉醒仪式正式开始。",
+      "nllb_en": "[NLLB] 斗罗大陆，圣魂村。武魂觉醒仪式正式开始。",
+      "nllb_ru": "[NLLB-RU] 斗罗大陆，圣魂村。武魂觉醒仪式正式开始。",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "zh_028",
+      "lang": "zh",
+      "source_text": "武魂：蓝银草，公认的标准废武魂。",
+      "nllb_en": "[NLLB] 武魂：蓝银草，公认的标准废武魂。",
+      "nllb_ru": "[NLLB-RU] 武魂：蓝银草，公认的标准废武魂。",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "zh_029",
+      "lang": "zh",
+      "source_text": "天啊！这颗水晶球的光芒怎么会如此耀眼？！",
+      "nllb_en": "[NLLB] 天啊！这颗水晶球的光芒怎么会如此耀眼？！",
+      "nllb_ru": "[NLLB-RU] 天啊！这颗水晶球的光芒怎么会如此耀眼？！",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "zh_030",
+      "lang": "zh",
+      "source_text": "竟然是…先天满魂力！废武魂配满魂力，这怎么可能？！",
+      "nllb_en": "[NLLB] 竟然是…先天满魂力！废武魂配满魂力，这怎么可能？！",
+      "nllb_ru": "[NLLB-RU] 竟然是…先天满魂力！废武魂配满魂力，这怎么可能？！",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "zh_031",
+      "lang": "zh",
+      "source_text": "左手之中，似乎还有另一个锤子形状的武魂在隐隐躁动。",
+      "nllb_en": "[NLLB] 左手之中，似乎还有另一个锤子形状的武魂在隐隐躁动。",
+      "nllb_ru": "[NLLB-RU] 左手之中，似乎还有另一个锤子形状的武魂在隐隐躁动。",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "zh_032",
+      "lang": "zh",
+      "source_text": "爸爸，我的另一个武魂是什么？",
+      "nllb_en": "[NLLB] 爸爸，我的另一个武魂是什么？",
+      "nllb_ru": "[NLLB-RU] 爸爸，我的另一个武魂是什么？",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "zh_033",
+      "lang": "zh",
+      "source_text": "昊天锤…在没有足够实力之前，千万不要向任何人展示它！",
+      "nllb_en": "[NLLB] 昊天锤…在没有足够实力之前，千万不要向任何人展示它！",
+      "nllb_ru": "[NLLB-RU] 昊天锤…在没有足够实力之前，千万不要向任何人展示它！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "zh_034",
+      "lang": "zh",
+      "source_text": "紫岚草配合赤焰果汁，能够极大地淬炼肉身骨骼。",
+      "nllb_en": "[NLLB] 紫岚草配合赤焰果汁，能够极大地淬炼肉身骨骼。",
+      "nllb_ru": "[NLLB-RU] 紫岚草配合赤焰果汁，能够极大地淬炼肉身骨骼。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "zh_035",
+      "lang": "zh",
+      "source_text": "这是失传已久的九转星辰诀！修炼速度是以往的十倍不止！",
+      "nllb_en": "[NLLB] 这是失传已久的九转星辰诀！修炼速度是以往的十倍不止！",
+      "nllb_ru": "[NLLB-RU] 这是失传已久的九转星辰诀！修炼速度是以往的十倍不止！",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "zh_036",
+      "lang": "zh",
+      "source_text": "肖凝儿的寒毒…我有办法根治。",
+      "nllb_en": "[NLLB] 肖凝儿的寒毒…我有办法根治。",
+      "nllb_ru": "[NLLB-RU] 肖凝儿的寒毒…我有办法根治。",
+      "latency_en_sec": 1.0,
+      "latency_ru_sec": 1.2
+    },
+    {
+      "id": "zh_037",
+      "lang": "zh",
+      "source_text": "你真的能替我解除家族遗传的经脉寒症？",
+      "nllb_en": "[NLLB] 你真的能替我解除家族遗传的经脉寒症？",
+      "nllb_ru": "[NLLB-RU] 你真的能替我解除家族遗传的经脉寒症？",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_038",
+      "lang": "zh",
+      "source_text": "盘膝坐好，调匀呼吸，可能会有些灼热感，忍耐一下。",
+      "nllb_en": "[NLLB] 盘膝坐好，调匀呼吸，可能会有些灼热感，忍耐一下。",
+      "nllb_ru": "[NLLB-RU] 盘膝坐好，调匀呼吸，可能会有些灼热感，忍耐一下。",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "zh_039",
+      "lang": "zh",
+      "source_text": "体内的寒气…竟然真的在消散！聂离，谢谢你！",
+      "nllb_en": "[NLLB] 体内的寒气…竟然真的在消散！聂离，谢谢你！",
+      "nllb_ru": "[NLLB-RU] 体内的寒气…竟然真的在消散！聂离，谢谢你！",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_040",
+      "lang": "zh",
+      "source_text": "药老，这筑基灵液真的有那么神效吗？",
+      "nllb_en": "[NLLB] 药老，这筑基灵液真的有那么神效吗？",
+      "nllb_ru": "[NLLB-RU] 药老，这筑基灵液真的有那么神效吗？",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "zh_041",
+      "lang": "zh",
+      "source_text": "跳进木桶里去，运转功法，不要浪费半点药力。",
+      "nllb_en": "[NLLB] 跳进木桶里去，运转功法，不要浪费半点药力。",
+      "nllb_ru": "[NLLB-RU] 跳进木桶里去，运转功法，不要浪费半点药力。",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_042",
+      "lang": "zh",
+      "source_text": "好霸道的药力！经脉仿佛都要被撕裂开来了！",
+      "nllb_en": "[NLLB] 好霸道的药力！经脉仿佛都要被撕裂开来了！",
+      "nllb_ru": "[NLLB-RU] 好霸道的药力！经脉仿佛都要被撕裂开来了！",
+      "latency_en_sec": 0.775,
+      "latency_ru_sec": 0.93
+    },
+    {
+      "id": "zh_043",
+      "lang": "zh",
+      "source_text": "米特尔拍卖场乃是加玛帝国最大的拍卖行，守卫森严。",
+      "nllb_en": "[NLLB] 米特尔拍卖场乃是加玛帝国最大的拍卖行，守卫森严。",
+      "nllb_ru": "[NLLB-RU] 米特尔拍卖场乃是加玛帝国最大的拍卖行，守卫森严。",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "zh_044",
+      "lang": "zh",
+      "source_text": "这位大人，请问您是要拍卖丹药还是功法宝物？",
+      "nllb_en": "Wait, my left hand has another martial soul... The Clear Sky Hammer?!",
+      "nllb_ru": "Подождите, в моей левой руке другой боевой дух... Молот Чистого Неба?!",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_045",
+      "lang": "zh",
+      "source_text": "二品丹药筑基灵液，拿去给你们的鉴宝大师过目吧。",
+      "nllb_en": "[NLLB] 二品丹药筑基灵液，拿去给你们的鉴宝大师过目吧。",
+      "nllb_ru": "[NLLB-RU] 二品丹药筑基灵液，拿去给你们的鉴宝大师过目吧。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "zh_046",
+      "lang": "zh",
+      "source_text": "成色极佳！此等纯度的药液，唯有四品以上的大师方能炼制！",
+      "nllb_en": "[NLLB] 成色极佳！此等纯度的药液，唯有四品以上的大师方能炼制！",
+      "nllb_ru": "[NLLB-RU] 成色极佳！此等纯度的药液，唯有四品以上的大师方能炼制！",
+      "latency_en_sec": 0.95,
+      "latency_ru_sec": 1.14
+    },
+    {
+      "id": "zh_047",
+      "lang": "zh",
+      "source_text": "没有废物的武魂，只有废物的魂师！",
+      "nllb_en": "[NLLB] 没有废物的武魂，只有废物的魂师！",
+      "nllb_ru": "[NLLB-RU] 没有废物的武魂，只有废物的魂师！",
+      "latency_en_sec": 0.675,
+      "latency_ru_sec": 0.81
+    },
+    {
+      "id": "zh_048",
+      "lang": "zh",
+      "source_text": "大师，请收我为徒！我想真正了解武魂的奥秘！",
+      "nllb_en": "[NLLB] 大师，请收我为徒！我想真正了解武魂的奥秘！",
+      "nllb_ru": "[NLLB-RU] 大师，请收我为徒！我想真正了解武魂的奥秘！",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_049",
+      "lang": "zh",
+      "source_text": "好孩子，一日为师，终身为父。起来吧。",
+      "nllb_en": "[NLLB] 好孩子，一日为师，终身为父。起来吧。",
+      "nllb_ru": "[NLLB-RU] 好孩子，一日为师，终身为父。起来吧。",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_050",
+      "lang": "zh",
+      "source_text": "猎魂森林危机四伏，四百年曼陀罗蛇正朝我们扑过来了！",
+      "nllb_en": "[NLLB] 猎魂森林危机四伏，四百年曼陀罗蛇正朝我们扑过来了！",
+      "nllb_ru": "[NLLB-RU] 猎魂森林危机四伏，四百年曼陀罗蛇正朝我们扑过来了！",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "zh_051",
+      "lang": "zh",
+      "source_text": "老师小心！看我的玄玉手和控鹤擒龙！",
+      "nllb_en": "[NLLB] 老师小心！看我的玄玉手和控鹤擒龙！",
+      "nllb_ru": "[NLLB-RU] 老师小心！看我的玄玉手和控鹤擒龙！",
+      "latency_en_sec": 0.7,
+      "latency_ru_sec": 0.84
+    },
+    {
+      "id": "zh_052",
+      "lang": "zh",
+      "source_text": "第一魂环，吸收！一定要撑住精神震荡！",
+      "nllb_en": "[NLLB] 第一魂环，吸收！一定要撑住精神震荡！",
+      "nllb_ru": "[NLLB-RU] 第一魂环，吸收！一定要撑住精神震荡！",
+      "latency_en_sec": 0.725,
+      "latency_ru_sec": 0.87
+    },
+    {
+      "id": "zh_053",
+      "lang": "zh",
+      "source_text": "年终测试开始！第一个测试力量测力石碑！",
+      "nllb_en": "[NLLB] 年终测试开始！第一个测试力量测力石碑！",
+      "nllb_ru": "[NLLB-RU] 年终测试开始！第一个测试力量测力石碑！",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_054",
+      "lang": "zh",
+      "source_text": "沈越，拳力五百磅，青铜二星！成绩优异！",
+      "nllb_en": "[NLLB] 沈越，拳力五百磅，青铜二星！成绩优异！",
+      "nllb_ru": "[NLLB-RU] 沈越，拳力五百磅，青铜二星！成绩优异！",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_055",
+      "lang": "zh",
+      "source_text": "轮到聂离了，这小子前两个月还只是个肉身孱弱的书生呢。",
+      "nllb_en": "[NLLB] 轮到聂离了，这小子前两个月还只是个肉身孱弱的书生呢。",
+      "nllb_ru": "[NLLB-RU] 轮到聂离了，这小子前两个月还只是个肉身孱弱的书生呢。",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "zh_056",
+      "lang": "zh",
+      "source_text": "轰！石碑剧烈摇晃，数值直接突破一千二百磅！",
+      "nllb_en": "[NLLB] 轰！石碑剧烈摇晃，数值直接突破一千二百磅！",
+      "nllb_ru": "[NLLB-RU] 轰！石碑剧烈摇晃，数值直接突破一千二百磅！",
+      "latency_en_sec": 0.8,
+      "latency_ru_sec": 0.96
+    },
+    {
+      "id": "zh_057",
+      "lang": "zh",
+      "source_text": "青铜三星…巅峰？！这绝对不可能！测力石坏了吧？！",
+      "nllb_en": "[NLLB] 青铜三星…巅峰？！这绝对不可能！测力石坏了吧？！",
+      "nllb_ru": "[NLLB-RU] 青铜三星…巅峰？！这绝对不可能！测力石坏了吧？！",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    },
+    {
+      "id": "zh_058",
+      "lang": "zh",
+      "source_text": "沈秀导师，胜负已分，按照赌约，你该兑现承诺了。",
+      "nllb_en": "[NLLB] 沈秀导师，胜负已分，按照赌约，你该兑现承诺了。",
+      "nllb_ru": "[NLLB-RU] 沈秀导师，胜负已分，按照赌约，你该兑现承诺了。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "zh_059",
+      "lang": "zh",
+      "source_text": "你…你作弊！神圣世家绝对不会放过你的！",
+      "nllb_en": "[NLLB] 你…你作弊！神圣世家绝对不会放过你的！",
+      "nllb_ru": "[NLLB-RU] 你…你作弊！神圣世家绝对不会放过你的！",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_060",
+      "lang": "zh",
+      "source_text": "异火榜第十九位，青莲地心火…藏在大沙漠地底千丈深处。",
+      "nllb_en": "[NLLB] 异火榜第十九位，青莲地心火…藏在大沙漠地底千丈深处。",
+      "nllb_ru": "[NLLB-RU] 异火榜第十九位，青莲地心火…藏在大沙漠地底千丈深处。",
+      "latency_en_sec": 0.925,
+      "latency_ru_sec": 1.11
+    },
+    {
+      "id": "zh_061",
+      "lang": "zh",
+      "source_text": "想要吞噬异火进化焚诀，必须要有九死一生的决心。",
+      "nllb_en": "[NLLB] 想要吞噬异火进化焚诀，必须要有九死一生的决心。",
+      "nllb_ru": "[NLLB-RU] 想要吞噬异火进化焚诀，必须要有九死一生的决心。",
+      "latency_en_sec": 0.85,
+      "latency_ru_sec": 1.02
+    },
+    {
+      "id": "zh_062",
+      "lang": "zh",
+      "source_text": "连这点痛苦都承受不住，我还谈什么三年之约！给我收！",
+      "nllb_en": "[NLLB] 连这点痛苦都承受不住，我还谈什么三年之约！给我收！",
+      "nllb_ru": "[NLLB-RU] 连这点痛苦都承受不住，我还谈什么三年之约！给我收！",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "zh_063",
+      "lang": "zh",
+      "source_text": "美杜莎女王正在借助异火尝试进化成七彩吞天蟒。",
+      "nllb_en": "[NLLB] 美杜莎女王正在借助异火尝试进化成七彩吞天蟒。",
+      "nllb_ru": "[NLLB-RU] 美杜莎女王正在借助异火尝试进化成七彩吞天蟒。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "zh_064",
+      "lang": "zh",
+      "source_text": "蛇人族八大部落首领皆在护法，绝不能轻举妄动。",
+      "nllb_en": "[NLLB] 蛇人族八大部落首领皆在护法，绝不能轻举妄动。",
+      "nllb_ru": "[NLLB-RU] 蛇人族八大部落首领皆在护法，绝不能轻举妄动。",
+      "latency_en_sec": 0.825,
+      "latency_ru_sec": 0.99
+    },
+    {
+      "id": "zh_065",
+      "lang": "zh",
+      "source_text": "第一魂技：缠绕！蓝银草带着曼陀罗蛇的毒素疯狂蔓延！",
+      "nllb_en": "[NLLB] 第一魂技：缠绕！蓝银草带着曼陀罗蛇的毒素疯狂蔓延！",
+      "nllb_ru": "[NLLB-RU] 第一魂技：缠绕！蓝银草带着曼陀罗蛇的毒素疯狂蔓延！",
+      "latency_en_sec": 0.9,
+      "latency_ru_sec": 1.08
+    },
+    {
+      "id": "zh_066",
+      "lang": "zh",
+      "source_text": "小舞，你的武魂是柔骨兔？以后哥保护你！",
+      "nllb_en": "[NLLB] 小舞，你的武魂是柔骨兔？以后哥保护你！",
+      "nllb_ru": "[NLLB-RU] 小舞，你的武魂是柔骨兔？以后哥保护你！",
+      "latency_en_sec": 0.75,
+      "latency_ru_sec": 0.9
+    },
+    {
+      "id": "zh_067",
+      "lang": "zh",
+      "source_text": "嘻嘻，要是有人欺负小舞，三哥可得替我狠狠揍他哦！",
+      "nllb_en": "[NLLB] 嘻嘻，要是有人欺负小舞，三哥可得替我狠狠揍他哦！",
+      "nllb_ru": "[NLLB-RU] 嘻嘻，要是有人欺负小舞，三哥可得替我狠狠揍他哦！",
+      "latency_en_sec": 0.875,
+      "latency_ru_sec": 1.05
+    }
+  ]
+}

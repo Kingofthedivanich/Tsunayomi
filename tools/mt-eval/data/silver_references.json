@@ -1,0 +1,1610 @@
+[
+  {
+    "id": "ja_001",
+    "lang": "ja",
+    "source_text": "飯テロ注意！空腹必至の異世界グルメファンタジー！",
+    "silver_en": "Warning: Food porn! An isekai gourmet fantasy guaranteed to make you hungry!",
+    "silver_ru": "Внимание, фудпорн! Гурман-фэнтези в другом мире, от которого гарантированно потекут слюнки!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_002",
+    "lang": "ja",
+    "source_text": "小田中さん、この書類の確認をお願いできますか？",
+    "silver_en": "Odanaka-san, could you please take a look at these documents?",
+    "silver_ru": "Оданака-сан, не могли бы вы проверить эти документы?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_003",
+    "lang": "ja",
+    "source_text": "ふぅ…今日も残業か。コンビニ弁当じゃ味気ないよな。",
+    "silver_en": "Phew... Overtime again today, huh? Convenience store bento just doesn't hit the spot.",
+    "silver_ru": "Фух... Сегодня снова переработка? Бенто из комбини совсем безвкусное.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_004",
+    "lang": "ja",
+    "source_text": "大家さんからもらったこの古い鍵、一体何の鍵なんだろう。",
+    "silver_en": "Eh?! Why am I suddenly in the middle of a forest...?! Where even is this?!",
+    "silver_ru": "А?! Почему я вдруг посреди леса...?! Где это вообще?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_005",
+    "lang": "ja",
+    "source_text": "えっ！？扉の向こうが…見たこともない街並みになってる！？",
+    "silver_en": "My smartphone is out of service... Wait, the battery isn't draining at all?!",
+    "silver_ru": "Сеть на смартфоне не ловит... Стоп, а зарядка вообще не садится?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_006",
+    "lang": "ja",
+    "source_text": "なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！",
+    "silver_en": "Grumble~ ...Right now, filling my stomach comes first. Is there anything edible around?",
+    "silver_ru": "Уррр... Прямо сейчас главное — набить желудок. Есть тут что-нибудь съедобное?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_007",
+    "lang": "ja",
+    "source_text": "いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？",
+    "silver_en": "Is this mushroom safe to eat...? In manga, poisonous ones are usually bright and colorful, but...",
+    "silver_ru": "Этот гриб вообще съедобный?.. В манге ядовитые обычно яркие, но всё же...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_008",
+    "lang": "ja",
+    "source_text": "う、うまい！外はカリッとしてるのに中は信じられないほどジューシーだ…！",
+    "silver_en": "Oh! A river! Fish! If I can just start a fire, I can make salt-grilled fish!",
+    "silver_ru": "О! Река! Рыба! Если смогу развести костёр, запеку рыбу с солью!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_009",
+    "lang": "ja",
+    "source_text": "これ、何の肉ですか？",
+    "silver_en": "Fire Magic?! Whoa, sparks really came out of my fingertips?!",
+    "silver_ru": "Магия огня?! Ого, из кончиков пальцев правда посыпались искры?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_010",
+    "lang": "ja",
+    "source_text": "ロック鳥のモモ肉さ！森で今朝獲れたてだから新鮮だよ。",
+    "silver_en": "Delicious! Crispy on the outside, fluffy and juicy on the inside... This is pure bliss!",
+    "silver_ru": "Вкуснотища! Снаружи хрустящая корочка, внутри нежная и сочная... Это просто блаженство!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_011",
+    "lang": "ja",
+    "source_text": "貴殿、見慣れぬ身なりをしているが…何者だ？",
+    "silver_en": "You there, you're dressed in rather unfamiliar garb... Who are you?",
+    "silver_ru": "Сударь, на вас весьма непривычные одеяния... Кто вы такой?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_012",
+    "lang": "ja",
+    "source_text": "め、女騎士さん！？いや、ただの通りすがりの会社員です…！",
+    "silver_en": "Ah, um, I got lost in the mountains... My name is Kenji Odanaka, an ordinary office worker.",
+    "silver_ru": "А, эм, я заблудился в горах... Меня зовут Кэндзи Оданака, обычный офисный служащий.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_013",
+    "lang": "ja",
+    "source_text": "くっ…お腹の音が…すまぬ、任務続きで三日何も食しておらぬのだ。",
+    "silver_en": "Off-iss work-er? Never heard of such a knightly order. However, that delicious scent...",
+    "silver_ru": "Офис-ный ра-бот-ник? Не слыхала о таком рыцарском ордене. Однако этот аппетитный запах...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_014",
+    "lang": "ja",
+    "source_text": "よかったらこれ、半分食べますか？熱々ですよ。",
+    "silver_en": "Would you like a bite? I still have some freshly grilled ones.",
+    "silver_ru": "Не хотите попробовать кусочек? У меня как раз есть свежеприготовленная.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_015",
+    "lang": "ja",
+    "source_text": "な、なんたる美味…！こんな料理、王宮でも口にしたことがない！",
+    "silver_en": "...Mm! What exquisite saltiness! The meat simply melts on the tongue!",
+    "silver_ru": "...Мм! Какая изумительная солоноватость! Мясо буквально тает на языке!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_016",
+    "lang": "ja",
+    "source_text": "圧倒的な力ってのは…つまらないもんだな。",
+    "silver_en": "I am Alicia, vice-captain of the Royal Knights. By the way, about this seasoning...",
+    "silver_ru": "Я Алисия, вице-капитан Королевских рыцарей. К слову, насчет этой приправы...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_017",
+    "lang": "ja",
+    "source_text": "趣味でヒーローをやっている者だ。",
+    "silver_en": "Soy sauce and dashi broth! If I have these, I can reproduce Japanese home cooking anywhere!",
+    "silver_ru": "Соевый соус и бульон даси! С ними я смогу воспроизвести домашнюю японскую кухню где угодно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_018",
+    "lang": "ja",
+    "source_text": "またワンパンで終わっちまった…！",
+    "silver_en": "Next Chapter Preview: A tavern in the royal capital! Japanese cuisine conquers the other world?!",
+    "silver_ru": "В следующей главе: Таверна в столице королевства! Японская кухня покоряет иной мир?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_019",
+    "lang": "ja",
+    "source_text": "先生！どうか私を弟子にしてください！",
+    "silver_en": "The high school entrance exam results are finally out today... My heart won't stop pounding.",
+    "silver_ru": "Сегодня наконец-то объявят результаты вступительных экзаменов в старшую школу... Сердце так и колотится.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_020",
+    "lang": "ja",
+    "source_text": "いや、断る。面倒くさいし。",
+    "silver_en": "Kotaro! Over here, over here! Let's go check the bulletin board together!",
+    "silver_ru": "Котаро! Сюда, сюда! Пойдем вместе посмотрим на доску объявлений!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_021",
+    "lang": "ja",
+    "source_text": "家賃を折半で払うというのはどうでしょうか？",
+    "silver_en": "How about we split the rent fifty-fifty?",
+    "silver_ru": "Как насчет разделить арендную плату пополам?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_022",
+    "lang": "ja",
+    "source_text": "よし、合格だ。明日からよろしくな。",
+    "silver_en": "W-Wait a minute! A boy and a girl living under the same roof... That's impossible!",
+    "silver_ru": "П-Подожди минутку! Парень и девушка под одной крышей... Это же невозможно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_023",
+    "lang": "ja",
+    "source_text": "おいジェノス、スーパーの特売日忘れてた！急ぐぞ！",
+    "silver_en": "My number is... 1042... Found it! I passed!!",
+    "silver_ru": "Мой номер... 1042... Нашел! Я сдал!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_024",
+    "lang": "ja",
+    "source_text": "了解しました先生。最大出力で追従します。",
+    "silver_en": "Congratulations, Senpai! I knew you could do it!",
+    "silver_ru": "Поздравляю, сэмпай! Я знала, что у вас всё получится!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_025",
+    "lang": "ja",
+    "source_text": "貴様ごときB級ヒーローが、この怪人協会に勝てると思うなよ！",
+    "silver_en": "Don't get cocky. High school is where the real competition begins.",
+    "silver_ru": "Не зазнавайся. В старшей школе настоящая битва только начинается.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_026",
+    "lang": "ja",
+    "source_text": "うるせえな、キャベツ落としただろ弁償しろ。",
+    "silver_en": "Huh? Why is my umbrella gone? Did someone take it by mistake?!",
+    "silver_ru": "А? Куда делся мой зонт? Кто-то случайно утащил?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_027",
+    "lang": "ja",
+    "source_text": "この遺跡の奥に伝説の金貨が眠っているはずだ。",
+    "silver_en": "If you don't mind, would you like to share mine on the way home?",
+    "silver_ru": "Если не возражаешь, пойдем под моим зонтом?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_028",
+    "lang": "ja",
+    "source_text": "罠だ！足元に気をつけろ！",
+    "silver_en": "Under the same umbrella... Isn't this practically a couple's umbrella?! My face is so hot...",
+    "silver_ru": "Под одним зонтом... Это же почти любовный зонтик?! Лицо так и горит...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_029",
+    "lang": "ja",
+    "source_text": "へっ、オレの俊敏性をなめるなよ。",
+    "silver_en": "I'm sorry, I have club activities today so I can't walk home with you.",
+    "silver_ru": "Прости, у меня сегодня клубные занятия, так что не смогу пойти с тобой.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_030",
+    "lang": "ja",
+    "source_text": "扉が開かない…何か古代の文字が刻まれているぞ。",
+    "silver_en": "I see... Good luck with practice! See you tomorrow!",
+    "silver_ru": "Понятно... Удачи на тренировке! До завтра!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_031",
+    "lang": "ja",
+    "source_text": "『真の勇気を持つ者のみ、黄金の道を進むべし』",
+    "silver_en": "That guy... why is he always picking a fight with me?",
+    "silver_ru": "Этот парень... почему он вечно ко мне цепляется?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_032",
+    "lang": "ja",
+    "source_text": "ふん、謎解きなら任せておけ！",
+    "silver_en": "Maybe it's because he likes you? Boys are simple creatures like that.",
+    "silver_ru": "Может, ты ему просто нравишься? Парни устроены довольно примитивно.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_033",
+    "lang": "ja",
+    "source_text": "目が覚めたら深い森の中だった。",
+    "silver_en": "No way! That's completely impossible!",
+    "silver_ru": "Быть не может! Это совершенно исключено!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_034",
+    "lang": "ja",
+    "source_text": "神様からもらったこの『万能農具』、本当に何でも耕せるな。",
+    "silver_en": "Tonight is a full moon... A strange, heavy chill lingers in the air.",
+    "silver_ru": "Сегодня полнолуние... В воздухе витает странный, зловещий холод.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_035",
+    "lang": "ja",
+    "source_text": "まずは寝床と水源の確保から始めよう。",
+    "silver_en": "Run, Ren! That guy isn't human!!",
+    "silver_ru": "Беги, Рэн! Он не человек!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_036",
+    "lang": "ja",
+    "source_text": "くぅ〜ん…怪我をした大きな犬？いや、狼か！？",
+    "silver_en": "What... on earth is that monster?! Blade, pierce it!!",
+    "silver_ru": "Что... это вообще за чудовище такое?! Клинок, пронзи его!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_037",
+    "lang": "ja",
+    "source_text": "大丈夫だ、敵意はないよ。傷口を洗って手当てしてあげるからな。",
+    "silver_en": "Kuh... My physical attacks aren't having any effect at all?!",
+    "silver_ru": "Кх... Физические атаки на него совсем не действуют?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_038",
+    "lang": "ja",
+    "source_text": "なついてくれたみたいだ。クロって名前にしよう。",
+    "silver_en": "Hehehe... Pathetic human. Fall prey to my poison!",
+    "silver_ru": "Хе-хе-хе... Жалкий человечишка. Стань добычей моего яда!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_039",
+    "lang": "ja",
+    "source_text": "畑のトマトが赤く熟してきたぞ！",
+    "silver_en": "Don't underestimate humanity! Secret Technique: Crimson Lotus Flash!!",
+    "silver_ru": "Не недооценивай людей! Тайная техника: Вспышка Алого Лотоса!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_040",
+    "lang": "ja",
+    "source_text": "採れたてを丸かじり…甘くてみずみずしい！最高だ！",
+    "silver_en": "Impossible... A mere mortal possessing such spiritual energy...? Gyaaah!!",
+    "silver_ru": "Невозможно... Простой смертный обладает такой духовной силой?.. Гьяяя!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_041",
+    "lang": "ja",
+    "source_text": "記憶を失う代わりに、神級のスキルを獲得しただと…？",
+    "silver_en": "Did we manage to defeat it...? No, the core is still regenerating!",
+    "silver_ru": "Получилось одолеть его?.. Нет, ядро всё ещё регенерирует!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_042",
+    "lang": "ja",
+    "source_text": "転生前のオレは、一体どれだけバトルジャンキーだったんだよ。",
+    "silver_en": "Leave the rest to me. First squad, deploy barrier immediately!",
+    "silver_ru": "Остальное предоставьте мне. Первый отряд, немедленно развернуть барьер!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_043",
+    "lang": "ja",
+    "source_text": "メルフィーナ、お前の声は頭の中に直接響いてくるな。",
+    "silver_en": "Captain! You arrived just in the nick of time!",
+    "silver_ru": "Капитан! Вы подоспели как раз вовремя!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_044",
+    "lang": "ja",
+    "source_text": "冒険者ギルドの登録試験を受けに来ました。",
+    "silver_en": "You did well holding out until I got here. Rest now.",
+    "silver_ru": "Ты отлично продержался до моего прибытия. А теперь отдыхай.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_045",
+    "lang": "ja",
+    "source_text": "新人かい？死にたくなきゃゴブリン退治から地道にやることね。",
+    "silver_en": "This seal... won't hold for much longer.",
+    "silver_ru": "Эта печать... долго не продержится.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_046",
+    "lang": "ja",
+    "source_text": "出でよ、我が契約の魔獣――クロト！",
+    "silver_en": "If the ancient demon lord awakens, this continent will be plunged into ruin.",
+    "silver_ru": "Если древний повелитель демонов пробудится, этот континент погрузится в пучину разрушений.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_047",
+    "lang": "ja",
+    "source_text": "スライムだと馬鹿にしていた相手が一瞬で消炭に…！？",
+    "silver_en": "Even so, we cannot afford to give up. We have comrades we must protect!",
+    "silver_ru": "И всё же мы не имеем права сдаваться. Нам есть кого защищать!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_048",
+    "lang": "ja",
+    "source_text": "さあ、次は誰が相手をしてくれるんだ？",
+    "silver_en": "All units, draw your blades! For the pride of the Knights!!",
+    "silver_ru": "Всем обнажить клинки! Ради чести рыцарского ордена!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_049",
+    "lang": "ja",
+    "source_text": "現代の調味料を持ってきたらもっと美味しくなるかもしれない。",
+    "silver_en": "Target acquired. Distance: 300 meters. Wind direction: north-northwest.",
+    "silver_ru": "Цель обнаружена. Дистанция: триста метров. Направление ветра: северо-северо-запад.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_050",
+    "lang": "ja",
+    "source_text": "醤油とマヨネーズは万国共通の最強タッグだな。",
+    "silver_en": "Fire upon my signal. Three, two, one... Fire!!",
+    "silver_ru": "Огонь по моему сигналу. Три, два, один... Залп!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_051",
+    "lang": "ja",
+    "source_text": "うわっ、なにこれ！？舌がとろけそう…！",
+    "silver_en": "Direct hit confirmed! But hostile heat source is still moving!",
+    "silver_ru": "Прямое попадание подтверждено! Однако вражеский тепловой след всё ещё движется!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_052",
+    "lang": "ja",
+    "source_text": "今日のおすすめはドワーフ特製の黒ビールと燻製肉だよ！",
+    "silver_en": "What tough armor... Switch to armor-piercing rounds!",
+    "silver_ru": "Какая прочная броня... Переключиться на бронебойные снаряды!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_053",
+    "lang": "ja",
+    "source_text": "ぷはぁーっ！仕事終わりの一杯はどの世界でも至高だな！",
+    "silver_en": "Understood! Loading AP rounds! Ready to fire at any moment!",
+    "silver_ru": "Принято! Бронебойные заряжены! Готовы к выстрелу в любую секунду!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_054",
+    "lang": "ja",
+    "source_text": "お前さん、いい飲みっぷりだ！気に入ったぞ！",
+    "silver_en": "Wait, an anomaly detected on radar! Reinforcements approaching from above?!",
+    "silver_ru": "Стойте, радар фиксирует аномалию! Сверху приближается вражеское подкрепление?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_055",
+    "lang": "ja",
+    "source_text": "ヒーローネーム『ハゲマント』…なんだそのダサい名前は！",
+    "silver_en": "Tch, caught in an ambush?! All hands, evasive maneuvers!",
+    "silver_ru": "Черт, засада?! Всем занять противоударные позиции, уклонение!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_056",
+    "lang": "ja",
+    "source_text": "事実をありのままに表現した素晴らしい呼称かと。",
+    "silver_en": "Engine number two has taken damage! Power output dropping to 60%!",
+    "silver_ru": "Второй двигатель поврежден! Выходная мощность падает до шестидесяти процентов!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_057",
+    "lang": "ja",
+    "source_text": "慰めになってねえよジェノス！",
+    "silver_en": "Reroute power from auxiliary generators! We're breaking through the center!",
+    "silver_ru": "Перенаправить энергию с вспомогательных генераторов! Прорываемся по центру!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_058",
+    "lang": "ja",
+    "source_text": "隕石が…Z市に向けて落下しているだと！？",
+    "silver_en": "Don't die on me! We promised we'd return to our homeland together, didn't we?!",
+    "silver_ru": "Не смей умирать! Мы же обещали вместе вернуться на родину, помнишь?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_059",
+    "lang": "ja",
+    "source_text": "避難警報が鳴り響いている。全市民直ちに地下シェルターへ退避を！",
+    "silver_en": "Yeah... I'm definitely coming back alive... Absolutely!",
+    "silver_ru": "Да... Я непременно вернусь живым... Обязательно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_060",
+    "lang": "ja",
+    "source_text": "オレの家が壊れるだろ。ちょっと止めてくるわ。",
+    "silver_en": "To be continued in the next issue! Look forward to the climax in the December release!",
+    "silver_ru": "Продолжение следует в следующем номере! Ждите кульминацию в декабрьском выпуске!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_061",
+    "lang": "ja",
+    "source_text": "宝箱を発見したぞ！ミミックじゃないだろうな…？",
+    "silver_en": "I'm telling you, I definitely didn't eat that pudding!",
+    "silver_ru": "Говорю же, я точно не ел твой пудинг!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_062",
+    "lang": "ja",
+    "source_text": "ツンツン…よし、動かない！開けるぞ！",
+    "silver_en": "Li-ar! Look at your mouth, there's caramel sauce all over it!",
+    "silver_ru": "Вру-нишка! Посмотри на свой рот, он весь в карамельном соусе!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_063",
+    "lang": "ja",
+    "source_text": "金貨と…見たこともない輝きの魔石だ！大金星だぜ！",
+    "silver_en": "Ugh... This is just a misunderstanding! I found it on the table so I thought...",
+    "silver_ru": "Угх... Это недоразумение! Он стоял на столе, и я подумал...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_064",
+    "lang": "ja",
+    "source_text": "エルフの村から移住希望者が来た？歓迎するよ。",
+    "silver_en": "My beloved premium pudding that I was saving for today... I won't forgive you!!",
+    "silver_ru": "Мой любимый премиум-пудинг, который я берегла на сегодня... Я тебе этого не прощу!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_065",
+    "lang": "ja",
+    "source_text": "村長さん、私たちは大工仕事と裁縫が得意です。",
+    "silver_en": "I'm sorry! I'll buy you three tomorrow to make up for it!",
+    "silver_ru": "Прости! Я куплю тебе завтра три таких взамен!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_066",
+    "lang": "ja",
+    "source_text": "お前の強さは本物だ。だがこの先へ進むなら覚悟しろよ。",
+    "silver_en": "Make it five! Plus a limited-edition seasonal parfair!",
+    "silver_ru": "Тогда пять! И еще сезонное лимитированное парфе!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ja_067",
+    "lang": "ja",
+    "source_text": "望むところだ。強敵と戦えるならこれ以上の喜びはない！",
+    "silver_en": "Deal! Just put away the kitchen knife, please...",
+    "silver_ru": "Договорились! Только кухонный нож убери, пожалуйста...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_001",
+    "lang": "ko",
+    "source_text": "내가 여자 화장실에 몰카를 설치했다고? 말도 안 되는 소리야!",
+    "silver_en": "Me, installing a hidden camera in the women's restroom? That's ridiculous nonsense!",
+    "silver_ru": "Я установил скрытую камеру в женском туалете? Что за бред собачий!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_002",
+    "lang": "ko",
+    "source_text": "결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.",
+    "silver_en": "Team Leader, please believe me. Someone framed me on purpose!",
+    "silver_ru": "Тимлид, пожалуйста, поверьте мне. Меня кто-то намеренно подставил!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_003",
+    "lang": "ko",
+    "source_text": "호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.",
+    "silver_en": "Then explain how your fingerprint was found on this memory card.",
+    "silver_ru": "Тогда объясни, как твой отпечаток пальца оказался на этой карте памяти.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_004",
+    "lang": "ko",
+    "source_text": "인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?",
+    "silver_en": "That... I have no idea why that would be there either!",
+    "silver_ru": "Это... Я и сам понятия не имею, откуда он там взялся!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_005",
+    "lang": "ko",
+    "source_text": "위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.",
+    "silver_en": "Until the investigation is over, you are suspended from coming to work starting today.",
+    "silver_ru": "До окончания внутреннего расследования ты отстранен от работы с сегодняшнего дня.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_006",
+    "lang": "ko",
+    "source_text": "정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?",
+    "silver_en": "Damn it... Why does all this misfortune only happen to me?!",
+    "silver_ru": "Черт возьми... Почему все эти несчастья сыплются именно на меня?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_007",
+    "lang": "ko",
+    "source_text": "하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.",
+    "silver_en": "Wait, my phone screen just flashed... What is this app?",
+    "silver_ru": "Погодите, экран телефона мигнул... Что это за приложение?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_008",
+    "lang": "ko",
+    "source_text": "팀장님, 지난주 금요일 저녁에 어디 계셨는지 기억나십니까?",
+    "silver_en": "[Target: Han Seung-woo. Sincerity rating 12%. Hidden desire detected.]",
+    "silver_ru": "[Цель: Хан Сын У. Уровень искренности 12%. Обнаружено скрытое желание.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_009",
+    "lang": "ko",
+    "source_text": "너… 그걸 어떻게 알고 있는 거지?!",
+    "silver_en": "What is this... Can I see what other people are thinking?!",
+    "silver_ru": "Что за чертовщина... Я могу видеть сокровенные мысли других людей?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_010",
+    "lang": "ko",
+    "source_text": "이제 제 이야기를 들으실 준비가 되셨습니까?",
+    "silver_en": "Three days remain until the destruction of this world.",
+    "silver_ru": "До полного уничтожения этого мира осталось три дня.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_011",
+    "lang": "ko",
+    "source_text": "[유료 서비스가 시작되었습니다.]",
+    "silver_en": "[Paid service has begun.]",
+    "silver_ru": "[Платная услуга активирована.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_012",
+    "lang": "ko",
+    "source_text": "퇴근길 만원 지하철 안에서 익숙한 소설의 문장이 눈앞에 떠올랐다.",
+    "silver_en": "[Coins are required to survive the main scenario.]",
+    "silver_ru": "[Для выживания в основном сценарии требуются монеты.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_013",
+    "lang": "ko",
+    "source_text": "설마… 10년 넘게 나 혼자 읽던 그 삼류 소설이 현실이 된다고?",
+    "silver_en": "Dokja-ssi! The subway carriage is shaking! What is happening right now?!",
+    "silver_ru": "Докча-сси! Вагон метро трясет! Что вообще происходит?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_014",
+    "lang": "ko",
+    "source_text": "창밖 하늘에 거대한 도깨비가 나타났다.",
+    "silver_en": "Sangah-ssi, hold onto the handrail tightly and don't panic.",
+    "silver_ru": "Сангах-сси, крепче держитесь за поручень и не паникуйте.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_015",
+    "lang": "ko",
+    "source_text": "\"자자, 인간 여러분! 긴장 푸세요. 아주 간단한 게임입니다.\"",
+    "silver_en": "I am the sole reader who knows the ending of this novel.",
+    "silver_ru": "Я единственный читатель, знающий финал этого романа.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_016",
+    "lang": "ko",
+    "source_text": "[메인 시나리오 #1 - 가치 증명]",
+    "silver_en": "[Dokkaebi 'Bihyung' has entered the channel.]",
+    "silver_ru": "[Токкэби 'Бихён' вошел в канал.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_017",
+    "lang": "ko",
+    "source_text": "제한 시간 내에 하나 이상의 생명체를 죽이십시오.",
+    "silver_en": "Haha, what nice looks in your eyes, bugs! Now then, let's start the first game, shall we?",
+    "silver_ru": "Ха-ха, какие забавные мордашки, букашки! Ну что, начнем первую игру?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_018",
+    "lang": "ko",
+    "source_text": "사람들이 서로를 향해 흉기를 휘두르기 시작했다.",
+    "silver_en": "[Main Scenario #1 - Kill one or more living beings within 30 minutes.]",
+    "silver_ru": "[Основной сценарий №1 — Убейте одно или более живых существ за 30 минут.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_019",
+    "lang": "ko",
+    "source_text": "살기 위해선 반드시 룰의 틈새를 찾아야 해.",
+    "silver_en": "Kill... each other?! Are you insane?! We're calling the police!!",
+    "silver_ru": "Убивать... друг друга?! Вы с ума сошли?! Мы вызываем полицию!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_020",
+    "lang": "ko",
+    "source_text": "메뚜기 채집통! 소년의 손에 들려 있던 곤충 채집통을 떠올렸다.",
+    "silver_en": "The moment you try to call, your head bursts. Look at that guy over there.",
+    "silver_ru": "Как только попытаешься позвонить, твоя голова лопнет. Вон, посмотри на того парня.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_021",
+    "lang": "ko",
+    "source_text": "\"꼬마야, 그 통 나한테 잠깐만 빌려줄래?\"",
+    "silver_en": "\"Kid, could you lend me that container for just a moment?\"",
+    "silver_ru": "«Малыш, не одолжишь мне эту коробочку на пару секунд?»",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_022",
+    "lang": "ko",
+    "source_text": "[생명체(메뚜기)를 살해하셨습니다. 100코인을 획득했습니다.]",
+    "silver_en": "Inside this bug container are grasshoppers... They are living beings!",
+    "silver_ru": "В этом садке кузнечики... Они ведь тоже живые существа!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_023",
+    "lang": "ko",
+    "source_text": "시나리오 클리어! 살아남은 사람은 우리 칸에서 단 세 명뿐이었다.",
+    "silver_en": "[You have successfully cleared the scenario! 300 coins awarded.]",
+    "silver_ru": "[Вы успешно завершили сценарий! Начислено 300 монет.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_024",
+    "lang": "ko",
+    "source_text": "이 세계의 결말을 아는 사람은 오직 나 하나뿐이다.",
+    "silver_en": "Sung Jin-woo, are you heading inside the dungeon again today? Don't push yourself too hard.",
+    "silver_ru": "Сон Джин Ву, ты сегодня опять спускаешься в подземелье? Не перенапрягайся.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_025",
+    "lang": "ko",
+    "source_text": "나는 멸망 이후의 세계를 살아가는 유일한 독자다.",
+    "silver_en": "I'm fine, ahjussi. I need to earn money for my mother's hospital bills.",
+    "silver_ru": "Все в порядке, аджосси. Мне нужно заработать на больничные счета матери.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_026",
+    "lang": "ko",
+    "source_text": "거울을 볼 때마다 죽고 싶다는 생각밖에 안 든다.",
+    "silver_en": "Being the 'Weakest Hunter of All Mankind' isn't just a nickname for nothing... Be careful.",
+    "silver_ru": "Звание 'Слабейшего охотника человечества' дается не просто так... Береги себя.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_027",
+    "lang": "ko",
+    "source_text": "뚱뚱하고 못생겼다는 이유로 날마다 매를 맞아야 했다.",
+    "silver_en": "A dual dungeon?! Why is there a boss room hidden inside a D-rank gate?!",
+    "silver_ru": "Двойное подземелье?! Откуда в подземелье D-ранга спрятанная комната босса?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_028",
+    "lang": "ko",
+    "source_text": "엄마, 나 서울로 전학 보내줘. 제발 부탁이야.",
+    "silver_en": "The stone statues' eyes just glowed red! Run away!!",
+    "silver_ru": "Глаза каменных статуй только что загорелись красным! Бегите!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_029",
+    "lang": "ko",
+    "source_text": "자고 일어났더니… 내 앞에 또 다른 내가 누워있다?!",
+    "silver_en": "The entrance is sealed! We can't escape... We're all going to die here!",
+    "silver_ru": "Вход запечатан! Нам не выбраться... Мы все тут погибнем!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_030",
+    "lang": "ko",
+    "source_text": "키 크고 잘생긴 완벽한 몸… 이게 진짜 내 몸이라고?!",
+    "silver_en": "Commandment 1: Revere God. Commandment 2: Praise God.",
+    "silver_ru": "Заповедь первая: Почитай Господа. Заповедь вторая: Восхваляй Господа.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_031",
+    "lang": "ko",
+    "source_text": "한쪽 몸이 잠들면 다른 쪽 몸으로 의식이 옮겨가는 기묘한 2중 생활.",
+    "silver_en": "Bow down! If you bow towards the altar, the statues stop moving!",
+    "silver_ru": "Склонитесь! Если поклониться алтарю, статуи перестают двигаться!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_032",
+    "lang": "ko",
+    "source_text": "길을 걷는 것뿐인데 사람들의 시선이 전부 나에게 쏟아진다.",
+    "silver_en": "My legs... My leg was cut off! Ahhh!!",
+    "silver_ru": "Мои ноги... Мне отрубило ногу! Аааа!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_033",
+    "lang": "ko",
+    "source_text": "세상이 이렇게 친절한 곳이었나? 외모 하나 바뀌었을 뿐인데.",
+    "silver_en": "Why am I the only one left behind on this altar...",
+    "silver_ru": "Почему на этом алтаре бросили одного меня...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_034",
+    "lang": "ko",
+    "source_text": "\"야, 전학생! 너 복싱 좀 배웠냐? 자세가 장난 아닌데?\"",
+    "silver_en": "If I were given just one more chance...",
+    "silver_ru": "Если бы мне только дали еще один шанс...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_035",
+    "lang": "ko",
+    "source_text": "아니요, 저 싸움 같은 거 한 번도 안 해봤는데요…!",
+    "silver_en": "[Hidden condition fulfilled: Courage of the Weak.]",
+    "silver_ru": "[Выполнено скрытое условие: Храбрость слабого.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_036",
+    "lang": "ko",
+    "source_text": "위협적인 펀치가 슬로우 모션처럼 느리게 보인다.",
+    "silver_en": "[You have been chosen as the Player.]",
+    "silver_ru": "[Вы избраны Игроком.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_037",
+    "lang": "ko",
+    "source_text": "가볍게 피하고 내지른 주먹 한 방에 일진 짱이 쓰러졌다.",
+    "silver_en": "[Welcome. Daily quest: 'Preparing to Become Strong' has arrived.]",
+    "silver_ru": "[Добро пожаловать. Получено ежедневное задание: 'Подготовка к обретению силы'.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_038",
+    "lang": "ko",
+    "source_text": "\"말도 안 돼… 바스코마저 저 녀석을 경계하고 있어!\"",
+    "silver_en": "A hospital room? Was everything before just a nightmare?",
+    "silver_ru": "Больничная палата? Всё произошедшее было лишь кошмаром?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_039",
+    "lang": "ko",
+    "source_text": "배후성 선택의 시간입니다. 당신을 후원할 성좌를 고르세요.",
+    "silver_en": "No... This blue quest window floating in front of my eyes is real!",
+    "silver_ru": "Нет... Это синее окно заданий перед моими глазами вполне реально!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_040",
+    "lang": "ko",
+    "source_text": "[성좌, '심연의 흑염룡'이 당신의 대담함에 흥미를 보입니다.]",
+    "silver_en": "100 push-ups, 100 sit-ups, 100 squats, 10km run...",
+    "silver_ru": "100 отжиманий, 100 скручиваний, 100 приседаний, бег на 10 км...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_041",
+    "lang": "ko",
+    "source_text": "[성좌, '은밀한 모략가'가 당신의 선택을 관망합니다.]",
+    "silver_en": "If I don't complete the quest within the time limit, I'll be sent to the penalty zone?!",
+    "silver_ru": "Если не выполню задание за отведенное время, меня отправят в штрафную зону?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_042",
+    "lang": "ko",
+    "source_text": "나는 어떤 성좌의 후원도 받지 않기로 결정했다.",
+    "silver_en": "I won't run away anymore. I'm going to become stronger!",
+    "silver_ru": "Я больше не стану убегать. Я стану сильнее!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_043",
+    "lang": "ko",
+    "source_text": "\"선택을 보류하겠습니다.\"",
+    "silver_en": "[Level Up! Strength increased by 1.]",
+    "silver_ru": "[Новый уровень! Сила увеличена на 1.]",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_044",
+    "lang": "ko",
+    "source_text": "[모든 성좌들이 당신의 오만함에 경악을 금치 못합니다!]",
+    "silver_en": "Arise... My shadow soldiers!",
+    "silver_ru": "Восстаньте... Мои теневые солдаты!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_045",
+    "lang": "ko",
+    "source_text": "앞으로 닥쳐올 시나리오를 헤쳐나가려면 주인공 유중혁을 만나야 한다.",
+    "silver_en": "Team Leader, regarding the quarterly marketing budget proposal...",
+    "silver_ru": "Тимлид, по поводу квартального бюджета на маркетинг...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_046",
+    "lang": "ko",
+    "source_text": "하지만 그 녀석은 3회차 회귀자… 성격이 완전히 파탄 나 있을 텐데.",
+    "silver_en": "Drop by my office for a moment after this meeting. We have things to discuss in private.",
+    "silver_ru": "Зайди ко мне в кабинет после планерки. Нам нужно кое-что обсудить наедине.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_047",
+    "lang": "ko",
+    "source_text": "\"너는 누구지? 내 회귀 정보를 어떻게 알고 있는 거냐?\"",
+    "silver_en": "Is she mad at me? Did I make another mistake in the report...?",
+    "silver_ru": "Она сердится на меня? Я снова накосячил в отчете...?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_048",
+    "lang": "ko",
+    "source_text": "목덜미를 틀어쥐는 손아귀 힘이 장난이 아니다.",
+    "silver_en": "Actually... I've been interested in you for quite some time.",
+    "silver_ru": "На самом деле... ты мне уже довольно давно нравишься.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_049",
+    "lang": "ko",
+    "source_text": "\"유중혁, 날 죽이면 너는 절대로 이 시나리오를 깰 수 없어.\"",
+    "silver_en": "Excuse me?! Team leader, what are you suddenly talking about...?",
+    "silver_ru": "Что, простите?! Тимлид, о чем вы так внезапно...?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_050",
+    "lang": "ko",
+    "source_text": "업무 시간 외에 따로 연락하시는 건 자제해 주셨으면 합니다.",
+    "silver_en": "Do you want to grab drinks together tonight? Just the two of us.",
+    "silver_ru": "Не хочешь пропустить по стаканчику сегодня вечером? Только вдвоем.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_051",
+    "lang": "ko",
+    "source_text": "네가 감히 날 협박해? 본사 감사팀에 찌르면 너만 다쳐!",
+    "silver_en": "This company's intranet security is an absolute joke.",
+    "silver_ru": "Безопасность корпоративной сети этой компании — просто посмешище.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_052",
+    "lang": "ko",
+    "source_text": "어디 한번 해보세요. 녹취 파일이 누구한테 더 치명적일지.",
+    "silver_en": "Hacking into the CEO's personal server won't take even ten minutes.",
+    "silver_ru": "Взлом личного сервера генерального директора не займет и десяти минут.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_053",
+    "lang": "ko",
+    "source_text": "커피 한잔 사 올 테니까 여기서 잠깐 기다려요.",
+    "silver_en": "Download complete. Now let's see what secrets you've been hiding.",
+    "silver_ru": "Скачивание завершено. Посмотрим, какие грязные тайны ты скрывал.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_054",
+    "lang": "ko",
+    "source_text": "갑자기 태도가 이렇게 바뀌니 오히려 더 무섭네.",
+    "silver_en": "This ledger... is proof of illegal embezzlement and bribery?!",
+    "silver_ru": "Этот реестр... доказательство незаконных растрат и взяток?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_055",
+    "lang": "ko",
+    "source_text": "보컬 트레이닝 수업에 참가하러 엔터테인먼트 사옥에 들어섰다.",
+    "silver_en": "If this gets leaked to the press, the entire company will implode.",
+    "silver_ru": "Если это просочится в прессу, вся компания пойдет ко дну.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_056",
+    "lang": "ko",
+    "source_text": "\"와, 쟤 피지컬 좀 봐… 모델 지망생인가?\"",
+    "silver_en": "Who are you?! How did you break into this room?!",
+    "silver_ru": "Ты кто такой?! Как тебе удалось проникнуть в этот кабинет?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_057",
+    "lang": "ko",
+    "source_text": "사람들의 칭찬이 아직도 어색하고 낯설기만 하다.",
+    "silver_en": "Just a debt collector coming to settle accounts.",
+    "silver_ru": "Просто сборщик долгов, пришедший свести счеты.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_058",
+    "lang": "ko",
+    "source_text": "원래 내 몸으로 돌아왔을 땐 편의점 야간 알바를 뛰어야 한다.",
+    "silver_en": "Guards! Someone grab this intruder right now!!",
+    "silver_ru": "Охрана! Схватите этого нарушителя немедленно!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_059",
+    "lang": "ko",
+    "source_text": "손님, 계산 도와드리겠습니다. 도시락 데워드릴까요?",
+    "silver_en": "Your bodyguards outside are already fast asleep on the floor.",
+    "silver_ru": "Твои телохранители в коридоре уже сладко спят на полу.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_060",
+    "lang": "ko",
+    "source_text": "똑같은 나인데, 대하는 태도가 이렇게 극과 극이라니.",
+    "silver_en": "Now then, shall we have a proper chat about the contract?",
+    "silver_ru": "Ну что, побеседуем теперь о контракте как следует?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_061",
+    "lang": "ko",
+    "source_text": "옥호교 다리 위에서 성운 구원자들과의 격전이 벌어졌다.",
+    "silver_en": "Oppa, are you really not going to buy me chicken tonight?",
+    "silver_ru": "Оппа, ты правда не купишь мне курочку на ужин?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_062",
+    "lang": "ko",
+    "source_text": "어이, 김독자! 등 뒤를 조심해라!",
+    "silver_en": "I'm completely broke right now! My account balance is 400 won!",
+    "silver_ru": "У меня ни гроша! На балансе карты осталось четыреста вон!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_063",
+    "lang": "ko",
+    "source_text": "[전용 스킬 '백청강기'를 발동합니다.]",
+    "silver_en": "Lies! I clearly saw you top up gaming coins yesterday!",
+    "silver_ru": "Вранье! Я своими глазами видела, как ты вчера донатил в игру!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_064",
+    "lang": "ko",
+    "source_text": "어둠 속에서 강철검이 푸른 섬광을 내뿜으며 몬스터를 베어 넘겼다.",
+    "silver_en": "That was essential for character progression! A hunter's duty!",
+    "silver_ru": "Это было жизненно необходимо для прокачки! Долг каждого охотника!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_065",
+    "lang": "ko",
+    "source_text": "우리는 끝까지 함께 살아남아서 이 빌어먹을 엔딩을 바꾼다.",
+    "silver_en": "I'm telling Mom everything when she gets back from the market.",
+    "silver_ru": "Я всё расскажу маме, когда она вернется с рынка.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_066",
+    "lang": "ko",
+    "source_text": "내일 기획안 발표회 때 절대 실수하지 마라. 알겠지?",
+    "silver_en": "Wait, please, anything but Mom! Half-and-half crispy and seasoned chicken it is!!",
+    "silver_ru": "Стой, только не маме! Ладно, беру половину острой и половину хрустящей курочки!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "ko_067",
+    "lang": "ko",
+    "source_text": "걱정 마십시오. 완벽하게 준비해 두었습니다.",
+    "silver_en": "Hehe, knew you would. Don't forget cheese balls and cola too~",
+    "silver_ru": "Хе-хе, так бы сразу. И сырные шарики с колой не забудь~",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_001",
+    "lang": "zh",
+    "source_text": "我竟然重生回到了十三岁的时候？！",
+    "silver_en": "I have actually been reborn back to when I was thirteen years old?!",
+    "silver_ru": "Я что, правда переродился и вернулся в возраст тринадцати лет?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_002",
+    "lang": "zh",
+    "source_text": "圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！",
+    "silver_en": "Glory City hasn't been breached by demon beasts yet, and the Ye clan hasn't fallen!",
+    "silver_ru": "Светозарный город еще не разрушен демоническими зверями, а клан Е еще не пал!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_003",
+    "lang": "zh",
+    "source_text": "聂离！课堂之上，你竟敢公然睡觉，成何体统！",
+    "silver_en": "In this lifetime, I will protect Ziyun and everyone I cherish!",
+    "silver_ru": "В этой жизни я защищу Цзыюнь и всех тех, кто мне дорог!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_004",
+    "lang": "zh",
+    "source_text": "沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。",
+    "silver_en": "Nie Li, stand up! Sleeping in class again, do you have no shame?!",
+    "silver_ru": "Не Ли, встать! Опять спишь на уроке, стыда у тебя нет?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_005",
+    "lang": "zh",
+    "source_text": "放肆！区区红曜灵魂海的废物，也敢质疑本导师？",
+    "silver_en": "Teacher Shen Xiu, your understanding of demon beast cores is fundamentally flawed.",
+    "silver_ru": "Учитель Шэнь Сю, ваше понимание ядер демонических зверей в корне ошибочно.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_006",
+    "lang": "zh",
+    "source_text": "两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！",
+    "silver_en": "Audacious! A mere red soul realm trash dares question my teachings?!",
+    "silver_ru": "Дерзость! Жалкий мусор с красным духовным сосудом смеет сомневаться в моих словах?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_007",
+    "lang": "zh",
+    "source_text": "好！若是你做不到，就从圣兰学院彻底滚出去！",
+    "silver_en": "If I can raise my soul force to bronze rank within two months, you resign as teacher!",
+    "silver_ru": "Если за два месяца я подниму духовную силу до бронзового ранга, вы уйдете из академии!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_008",
+    "lang": "zh",
+    "source_text": "陆飘、杜泽，放学后跟我去一趟古兰城遗迹。",
+    "silver_en": "Good! Very good! If you fail, you will be expelled from the Holy Orchid Institute!",
+    "silver_ru": "Хорошо! Отлично! А если провалишься, вылетишь из Института Святой Орхидеи!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_009",
+    "lang": "zh",
+    "source_text": "聂离，你疯了吗？那里到处都是凶残的妖兽！",
+    "silver_en": "Nie Li, are you crazy? Reaching bronze rank in two months is practically impossible!",
+    "silver_ru": "Не Ли, ты с ума сошел? Достичь бронзового ранга за два месяца попросту невозможно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_010",
+    "lang": "zh",
+    "source_text": "相信我，兄弟之间有福同享，我绝不会害你们。",
+    "silver_en": "Don't worry, Lu Piao. With my cultivation techniques, bronze rank is just child's play.",
+    "silver_ru": "Не переживай, Лу Пяо. С моими техниками культивации бронзовый ранг — сущие пустяки.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_011",
+    "lang": "zh",
+    "source_text": "斗之力，三段！级别：低级！",
+    "silver_en": "Dou Qi, 3rd Stage! Rank: Low Class!",
+    "silver_ru": "Сила Доу, 3-я ступень! Ранг: Низший класс!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_012",
+    "lang": "zh",
+    "source_text": "测验魔石碑之上，闪亮得甚至有些刺眼的五个大字，再次无情刺痛着少年。",
+    "silver_en": "Looking at the glowing text on the magic testing monument, Xiao Yan wore a bitter, self-mocking smile.",
+    "silver_ru": "Глядя на светящиеся иероглифы на камне испытания, Сяо Янь горько усмехнулся.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_013",
+    "lang": "zh",
+    "source_text": "哈哈，曾经的天才如今沦落为家族第一废物，真是大快人心！",
+    "silver_en": "From the foremost genius of the clan to an utter laughingstock... Is this fate?",
+    "silver_ru": "От первого гения клана до всеобщего посмешища... Такова моя судьба?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_014",
+    "lang": "zh",
+    "source_text": "萧炎哥哥，我相信你一定会重新站起来的。",
+    "silver_en": "Xiao Yan ge-ge, Xun'er believes you will definitely regain your glory one day.",
+    "silver_ru": "Братец Сяо Янь, Сюнь-эр верит, что однажды ты непременно вернешь былое величие.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_015",
+    "lang": "zh",
+    "source_text": "谢谢你，薰儿。无论别人怎么看，我都绝不会放弃。",
+    "silver_en": "Thank you, Xun'er. Having you by my side is enough.",
+    "silver_ru": "Спасибо, Сюнь-эр. Мне довольно и того, что ты остаешься рядом.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_016",
+    "lang": "zh",
+    "source_text": "云岚宗纳兰嫣然今日前来，只为一件事情——退婚！",
+    "silver_en": "Patriarch Xiao, the Nalan clan came today specifically to annul the engagement!",
+    "silver_ru": "Глава клана Сяо, род Налань прибыл сегодня с единственной целью — расторгнуть помолвку!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_017",
+    "lang": "zh",
+    "source_text": "纳兰小姐，你如此行事，未免欺人太甚！",
+    "silver_en": "Nalan Yanran, don't bully the young for being poor! Thirty years east of the river, thirty years west!",
+    "silver_ru": "Налань Яньрань, не презирай бедность юнца! Тридцать лет река течет на восток, тридцать лет на запад!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_018",
+    "lang": "zh",
+    "source_text": "三十年河东，三十年河西，莫欺少年穷！",
+    "silver_en": "In three years, I, Xiao Yan, will challenge the Misty Cloud Sect in person!",
+    "silver_ru": "Через три года я, Сяо Янь, лично поднимусь на вершину фракции Туманных Облаков!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_019",
+    "lang": "zh",
+    "source_text": "三年之后，我萧炎必上云岚宗，亲自领教纳兰小姐的高招！",
+    "silver_en": "Here is my divorce letter! It is not you divorcing me, but I repudiating you!",
+    "silver_ru": "Вот тебе разводное письмо! Это не ты бросаешь меня, а я отрекаюсь от тебя!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_020",
+    "lang": "zh",
+    "source_text": "嘿嘿，小娃娃，吸了你三年的斗气，总算是把老夫给唤醒了。",
+    "silver_en": "Xiao Yan, you... fine, we will see who is the real fool in three years!",
+    "silver_ru": "Сяо Янь, ты... что ж, через три года посмотрим, кто из нас останется в дураках!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_021",
+    "lang": "zh",
+    "source_text": "谁？！是谁在戒指里说话？！快给我滚出来！",
+    "silver_en": "Who?! Who is speaking inside the ring?! Get out here right now!",
+    "silver_ru": "Кто?! Кто говорит из этого кольца?! А ну покажись сейчас же!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_022",
+    "lang": "zh",
+    "source_text": "拜我为师，老夫保你在一年之内突破斗者，如何？",
+    "silver_en": "Little fellow, after absorbing your Dou Qi for three whole years, this old man has finally awakened.",
+    "silver_ru": "Малец, поглощая твою силу Доу целых три года, этот старик наконец-то пробудился.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_023",
+    "lang": "zh",
+    "source_text": "炼药师？难道您是一位高贵的炼药大师？！",
+    "silver_en": "It was you who caused me to fall from grace?! I'll crush you to pieces!!",
+    "silver_ru": "Так это из-за тебя я потерял всю свою силу?! Я разнесу тебя в пыль!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_024",
+    "lang": "zh",
+    "source_text": "偷学唐门内门绝学，乃是死罪！你可知罪？",
+    "silver_en": "Calm down, brat. Do you wish to become an alchemist who looks down upon the entire world?",
+    "silver_ru": "Успокойся, сопляк. Ты хочешь стать алхимиком, на которого весь континент будет смотреть снизу вверх?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_025",
+    "lang": "zh",
+    "source_text": "唐三从未将唐门暗器外传分毫，今日以死明志，跳崖谢罪！",
+    "silver_en": "An alchemist?! Master, please accept your disciple's bow!",
+    "silver_ru": "Алхимиком?! Учитель, примите поклон вашего недостойного ученика!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_026",
+    "lang": "zh",
+    "source_text": "鬼见愁深不见底，赤条条来，赤条条去！",
+    "silver_en": "Hahaha, good! Today I shall teach you the Flame Mantra!",
+    "silver_ru": "Ха-ха-ха, отлично! Сегодня я передам тебе Мантру Пламени!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_027",
+    "lang": "zh",
+    "source_text": "斗罗大陆，圣魂村。武魂觉醒仪式正式开始。",
+    "silver_en": "Swallowing heavenly flames to evolve... This technique is madness!",
+    "silver_ru": "Поглощать небесное пламя ради эволюции... Эта техника просто безумна!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_028",
+    "lang": "zh",
+    "source_text": "武魂：蓝银草，公认的标准废武魂。",
+    "silver_en": "Cultivation itself is defying the heavens. If you want supreme power, you must pay the price.",
+    "silver_ru": "Культивация — это вызов самой воле небес. Хочешь абсолютную силу — плати соответствующую цену.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_029",
+    "lang": "zh",
+    "source_text": "天啊！这颗水晶球的光芒怎么会如此耀眼？！",
+    "silver_en": "Xiao family treasury guards, halt! Unidentified people may not enter!",
+    "silver_ru": "Охрана сокровищницы клана Сяо, стоять! Посторонним вход воспрещен!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_030",
+    "lang": "zh",
+    "source_text": "竟然是…先天满魂力！废武魂配满魂力，这怎么可能？！",
+    "silver_en": "I only came to pick up a few ordinary medicinal herbs, cousin.",
+    "silver_ru": "Кузен, я всего лишь пришел взять несколько обычных лекарственных трав.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_031",
+    "lang": "zh",
+    "source_text": "左手之中，似乎还有另一个锤子形状的武魂在隐隐躁动。",
+    "silver_en": "Tch, you useless waste, don't think you're privileged just because your father is the patriarch!",
+    "silver_ru": "Тьфу, никчемный бездарь, не думай, что раз твой отец глава, тебе всё позволено!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_032",
+    "lang": "zh",
+    "source_text": "爸爸，我的另一个武魂是什么？",
+    "silver_en": "Move aside before I lose my patience.",
+    "silver_ru": "Уйди с дороги, пока я не потерял остатки терпения.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_033",
+    "lang": "zh",
+    "source_text": "昊天锤…在没有足够实力之前，千万不要向任何人展示它！",
+    "silver_en": "You dare talk back to me?! Take my Iron Palm Strike!",
+    "silver_ru": "Ты смеешь дерзить мне?! Получи мой Железный Кулак!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_034",
+    "lang": "zh",
+    "source_text": "紫岚草配合赤焰果汁，能够极大地淬炼肉身骨骼。",
+    "silver_en": "Octane Blast! Disperse!!",
+    "silver_ru": "Восьмикратный Взрыв! Рассейся!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_035",
+    "lang": "zh",
+    "source_text": "这是失传已久的九转星辰诀！修炼速度是以往的十倍不止！",
+    "silver_en": "How... how could this be?! His strike sent me flying three meters away?!",
+    "silver_ru": "Как... как такое возможно?! От его удара я отлетел на три метра?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_036",
+    "lang": "zh",
+    "source_text": "肖凝儿的寒毒…我有办法根治。",
+    "silver_en": "Remember this lesson. Next time, it won't be just a bruised rib.",
+    "silver_ru": "Запомни этот урок. В следующий раз одним синяком на ребрах ты не отделаешься.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_037",
+    "lang": "zh",
+    "source_text": "你真的能替我解除家族遗传的经脉寒症？",
+    "silver_en": "Tang San, jumping off Hell's Peak into the mist is your only way out!",
+    "silver_ru": "Тан Сань, прыжок в туман с Пика Призраков — твой единственный выход!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_038",
+    "lang": "zh",
+    "source_text": "盘膝坐好，调匀呼吸，可能会有些灼热感，忍耐一下。",
+    "silver_en": "Stealing internal sect secret arts is punishable by death according to sect laws!",
+    "silver_ru": "Кража тайных искусств внутренней секты карается смертью по законам клана!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_039",
+    "lang": "zh",
+    "source_text": "体内的寒气…竟然真的在消散！聂离，谢谢你！",
+    "silver_en": "Disciple Tang San never forgot the sect's nurturing. The Buddha's Fury Tang Lotus is left for the elders!",
+    "silver_ru": "Ученик Тан Сань не забыл заботу секты. Ярость Будды Лотоса Тан я оставляю старейшинам!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_040",
+    "lang": "zh",
+    "source_text": "药老，这筑基灵液真的有那么神效吗？",
+    "silver_en": "He actually crafted the supreme hidden weapon that hasn't been seen in two hundred years?!",
+    "silver_ru": "Он действительно создал высшее скрытое оружие, которого не видели две сотни лет?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_041",
+    "lang": "zh",
+    "source_text": "跳进木桶里去，运转功法，不要浪费半点药力。",
+    "silver_en": "I leave naked, owing nothing to the Tang Sect! Farewell!!",
+    "silver_ru": "Я пришел нагим и ухожу нагим, ничем не обязанный клану Тан! Прощайте!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_042",
+    "lang": "zh",
+    "source_text": "好霸道的药力！经脉仿佛都要被撕裂开来了！",
+    "silver_en": "What is this world? Douluo Continent? Martial souls?",
+    "silver_ru": "Что это за мир? Континент Доуло? Боевые духи?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_043",
+    "lang": "zh",
+    "source_text": "米特尔拍卖场乃是加玛帝国最大的拍卖行，守卫森严。",
+    "silver_en": "Innate full soul power, but the awakened spirit is the useless Blue Silver Grass...",
+    "silver_ru": "Врожденная полная духовная сила, но пробужденный дух — бесполезная Сине-серебряная трава...",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_044",
+    "lang": "zh",
+    "source_text": "这位大人，请问您是要拍卖丹药还是功法宝物？",
+    "silver_en": "Wait, my left hand has another spirit... The Clear Sky Hammer?!",
+    "silver_ru": "Погодите, в левой руке еще один дух... Молот Чистого Неба?!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_045",
+    "lang": "zh",
+    "source_text": "二品丹药筑基灵液，拿去给你们的鉴宝大师过目吧。",
+    "silver_en": "Twin Martial Souls! Xiao San, remember your father's words: never reveal the hammer to anyone!",
+    "silver_ru": "Двойной боевой дух! Сяо Сань, помни слова отца: никогда и никому не показывай этот молот!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_046",
+    "lang": "zh",
+    "source_text": "成色极佳！此等纯度的药液，唯有四品以上的大师方能炼制！",
+    "silver_en": "I understand, Father. I will temper myself into a true powerhouse.",
+    "silver_ru": "Я понял, отец. Я закалю себя и стану по-настоящему сильным.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_047",
+    "lang": "zh",
+    "source_text": "没有废物的武魂，只有废物的魂师！",
+    "silver_en": "Shrek Academy only accepts monsters, not ordinary mediocre students!",
+    "silver_ru": "Академия Шрек принимает только монстров, а не заурядных бездарей!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_048",
+    "lang": "zh",
+    "source_text": "大师，请收我为徒！我想真正了解武魂的奥秘！",
+    "silver_en": "Hello! My name is Xiao Wu, dancing 'Wu', with rabbit ears!",
+    "silver_ru": "Привет! Меня зовут Сяо У, 'У' как танец, с кроличьими ушками!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_049",
+    "lang": "zh",
+    "source_text": "好孩子，一日为师，终身为父。起来吧。",
+    "silver_en": "If anyone dares to bully Xiao Wu, they will have to step over my dead body first.",
+    "silver_ru": "Если кто-то посмеет обидеть Сяо У, ему придется сначала перешагнуть через мой труп.",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_050",
+    "lang": "zh",
+    "source_text": "猎魂森林危机四伏，四百年曼陀罗蛇正朝我们扑过来了！",
+    "silver_en": "Spirit Ring Absorption: Century-old Man-faced Demon Spider!",
+    "silver_ru": "Поглощение кольца духа: Столетний Человеколицый Паук-Демон!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_051",
+    "lang": "zh",
+    "source_text": "老师小心！看我的玄玉手和控鹤擒龙！",
+    "silver_en": "The risk of body backlash is too high, Tang San, stop right now!",
+    "silver_ru": "Риск отдачи слишком высок, Тан Сань, остановись немедленно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_052",
+    "lang": "zh",
+    "source_text": "第一魂环，吸收！一定要撑住精神震荡！",
+    "silver_en": "For her sake... Even if my meridians shatter, I must endure it!!",
+    "silver_ru": "Ради нее... Даже если мои меридианы разорвутся, я выстою!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_053",
+    "lang": "zh",
+    "source_text": "年终测试开始！第一个测试力量测力石碑！",
+    "silver_en": "Eight Spider Lances, external spirit bone mutation! Success!!",
+    "silver_ru": "Восемь Копий Паука, внешняя духовная кость мутировала! Получилось!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_054",
+    "lang": "zh",
+    "source_text": "沈越，拳力五百磅，青铜二星！成绩优异！",
+    "silver_en": "Spirit Hall's hunting squad is in front! Prepare for battle!",
+    "silver_ru": "Впереди карательный отряд Дворца Духов! Приготовиться к бою!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_055",
+    "lang": "zh",
+    "source_text": "轮到聂离了，这小子前两个月还只是个肉身孱弱的书生呢。",
+    "silver_en": "Xiao Wu, run with the others! I'll cover the rear alone!",
+    "silver_ru": "Сяо У, беги вместе со всеми! Я прикрою отход в одиночку!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_056",
+    "lang": "zh",
+    "source_text": "轰！石碑剧烈摇晃，数值直接突破一千二百磅！",
+    "silver_en": "Ge, if you die, how could Xiao Wu possibly live alone in this world?",
+    "silver_ru": "Братик, если ты погибнешь, как Сяо У сможет жить в этом мире одна?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_057",
+    "lang": "zh",
+    "source_text": "青铜三星…巅峰？！这绝对不可能！测力石坏了吧？！",
+    "silver_en": "Sacrifice! 100,000-year spirit beast sacrifice ritual initiated!!",
+    "silver_ru": "Самопожертвование! Ритуал жертвы столетнего духовного зверя активирован!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_058",
+    "lang": "zh",
+    "source_text": "沈秀导师，胜负已分，按照赌约，你该兑现承诺了。",
+    "silver_en": "Xiao Wu, no! Stop it, don't do this to yourself!!",
+    "silver_ru": "Сяо У, нет! Остановись, не делай этого с собой!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_059",
+    "lang": "zh",
+    "source_text": "你…你作弊！神圣世家绝对不会放过你的！",
+    "silver_en": "Spirit Hall, hear my vow! In this lifetime, I swear to eradicate you completely!!",
+    "silver_ru": "Дворец Духов, слушайте мою клятву! В этой жизни я клянусь истребить вас до последнего!!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_060",
+    "lang": "zh",
+    "source_text": "异火榜第十九位，青莲地心火…藏在大沙漠地底千丈深处。",
+    "silver_en": "The Sea God's Trident has chosen its successor!",
+    "silver_ru": "Трезубец Морского Бога избрал своего преемника!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_061",
+    "lang": "zh",
+    "source_text": "想要吞噬异火进化焚诀，必须要有九死一生的决心。",
+    "silver_en": "Boss, how much for this bowl of braised beef noodles?",
+    "silver_ru": "Хозяин, сколько стоит эта тарелка тушеной говяжьей лапши?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_062",
+    "lang": "zh",
+    "source_text": "连这点痛苦都承受不住，我还谈什么三年之约！给我收！",
+    "silver_en": "Fifteen silver coins, add extra spicy for free!",
+    "silver_ru": "Пятнадцать серебряных монет, острая приправа бесплатно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_063",
+    "lang": "zh",
+    "source_text": "美杜莎女王正在借助异火尝试进化成七彩吞天蟒。",
+    "silver_en": "Give me two bowls, and add a braised egg and marinated tofu!",
+    "silver_ru": "Давай две порции, и добавь еще маринованное яйцо и тофу!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_064",
+    "lang": "zh",
+    "source_text": "蛇人族八大部落首领皆在护法，绝不能轻举妄动。",
+    "silver_en": "Coming right up! Customer, please take a seat inside!",
+    "silver_ru": "Сию минуту! Гость дорогой, присаживайтесь за столик внутри!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_065",
+    "lang": "zh",
+    "source_text": "第一魂技：缠绕！蓝银草带着曼陀罗蛇的毒素疯狂蔓延！",
+    "silver_en": "Slurp... The broth is so rich and flavorful, absolutely divine!",
+    "silver_ru": "Хлюп... Бульон такой наваристый и ароматный, просто божественно!",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_066",
+    "lang": "zh",
+    "source_text": "小舞，你的武魂是柔骨兔？以后哥保护你！",
+    "silver_en": "Hey, who ordered that takeout dish over on table four?",
+    "silver_ru": "Эй, кто там заказывал блюдо навынос на четвертом столике?",
+    "provenance": "gemini-silver-reference"
+  },
+  {
+    "id": "zh_067",
+    "lang": "zh",
+    "source_text": "嘻嘻，要是有人欺负小舞，三哥可得替我狠狠揍他哦！",
+    "silver_en": "That's mine, pack it up quickly, I need to rush to the martial exam!",
+    "silver_ru": "Это мое, заверните скорее, мне нужно бежать на воинский экзамен!",
+    "provenance": "gemini-silver-reference"
+  }
+]

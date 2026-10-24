@@ -1,0 +1,2020 @@
+{
+  "model": "Helsinki-NLP/opus-mt",
+  "sample_count": 201,
+  "avg_bubble_latency_en_sec": 0.223,
+  "avg_bubble_latency_ru_sec": 0.1999,
+  "simulated_page_12_bubbles_en_sec": 2.6756,
+  "simulated_page_12_bubbles_ru_sec": 5.0738,
+  "translations": [
+    {
+      "id": "ja_001",
+      "lang": "ja",
+      "source_text": "飯テロ注意！空腹必至の異世界グルメファンタジー！",
+      "opus_en": "Look out for the ricetacks! You're hungry! You're hungry!",
+      "opus_ru": "Берегись ристаков, ты голоден!",
+      "latency_en_sec": 0.6171,
+      "latency_ru_sec": 0.4819,
+      "total_latency_sec": 1.099
+    },
+    {
+      "id": "ja_002",
+      "lang": "ja",
+      "source_text": "小田中さん、この書類の確認をお願いできますか？",
+      "opus_en": "Mr. Koda, can you confirm these documents?",
+      "opus_ru": "Мистер Кода, вы можете подтвердить эти документы?",
+      "latency_en_sec": 0.1529,
+      "latency_ru_sec": 0.1303,
+      "total_latency_sec": 0.2832
+    },
+    {
+      "id": "ja_003",
+      "lang": "ja",
+      "source_text": "ふぅ…今日も残業か。コンビニ弁当じゃ味気ないよな。",
+      "opus_en": "You're still working overtime today. The convenience lunch doesn't taste good, does it?",
+      "opus_ru": "Удобный обед не очень вкусный, не так ли?",
+      "latency_en_sec": 0.2381,
+      "latency_ru_sec": 0.1646,
+      "total_latency_sec": 0.4027
+    },
+    {
+      "id": "ja_004",
+      "lang": "ja",
+      "source_text": "大家さんからもらったこの古い鍵、一体何の鍵なんだろう。",
+      "opus_en": "What's the key to this old key that my landlord gave me?",
+      "opus_ru": "Какой ключ от этого старого ключа дал мне арендодатель?",
+      "latency_en_sec": 0.1845,
+      "latency_ru_sec": 0.1696,
+      "total_latency_sec": 0.354
+    },
+    {
+      "id": "ja_005",
+      "lang": "ja",
+      "source_text": "えっ！？扉の向こうが…見たこともない街並みになってる！？",
+      "opus_en": "Oh Ha Ni!",
+      "opus_ru": "О Ха Ни!",
+      "latency_en_sec": 0.0869,
+      "latency_ru_sec": 0.076,
+      "total_latency_sec": 0.1629
+    },
+    {
+      "id": "ja_006",
+      "lang": "ja",
+      "source_text": "なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！",
+      "opus_en": "What's that nice smell?",
+      "opus_ru": "Что это за вкусный запах?",
+      "latency_en_sec": 0.1067,
+      "latency_ru_sec": 0.0967,
+      "total_latency_sec": 0.2034
+    },
+    {
+      "id": "ja_007",
+      "lang": "ja",
+      "source_text": "いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？",
+      "opus_en": "Come here! You don't look like you've seen me. Would you like to eat a fried chicken?",
+      "opus_ru": "Ты не выглядишь так, будто не видел меня.",
+      "latency_en_sec": 0.2789,
+      "latency_ru_sec": 0.1687,
+      "total_latency_sec": 0.4476
+    },
+    {
+      "id": "ja_008",
+      "lang": "ja",
+      "source_text": "う、うまい！外はカリッとしてるのに中は信じられないほどジューシーだ…！",
+      "opus_en": "Oh, it's so good! It's so nice outside, but inside it's so Yushy!",
+      "opus_ru": "Снаружи так мило, но внутри такой Юши!",
+      "latency_en_sec": 0.3232,
+      "latency_ru_sec": 0.1724,
+      "total_latency_sec": 0.4956
+    },
+    {
+      "id": "ja_009",
+      "lang": "ja",
+      "source_text": "これ、何の肉ですか？",
+      "opus_en": "What kind of meat is this?",
+      "opus_ru": "Что это за мясо?",
+      "latency_en_sec": 0.0853,
+      "latency_ru_sec": 0.0857,
+      "total_latency_sec": 0.171
+    },
+    {
+      "id": "ja_010",
+      "lang": "ja",
+      "source_text": "ロック鳥のモモ肉さ！森で今朝獲れたてだから新鮮だよ。",
+      "opus_en": "Rockbird berries! They were caught this morning in the woods, so it's fresh.",
+      "opus_ru": "Их поймали этим утром в лесу, так что он свежий.",
+      "latency_en_sec": 0.2121,
+      "latency_ru_sec": 0.1915,
+      "total_latency_sec": 0.4037
+    },
+    {
+      "id": "ja_011",
+      "lang": "ja",
+      "source_text": "貴殿、見慣れぬ身なりをしているが…何者だ？",
+      "opus_en": "You look strange... but who are you?",
+      "opus_ru": "Ты странно выглядишь... но кто ты?",
+      "latency_en_sec": 0.1321,
+      "latency_ru_sec": 0.1416,
+      "total_latency_sec": 0.2738
+    },
+    {
+      "id": "ja_012",
+      "lang": "ja",
+      "source_text": "め、女騎士さん！？いや、ただの通りすがりの会社員です…！",
+      "opus_en": "No, I'm just a passerby.",
+      "opus_ru": "Нет, я просто прохожий.",
+      "latency_en_sec": 0.1315,
+      "latency_ru_sec": 0.1305,
+      "total_latency_sec": 0.262
+    },
+    {
+      "id": "ja_013",
+      "lang": "ja",
+      "source_text": "くっ…お腹の音が…すまぬ、任務続きで三日何も食しておらぬのだ。",
+      "opus_en": "I'm sorry, I haven't eaten for three days on duty.",
+      "opus_ru": "Простите, я не ел три дня на дежурстве.",
+      "latency_en_sec": 0.196,
+      "latency_ru_sec": 0.1637,
+      "total_latency_sec": 0.3597
+    },
+    {
+      "id": "ja_014",
+      "lang": "ja",
+      "source_text": "よかったらこれ、半分食べますか？熱々ですよ。",
+      "opus_en": "Would you like to eat half of this? It's hot.",
+      "opus_ru": "Хочешь съесть половину?",
+      "latency_en_sec": 0.1629,
+      "latency_ru_sec": 0.1101,
+      "total_latency_sec": 0.2731
+    },
+    {
+      "id": "ja_015",
+      "lang": "ja",
+      "source_text": "な、なんたる美味…！こんな料理、王宮でも口にしたことがない！",
+      "opus_en": "I've never spoken of such a dish or a royal palace!",
+      "opus_ru": "Я никогда не говорил о таком блюде или королевском дворце!",
+      "latency_en_sec": 0.1638,
+      "latency_ru_sec": 0.1956,
+      "total_latency_sec": 0.3594
+    },
+    {
+      "id": "ja_016",
+      "lang": "ja",
+      "source_text": "圧倒的な力ってのは…つまらないもんだな。",
+      "opus_en": "Overwhelming force is... boring, isn't it?",
+      "opus_ru": "Слишком скучная сила, не так ли?",
+      "latency_en_sec": 0.1722,
+      "latency_ru_sec": 0.1597,
+      "total_latency_sec": 0.3319
+    },
+    {
+      "id": "ja_017",
+      "lang": "ja",
+      "source_text": "趣味でヒーローをやっている者だ。",
+      "opus_en": "He's a hero for his hobby.",
+      "opus_ru": "Он герой своего хобби.",
+      "latency_en_sec": 0.1091,
+      "latency_ru_sec": 0.1294,
+      "total_latency_sec": 0.2385
+    },
+    {
+      "id": "ja_018",
+      "lang": "ja",
+      "source_text": "またワンパンで終わっちまった…！",
+      "opus_en": "It's all over again!",
+      "opus_ru": "Всё снова кончено!",
+      "latency_en_sec": 0.1288,
+      "latency_ru_sec": 0.0986,
+      "total_latency_sec": 0.2274
+    },
+    {
+      "id": "ja_019",
+      "lang": "ja",
+      "source_text": "先生！どうか私を弟子にしてください！",
+      "opus_en": "Master, please make me a disciple!",
+      "opus_ru": "Хозяин, пожалуйста, сделай меня учеником!",
+      "latency_en_sec": 0.0976,
+      "latency_ru_sec": 0.1611,
+      "total_latency_sec": 0.2587
+    },
+    {
+      "id": "ja_020",
+      "lang": "ja",
+      "source_text": "いや、断る。面倒くさいし。",
+      "opus_en": "No, I won't. It's bothering me.",
+      "opus_ru": "Нет, это меня беспокоит.",
+      "latency_en_sec": 0.1599,
+      "latency_ru_sec": 0.1308,
+      "total_latency_sec": 0.2907
+    },
+    {
+      "id": "ja_021",
+      "lang": "ja",
+      "source_text": "家賃を折半で払うというのはどうでしょうか？",
+      "opus_en": "How about paying the rent by half?",
+      "opus_ru": "Как насчет того, чтобы заплатить за аренду вдвое?",
+      "latency_en_sec": 0.1216,
+      "latency_ru_sec": 0.1489,
+      "total_latency_sec": 0.2705
+    },
+    {
+      "id": "ja_022",
+      "lang": "ja",
+      "source_text": "よし、合格だ。明日からよろしくな。",
+      "opus_en": "All right, I passed. I'll be happy to see you tomorrow.",
+      "opus_ru": "Ладно, я сдал, я буду рад увидеть тебя завтра.",
+      "latency_en_sec": 0.206,
+      "latency_ru_sec": 0.1802,
+      "total_latency_sec": 0.3862
+    },
+    {
+      "id": "ja_023",
+      "lang": "ja",
+      "source_text": "おいジェノス、スーパーの特売日忘れてた！急ぐぞ！",
+      "opus_en": "Hey, Genos, I forgot the super date! Hurry up!",
+      "opus_ru": "Эй, Генос, я забыла о супер-свидании!",
+      "latency_en_sec": 0.1687,
+      "latency_ru_sec": 0.2146,
+      "total_latency_sec": 0.3833
+    },
+    {
+      "id": "ja_024",
+      "lang": "ja",
+      "source_text": "了解しました先生。最大出力で追従します。",
+      "opus_en": "Yes, sir. I'll follow you with maximum output.",
+      "opus_ru": "Да, сэр, я последую за вами с максимальной мощностью.",
+      "latency_en_sec": 0.181,
+      "latency_ru_sec": 0.2044,
+      "total_latency_sec": 0.3855
+    },
+    {
+      "id": "ja_025",
+      "lang": "ja",
+      "source_text": "貴様ごときB級ヒーローが、この怪人協会に勝てると思うなよ！",
+      "opus_en": "Don't you think a B-class hero can win this association!",
+      "opus_ru": "Ты же не думаешь, что герой класса Б может выиграть эту ассоциацию!",
+      "latency_en_sec": 0.1856,
+      "latency_ru_sec": 0.2076,
+      "total_latency_sec": 0.3932
+    },
+    {
+      "id": "ja_026",
+      "lang": "ja",
+      "source_text": "うるせえな、キャベツ落としただろ弁償しろ。",
+      "opus_en": "Don't be silly. You dropped the cabbage. Make up for it.",
+      "opus_ru": "Не глупи, ты уронил капусту.",
+      "latency_en_sec": 0.184,
+      "latency_ru_sec": 0.2095,
+      "total_latency_sec": 0.3935
+    },
+    {
+      "id": "ja_027",
+      "lang": "ja",
+      "source_text": "この遺跡の奥に伝説の金貨が眠っているはずだ。",
+      "opus_en": "Behind this ruins must be a legendary gold coin.",
+      "opus_ru": "За этими руинами должна быть легендарная золотая монета.",
+      "latency_en_sec": 0.1429,
+      "latency_ru_sec": 0.2359,
+      "total_latency_sec": 0.3788
+    },
+    {
+      "id": "ja_028",
+      "lang": "ja",
+      "source_text": "罠だ！足元に気をつけろ！",
+      "opus_en": "It's a trap! Watch your step!",
+      "opus_ru": "Это ловушка!",
+      "latency_en_sec": 0.1174,
+      "latency_ru_sec": 0.0963,
+      "total_latency_sec": 0.2137
+    },
+    {
+      "id": "ja_029",
+      "lang": "ja",
+      "source_text": "へっ、オレの俊敏性をなめるなよ。",
+      "opus_en": "Hey, don't pick up my temper.",
+      "opus_ru": "Эй, не поднимай мой характер.",
+      "latency_en_sec": 0.148,
+      "latency_ru_sec": 0.1392,
+      "total_latency_sec": 0.2871
+    },
+    {
+      "id": "ja_030",
+      "lang": "ja",
+      "source_text": "扉が開かない…何か古代の文字が刻まれているぞ。",
+      "opus_en": "The door won't open... there's some ancient writing on it.",
+      "opus_ru": "Дверь не открывается... на ней есть древняя надпись.",
+      "latency_en_sec": 0.1857,
+      "latency_ru_sec": 0.1387,
+      "total_latency_sec": 0.3244
+    },
+    {
+      "id": "ja_031",
+      "lang": "ja",
+      "source_text": "『真の勇気を持つ者のみ、黄金の道を進むべし』",
+      "opus_en": "\"He that has true courage, let him go on the path of gold.\"",
+      "opus_ru": "\"Тот, у кого есть истинное мужество, пусть идет по пути золота.\"",
+      "latency_en_sec": 0.1801,
+      "latency_ru_sec": 0.2233,
+      "total_latency_sec": 0.4035
+    },
+    {
+      "id": "ja_032",
+      "lang": "ja",
+      "source_text": "ふん、謎解きなら任せておけ！",
+      "opus_en": "Well, if it's a mystery, I'll take care of it!",
+      "opus_ru": "Ну, если это загадка, я позабочусь об этом!",
+      "latency_en_sec": 0.2093,
+      "latency_ru_sec": 0.2258,
+      "total_latency_sec": 0.435
+    },
+    {
+      "id": "ja_033",
+      "lang": "ja",
+      "source_text": "目が覚めたら深い森の中だった。",
+      "opus_en": "When I woke up, I was in a deep forest.",
+      "opus_ru": "Когда я проснулся, я был в глубоком лесу.",
+      "latency_en_sec": 0.1413,
+      "latency_ru_sec": 0.1716,
+      "total_latency_sec": 0.3129
+    },
+    {
+      "id": "ja_034",
+      "lang": "ja",
+      "source_text": "神様からもらったこの『万能農具』、本当に何でも耕せるな。",
+      "opus_en": "This God-given \"Environment\" from God, can't you really cultivate anything?",
+      "opus_ru": "Эта божественная \"Окружающая среда\" от Бога, разве ты не можешь что-нибудь развивать?",
+      "latency_en_sec": 0.2607,
+      "latency_ru_sec": 0.2179,
+      "total_latency_sec": 0.4786
+    },
+    {
+      "id": "ja_035",
+      "lang": "ja",
+      "source_text": "まずは寝床と水源の確保から始めよう。",
+      "opus_en": "Let's start with a bed and water source.",
+      "opus_ru": "Давайте начнем с кровати и источника воды.",
+      "latency_en_sec": 0.1446,
+      "latency_ru_sec": 0.1408,
+      "total_latency_sec": 0.2854
+    },
+    {
+      "id": "ja_036",
+      "lang": "ja",
+      "source_text": "くぅ〜ん…怪我をした大きな犬？いや、狼か！？",
+      "opus_en": "No, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, no.",
+      "opus_ru": "Нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет, нет,",
+      "latency_en_sec": 1.5394,
+      "latency_ru_sec": 1.5209,
+      "total_latency_sec": 3.0602
+    },
+    {
+      "id": "ja_037",
+      "lang": "ja",
+      "source_text": "大丈夫だ、敵意はないよ。傷口を洗って手当てしてあげるからな。",
+      "opus_en": "Don't worry, there's no hostility. I'll wash the wound and take care of it.",
+      "opus_ru": "Не волнуйся, нет никакой враждебности, я помою рану и позабочусь об этом.",
+      "latency_en_sec": 0.2602,
+      "latency_ru_sec": 0.2931,
+      "total_latency_sec": 0.5532
+    },
+    {
+      "id": "ja_038",
+      "lang": "ja",
+      "source_text": "なついてくれたみたいだ。クロって名前にしよう。",
+      "opus_en": "He seems to have followed me. Let's name him Black.",
+      "opus_ru": "Похоже, он следил за мной.",
+      "latency_en_sec": 0.204,
+      "latency_ru_sec": 0.2243,
+      "total_latency_sec": 0.4283
+    },
+    {
+      "id": "ja_039",
+      "lang": "ja",
+      "source_text": "畑のトマトが赤く熟してきたぞ！",
+      "opus_en": "The tomato in the field is ripe with red!",
+      "opus_ru": "Помидор в поле созрел с красным!",
+      "latency_en_sec": 0.1289,
+      "latency_ru_sec": 0.1779,
+      "total_latency_sec": 0.3068
+    },
+    {
+      "id": "ja_040",
+      "lang": "ja",
+      "source_text": "採れたてを丸かじり…甘くてみずみずしい！最高だ！",
+      "opus_en": "It's so sweet, it's so shiny!",
+      "opus_ru": "Это так мило, так блестяще!",
+      "latency_en_sec": 0.1383,
+      "latency_ru_sec": 0.1167,
+      "total_latency_sec": 0.255
+    },
+    {
+      "id": "ja_041",
+      "lang": "ja",
+      "source_text": "記憶を失う代わりに、神級のスキルを獲得しただと…？",
+      "opus_en": "And instead of losing your memory, you got your divine skills?",
+      "opus_ru": "И вместо того, чтобы потерять память, ты получил свои божественные способности?",
+      "latency_en_sec": 0.1755,
+      "latency_ru_sec": 0.1719,
+      "total_latency_sec": 0.3474
+    },
+    {
+      "id": "ja_042",
+      "lang": "ja",
+      "source_text": "転生前のオレは、一体どれだけバトルジャンキーだったんだよ。",
+      "opus_en": "Before I was born, how many battle junkies did I have before I was born?",
+      "opus_ru": "До моего рождения, сколько боевых наркоманов у меня было до рождения?",
+      "latency_en_sec": 0.2048,
+      "latency_ru_sec": 0.1626,
+      "total_latency_sec": 0.3674
+    },
+    {
+      "id": "ja_043",
+      "lang": "ja",
+      "source_text": "メルフィーナ、お前の声は頭の中に直接響いてくるな。",
+      "opus_en": "Melphina, don't let your voice sound directly into your head.",
+      "opus_ru": "Мелфина, не позволяй голосу прозвучать прямо в твою голову.",
+      "latency_en_sec": 0.1829,
+      "latency_ru_sec": 0.2158,
+      "total_latency_sec": 0.3987
+    },
+    {
+      "id": "ja_044",
+      "lang": "ja",
+      "source_text": "冒険者ギルドの登録試験を受けに来ました。",
+      "opus_en": "I've come to take the registration exam for the adventurer Guild.",
+      "opus_ru": "Я пришел сдать регистрационный экзамен для гильдии авантюристов.",
+      "latency_en_sec": 0.1859,
+      "latency_ru_sec": 0.2239,
+      "total_latency_sec": 0.4098
+    },
+    {
+      "id": "ja_045",
+      "lang": "ja",
+      "source_text": "新人かい？死にたくなきゃゴブリン退治から地道にやることね。",
+      "opus_en": "You're new? If you don't want to die, you're going to take it from the goblins to the alley.",
+      "opus_ru": "Если ты не хочешь умирать, ты отнесёшь его из гоблинов в переулок.",
+      "latency_en_sec": 0.348,
+      "latency_ru_sec": 0.2716,
+      "total_latency_sec": 0.6197
+    },
+    {
+      "id": "ja_046",
+      "lang": "ja",
+      "source_text": "出でよ、我が契約の魔獣――クロト！",
+      "opus_en": "Get out of here, you hexenbiest of my contract, Crot!",
+      "opus_ru": "Убирайся отсюда, ты ведьма моего контракта, Крот!",
+      "latency_en_sec": 0.1945,
+      "latency_ru_sec": 0.1837,
+      "total_latency_sec": 0.3782
+    },
+    {
+      "id": "ja_047",
+      "lang": "ja",
+      "source_text": "スライムだと馬鹿にしていた相手が一瞬で消炭に…！？",
+      "opus_en": "What's wrong with you? What's wrong with you? What's wrong with you?",
+      "opus_ru": "Да что с тобой такое?",
+      "latency_en_sec": 0.2589,
+      "latency_ru_sec": 0.0793,
+      "total_latency_sec": 0.3382
+    },
+    {
+      "id": "ja_048",
+      "lang": "ja",
+      "source_text": "さあ、次は誰が相手をしてくれるんだ？",
+      "opus_en": "Well, who's next to take care of me?",
+      "opus_ru": "Ну, кто следующий будет заботиться обо мне?",
+      "latency_en_sec": 0.141,
+      "latency_ru_sec": 0.1191,
+      "total_latency_sec": 0.2601
+    },
+    {
+      "id": "ja_049",
+      "lang": "ja",
+      "source_text": "現代の調味料を持ってきたらもっと美味しくなるかもしれない。",
+      "opus_en": "Bringing modern flavors may taste better.",
+      "opus_ru": "Приносим современные вкусы, возможно, вкуснее.",
+      "latency_en_sec": 0.1408,
+      "latency_ru_sec": 0.1479,
+      "total_latency_sec": 0.2887
+    },
+    {
+      "id": "ja_050",
+      "lang": "ja",
+      "source_text": "醤油とマヨネーズは万国共通の最強タッグだな。",
+      "opus_en": "Soy sauce and mayonnaise are the best taggs in the world.",
+      "opus_ru": "Соевый соус и майонез - лучшие таджи в мире.",
+      "latency_en_sec": 0.21,
+      "latency_ru_sec": 0.1901,
+      "total_latency_sec": 0.4001
+    },
+    {
+      "id": "ja_051",
+      "lang": "ja",
+      "source_text": "うわっ、なにこれ！？舌がとろけそう…！",
+      "opus_en": "What?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "opus_ru": "Что?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+      "latency_en_sec": 1.4528,
+      "latency_ru_sec": 1.5117,
+      "total_latency_sec": 2.9644
+    },
+    {
+      "id": "ja_052",
+      "lang": "ja",
+      "source_text": "今日のおすすめはドワーフ特製の黒ビールと燻製肉だよ！",
+      "opus_en": "Today we're going to recommend a black beer and broth made with dwarfs!",
+      "opus_ru": "Сегодня мы порекомендуем чёрное пиво и бульон с гномами!",
+      "latency_en_sec": 0.2469,
+      "latency_ru_sec": 0.2657,
+      "total_latency_sec": 0.5126
+    },
+    {
+      "id": "ja_053",
+      "lang": "ja",
+      "source_text": "ぷはぁーっ！仕事終わりの一杯はどの世界でも至高だな！",
+      "opus_en": "The end of the job is the highest in the world!",
+      "opus_ru": "Конец работы самый высокий в мире!",
+      "latency_en_sec": 0.1473,
+      "latency_ru_sec": 0.1067,
+      "total_latency_sec": 0.254
+    },
+    {
+      "id": "ja_054",
+      "lang": "ja",
+      "source_text": "お前さん、いい飲みっぷりだ！気に入ったぞ！",
+      "opus_en": "You've had a lot of drinks! I love it!",
+      "opus_ru": "Ты выпил много выпивки!",
+      "latency_en_sec": 0.1617,
+      "latency_ru_sec": 0.1097,
+      "total_latency_sec": 0.2714
+    },
+    {
+      "id": "ja_055",
+      "lang": "ja",
+      "source_text": "ヒーローネーム『ハゲマント』…なんだそのダサい名前は！",
+      "opus_en": "What's that ugly name?",
+      "opus_ru": "Что это за уродливое имя?",
+      "latency_en_sec": 0.1093,
+      "latency_ru_sec": 0.1084,
+      "total_latency_sec": 0.2178
+    },
+    {
+      "id": "ja_056",
+      "lang": "ja",
+      "source_text": "事実をありのままに表現した素晴らしい呼称かと。",
+      "opus_en": "I think it's a wonderful call to express the facts as they are.",
+      "opus_ru": "Я думаю, это замечательный призыв выразить факты так, как они есть.",
+      "latency_en_sec": 0.1934,
+      "latency_ru_sec": 0.2168,
+      "total_latency_sec": 0.4102
+    },
+    {
+      "id": "ja_057",
+      "lang": "ja",
+      "source_text": "慰めになってねえよジェノス！",
+      "opus_en": "I'm not comforting you, Genos!",
+      "opus_ru": "Я тебя не утешаю, Генос!",
+      "latency_en_sec": 0.1486,
+      "latency_ru_sec": 0.1501,
+      "total_latency_sec": 0.2987
+    },
+    {
+      "id": "ja_058",
+      "lang": "ja",
+      "source_text": "隕石が…Z市に向けて落下しているだと！？",
+      "opus_en": "The meteor is falling against the city of Z!",
+      "opus_ru": "Метеор падает на город Z!",
+      "latency_en_sec": 0.1187,
+      "latency_ru_sec": 0.1176,
+      "total_latency_sec": 0.2363
+    },
+    {
+      "id": "ja_059",
+      "lang": "ja",
+      "source_text": "避難警報が鳴り響いている。全市民直ちに地下シェルターへ退避を！",
+      "opus_en": "Evacuation alert is ringing. All citizens, evacuate immediately to the underground shelter!",
+      "opus_ru": "Всем жителям немедленно эвакуироваться в подземный приют!",
+      "latency_en_sec": 0.189,
+      "latency_ru_sec": 0.1588,
+      "total_latency_sec": 0.3479
+    },
+    {
+      "id": "ja_060",
+      "lang": "ja",
+      "source_text": "オレの家が壊れるだろ。ちょっと止めてくるわ。",
+      "opus_en": "My house will break down. I'm going to stop for a while.",
+      "opus_ru": "Мой дом сломается, я остановлюсь на некоторое время.",
+      "latency_en_sec": 0.2007,
+      "latency_ru_sec": 0.1833,
+      "total_latency_sec": 0.384
+    },
+    {
+      "id": "ja_061",
+      "lang": "ja",
+      "source_text": "宝箱を発見したぞ！ミミックじゃないだろうな…？",
+      "opus_en": "We found the treasure chest! It's not micmic!",
+      "opus_ru": "Мы нашли сундук с сокровищами, это не микрофон!",
+      "latency_en_sec": 0.196,
+      "latency_ru_sec": 0.1604,
+      "total_latency_sec": 0.3563
+    },
+    {
+      "id": "ja_062",
+      "lang": "ja",
+      "source_text": "ツンツン…よし、動かない！開けるぞ！",
+      "opus_en": "Let's go, let's go, let's go, let's go, let's go, let's go, let's go, let's go, let's go!",
+      "opus_ru": "Пошли, пошли, пошли, пошли, пошли, пошли, пошли, пошли, пошли, пошли!",
+      "latency_en_sec": 0.5021,
+      "latency_ru_sec": 0.5004,
+      "total_latency_sec": 1.0026
+    },
+    {
+      "id": "ja_063",
+      "lang": "ja",
+      "source_text": "金貨と…見たこともない輝きの魔石だ！大金星だぜ！",
+      "opus_en": "It's gold, it's gold, and it's the magicstone of the lights I've never seen, and it's a lot of money!",
+      "opus_ru": "Это золото, это золото, и это волшебный камень света, которого я никогда не видел, и это куча денег!",
+      "latency_en_sec": 0.381,
+      "latency_ru_sec": 0.3373,
+      "total_latency_sec": 0.7183
+    },
+    {
+      "id": "ja_064",
+      "lang": "ja",
+      "source_text": "エルフの村から移住希望者が来た？歓迎するよ。",
+      "opus_en": "I'm glad you're here.",
+      "opus_ru": "Я рад, что ты здесь.",
+      "latency_en_sec": 0.1098,
+      "latency_ru_sec": 0.087,
+      "total_latency_sec": 0.1968
+    },
+    {
+      "id": "ja_065",
+      "lang": "ja",
+      "source_text": "村長さん、私たちは大工仕事と裁縫が得意です。",
+      "opus_en": "Mr. village chief, we're good at carpentering and sewing.",
+      "opus_ru": "Мистер деревенский шеф, мы хороши в плотничестве и шитье.",
+      "latency_en_sec": 0.1831,
+      "latency_ru_sec": 0.2449,
+      "total_latency_sec": 0.4279
+    },
+    {
+      "id": "ja_066",
+      "lang": "ja",
+      "source_text": "お前の強さは本物だ。だがこの先へ進むなら覚悟しろよ。",
+      "opus_en": "Your strength is real. But if you go further, be prepared.",
+      "opus_ru": "Твоя сила реальна, но если ты пойдешь дальше, будь готов.",
+      "latency_en_sec": 0.205,
+      "latency_ru_sec": 0.2322,
+      "total_latency_sec": 0.4372
+    },
+    {
+      "id": "ja_067",
+      "lang": "ja",
+      "source_text": "望むところだ。強敵と戦えるならこれ以上の喜びはない！",
+      "opus_en": "That's what I want. There's no more pleasure in fighting a strong enemy!",
+      "opus_ru": "Это то, чего я хочу, больше нет удовольствия в борьбе с сильным врагом!",
+      "latency_en_sec": 0.2735,
+      "latency_ru_sec": 0.203,
+      "total_latency_sec": 0.4764
+    },
+    {
+      "id": "ko_001",
+      "lang": "ko",
+      "source_text": "내가 여자 화장실에 몰카를 설치했다고? 말도 안 되는 소리야!",
+      "opus_en": "That's ridiculous!",
+      "opus_ru": "Это смешно!",
+      "latency_en_sec": 0.419,
+      "latency_ru_sec": 0.0741,
+      "total_latency_sec": 0.4931
+    },
+    {
+      "id": "ko_002",
+      "lang": "ko",
+      "source_text": "결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.",
+      "opus_en": "It turned out to be innocent, but already there's been a lot of rumors about men.",
+      "opus_ru": "Оказалось, что он невиновен, но уже было много слухов о мужчинах.",
+      "latency_en_sec": 0.2353,
+      "latency_ru_sec": 0.2392,
+      "total_latency_sec": 0.4744
+    },
+    {
+      "id": "ko_003",
+      "lang": "ko",
+      "source_text": "호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.",
+      "opus_en": "Mr. Hoe-soon, you're in the conference room for a moment.",
+      "opus_ru": "Мистер Хо Сун, вы на минутку в конференц-зале.",
+      "latency_en_sec": 0.2339,
+      "latency_ru_sec": 0.1977,
+      "total_latency_sec": 0.4316
+    },
+    {
+      "id": "ko_004",
+      "lang": "ko",
+      "source_text": "인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?",
+      "opus_en": "Why should I go to another department?",
+      "opus_ru": "Зачем мне идти в другой отдел?",
+      "latency_en_sec": 0.1236,
+      "latency_ru_sec": 0.0936,
+      "total_latency_sec": 0.2172
+    },
+    {
+      "id": "ko_005",
+      "lang": "ko",
+      "source_text": "위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.",
+      "opus_en": "It's a decision made above. It's no choice if it's wrong.",
+      "opus_ru": "Это решение, принятое выше, это не выбор, если это неправильно.",
+      "latency_en_sec": 0.2348,
+      "latency_ru_sec": 0.1656,
+      "total_latency_sec": 0.4004
+    },
+    {
+      "id": "ko_006",
+      "lang": "ko",
+      "source_text": "정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?",
+      "opus_en": "Is it really supposed to be this one-way thing?",
+      "opus_ru": "Это действительно должно быть в один конец?",
+      "latency_en_sec": 0.1552,
+      "latency_ru_sec": 0.1235,
+      "total_latency_sec": 0.2787
+    },
+    {
+      "id": "ko_007",
+      "lang": "ko",
+      "source_text": "하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.",
+      "opus_en": "But as soon as I stumbled across her weakness, the board turned upside down.",
+      "opus_ru": "Но как только я наткнулась на ее слабость, доска перевернулась вверх ногами.",
+      "latency_en_sec": 0.1999,
+      "latency_ru_sec": 0.24,
+      "total_latency_sec": 0.4399
+    },
+    {
+      "id": "ko_008",
+      "lang": "ko",
+      "source_text": "팀장님, 지난주 금요일 저녁에 어디 계셨는지 기억나십니까?",
+      "opus_en": "Sir, do you remember where you were last Friday night?",
+      "opus_ru": "Сэр, вы помните, где были в прошлую пятницу вечером?",
+      "latency_en_sec": 0.1455,
+      "latency_ru_sec": 0.1766,
+      "total_latency_sec": 0.3221
+    },
+    {
+      "id": "ko_009",
+      "lang": "ko",
+      "source_text": "너… 그걸 어떻게 알고 있는 거지?!",
+      "opus_en": "How do you... how do you know that?",
+      "opus_ru": "Откуда... откуда ты знаешь?",
+      "latency_en_sec": 0.1222,
+      "latency_ru_sec": 0.0848,
+      "total_latency_sec": 0.207
+    },
+    {
+      "id": "ko_010",
+      "lang": "ko",
+      "source_text": "이제 제 이야기를 들으실 준비가 되셨습니까?",
+      "opus_en": "Now, are you ready to hear my story?",
+      "opus_ru": "Итак, вы готовы услышать мою историю?",
+      "latency_en_sec": 0.1264,
+      "latency_ru_sec": 0.0951,
+      "total_latency_sec": 0.2215
+    },
+    {
+      "id": "ko_011",
+      "lang": "ko",
+      "source_text": "[유료 서비스가 시작되었습니다.]",
+      "opus_en": "[The paid service started.]",
+      "opus_ru": "[Началась оплата услуг.]",
+      "latency_en_sec": 0.1107,
+      "latency_ru_sec": 0.104,
+      "total_latency_sec": 0.2147
+    },
+    {
+      "id": "ko_012",
+      "lang": "ko",
+      "source_text": "퇴근길 만원 지하철 안에서 익숙한 소설의 문장이 눈앞에 떠올랐다.",
+      "opus_en": "A familiar novel in the subway came to my attention.",
+      "opus_ru": "К моему сведению пришёл знакомый роман в метро.",
+      "latency_en_sec": 0.189,
+      "latency_ru_sec": 0.1631,
+      "total_latency_sec": 0.3521
+    },
+    {
+      "id": "ko_013",
+      "lang": "ko",
+      "source_text": "설마… 10년 넘게 나 혼자 읽던 그 삼류 소설이 현실이 된다고?",
+      "opus_en": "You don't think that the three-year-old novel that I've been reading alone for over ten years is real?",
+      "opus_ru": "Ты не думаешь, что трёхлетний роман, который я читаю в одиночестве более десяти лет, настоящий?",
+      "latency_en_sec": 0.3362,
+      "latency_ru_sec": 0.3213,
+      "total_latency_sec": 0.6575
+    },
+    {
+      "id": "ko_014",
+      "lang": "ko",
+      "source_text": "창밖 하늘에 거대한 도깨비가 나타났다.",
+      "opus_en": "Out of the window, there appeared a giant flavour in the sky.",
+      "opus_ru": "В окне появился гигантский вкус в небе.",
+      "latency_en_sec": 0.2055,
+      "latency_ru_sec": 0.1257,
+      "total_latency_sec": 0.3312
+    },
+    {
+      "id": "ko_015",
+      "lang": "ko",
+      "source_text": "\"자자, 인간 여러분! 긴장 푸세요. 아주 간단한 게임입니다.\"",
+      "opus_en": "\"Come on, people! Relax. It's a very simple game.\"",
+      "opus_ru": "\"Да ладно, ребята, расслабьтесь, это очень простая игра.\"",
+      "latency_en_sec": 0.189,
+      "latency_ru_sec": 0.2708,
+      "total_latency_sec": 0.4598
+    },
+    {
+      "id": "ko_016",
+      "lang": "ko",
+      "source_text": "[메인 시나리오 #1 - 가치 증명]",
+      "opus_en": "[Mein Case #1 - value identification]",
+      "opus_ru": "[Смертельный случай No 1 - Идентификация стоимости]",
+      "latency_en_sec": 0.1339,
+      "latency_ru_sec": 0.1431,
+      "total_latency_sec": 0.277
+    },
+    {
+      "id": "ko_017",
+      "lang": "ko",
+      "source_text": "제한 시간 내에 하나 이상의 생명체를 죽이십시오.",
+      "opus_en": "Kill more than one creature in a limited time.",
+      "opus_ru": "Убить более одного существа за ограниченное время.",
+      "latency_en_sec": 0.1445,
+      "latency_ru_sec": 0.1135,
+      "total_latency_sec": 0.2581
+    },
+    {
+      "id": "ko_018",
+      "lang": "ko",
+      "source_text": "사람들이 서로를 향해 흉기를 휘두르기 시작했다.",
+      "opus_en": "People began to wield their weapons at each other.",
+      "opus_ru": "Люди начали использовать свое оружие друг против друга.",
+      "latency_en_sec": 0.1239,
+      "latency_ru_sec": 0.1037,
+      "total_latency_sec": 0.2276
+    },
+    {
+      "id": "ko_019",
+      "lang": "ko",
+      "source_text": "살기 위해선 반드시 룰의 틈새를 찾아야 해.",
+      "opus_en": "In order to survive, we must find a gap in the rules.",
+      "opus_ru": "Чтобы выжить, мы должны найти пробел в правилах.",
+      "latency_en_sec": 0.1663,
+      "latency_ru_sec": 0.1535,
+      "total_latency_sec": 0.3198
+    },
+    {
+      "id": "ko_020",
+      "lang": "ko",
+      "source_text": "메뚜기 채집통! 소년의 손에 들려 있던 곤충 채집통을 떠올렸다.",
+      "opus_en": "Locust swarms! The insect hives that were held in the hands of the boy.",
+      "opus_ru": "Насекомые-улья, которые держались в руках мальчика.",
+      "latency_en_sec": 0.2321,
+      "latency_ru_sec": 0.1654,
+      "total_latency_sec": 0.3975
+    },
+    {
+      "id": "ko_021",
+      "lang": "ko",
+      "source_text": "\"꼬마야, 그 통 나한테 잠깐만 빌려줄래?\"",
+      "opus_en": "\"Hey, would you lend me that canister for a second?\"",
+      "opus_ru": "\"Эй, ты не одолжишь мне эту канистру на секунду?\"",
+      "latency_en_sec": 0.1792,
+      "latency_ru_sec": 0.2282,
+      "total_latency_sec": 0.4074
+    },
+    {
+      "id": "ko_022",
+      "lang": "ko",
+      "source_text": "[생명체(메뚜기)를 살해하셨습니다. 100코인을 획득했습니다.]",
+      "opus_en": "He killed a living creature. He acquired 100coins.",
+      "opus_ru": "Он убил живое существо и приобрел 100 коинов.",
+      "latency_en_sec": 0.1622,
+      "latency_ru_sec": 0.1529,
+      "total_latency_sec": 0.3151
+    },
+    {
+      "id": "ko_023",
+      "lang": "ko",
+      "source_text": "시나리오 클리어! 살아남은 사람은 우리 칸에서 단 세 명뿐이었다.",
+      "opus_en": "There were only three of us who survived.",
+      "opus_ru": "Только трое из нас выжили.",
+      "latency_en_sec": 0.1343,
+      "latency_ru_sec": 0.1762,
+      "total_latency_sec": 0.3105
+    },
+    {
+      "id": "ko_024",
+      "lang": "ko",
+      "source_text": "이 세계의 결말을 아는 사람은 오직 나 하나뿐이다.",
+      "opus_en": "I am the only one who knows the end of this world.",
+      "opus_ru": "Я единственный, кто знает конец этого мира.",
+      "latency_en_sec": 0.1922,
+      "latency_ru_sec": 0.1145,
+      "total_latency_sec": 0.3067
+    },
+    {
+      "id": "ko_025",
+      "lang": "ko",
+      "source_text": "나는 멸망 이후의 세계를 살아가는 유일한 독자다.",
+      "opus_en": "I am the only reader who lives in the post-destruct world.",
+      "opus_ru": "Я единственный читатель, который живет в мире после разрушения.",
+      "latency_en_sec": 0.1676,
+      "latency_ru_sec": 0.143,
+      "total_latency_sec": 0.3106
+    },
+    {
+      "id": "ko_026",
+      "lang": "ko",
+      "source_text": "거울을 볼 때마다 죽고 싶다는 생각밖에 안 든다.",
+      "opus_en": "Every time I look in the mirror, I feel like I want to die.",
+      "opus_ru": "Каждый раз, когда я смотрю в зеркало, я чувствую, что хочу умереть.",
+      "latency_en_sec": 0.2015,
+      "latency_ru_sec": 0.2163,
+      "total_latency_sec": 0.4178
+    },
+    {
+      "id": "ko_027",
+      "lang": "ko",
+      "source_text": "뚱뚱하고 못생겼다는 이유로 날마다 매를 맞아야 했다.",
+      "opus_en": "I had to be beaten every day for being fat and ugly.",
+      "opus_ru": "Меня каждый день били за то, что я толстый и уродливый.",
+      "latency_en_sec": 0.1809,
+      "latency_ru_sec": 0.2241,
+      "total_latency_sec": 0.405
+    },
+    {
+      "id": "ko_028",
+      "lang": "ko",
+      "source_text": "엄마, 나 서울로 전학 보내줘. 제발 부탁이야.",
+      "opus_en": "Mom, I need you to send me to Seoul, please.",
+      "opus_ru": "Мам, отправь меня в Сеул, пожалуйста.",
+      "latency_en_sec": 0.1551,
+      "latency_ru_sec": 0.2032,
+      "total_latency_sec": 0.3584
+    },
+    {
+      "id": "ko_029",
+      "lang": "ko",
+      "source_text": "자고 일어났더니… 내 앞에 또 다른 내가 누워있다?!",
+      "opus_en": "I woke up... and there was another me lying in front of me?",
+      "opus_ru": "Я проснулась... и передо мной лежала другая я?",
+      "latency_en_sec": 0.1985,
+      "latency_ru_sec": 0.1515,
+      "total_latency_sec": 0.35
+    },
+    {
+      "id": "ko_030",
+      "lang": "ko",
+      "source_text": "키 크고 잘생긴 완벽한 몸… 이게 진짜 내 몸이라고?!",
+      "opus_en": "A tall, handsome, perfect body. This is really my body?",
+      "opus_ru": "Высокое, красивое, идеальное тело.",
+      "latency_en_sec": 0.191,
+      "latency_ru_sec": 0.1229,
+      "total_latency_sec": 0.3139
+    },
+    {
+      "id": "ko_031",
+      "lang": "ko",
+      "source_text": "한쪽 몸이 잠들면 다른 쪽 몸으로 의식이 옮겨가는 기묘한 2중 생활.",
+      "opus_en": "When one body goes to sleep, the other goes to the other, and the other is an odd double life.",
+      "opus_ru": "Когда одно тело засыпает, другое идет к другому, а другое — странная двойная жизнь.",
+      "latency_en_sec": 0.2779,
+      "latency_ru_sec": 0.2384,
+      "total_latency_sec": 0.5163
+    },
+    {
+      "id": "ko_032",
+      "lang": "ko",
+      "source_text": "길을 걷는 것뿐인데 사람들의 시선이 전부 나에게 쏟아진다.",
+      "opus_en": "I'm just walking down the street, and everyone's eyes are all falling on me.",
+      "opus_ru": "Я просто иду по улице, и все глаза падают на меня.",
+      "latency_en_sec": 0.2421,
+      "latency_ru_sec": 0.1651,
+      "total_latency_sec": 0.4072
+    },
+    {
+      "id": "ko_033",
+      "lang": "ko",
+      "source_text": "세상이 이렇게 친절한 곳이었나? 외모 하나 바뀌었을 뿐인데.",
+      "opus_en": "Was the world such a friendly place? It's just a change of appearance.",
+      "opus_ru": "Мир был таким дружелюбным местом?",
+      "latency_en_sec": 0.1989,
+      "latency_ru_sec": 0.2058,
+      "total_latency_sec": 0.4046
+    },
+    {
+      "id": "ko_034",
+      "lang": "ko",
+      "source_text": "\"야, 전학생! 너 복싱 좀 배웠냐? 자세가 장난 아닌데?\"",
+      "opus_en": "\"Hey, new student! Did you learn to box?",
+      "opus_ru": "\"Эй, новичок, ты научился боксировать?",
+      "latency_en_sec": 0.1434,
+      "latency_ru_sec": 0.1775,
+      "total_latency_sec": 0.3209
+    },
+    {
+      "id": "ko_035",
+      "lang": "ko",
+      "source_text": "아니요, 저 싸움 같은 거 한 번도 안 해봤는데요…!",
+      "opus_en": "No, I've never had a fight or anything.",
+      "opus_ru": "Нет, я никогда не дрался.",
+      "latency_en_sec": 0.1486,
+      "latency_ru_sec": 0.1051,
+      "total_latency_sec": 0.2537
+    },
+    {
+      "id": "ko_036",
+      "lang": "ko",
+      "source_text": "위협적인 펀치가 슬로우 모션처럼 느리게 보인다.",
+      "opus_en": "The threatening punch looks like a slow motion.",
+      "opus_ru": "Угрожающий удар выглядит как медленное движение.",
+      "latency_en_sec": 0.1341,
+      "latency_ru_sec": 0.1355,
+      "total_latency_sec": 0.2696
+    },
+    {
+      "id": "ko_037",
+      "lang": "ko",
+      "source_text": "가볍게 피하고 내지른 주먹 한 방에 일진 짱이 쓰러졌다.",
+      "opus_en": "I lost my full strength in one of my fists, avoiding lightly.",
+      "opus_ru": "Я потерял всю свою силу в одном из моих кулаков, избегая легкого.",
+      "latency_en_sec": 0.1867,
+      "latency_ru_sec": 0.2169,
+      "total_latency_sec": 0.4036
+    },
+    {
+      "id": "ko_038",
+      "lang": "ko",
+      "source_text": "\"말도 안 돼… 바스코마저 저 녀석을 경계하고 있어!\"",
+      "opus_en": "\"You can't even... you're also watching out for him!\"",
+      "opus_ru": "\"Ты даже не можешь... ты тоже присматриваешь за ним!\"",
+      "latency_en_sec": 0.199,
+      "latency_ru_sec": 0.219,
+      "total_latency_sec": 0.418
+    },
+    {
+      "id": "ko_039",
+      "lang": "ko",
+      "source_text": "배후성 선택의 시간입니다. 당신을 후원할 성좌를 고르세요.",
+      "opus_en": "That's the time of the choice. Select an constellation to support you.",
+      "opus_ru": "Это время выбора. Выберите созвездие, чтобы поддержать вас.",
+      "latency_en_sec": 0.1986,
+      "latency_ru_sec": 0.1622,
+      "total_latency_sec": 0.3609
+    },
+    {
+      "id": "ko_040",
+      "lang": "ko",
+      "source_text": "[성좌, '심연의 흑염룡'이 당신의 대담함에 흥미를 보입니다.]",
+      "opus_en": "[State, \"The Black Dragon of the Deep\" seems interested in your boldness.]",
+      "opus_ru": "[Государство, \"Чёрный Дракон глубины\" кажется заинтересованным в вашей смелости.]",
+      "latency_en_sec": 0.2428,
+      "latency_ru_sec": 0.2751,
+      "total_latency_sec": 0.518
+    },
+    {
+      "id": "ko_041",
+      "lang": "ko",
+      "source_text": "[성좌, '은밀한 모략가'가 당신의 선택을 관망합니다.]",
+      "opus_en": "[State, 'secret counseller' awaits your choice.]",
+      "opus_ru": "[Государство, \"секретный советник\" ждет вашего выбора.]",
+      "latency_en_sec": 0.188,
+      "latency_ru_sec": 0.1922,
+      "total_latency_sec": 0.3802
+    },
+    {
+      "id": "ko_042",
+      "lang": "ko",
+      "source_text": "나는 어떤 성좌의 후원도 받지 않기로 결정했다.",
+      "opus_en": "I decided not to accept the patronage of any constellations.",
+      "opus_ru": "Я решил не принимать покровительство созвездий.",
+      "latency_en_sec": 0.1543,
+      "latency_ru_sec": 0.1707,
+      "total_latency_sec": 0.325
+    },
+    {
+      "id": "ko_043",
+      "lang": "ko",
+      "source_text": "\"선택을 보류하겠습니다.\"",
+      "opus_en": "\"I'm going to hold back the choice.\"",
+      "opus_ru": "\"Я собираюсь сдержать выбор.\"",
+      "latency_en_sec": 0.1322,
+      "latency_ru_sec": 0.1032,
+      "total_latency_sec": 0.2354
+    },
+    {
+      "id": "ko_044",
+      "lang": "ko",
+      "source_text": "[모든 성좌들이 당신의 오만함에 경악을 금치 못합니다!]",
+      "opus_en": "[All the constellations are amazed at your arrogance!]",
+      "opus_ru": "[Все созвездия поражены твоим высокомерием!]",
+      "latency_en_sec": 0.1428,
+      "latency_ru_sec": 0.1775,
+      "total_latency_sec": 0.3203
+    },
+    {
+      "id": "ko_045",
+      "lang": "ko",
+      "source_text": "앞으로 닥쳐올 시나리오를 헤쳐나가려면 주인공 유중혁을 만나야 한다.",
+      "opus_en": "In order to survive the future scenario, we need to meet the main character.",
+      "opus_ru": "Чтобы выжить в будущем, мы должны соответствовать главному характеру.",
+      "latency_en_sec": 0.2541,
+      "latency_ru_sec": 0.1532,
+      "total_latency_sec": 0.4073
+    },
+    {
+      "id": "ko_046",
+      "lang": "ko",
+      "source_text": "하지만 그 녀석은 3회차 회귀자… 성격이 완전히 파탄 나 있을 텐데.",
+      "opus_en": "But he's a third-partner, and he's gonna have a complete breakdown in his personality.",
+      "opus_ru": "Но он третий напарник, и у него будет полный срыв личности.",
+      "latency_en_sec": 0.2637,
+      "latency_ru_sec": 0.2044,
+      "total_latency_sec": 0.468
+    },
+    {
+      "id": "ko_047",
+      "lang": "ko",
+      "source_text": "\"너는 누구지? 내 회귀 정보를 어떻게 알고 있는 거냐?\"",
+      "opus_en": "\"Who are you? How do you know about my return information?\"",
+      "opus_ru": "\"Кто вы? Откуда вы знаете о моем возвращении?\"",
+      "latency_en_sec": 0.176,
+      "latency_ru_sec": 0.1535,
+      "total_latency_sec": 0.3296
+    },
+    {
+      "id": "ko_048",
+      "lang": "ko",
+      "source_text": "목덜미를 틀어쥐는 손아귀 힘이 장난이 아니다.",
+      "opus_en": "The grip force in the back of the neck is no joke.",
+      "opus_ru": "Сила сцепления в затылке - это не шутка.",
+      "latency_en_sec": 0.1649,
+      "latency_ru_sec": 0.1519,
+      "total_latency_sec": 0.3168
+    },
+    {
+      "id": "ko_049",
+      "lang": "ko",
+      "source_text": "\"유중혁, 날 죽이면 너는 절대로 이 시나리오를 깰 수 없어.\"",
+      "opus_en": "\"You kill me, you're never going to break this scenario.\"",
+      "opus_ru": "\"Ты убьешь меня, ты никогда не сломаешь этот сценарий.\"",
+      "latency_en_sec": 0.1765,
+      "latency_ru_sec": 0.2144,
+      "total_latency_sec": 0.3909
+    },
+    {
+      "id": "ko_050",
+      "lang": "ko",
+      "source_text": "업무 시간 외에 따로 연락하시는 건 자제해 주셨으면 합니다.",
+      "opus_en": "I'd like you to keep your distance from your work schedule.",
+      "opus_ru": "Я бы хотел, чтобы вы держались подальше от своего рабочего графика.",
+      "latency_en_sec": 0.2763,
+      "latency_ru_sec": 0.1719,
+      "total_latency_sec": 0.4482
+    },
+    {
+      "id": "ko_051",
+      "lang": "ko",
+      "source_text": "네가 감히 날 협박해? 본사 감사팀에 찌르면 너만 다쳐!",
+      "opus_en": "How dare you threaten me?",
+      "opus_ru": "Как ты смеешь угрожать мне?",
+      "latency_en_sec": 0.2519,
+      "latency_ru_sec": 0.0927,
+      "total_latency_sec": 0.3447
+    },
+    {
+      "id": "ko_052",
+      "lang": "ko",
+      "source_text": "어디 한번 해보세요. 녹취 파일이 누구한테 더 치명적일지.",
+      "opus_en": "Let's see if it's more lethal to whom.",
+      "opus_ru": "Давай посмотрим, будет ли это более смертельным для кого.",
+      "latency_en_sec": 0.1555,
+      "latency_ru_sec": 0.1706,
+      "total_latency_sec": 0.3262
+    },
+    {
+      "id": "ko_053",
+      "lang": "ko",
+      "source_text": "커피 한잔 사 올 테니까 여기서 잠깐 기다려요.",
+      "opus_en": "I'll get you a cup of coffee, so just wait here.",
+      "opus_ru": "Я принесу тебе кофе, так что подожди здесь.",
+      "latency_en_sec": 0.2064,
+      "latency_ru_sec": 0.2018,
+      "total_latency_sec": 0.4083
+    },
+    {
+      "id": "ko_054",
+      "lang": "ko",
+      "source_text": "갑자기 태도가 이렇게 바뀌니 오히려 더 무섭네.",
+      "opus_en": "All of a sudden, your attitude changes like this, and it's even scarier.",
+      "opus_ru": "Внезапно твое отношение меняется вот так, и это еще страшнее.",
+      "latency_en_sec": 0.2194,
+      "latency_ru_sec": 0.205,
+      "total_latency_sec": 0.4244
+    },
+    {
+      "id": "ko_055",
+      "lang": "ko",
+      "source_text": "보컬 트레이닝 수업에 참가하러 엔터테인먼트 사옥에 들어섰다.",
+      "opus_en": "I entered the entertainment box to attend the vocal training class.",
+      "opus_ru": "Я вошёл в шкатулку для развлечений, чтобы посетить класс вокалистской подготовки.",
+      "latency_en_sec": 0.1551,
+      "latency_ru_sec": 0.2424,
+      "total_latency_sec": 0.3975
+    },
+    {
+      "id": "ko_056",
+      "lang": "ko",
+      "source_text": "\"와, 쟤 피지컬 좀 봐… 모델 지망생인가?\"",
+      "opus_en": "\"Wow, look at his pickle... is he a model candidate?\"",
+      "opus_ru": "\"Вау, посмотри на его огурчик... он модельный кандидат?\"",
+      "latency_en_sec": 0.1761,
+      "latency_ru_sec": 0.2345,
+      "total_latency_sec": 0.4106
+    },
+    {
+      "id": "ko_057",
+      "lang": "ko",
+      "source_text": "사람들의 칭찬이 아직도 어색하고 낯설기만 하다.",
+      "opus_en": "People's compliments are still awkward and strange.",
+      "opus_ru": "Человеческие комплименты все еще неловкие и странные.",
+      "latency_en_sec": 0.1331,
+      "latency_ru_sec": 0.2026,
+      "total_latency_sec": 0.3357
+    },
+    {
+      "id": "ko_058",
+      "lang": "ko",
+      "source_text": "원래 내 몸으로 돌아왔을 땐 편의점 야간 알바를 뛰어야 한다.",
+      "opus_en": "When I come back to my body, I have to run night bars.",
+      "opus_ru": "Когда я вернусь в свое тело, мне придется запустить ночные бары.",
+      "latency_en_sec": 0.2195,
+      "latency_ru_sec": 0.2075,
+      "total_latency_sec": 0.427
+    },
+    {
+      "id": "ko_059",
+      "lang": "ko",
+      "source_text": "손님, 계산 도와드리겠습니다. 도시락 데워드릴까요?",
+      "opus_en": "Sir, I'll help you with the check. Can I get you some heat in the lunch box?",
+      "opus_ru": "Сэр, я помогу вам с чеком.",
+      "latency_en_sec": 0.2661,
+      "latency_ru_sec": 0.2352,
+      "total_latency_sec": 0.5013
+    },
+    {
+      "id": "ko_060",
+      "lang": "ko",
+      "source_text": "똑같은 나인데, 대하는 태도가 이렇게 극과 극이라니.",
+      "opus_en": "It's the same age, and it's the same attitude.",
+      "opus_ru": "Это тот же возраст, и это то же самое отношение.",
+      "latency_en_sec": 0.2856,
+      "latency_ru_sec": 0.1408,
+      "total_latency_sec": 0.4264
+    },
+    {
+      "id": "ko_061",
+      "lang": "ko",
+      "source_text": "옥호교 다리 위에서 성운 구원자들과의 격전이 벌어졌다.",
+      "opus_en": "On the bridge of the Oko Bridge, a battle has taken place with the Nebula Saviors.",
+      "opus_ru": "На мосту моста Око произошла битва со Спасителями туманности.",
+      "latency_en_sec": 0.2425,
+      "latency_ru_sec": 0.1927,
+      "total_latency_sec": 0.4353
+    },
+    {
+      "id": "ko_062",
+      "lang": "ko",
+      "source_text": "어이, 김독자! 등 뒤를 조심해라!",
+      "opus_en": "Hey, Kim, watch your back!",
+      "opus_ru": "Эй, Ким, осторожно!",
+      "latency_en_sec": 0.1,
+      "latency_ru_sec": 0.1126,
+      "total_latency_sec": 0.2126
+    },
+    {
+      "id": "ko_063",
+      "lang": "ko",
+      "source_text": "[전용 스킬 '백청강기'를 발동합니다.]",
+      "opus_en": "[English only:]",
+      "opus_ru": "[Только на английском языке:]",
+      "latency_en_sec": 0.1653,
+      "latency_ru_sec": 0.1021,
+      "total_latency_sec": 0.2674
+    },
+    {
+      "id": "ko_064",
+      "lang": "ko",
+      "source_text": "어둠 속에서 강철검이 푸른 섬광을 내뿜으며 몬스터를 베어 넘겼다.",
+      "opus_en": "In the dark, the iron sword blew a blue flash and cut down the monster.",
+      "opus_ru": "В темноте железный меч взорвал синюю вспышку и срубил монстра.",
+      "latency_en_sec": 0.2105,
+      "latency_ru_sec": 0.2551,
+      "total_latency_sec": 0.4656
+    },
+    {
+      "id": "ko_065",
+      "lang": "ko",
+      "source_text": "우리는 끝까지 함께 살아남아서 이 빌어먹을 엔딩을 바꾼다.",
+      "opus_en": "We survive together until the end, and we change this damn ending.",
+      "opus_ru": "Мы выживем вместе до конца, и изменим этот чертов конец.",
+      "latency_en_sec": 0.1982,
+      "latency_ru_sec": 0.1909,
+      "total_latency_sec": 0.3891
+    },
+    {
+      "id": "ko_066",
+      "lang": "ko",
+      "source_text": "내일 기획안 발표회 때 절대 실수하지 마라. 알겠지?",
+      "opus_en": "Don't make a mistake at the final meeting tomorrow, okay?",
+      "opus_ru": "Не ошибайся на завтрашнем последнем собрании, ладно?",
+      "latency_en_sec": 0.1764,
+      "latency_ru_sec": 0.191,
+      "total_latency_sec": 0.3674
+    },
+    {
+      "id": "ko_067",
+      "lang": "ko",
+      "source_text": "걱정 마십시오. 완벽하게 준비해 두었습니다.",
+      "opus_en": "Don't worry. It's perfectly ready.",
+      "opus_ru": "Не волнуйся, он полностью готов.",
+      "latency_en_sec": 0.1577,
+      "latency_ru_sec": 0.1139,
+      "total_latency_sec": 0.2717
+    },
+    {
+      "id": "zh_001",
+      "lang": "zh",
+      "source_text": "我竟然重生回到了十三岁的时候？！",
+      "opus_en": "I was born back when I was 13!",
+      "opus_ru": "Я родилась, когда мне было 13!",
+      "latency_en_sec": 0.3231,
+      "latency_ru_sec": 0.1359,
+      "total_latency_sec": 0.459
+    },
+    {
+      "id": "zh_002",
+      "lang": "zh",
+      "source_text": "圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！",
+      "opus_en": "The Emperor, the Father... the blood of the last life shall be repaid 100 times.",
+      "opus_ru": "Император, Отец... Кровь последней жизни будет возвращена 100 раз.",
+      "latency_en_sec": 0.2775,
+      "latency_ru_sec": 0.2327,
+      "total_latency_sec": 0.5102
+    },
+    {
+      "id": "zh_003",
+      "lang": "zh",
+      "source_text": "聂离！课堂之上，你竟敢公然睡觉，成何体统！",
+      "opus_en": "Nirvana! How dare you sleep openly in the classroom!",
+      "opus_ru": "Как ты смеешь спать открыто в классе!",
+      "latency_en_sec": 0.1759,
+      "latency_ru_sec": 0.1781,
+      "total_latency_sec": 0.354
+    },
+    {
+      "id": "zh_004",
+      "lang": "zh",
+      "source_text": "沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。",
+      "opus_en": "Master Shen Xiu, your demon theory is so flawed that it's just a waste of time.",
+      "opus_ru": "Мастер Шэнь Сю, ваша теория демонов настолько порочна, что это пустая трата времени.",
+      "latency_en_sec": 0.2695,
+      "latency_ru_sec": 0.2734,
+      "total_latency_sec": 0.5428
+    },
+    {
+      "id": "zh_005",
+      "lang": "zh",
+      "source_text": "放肆！区区红曜灵魂海的废物，也敢质疑本导师？",
+      "opus_en": "How dare you question my mentor?",
+      "opus_ru": "Как ты смеешь допрашивать моего наставника?",
+      "latency_en_sec": 0.0915,
+      "latency_ru_sec": 0.1462,
+      "total_latency_sec": 0.2377
+    },
+    {
+      "id": "zh_006",
+      "lang": "zh",
+      "source_text": "两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！",
+      "opus_en": "Two months later, if I reach the Bronze Star, you will resign as a mentor!",
+      "opus_ru": "Два месяца спустя, если я доберусь до Бронзовой Звезды, ты уйдешь в отставку как наставник!",
+      "latency_en_sec": 0.2652,
+      "latency_ru_sec": 0.34,
+      "total_latency_sec": 0.6052
+    },
+    {
+      "id": "zh_007",
+      "lang": "zh",
+      "source_text": "好！若是你做不到，就从圣兰学院彻底滚出去！",
+      "opus_en": "All right, if you can't do it, get the hell out of St. Lang!",
+      "opus_ru": "Ладно, если не можешь, убирайся из Сент-Ланга!",
+      "latency_en_sec": 0.2501,
+      "latency_ru_sec": 0.2428,
+      "total_latency_sec": 0.4929
+    },
+    {
+      "id": "zh_008",
+      "lang": "zh",
+      "source_text": "陆飘、杜泽，放学后跟我去一趟古兰城遗迹。",
+      "opus_en": "Land, Douzi, come with me after school to the Monuments of the City of Guland.",
+      "opus_ru": "Земля, Дузи, пойдем со мной после школы на памятники города Гуланд.",
+      "latency_en_sec": 0.2686,
+      "latency_ru_sec": 0.247,
+      "total_latency_sec": 0.5156
+    },
+    {
+      "id": "zh_009",
+      "lang": "zh",
+      "source_text": "聂离，你疯了吗？那里到处都是凶残的妖兽！",
+      "opus_en": "Nee-Yeong, are you crazy? There are evil monsters everywhere!",
+      "opus_ru": "Ни Ён, ты с ума сошел?",
+      "latency_en_sec": 0.2612,
+      "latency_ru_sec": 0.1391,
+      "total_latency_sec": 0.4003
+    },
+    {
+      "id": "zh_010",
+      "lang": "zh",
+      "source_text": "相信我，兄弟之间有福同享，我绝不会害你们。",
+      "opus_en": "Believe me, my brothers are blessed, and I will never harm you.",
+      "opus_ru": "Поверь мне, мои братья благословлены, и я никогда не причиню тебе вреда.",
+      "latency_en_sec": 0.1828,
+      "latency_ru_sec": 0.218,
+      "total_latency_sec": 0.4007
+    },
+    {
+      "id": "zh_011",
+      "lang": "zh",
+      "source_text": "斗之力，三段！级别：低级！",
+      "opus_en": "Strength, three! Level: low!",
+      "opus_ru": "Сила, три!",
+      "latency_en_sec": 0.1366,
+      "latency_ru_sec": 0.0848,
+      "total_latency_sec": 0.2214
+    },
+    {
+      "id": "zh_012",
+      "lang": "zh",
+      "source_text": "测验魔石碑之上，闪亮得甚至有些刺眼的五个大字，再次无情刺痛着少年。",
+      "opus_en": "On the stone of the test, there were five big words that were even sharp, and the youth was sore once again.",
+      "opus_ru": "На камне теста было пять громких слов, которые были даже острыми, и молодежь снова болела.",
+      "latency_en_sec": 0.3411,
+      "latency_ru_sec": 0.2818,
+      "total_latency_sec": 0.6229
+    },
+    {
+      "id": "zh_013",
+      "lang": "zh",
+      "source_text": "哈哈，曾经的天才如今沦落为家族第一废物，真是大快人心！",
+      "opus_en": "Ha-ha. It's a great pleasure that the genius of the past has now become the family's first loser!",
+      "opus_ru": "Очень приятно, что гений прошлого стал первым неудачником семьи!",
+      "latency_en_sec": 0.3004,
+      "latency_ru_sec": 0.1662,
+      "total_latency_sec": 0.4667
+    },
+    {
+      "id": "zh_014",
+      "lang": "zh",
+      "source_text": "萧炎哥哥，我相信你一定会重新站起来的。",
+      "opus_en": "Brother Xiao Yan, I'm sure you'll get back on your feet.",
+      "opus_ru": "Брат Сяо Ян, я уверен, ты встанешь на ноги.",
+      "latency_en_sec": 0.2258,
+      "latency_ru_sec": 0.2095,
+      "total_latency_sec": 0.4353
+    },
+    {
+      "id": "zh_015",
+      "lang": "zh",
+      "source_text": "谢谢你，薰儿。无论别人怎么看，我都绝不会放弃。",
+      "opus_en": "Thank you, Moe. I'll never give up, no matter what anyone else thinks.",
+      "opus_ru": "Спасибо, Мо, я никогда не сдамся, независимо от того, что подумают другие.",
+      "latency_en_sec": 0.2494,
+      "latency_ru_sec": 0.2293,
+      "total_latency_sec": 0.4787
+    },
+    {
+      "id": "zh_016",
+      "lang": "zh",
+      "source_text": "云岚宗纳兰嫣然今日前来，只为一件事情——退婚！",
+      "opus_en": "And there came not unto him this day except for one thing: the divorce.",
+      "opus_ru": "Сегодня к нему приходило только одно: развод.",
+      "latency_en_sec": 0.217,
+      "latency_ru_sec": 0.1278,
+      "total_latency_sec": 0.3448
+    },
+    {
+      "id": "zh_017",
+      "lang": "zh",
+      "source_text": "纳兰小姐，你如此行事，未免欺人太甚！",
+      "opus_en": "Miss Nanlan, you've done so much wrong!",
+      "opus_ru": "Мисс Нанлан, вы сделали так много плохого!",
+      "latency_en_sec": 0.1837,
+      "latency_ru_sec": 0.1342,
+      "total_latency_sec": 0.3179
+    },
+    {
+      "id": "zh_018",
+      "lang": "zh",
+      "source_text": "三十年河东，三十年河西，莫欺少年穷！",
+      "opus_en": "30 years, 30 years, 30 years. Don't fool a teenager!",
+      "opus_ru": "30 лет, 30 лет, 30 лет.",
+      "latency_en_sec": 0.2326,
+      "latency_ru_sec": 0.1772,
+      "total_latency_sec": 0.4098
+    },
+    {
+      "id": "zh_019",
+      "lang": "zh",
+      "source_text": "三年之后，我萧炎必上云岚宗，亲自领教纳兰小姐的高招！",
+      "opus_en": "Three years from now, I'll be in the clouds and I'll be able to teach Miss Nanlan herself how to do it!",
+      "opus_ru": "Через три года я буду в облаках и смогу научить мисс Нэнлан, как это делать!",
+      "latency_en_sec": 0.3497,
+      "latency_ru_sec": 0.2781,
+      "total_latency_sec": 0.6277
+    },
+    {
+      "id": "zh_020",
+      "lang": "zh",
+      "source_text": "嘿嘿，小娃娃，吸了你三年的斗气，总算是把老夫给唤醒了。",
+      "opus_en": "Hey, doll, you've been up for three years, and you've woken my husband up.",
+      "opus_ru": "Эй, куколка, ты проснулась три года, и разбудила моего мужа.",
+      "latency_en_sec": 0.2671,
+      "latency_ru_sec": 0.261,
+      "total_latency_sec": 0.528
+    },
+    {
+      "id": "zh_021",
+      "lang": "zh",
+      "source_text": "谁？！是谁在戒指里说话？！快给我滚出来！",
+      "opus_en": "Who? Who's talking in the ring? Get the fuck out of here!",
+      "opus_ru": "Кто говорит на ринге?",
+      "latency_en_sec": 0.202,
+      "latency_ru_sec": 0.1521,
+      "total_latency_sec": 0.3542
+    },
+    {
+      "id": "zh_022",
+      "lang": "zh",
+      "source_text": "拜我为师，老夫保你在一年之内突破斗者，如何？",
+      "opus_en": "I'll be your teacher. I'll keep you out of the fight in a year, okay?",
+      "opus_ru": "Я буду твоим учителем, я буду держать тебя подальше от драки через год, хорошо?",
+      "latency_en_sec": 0.2644,
+      "latency_ru_sec": 0.2778,
+      "total_latency_sec": 0.5422
+    },
+    {
+      "id": "zh_023",
+      "lang": "zh",
+      "source_text": "炼药师？难道您是一位高贵的炼药大师？！",
+      "opus_en": "A porcelain? Are you a noble porcelain?",
+      "opus_ru": "Ты благородный фарфор?",
+      "latency_en_sec": 0.198,
+      "latency_ru_sec": 0.1285,
+      "total_latency_sec": 0.3265
+    },
+    {
+      "id": "zh_024",
+      "lang": "zh",
+      "source_text": "偷学唐门内门绝学，乃是死罪！你可知罪？",
+      "opus_en": "It's a sin to steal from Tangmeni. Do you know it?",
+      "opus_ru": "Грешно воровать у Тангмени.",
+      "latency_en_sec": 0.2224,
+      "latency_ru_sec": 0.1283,
+      "total_latency_sec": 0.3507
+    },
+    {
+      "id": "zh_025",
+      "lang": "zh",
+      "source_text": "唐三从未将唐门暗器外传分毫，今日以死明志，跳崖谢罪！",
+      "opus_en": "Don San has never passed out the Tangmen's secret weapon. Today, he's guilty of jumping off a cliff!",
+      "opus_ru": "Дон Сан никогда не вырубал секретное оружие Тангменов.",
+      "latency_en_sec": 0.3282,
+      "latency_ru_sec": 0.2171,
+      "total_latency_sec": 0.5453
+    },
+    {
+      "id": "zh_026",
+      "lang": "zh",
+      "source_text": "鬼见愁深不见底，赤条条来，赤条条去！",
+      "opus_en": "I don't know what the hell I'm talking about. Come on, come on, come on, come on, come on!",
+      "opus_ru": "Я не знаю, о чём, черт возьми, я говорю.",
+      "latency_en_sec": 0.337,
+      "latency_ru_sec": 0.1748,
+      "total_latency_sec": 0.5118
+    },
+    {
+      "id": "zh_027",
+      "lang": "zh",
+      "source_text": "斗罗大陆，圣魂村。武魂觉醒仪式正式开始。",
+      "opus_en": "Toro Continent, Holy Village. The Warfare Awakening Ceremony begins.",
+      "opus_ru": "Торо континент, Святая деревня, начинается церемония пробуждения войны.",
+      "latency_en_sec": 0.2751,
+      "latency_ru_sec": 0.2149,
+      "total_latency_sec": 0.4899
+    },
+    {
+      "id": "zh_028",
+      "lang": "zh",
+      "source_text": "武魂：蓝银草，公认的标准废武魂。",
+      "opus_en": "Warm spirits: Blue silver weeds, the recognized standards of the waste spirits.",
+      "opus_ru": "Теплые духи: голубые серебряные сорняки, признанные стандарты духов отходов.",
+      "latency_en_sec": 0.2374,
+      "latency_ru_sec": 0.2934,
+      "total_latency_sec": 0.5309
+    },
+    {
+      "id": "zh_029",
+      "lang": "zh",
+      "source_text": "天啊！这颗水晶球的光芒怎么会如此耀眼？！",
+      "opus_en": "Oh, my God! How could this crystal ball be so glamorous?",
+      "opus_ru": "Боже, как этот хрустальный шар может быть таким гламурным?",
+      "latency_en_sec": 0.1992,
+      "latency_ru_sec": 0.2134,
+      "total_latency_sec": 0.4126
+    },
+    {
+      "id": "zh_030",
+      "lang": "zh",
+      "source_text": "竟然是…先天满魂力！废武魂配满魂力，这怎么可能？！",
+      "opus_en": "I can't believe it!",
+      "opus_ru": "Я не могу в это поверить!",
+      "latency_en_sec": 0.1595,
+      "latency_ru_sec": 0.0916,
+      "total_latency_sec": 0.2511
+    },
+    {
+      "id": "zh_031",
+      "lang": "zh",
+      "source_text": "左手之中，似乎还有另一个锤子形状的武魂在隐隐躁动。",
+      "opus_en": "In the left hand, there seems to be another hammer-shaped war spirit moving.",
+      "opus_ru": "В левой руке, кажется, двигается еще один боевой дух в форме молотка.",
+      "latency_en_sec": 0.2307,
+      "latency_ru_sec": 0.2654,
+      "total_latency_sec": 0.4961
+    },
+    {
+      "id": "zh_032",
+      "lang": "zh",
+      "source_text": "爸爸，我的另一个武魂是什么？",
+      "opus_en": "Dad, what's my other kung fu spirit?",
+      "opus_ru": "Папа, какой у меня еще дух кунг-фу?",
+      "latency_en_sec": 0.1319,
+      "latency_ru_sec": 0.144,
+      "total_latency_sec": 0.2759
+    },
+    {
+      "id": "zh_033",
+      "lang": "zh",
+      "source_text": "昊天锤…在没有足够实力之前，千万不要向任何人展示它！",
+      "opus_en": "The Hammer... don't show it to anyone until it's strong enough!",
+      "opus_ru": "Хаммер... не показывай его никому, пока он не станет достаточно сильным!",
+      "latency_en_sec": 0.2316,
+      "latency_ru_sec": 0.1991,
+      "total_latency_sec": 0.4307
+    },
+    {
+      "id": "zh_034",
+      "lang": "zh",
+      "source_text": "紫岚草配合赤焰果汁，能够极大地淬炼肉身骨骼。",
+      "opus_en": "Purple herbs, coupled with the pyrotechnic juice, can greatly smelt the bones of the body.",
+      "opus_ru": "Пурпурные травы в сочетании с пиротехническим сок могут сильно пахнуть костями тела.",
+      "latency_en_sec": 0.3182,
+      "latency_ru_sec": 0.245,
+      "total_latency_sec": 0.5632
+    },
+    {
+      "id": "zh_035",
+      "lang": "zh",
+      "source_text": "这是失传已久的九转星辰诀！修炼速度是以往的十倍不止！",
+      "opus_en": "It's a long-lost nine-star machine! It's ten times as fast as it used to be!",
+      "opus_ru": "Давно потерянная 9-звездочная машина! В десять раз быстрее, чем раньше!",
+      "latency_en_sec": 0.2979,
+      "latency_ru_sec": 0.2496,
+      "total_latency_sec": 0.5475
+    },
+    {
+      "id": "zh_036",
+      "lang": "zh",
+      "source_text": "肖凝儿的寒毒…我有办法根治。",
+      "opus_en": "Shaggin' cold... I've got a cure for it.",
+      "opus_ru": "У меня есть лекарство от холода.",
+      "latency_en_sec": 0.2123,
+      "latency_ru_sec": 0.1153,
+      "total_latency_sec": 0.3276
+    },
+    {
+      "id": "zh_037",
+      "lang": "zh",
+      "source_text": "你真的能替我解除家族遗传的经脉寒症？",
+      "opus_en": "Are you sure you can help me get rid of my family-genetic typhoid disease?",
+      "opus_ru": "Ты уверена, что сможешь помочь мне избавиться от моей семейной и генетической болезни тифа?",
+      "latency_en_sec": 0.2574,
+      "latency_ru_sec": 0.2816,
+      "total_latency_sec": 0.5391
+    },
+    {
+      "id": "zh_038",
+      "lang": "zh",
+      "source_text": "盘膝坐好，调匀呼吸，可能会有些灼热感，忍耐一下。",
+      "opus_en": "Sit on your knees and breathe. You may feel a little warm and bear with it.",
+      "opus_ru": "Сядь на колени и дыши.",
+      "latency_en_sec": 0.3099,
+      "latency_ru_sec": 0.371,
+      "total_latency_sec": 0.6809
+    },
+    {
+      "id": "zh_039",
+      "lang": "zh",
+      "source_text": "体内的寒气…竟然真的在消散！聂离，谢谢你！",
+      "opus_en": "The cold inside... is really dissipating! Thank you!",
+      "opus_ru": "Холод внутри... действительно рассеивается!",
+      "latency_en_sec": 0.2186,
+      "latency_ru_sec": 0.098,
+      "total_latency_sec": 0.3166
+    },
+    {
+      "id": "zh_040",
+      "lang": "zh",
+      "source_text": "药老，这筑基灵液真的有那么神效吗？",
+      "opus_en": "Old meds. Is that really that good?",
+      "opus_ru": "Старые лекарства.",
+      "latency_en_sec": 0.1837,
+      "latency_ru_sec": 0.1189,
+      "total_latency_sec": 0.3026
+    },
+    {
+      "id": "zh_041",
+      "lang": "zh",
+      "source_text": "跳进木桶里去，运转功法，不要浪费半点药力。",
+      "opus_en": "Jump into the bucket, do your homework, and don't waste a little more.",
+      "opus_ru": "Прыгай в ведро, делай домашнее задание, и не трать больше.",
+      "latency_en_sec": 0.2748,
+      "latency_ru_sec": 0.2528,
+      "total_latency_sec": 0.5276
+    },
+    {
+      "id": "zh_042",
+      "lang": "zh",
+      "source_text": "好霸道的药力！经脉仿佛都要被撕裂开来了！",
+      "opus_en": "It's like the artery's about to be torn apart!",
+      "opus_ru": "Как будто артерию вот-вот разорвут!",
+      "latency_en_sec": 0.1887,
+      "latency_ru_sec": 0.183,
+      "total_latency_sec": 0.3717
+    },
+    {
+      "id": "zh_043",
+      "lang": "zh",
+      "source_text": "米特尔拍卖场乃是加玛帝国最大的拍卖行，守卫森严。",
+      "opus_en": "The Mitel auction house is the largest auction house in the Gama Empire and is heavily guarded.",
+      "opus_ru": "Аукционный дом Мителя является крупнейшим аукционным домом в империи Гама и находится под усиленной охраной.",
+      "latency_en_sec": 0.252,
+      "latency_ru_sec": 0.287,
+      "total_latency_sec": 0.539
+    },
+    {
+      "id": "zh_044",
+      "lang": "zh",
+      "source_text": "这位大人，请问您是要拍卖丹药还是功法宝物？",
+      "opus_en": "Sir, would you be interested in auctioning the medicine or the art treasure?",
+      "opus_ru": "Сэр, не хотите ли вы выставить на аукцион лекарство или сокровище искусства?",
+      "latency_en_sec": 0.2458,
+      "latency_ru_sec": 0.1896,
+      "total_latency_sec": 0.4354
+    },
+    {
+      "id": "zh_045",
+      "lang": "zh",
+      "source_text": "二品丹药筑基灵液，拿去给你们的鉴宝大师过目吧。",
+      "opus_en": "Take it to your master of treasures.",
+      "opus_ru": "Отнеси это своему хозяину сокровищ.",
+      "latency_en_sec": 0.148,
+      "latency_ru_sec": 0.1052,
+      "total_latency_sec": 0.2532
+    },
+    {
+      "id": "zh_046",
+      "lang": "zh",
+      "source_text": "成色极佳！此等纯度的药液，唯有四品以上的大师方能炼制！",
+      "opus_en": "It's perfect! Only a master of four or more is able to refine this pure potion!",
+      "opus_ru": "Только мастер из четырёх и более способен очистить это чистое зелье!",
+      "latency_en_sec": 0.2504,
+      "latency_ru_sec": 0.2357,
+      "total_latency_sec": 0.4861
+    },
+    {
+      "id": "zh_047",
+      "lang": "zh",
+      "source_text": "没有废物的武魂，只有废物的魂师！",
+      "opus_en": "There's no waste spirits. There's only waste spirits!",
+      "opus_ru": "Здесь нет пустых духов, есть только пустые духи!",
+      "latency_en_sec": 0.1974,
+      "latency_ru_sec": 0.159,
+      "total_latency_sec": 0.3564
+    },
+    {
+      "id": "zh_048",
+      "lang": "zh",
+      "source_text": "大师，请收我为徒！我想真正了解武魂的奥秘！",
+      "opus_en": "Master, take me as a disciple! I want to know the secret of Wu-jin!",
+      "opus_ru": "Хозяин, возьмите меня в ученики, я хочу знать секрет Ву Чжина!",
+      "latency_en_sec": 0.3172,
+      "latency_ru_sec": 0.2334,
+      "total_latency_sec": 0.5505
+    },
+    {
+      "id": "zh_049",
+      "lang": "zh",
+      "source_text": "好孩子，一日为师，终身为父。起来吧。",
+      "opus_en": "Good boy, a teacher, a father for life. Get up.",
+      "opus_ru": "Хороший мальчик, учитель, отец на всю жизнь.",
+      "latency_en_sec": 0.2551,
+      "latency_ru_sec": 0.1664,
+      "total_latency_sec": 0.4215
+    },
+    {
+      "id": "zh_050",
+      "lang": "zh",
+      "source_text": "猎魂森林危机四伏，四百年曼陀罗蛇正朝我们扑过来了！",
+      "opus_en": "The spirit hunting forest is in danger, and the mandoro snakes are coming at us for 400 years!",
+      "opus_ru": "Лес охоты на духов в опасности, а змеи-мандоро приходят к нам 400 лет!",
+      "latency_en_sec": 0.3269,
+      "latency_ru_sec": 0.3036,
+      "total_latency_sec": 0.6305
+    },
+    {
+      "id": "zh_051",
+      "lang": "zh",
+      "source_text": "老师小心！看我的玄玉手和控鹤擒龙！",
+      "opus_en": "Watch out! Look at my hands and cranes!",
+      "opus_ru": "Осторожно, посмотрите на мои руки и краны!",
+      "latency_en_sec": 0.1794,
+      "latency_ru_sec": 0.1571,
+      "total_latency_sec": 0.3365
+    },
+    {
+      "id": "zh_052",
+      "lang": "zh",
+      "source_text": "第一魂环，吸收！一定要撑住精神震荡！",
+      "opus_en": "First circle. Absorption. Hold on to the shock.",
+      "opus_ru": "Первый круг, абсорбция, удар.",
+      "latency_en_sec": 0.1757,
+      "latency_ru_sec": 0.1353,
+      "total_latency_sec": 0.311
+    },
+    {
+      "id": "zh_053",
+      "lang": "zh",
+      "source_text": "年终测试开始！第一个测试力量测力石碑！",
+      "opus_en": "The year-end test begins! The first test of the force is the calculus stone!",
+      "opus_ru": "Начинается испытание на конец года.",
+      "latency_en_sec": 0.255,
+      "latency_ru_sec": 0.1979,
+      "total_latency_sec": 0.4529
+    },
+    {
+      "id": "zh_054",
+      "lang": "zh",
+      "source_text": "沈越，拳力五百磅，青铜二星！成绩优异！",
+      "opus_en": "Shen-goon, 500 pounds of punch, Bronze Two Star!",
+      "opus_ru": "Шен Гун, 500 фунтов пунша, Бронзовая Двойная Звезда!",
+      "latency_en_sec": 0.2192,
+      "latency_ru_sec": 0.2433,
+      "total_latency_sec": 0.4625
+    },
+    {
+      "id": "zh_055",
+      "lang": "zh",
+      "source_text": "轮到聂离了，这小子前两个月还只是个肉身孱弱的书生呢。",
+      "opus_en": "It's Nie's turn. This kid was just a weak student for the last two months.",
+      "opus_ru": "Этот парень был просто слабым студентом последние два месяца.",
+      "latency_en_sec": 0.3156,
+      "latency_ru_sec": 0.1456,
+      "total_latency_sec": 0.4611
+    },
+    {
+      "id": "zh_056",
+      "lang": "zh",
+      "source_text": "轰！石碑剧烈摇晃，数值直接突破一千二百磅！",
+      "opus_en": "Boom! The tablet is rocking. It's a direct breach of 1,200 pounds!",
+      "opus_ru": "Таблетка качается, это прямой разрыв в 1200 фунтов!",
+      "latency_en_sec": 0.2208,
+      "latency_ru_sec": 0.1881,
+      "total_latency_sec": 0.4089
+    },
+    {
+      "id": "zh_057",
+      "lang": "zh",
+      "source_text": "青铜三星…巅峰？！这绝对不可能！测力石坏了吧？！",
+      "opus_en": "Bronze Three Stars... summit?",
+      "opus_ru": "Бронзовые три звезды... вершина?",
+      "latency_en_sec": 0.1941,
+      "latency_ru_sec": 0.1797,
+      "total_latency_sec": 0.3738
+    },
+    {
+      "id": "zh_058",
+      "lang": "zh",
+      "source_text": "沈秀导师，胜负已分，按照赌约，你该兑现承诺了。",
+      "opus_en": "Master Shen Soo, you've already won. You've got to keep your promise.",
+      "opus_ru": "Мастер Шэнь Су, вы уже победили.",
+      "latency_en_sec": 0.2524,
+      "latency_ru_sec": 0.1998,
+      "total_latency_sec": 0.4523
+    },
+    {
+      "id": "zh_059",
+      "lang": "zh",
+      "source_text": "你…你作弊！神圣世家绝对不会放过你的！",
+      "opus_en": "You... you cheat! The Holy Family will never let you go!",
+      "opus_ru": "Ты... ты жульничаешь! Святая Семья никогда тебя не отпустит!",
+      "latency_en_sec": 0.2152,
+      "latency_ru_sec": 0.2416,
+      "total_latency_sec": 0.4569
+    },
+    {
+      "id": "zh_060",
+      "lang": "zh",
+      "source_text": "异火榜第十九位，青莲地心火…藏在大沙漠地底千丈深处。",
+      "opus_en": "Nineteenth place on the fire list, the heart of the Queen Lotus... hidden in the depths of the desert.",
+      "opus_ru": "Девятнадцатое место в пожарном списке, сердце королевы Лотос... спрятанное в глубинах пустыни.",
+      "latency_en_sec": 0.3672,
+      "latency_ru_sec": 0.3832,
+      "total_latency_sec": 0.7503
+    },
+    {
+      "id": "zh_061",
+      "lang": "zh",
+      "source_text": "想要吞噬异火进化焚诀，必须要有九死一生的决心。",
+      "opus_en": "In order to devour the fire engine, there must be a nine-to-one resolve.",
+      "opus_ru": "Для того, чтобы поглотить пожарный двигатель, должна быть решимость девять к одному.",
+      "latency_en_sec": 0.2354,
+      "latency_ru_sec": 0.2061,
+      "total_latency_sec": 0.4415
+    },
+    {
+      "id": "zh_062",
+      "lang": "zh",
+      "source_text": "连这点痛苦都承受不住，我还谈什么三年之约！给我收！",
+      "opus_en": "I can't bear the pain. I can't talk about three years!",
+      "opus_ru": "Я не могу вынести боль, я не могу говорить о трёх годах!",
+      "latency_en_sec": 0.2294,
+      "latency_ru_sec": 0.1817,
+      "total_latency_sec": 0.4111
+    },
+    {
+      "id": "zh_063",
+      "lang": "zh",
+      "source_text": "美杜莎女王正在借助异火尝试进化成七彩吞天蟒。",
+      "opus_en": "Queen Medusa is trying to evolve into a seven-coloured python with fire.",
+      "opus_ru": "Королева Медуза пытается превратиться в семицветный питон с огнем.",
+      "latency_en_sec": 0.3176,
+      "latency_ru_sec": 0.219,
+      "total_latency_sec": 0.5366
+    },
+    {
+      "id": "zh_064",
+      "lang": "zh",
+      "source_text": "蛇人族八大部落首领皆在护法，绝不能轻举妄动。",
+      "opus_en": "The leaders of the eight great tribes of the Snakes are under the protection of the law and must not act in any way.",
+      "opus_ru": "Лидеры восьми великих племен Змей находятся под защитой закона и не должны действовать каким-либо образом.",
+      "latency_en_sec": 0.3218,
+      "latency_ru_sec": 0.2403,
+      "total_latency_sec": 0.5622
+    },
+    {
+      "id": "zh_065",
+      "lang": "zh",
+      "source_text": "第一魂技：缠绕！蓝银草带着曼陀罗蛇的毒素疯狂蔓延！",
+      "opus_en": "Psychiatry number one: Surrounding! Blue silver weeds are spreading wildly with the poison of Mandarin snakes!",
+      "opus_ru": "Голубые серебряные сорняки распространяются диким ядом мандаринских змей!",
+      "latency_en_sec": 0.3928,
+      "latency_ru_sec": 0.3359,
+      "total_latency_sec": 0.7287
+    },
+    {
+      "id": "zh_066",
+      "lang": "zh",
+      "source_text": "小舞，你的武魂是柔骨兔？以后哥保护你！",
+      "opus_en": "Xiao Dynasty, you're a soft-breath rabbit? I'll protect you from now!",
+      "opus_ru": "Сяо Династи, ты кролик с мягким дыханием?",
+      "latency_en_sec": 0.3384,
+      "latency_ru_sec": 0.2366,
+      "total_latency_sec": 0.575
+    },
+    {
+      "id": "zh_067",
+      "lang": "zh",
+      "source_text": "嘻嘻，要是有人欺负小舞，三哥可得替我狠狠揍他哦！",
+      "opus_en": "If someone tries to beat him up, San will beat him up for me!",
+      "opus_ru": "Если кто-то попытается избить его, Сан будет избивать его за меня!",
+      "latency_en_sec": 0.1869,
+      "latency_ru_sec": 0.2023,
+      "total_latency_sec": 0.3892
+    }
+  ]
+}
