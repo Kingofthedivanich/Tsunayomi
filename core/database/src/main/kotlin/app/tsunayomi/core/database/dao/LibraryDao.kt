@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 data class LibraryMangaRow(
     @Embedded val manga: MangaEntity,
     @ColumnInfo(name = "unread_count") val unreadCount: Int,
+    @ColumnInfo(name = "total_count") val totalCount: Int,
     @ColumnInfo(name = "last_read_at") val lastReadAt: Long?,
 )
 
@@ -56,6 +57,7 @@ interface LibraryDao {
         """
         SELECT m.*,
             (SELECT COUNT(*) FROM chapter c WHERE c.manga_id = m.id AND c.read = 0) AS unread_count,
+            (SELECT COUNT(*) FROM chapter c WHERE c.manga_id = m.id) AS total_count,
             (SELECT MAX(h.last_read_at) FROM history h JOIN chapter c ON c.id = h.chapter_id
                 WHERE c.manga_id = m.id) AS last_read_at
         FROM manga m

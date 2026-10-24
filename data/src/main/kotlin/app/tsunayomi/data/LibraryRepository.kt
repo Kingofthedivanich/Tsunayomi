@@ -67,6 +67,7 @@ class LibraryRepository @Inject constructor(
             LibraryManga(
                 manga = row.manga.toModel(),
                 unreadCount = row.unreadCount,
+                totalCount = row.totalCount,
                 lastReadAt = row.lastReadAt,
                 categoryIds = categoriesByManga[row.manga.id].orEmpty().toSet(),
             )

@@ -39,8 +39,9 @@ data class MangaGridItem(
     val key: String,
     val title: String,
     val coverUrl: String?,
-    /** Small label in the corner of the cover, e.g. the unread chapter count. */
+    /** Small label in the corner of the cover, e.g. the unread chapter count or reading progress. */
     val badge: String? = null,
+    val badgeHighlighted: Boolean = true,
 )
 
 /** Adaptive grid of covers: more columns on wider screens. Calls [onLoadMore] near the end. */
@@ -104,14 +105,24 @@ fun MangaCover(
                     .clip(RoundedCornerShape(8.dp)),
             )
             if (item.badge != null) {
+                val badgeContainerColor = if (item.badgeHighlighted) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.92f)
+                }
+                val badgeContentColor = if (item.badgeHighlighted) {
+                    MaterialTheme.colorScheme.onPrimary
+                } else {
+                    MaterialTheme.colorScheme.onSurfaceVariant
+                }
                 Text(
                     text = item.badge,
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onPrimary,
+                    color = badgeContentColor,
                     modifier = Modifier
                         .align(Alignment.TopStart)
                         .padding(4.dp)
-                        .background(MaterialTheme.colorScheme.primary, RoundedCornerShape(4.dp))
+                        .background(badgeContainerColor, RoundedCornerShape(4.dp))
                         .padding(horizontal = 6.dp, vertical = 2.dp),
                 )
             }

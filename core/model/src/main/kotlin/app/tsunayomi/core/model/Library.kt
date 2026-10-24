@@ -3,10 +3,14 @@ package app.tsunayomi.core.model
 data class LibraryManga(
     val manga: Manga,
     val unreadCount: Int,
+    val totalCount: Int = 0,
     /** Last time any chapter was read, or null if never opened. */
     val lastReadAt: Long?,
     val categoryIds: Set<Long>,
-)
+) {
+    val readCount: Int
+        get() = (totalCount - unreadCount).coerceAtLeast(0)
+}
 
 enum class LibrarySort {
     Title,

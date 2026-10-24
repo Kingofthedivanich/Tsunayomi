@@ -167,7 +167,8 @@ private fun LibraryManga.toGridItem() = MangaGridItem(
     key = manga.id.toString(),
     title = manga.title,
     coverUrl = manga.coverUrl,
-    badge = unreadCount.takeIf { it > 0 }?.toString(),
+    badge = if (totalCount > 0) "$readCount / $totalCount" else null,
+    badgeHighlighted = unreadCount > 0,
 )
 
 @Composable

@@ -94,4 +94,37 @@ class LibraryRepositoryTest {
 
         assertEquals(setOf(10L, 20L), result)
     }
+
+    @Test
+    fun `LibraryManga calculates readCount correctly`() {
+        val manga = app.tsunayomi.core.model.Manga(
+            id = 1L, sourceId = 0, url = "url", title = "Title", coverUrl = null,
+        )
+        val item1 = app.tsunayomi.core.model.LibraryManga(
+            manga = manga,
+            unreadCount = 10,
+            totalCount = 50,
+            lastReadAt = null,
+            categoryIds = emptySet(),
+        )
+        assertEquals(40, item1.readCount)
+
+        val itemCompleted = app.tsunayomi.core.model.LibraryManga(
+            manga = manga,
+            unreadCount = 0,
+            totalCount = 50,
+            lastReadAt = null,
+            categoryIds = emptySet(),
+        )
+        assertEquals(50, itemCompleted.readCount)
+
+        val itemUnreadAll = app.tsunayomi.core.model.LibraryManga(
+            manga = manga,
+            unreadCount = 50,
+            totalCount = 50,
+            lastReadAt = null,
+            categoryIds = emptySet(),
+        )
+        assertEquals(0, itemUnreadAll.readCount)
+    }
 }
