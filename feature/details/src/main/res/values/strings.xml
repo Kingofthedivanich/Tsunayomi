@@ -44,4 +44,8 @@
     <string name="feature_details_download_error">⚠ %s</string>
     <string name="feature_details_open_in_webview">Open in WebView</string>
     <string name="feature_details_more_options">More options</string>
+    <string name="feature_details_lookup_tag">Tag “%1$s”</string>
+    <string name="feature_details_lookup_author">Author “%1$s”</string>
+    <string name="feature_details_lookup_in_source">Search in %1$s</string>
+    <string name="feature_details_lookup_everywhere">Search all sources</string>
 </resources>

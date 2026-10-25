@@ -51,6 +51,29 @@ internal class KotatsuCatalogSource(
 
     override fun getFilters(): FilterList = FilterList()
 
+    // The parser's tag list usually takes a request, and its tags carry the site's own keys; kept once loaded.
+    @Volatile
+    private var availableTags: Set<MangaTag>? = null
+
+    private suspend fun loadTags(): Set<MangaTag> =
+        availableTags ?: parser.getFilterOptions().availableTags.also { availableTags = it }
+
+    override suspend fun searchableTags(): List<String>? = withContext(Dispatchers.IO) {
+        loadTags().map { it.title }.sortedBy { it.lowercase() }.ifEmpty { null }
+    }
+
+    override suspend fun searchByTags(tags: Set<String>, page: Int): MangaPage? = withContext(Dispatchers.IO) {
+        if (tags.size > 1 && !parser.filterCapabilities.isMultipleTagsSupported) return@withContext null
+        val available = loadTags()
+        val matches = tags.map { tag -> available.firstOrNull { it.title.equals(tag, ignoreCase = true) } ?: return@withContext null }
+        val sortOrder = parser.availableSortOrders.firstOrNull() ?: SortOrder.POPULARITY
+        val list = parser.getList(offset = maxOf(0, page - 1) * 20, order = sortOrder, filter = MangaListFilter(tags = matches.toSet()))
+        MangaPage(items = list.map { it.toSManga() }, hasNext = list.isNotEmpty())
+    }
+
+    override suspend fun searchByAuthor(author: String, page: Int): MangaPage? =
+        if (parser.filterCapabilities.isSearchSupported) search(author, getFilters(), page) else null
+
     override suspend fun getPopular(page: Int): MangaPage = withContext(Dispatchers.IO) {
         val sortOrder = if (parser.availableSortOrders.contains(SortOrder.POPULARITY)) {
             SortOrder.POPULARITY

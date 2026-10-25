@@ -16,6 +16,7 @@ import okhttp3.Request
 import okhttp3.Response
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -153,6 +154,11 @@ class RemangaSourceTest {
                         {"id": 2, "name": "Комедия"},
                         {"id": 38, "name": "Фэнтези"}
                     ],
+                    "creators": {
+                        "3": [{"id": 6, "name": "Naver"}],
+                        "1": [{"id": 101, "name": "LEE Hyun-Min"}],
+                        "2": [{"id": 102, "name": "MOON Backkyung"}]
+                    },
                     "branches": [
                         {
                             "id": 31134,
@@ -176,6 +182,18 @@ class RemangaSourceTest {
         assertEquals("Ким Сухо оказывается в теле дворянина-бездельника Ллойда.", details.description)
         assertEquals(SManga.Status.Ongoing, details.status)
         assertEquals(listOf("Комедия", "Фэнтези"), details.genres)
+        // Writers and artists; the publishing platform ("3") isn't a person.
+        assertEquals("LEE Hyun-Min", details.author)
+        assertEquals("MOON Backkyung", details.artist)
+
+        // The writer's id, seen on the page, is what the creator search needs.
+        server.enqueue(MockResponse.Builder().body("""{"next": null, "results": [{"id": 1, "dir": "knight", "main_name": "Knight"}]}""").build())
+        val byAuthor = source.searchByAuthor("lee hyun-min", page = 1)
+        val authorRequest = server.takeRequest()
+        assertEquals("/api/v2/search/catalog", authorRequest.url.encodedPath.trimEnd('/'))
+        assertEquals("101", authorRequest.url.queryParameter("creators"))
+        assertEquals(listOf("Knight"), byAuthor?.items?.map { it.title })
+        assertNull(source.searchByAuthor("Someone Else", page = 1))
     }
 
     @Test

@@ -48,4 +48,8 @@
     <string name="feature_details_download_error">⚠ %s</string>
     <string name="feature_details_open_in_webview">Открыть в WebView</string>
     <string name="feature_details_more_options">Ещё</string>
+    <string name="feature_details_lookup_tag">Тег «%1$s»</string>
+    <string name="feature_details_lookup_author">Автор «%1$s»</string>
+    <string name="feature_details_lookup_in_source">Искать в %1$s</string>
+    <string name="feature_details_lookup_everywhere">Искать во всех источниках</string>
 </resources>

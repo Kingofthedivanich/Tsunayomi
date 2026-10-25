@@ -78,7 +78,28 @@ data class RemangaTitleDetailsDto(
     val genres: List<RemangaGenreDto> = emptyList(),
     val branches: List<RemangaBranchDto> = emptyList(),
     @SerialName("is_licensed") val isLicensed: Boolean = false,
+    /** People and companies by role: "1" writers, "2" artists or studios, "3" publishing platforms. */
+    val creators: Map<String, List<RemangaCreatorDto>> = emptyMap(),
 )
+
+@Serializable
+data class RemangaCreatorDto(
+    val id: Long = 0,
+    val name: String = "",
+)
+
+/** The v2 catalog, the only one that filters by creator. */
+@Serializable
+data class RemangaV2CatalogResponse(
+    val next: String? = null,
+    val results: List<RemangaCatalogItemDto> = emptyList(),
+)
+
+@Serializable
+data class RemangaFormsResponse(val content: RemangaForms? = null)
+
+@Serializable
+data class RemangaForms(val genres: List<RemangaGenreDto> = emptyList())
 
 @Serializable
 data class RemangaStatusDto(

@@ -71,7 +71,49 @@ class MangaDexSource(
         return searchManga(page, query.trim().ifEmpty { null }, filters.ifEmpty { getFilters() })
     }
 
-    private suspend fun searchManga(page: Int, query: String?, filters: List<Filter<*>>): MangaPage {
+    // Tag names (as shown on titles, in English) to MangaDex tag ids; the list rarely changes, so it's kept once loaded.
+    @Volatile
+    private var tagIds: Map<String, String>? = null
+
+    private var tagNames: List<String> = emptyList()
+
+    private suspend fun loadTagIds(): Map<String, String> = tagIds ?: run {
+        val tags = json.decodeFromString<TagListResponse>(get(apiUrl.newBuilder().addPathSegments("manga/tag").build())).data
+            .mapNotNull { dto -> dto.attributes.name["en"]?.let { it to dto.id } }
+        tagNames = tags.map { it.first }.sortedBy { it.lowercase() }
+        tags.associate { (name, id) -> name.lowercase() to id }.also { tagIds = it }
+    }
+
+    override suspend fun searchableTags(): List<String> {
+        loadTagIds()
+        return tagNames
+    }
+
+    override suspend fun searchByTags(tags: Set<String>, page: Int): MangaPage? {
+        val ids = loadTagIds()
+        val wanted = tags.map { ids[it.lowercase()] ?: return null }
+        return searchManga(page, query = null, filters = getFilters(), tagIds = wanted)
+    }
+
+    // MangaDex matches its text search against titles only, so the author is looked up and titles are listed by id.
+    override suspend fun searchByAuthor(author: String, page: Int): MangaPage {
+        val url = apiUrl.newBuilder().addPathSegment("author")
+            .addQueryParameter("name", author)
+            .addQueryParameter("limit", "10")
+            .build()
+        val found = json.decodeFromString<AuthorListResponse>(get(url)).data
+        val id = (found.firstOrNull { it.attributes?.name.equals(author, ignoreCase = true) } ?: found.firstOrNull())?.id
+            ?: return MangaPage(emptyList(), hasNext = false)
+        return searchManga(page, query = null, filters = getFilters(), authorId = id)
+    }
+
+    private suspend fun searchManga(
+        page: Int,
+        query: String?,
+        filters: List<Filter<*>>,
+        tagIds: List<String> = emptyList(),
+        authorId: String? = null,
+    ): MangaPage {
         val offset = (page - 1) * PAGE_SIZE
         val chapterLanguages = MangaDexFilters.selectedLanguages(filters).ifEmpty { languages() }
         val url = apiUrl.newBuilder().addPathSegment("manga").apply {
@@ -81,6 +123,9 @@ class MangaDexSource(
             chapterLanguages.forEach { addQueryParameter("availableTranslatedLanguage[]", it) }
             addQueryParameter("hasAvailableChapters", "true")
             if (query != null) addQueryParameter("title", query)
+            // MangaDex requires every included tag by default (includedTagsMode=AND).
+            tagIds.forEach { addQueryParameter("includedTags[]", it) }
+            if (authorId != null) addQueryParameter("authorOrArtist", authorId)
             applyFilters(filters, hasQuery = query != null)
         }.build()
         val response = json.decodeFromString<MangaListResponse>(get(url))

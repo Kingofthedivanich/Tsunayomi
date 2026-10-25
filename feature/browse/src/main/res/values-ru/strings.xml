@@ -37,4 +37,18 @@
     <string name="feature_browse_webview_open_in_browser">Открыть в браузере</string>
     <string name="feature_browse_webview_close">Закрыть</string>
     <string name="feature_browse_cloudflare_title">Проверка Cloudflare</string>
+    <string name="feature_browse_lookup_tag">Теги: %1$s</string>
+    <string name="feature_browse_lookup_author">Автор: %1$s</string>
+    <string name="feature_browse_tag_unsupported">Этот источник не умеет искать по этому тегу</string>
+    <string name="feature_browse_author_unsupported">Этот источник не умеет искать по автору</string>
+    <string name="feature_browse_global_search_mode_title">Название</string>
+    <string name="feature_browse_global_search_mode_tag">Тег</string>
+    <string name="feature_browse_global_search_mode_author">Автор</string>
+    <string name="feature_browse_global_search_unsupported_tag">Не умеют искать по тегу: %1$s</string>
+    <string name="feature_browse_global_search_unsupported_author">Не умеют искать по автору: %1$s</string>
+    <string name="feature_browse_tags_title">Теги</string>
+    <string name="feature_browse_tags_filter">Найти тег</string>
+    <string name="feature_browse_tags_unsupported">Этот источник не умеет искать по тегам</string>
+    <string name="feature_browse_tags_search">Найти (%1$d)</string>
+    <string name="feature_browse_tags_show_all">Показать все</string>
 </resources>

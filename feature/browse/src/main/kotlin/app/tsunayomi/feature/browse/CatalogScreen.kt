@@ -17,6 +17,7 @@ import androidx.compose.material.icons.outlined.MoreVert
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Sell
 import androidx.compose.material.icons.outlined.SearchOff
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
@@ -26,6 +27,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -46,6 +48,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -71,6 +74,7 @@ internal fun CatalogScreen(
     var searching by rememberSaveable { mutableStateOf(false) }
     var query by rememberSaveable { mutableStateOf("") }
     var showFilters by rememberSaveable { mutableStateOf(false) }
+    var showTags by rememberSaveable { mutableStateOf(false) }
     var menuExpanded by remember { mutableStateOf(false) }
     val isLocal = viewModel.source.id == SourceIds.LOCAL
     val webUrl = remember(viewModel.source) { viewModel.source.webUrl() }
@@ -86,7 +90,19 @@ internal fun CatalogScreen(
                             onSearch = { viewModel.search(query) },
                         )
                     } else {
-                        Text(viewModel.source.displayName())
+                        val lookup = state.lookup
+                        if (lookup != null) {
+                            Column {
+                                Text(lookupTitle(lookup), maxLines = 1, overflow = TextOverflow.Ellipsis)
+                                Text(
+                                    viewModel.source.displayName(),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        } else {
+                            Text(viewModel.source.displayName())
+                        }
                     }
                 },
                 navigationIcon = {
@@ -104,6 +120,14 @@ internal fun CatalogScreen(
                     } else {
                         IconButton(onClick = { searching = true }) {
                             Icon(Icons.Outlined.Search, stringResource(R.string.feature_browse_search))
+                        }
+                    }
+                    if (!isLocal) {
+                        IconButton(onClick = {
+                            viewModel.loadTags()
+                            showTags = true
+                        }) {
+                            Icon(Icons.Outlined.Sell, stringResource(R.string.feature_browse_tags_title))
                         }
                     }
                     if (viewModel.hasFilters) {
@@ -137,7 +161,7 @@ internal fun CatalogScreen(
         },
     ) { padding ->
         Column(Modifier.padding(padding)) {
-            if (viewModel.source.supportsLatest && state.query == null && !state.filtersApplied) {
+            if (viewModel.source.supportsLatest && state.query == null && !state.filtersApplied && state.lookup == null) {
                 ListingChips(selected = state.listing, onSelect = viewModel::setListing)
             }
             PullToRefreshBox(
@@ -182,6 +206,16 @@ internal fun CatalogScreen(
                     state.loading && state.items.isEmpty() -> Box(Modifier.fillMaxSize(), Alignment.Center) {
                         CircularProgressIndicator()
                     }
+                    state.lookupUnsupported -> MessageWithAction(
+                        title = stringResource(
+                            if (state.lookup is CatalogLookup.Author) {
+                                R.string.feature_browse_author_unsupported
+                            } else {
+                                R.string.feature_browse_tag_unsupported
+                            },
+                        ),
+                        icon = Icons.Outlined.SearchOff,
+                    )
                     state.items.isEmpty() -> MessageWithAction(
                         title = stringResource(R.string.feature_browse_nothing_found),
                         message = if (isLocal) {
@@ -210,6 +244,18 @@ internal fun CatalogScreen(
         }
     }
 
+    if (showTags) {
+        val choices by viewModel.tagChoices.collectAsStateWithLifecycle()
+        TagSheet(
+            choices = choices,
+            initiallySelected = (state.lookup as? CatalogLookup.Tags)?.names.orEmpty(),
+            onSearch = {
+                showTags = false
+                viewModel.searchTags(it)
+            },
+            onDismiss = { showTags = false },
+        )
+    }
     if (showFilters) {
         CatalogFilterSheet(viewModel, state.filterVersion, onDismiss = { showFilters = false })
     }
@@ -274,4 +320,10 @@ private fun SearchField(query: String, onQueryChange: (String) -> Unit, onSearch
             .fillMaxWidth()
             .focusRequester(focusRequester),
     )
+}
+
+@Composable
+private fun lookupTitle(lookup: CatalogLookup): String = when (lookup) {
+    is CatalogLookup.Tags -> stringResource(R.string.feature_browse_lookup_tag, lookup.names.joinToString())
+    is CatalogLookup.Author -> stringResource(R.string.feature_browse_lookup_author, lookup.name)
 }

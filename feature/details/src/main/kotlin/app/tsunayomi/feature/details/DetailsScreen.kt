@@ -30,6 +30,7 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.Label
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Download
 import androidx.compose.material.icons.outlined.ErrorOutline
 import androidx.compose.material.icons.outlined.Delete
@@ -105,6 +106,7 @@ internal fun DetailsScreen(
     onBack: () -> Unit,
     onRead: (mangaId: Long, chapterId: Long) -> Unit,
     onOpenWebView: (url: String, sourceId: Long) -> Unit,
+    onLookup: (lookup: DetailsLookup, sourceId: Long?) -> Unit,
     viewModel: DetailsViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -113,6 +115,7 @@ internal fun DetailsScreen(
     var languageDialog by rememberSaveable { mutableStateOf(false) }
     var glossaryDialog by rememberSaveable { mutableStateOf(false) }
     var moreMenuExpanded by remember { mutableStateOf(false) }
+    var lookupChoice by remember { mutableStateOf<DetailsLookup?>(null) }
     val glossary by viewModel.glossary.collectAsStateWithLifecycle()
     val downloads by viewModel.downloads.collectAsStateWithLifecycle()
     // Ask once for the notification that shows download progress (Android 13+); downloads work either way.
@@ -224,6 +227,8 @@ internal fun DetailsScreen(
                             if (!manga.favorite && state.categories.isNotEmpty()) categoryDialog = true else viewModel.toggleFavorite()
                         },
                         onEditCategories = { categoryDialog = true },
+                        onTagClick = { lookupChoice = DetailsLookup.Tag(it) },
+                        onAuthorClick = { lookupChoice = DetailsLookup.Author(it) },
                     )
                 }
                 item {
@@ -316,6 +321,23 @@ internal fun DetailsScreen(
         }
     }
 
+    lookupChoice?.let { lookup ->
+        val manga = state.manga
+        LookupDialog(
+            lookup = lookup,
+            // Local files have nothing to search by; only the other sources are offered.
+            sourceName = state.sourceName?.takeIf { manga != null && manga.sourceId != SourceIds.LOCAL },
+            onInSource = {
+                lookupChoice = null
+                manga?.let { onLookup(lookup, it.sourceId) }
+            },
+            onEverywhere = {
+                lookupChoice = null
+                onLookup(lookup, null)
+            },
+            onDismiss = { lookupChoice = null },
+        )
+    }
     if (categoryDialog) {
         CategoryDialog(
             categories = state.categories,
@@ -466,6 +488,8 @@ private fun Header(
     hasCategories: Boolean,
     onFavoriteClick: () -> Unit,
     onEditCategories: () -> Unit,
+    onTagClick: (String) -> Unit,
+    onAuthorClick: (String) -> Unit,
 ) {
     Column(Modifier.padding(horizontal = 16.dp)) {
         Row {
@@ -479,9 +503,10 @@ private fun Header(
             Spacer(Modifier.width(16.dp))
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text(manga.title, style = MaterialTheme.typography.titleLarge)
-                listOfNotNull(manga.author, manga.artist?.takeIf { it != manga.author })
-                    .takeIf { it.isNotEmpty() }
-                    ?.let { Text(it.joinToString(), style = MaterialTheme.typography.bodyMedium) }
+                val people = manga.people()
+                if (people.isNotEmpty()) {
+                    Text(people.joinToString(), style = MaterialTheme.typography.bodyMedium)
+                }
                 statusLabel(manga.status)?.let {
                     Text(it, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
                 }
@@ -530,12 +555,21 @@ private fun Header(
                     .clickable { expanded = !expanded },
             )
         }
-        if (manga.genres.isNotEmpty()) {
+        val people = manga.people()
+        if (people.isNotEmpty() || manga.genres.isNotEmpty()) {
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 modifier = Modifier.padding(top = 8.dp),
             ) {
-                manga.genres.forEach { genre -> AssistChip(onClick = {}, label = { Text(genre) }) }
+                // Authors come first and carry an icon, so they read as people to search by, not as tags.
+                people.forEach { name ->
+                    AssistChip(
+                        onClick = { onAuthorClick(name) },
+                        label = { Text(name) },
+                        leadingIcon = { Icon(Icons.Outlined.Person, contentDescription = null, modifier = Modifier.size(18.dp)) },
+                    )
+                }
+                manga.genres.forEach { genre -> AssistChip(onClick = { onTagClick(genre) }, label = { Text(genre) }) }
             }
         }
     }
@@ -684,3 +718,59 @@ private fun statusLabel(status: MangaStatus): String? = when (status) {
     MangaStatus.Hiatus -> stringResource(R.string.feature_details_status_hiatus)
     MangaStatus.Cancelled -> stringResource(R.string.feature_details_status_cancelled)
 }
+
+/** A tag or author tapped on the title's page, to look for more titles with it. */
+sealed interface DetailsLookup {
+    val name: String
+
+    data class Tag(override val name: String) : DetailsLookup
+
+    data class Author(override val name: String) : DetailsLookup
+}
+
+@Composable
+private fun LookupDialog(
+    lookup: DetailsLookup,
+    sourceName: String?,
+    onInSource: () -> Unit,
+    onEverywhere: () -> Unit,
+    onDismiss: () -> Unit,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                stringResource(
+                    if (lookup is DetailsLookup.Author) R.string.feature_details_lookup_author else R.string.feature_details_lookup_tag,
+                    lookup.name,
+                ),
+            )
+        },
+        text = {
+            Column {
+                if (sourceName != null) {
+                    ListItem(
+                        headlineContent = { Text(stringResource(R.string.feature_details_lookup_in_source, sourceName)) },
+                        modifier = Modifier.clickable(onClick = onInSource),
+                    )
+                }
+                ListItem(
+                    headlineContent = { Text(stringResource(R.string.feature_details_lookup_everywhere)) },
+                    modifier = Modifier.clickable(onClick = onEverywhere),
+                )
+            }
+        },
+        confirmButton = {},
+        dismissButton = { TextButton(onClick = onDismiss) { Text(stringResource(R.string.feature_details_cancel)) } },
+    )
+}
+
+// Placeholders some sites put where the author's name would be.
+private val NOT_A_NAME = setOf("unknown", "n/a", "-", "updating", "未詳", "不明", "неизвестно", "неизвестен")
+
+/** The title's writers and artists, one entry per person. */
+private fun Manga.people(): List<String> = listOfNotNull(author, artist)
+    .flatMap { it.split(',') }
+    .map { it.trim() }
+    .filter { it.isNotEmpty() && it.lowercase() !in NOT_A_NAME }
+    .distinct()

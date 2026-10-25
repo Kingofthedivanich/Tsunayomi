@@ -25,6 +25,25 @@ import javax.inject.Inject
 
 internal enum class CatalogListing { Popular, Latest }
 
+/** Tags or an author the catalog lists titles for: tapped on a title's page or picked in the tag sheet. */
+internal sealed interface CatalogLookup {
+    data class Tags(val names: Set<String>) : CatalogLookup
+
+    data class Author(val name: String) : CatalogLookup
+}
+
+/** The source's tags for the tag sheet. */
+internal sealed interface TagChoices {
+    data object NotLoaded : TagChoices
+
+    data object Loading : TagChoices
+
+    data class Loaded(val tags: List<String>) : TagChoices
+
+    /** The source can't search by tags, or loading them failed with [error]. */
+    data class Unavailable(val error: String? = null) : TagChoices
+}
+
 internal data class CatalogUiState(
     val items: List<SManga> = emptyList(),
     val listing: CatalogListing = CatalogListing.Popular,
@@ -38,6 +57,9 @@ internal data class CatalogUiState(
     /** True once the user applied filters; listing chips then no longer apply. */
     val filtersApplied: Boolean = false,
     val filterVersion: Int = 0,
+    val lookup: CatalogLookup? = null,
+    /** The source can't search by [lookup]. */
+    val lookupUnsupported: Boolean = false,
 )
 
 @HiltViewModel
@@ -47,9 +69,14 @@ internal class CatalogViewModel @Inject constructor(
     private val mangaRepository: MangaRepository,
     private val settingsRepository: UserSettingsRepository,
 ) : ViewModel() {
-    val source: CatalogSource = sourceManager.getCatalog(savedStateHandle.toRoute<CatalogRoute>().sourceId)
+    private val route = savedStateHandle.toRoute<CatalogRoute>()
+    val source: CatalogSource = sourceManager.getCatalog(route.sourceId)
 
-    private val _state = MutableStateFlow(CatalogUiState())
+    private val _state = MutableStateFlow(
+        CatalogUiState(
+            lookup = route.tag?.let { CatalogLookup.Tags(setOf(it)) } ?: route.author?.let(CatalogLookup::Author),
+        ),
+    )
     val state: StateFlow<CatalogUiState> = _state.asStateFlow()
 
     private val openManga = Channel<Long>(Channel.BUFFERED)
@@ -77,7 +104,9 @@ internal class CatalogViewModel @Inject constructor(
 
     fun setListing(listing: CatalogListing) {
         filters = source.getFilters()
-        _state.update { it.copy(listing = listing, query = null, filtersApplied = false, filterVersion = it.filterVersion + 1) }
+        _state.update {
+            it.copy(listing = listing, query = null, filtersApplied = false, filterVersion = it.filterVersion + 1, lookup = null)
+        }
         reload()
     }
 
@@ -92,19 +121,28 @@ internal class CatalogViewModel @Inject constructor(
     }
 
     fun applyFilters() {
-        _state.update { it.copy(filtersApplied = true) }
+        _state.update { it.copy(filtersApplied = true, lookup = null) }
         reload()
     }
 
     fun search(query: String) {
-        _state.update { it.copy(query = query.trim().ifEmpty { null }) }
+        _state.update { it.copy(query = query.trim().ifEmpty { null }, lookup = null) }
         reload()
     }
 
     fun reload() {
         loadJob?.cancel()
         nextPage = 1
-        _state.update { it.copy(items = emptyList(), hasNext = true, error = null, notConfigured = false, isCloudflareError = false) }
+        _state.update {
+            it.copy(
+                items = emptyList(),
+                hasNext = true,
+                error = null,
+                notConfigured = false,
+                isCloudflareError = false,
+                lookupUnsupported = false,
+            )
+        }
         loadMore()
     }
 
@@ -116,6 +154,17 @@ internal class CatalogViewModel @Inject constructor(
             val page = nextPage
             try {
                 val result = when {
+                    current.lookup != null -> {
+                        val found = when (current.lookup) {
+                            is CatalogLookup.Tags -> source.searchByTags(current.lookup.names, page)
+                            is CatalogLookup.Author -> source.searchByAuthor(current.lookup.name, page)
+                        }
+                        if (found == null) {
+                            _state.update { it.copy(loading = false, hasNext = false, lookupUnsupported = true) }
+                            return@launch
+                        }
+                        found
+                    }
                     current.query != null || current.filtersApplied -> source.search(current.query.orEmpty(), filters, page)
                     current.listing == CatalogListing.Latest && source.supportsLatest -> source.getLatest(page)
                     else -> source.getPopular(page)
@@ -138,6 +187,30 @@ internal class CatalogViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private val _tagChoices = MutableStateFlow<TagChoices>(TagChoices.NotLoaded)
+    val tagChoices: StateFlow<TagChoices> = _tagChoices.asStateFlow()
+
+    /** Loads the source's tags once, when the tag sheet is first opened. */
+    fun loadTags() {
+        if (_tagChoices.value is TagChoices.Loading || _tagChoices.value is TagChoices.Loaded) return
+        _tagChoices.value = TagChoices.Loading
+        viewModelScope.launch {
+            _tagChoices.value = try {
+                source.searchableTags()?.let { TagChoices.Loaded(it) } ?: TagChoices.Unavailable()
+            } catch (e: kotlinx.coroutines.CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                TagChoices.Unavailable(e.message ?: e.toString())
+            }
+        }
+    }
+
+    /** Lists titles that have all of [tags]; an empty set goes back to the plain catalog. */
+    fun searchTags(tags: Set<String>) {
+        _state.update { it.copy(query = null, filtersApplied = false, lookup = tags.takeIf { t -> t.isNotEmpty() }?.let(CatalogLookup::Tags)) }
+        reload()
     }
 
     fun onMangaClick(manga: SManga) {

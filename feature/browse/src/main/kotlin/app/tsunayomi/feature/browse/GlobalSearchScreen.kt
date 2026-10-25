@@ -2,6 +2,8 @@ package app.tsunayomi.feature.browse
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,6 +19,7 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.TravelExplore
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -56,10 +59,12 @@ internal fun GlobalSearchScreen(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     LaunchedEffect(viewModel) { viewModel.openMangaEvents.collect(onOpenManga) }
-    var query by rememberSaveable { mutableStateOf("") }
+    // A search started from a title's tag or author arrives with its text already filled in.
+    var query by rememberSaveable { mutableStateOf(viewModel.state.value.query) }
     val focusRequester = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
-    LaunchedEffect(Unit) { if (state.results.isEmpty()) focusRequester.requestFocus() }
+    // The keyboard is for typing a search; one started from a title's tag or author already has its text.
+    LaunchedEffect(Unit) { if (state.query.isEmpty()) focusRequester.requestFocus() }
 
     Scaffold(
         topBar = {
@@ -94,16 +99,31 @@ internal fun GlobalSearchScreen(
             )
         },
     ) { padding ->
-        if (state.results.isEmpty()) {
+        Column(Modifier.padding(padding)) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.padding(horizontal = 16.dp),
+        ) {
+            GlobalSearchMode.entries.forEach { mode ->
+                FilterChip(
+                    selected = state.mode == mode,
+                    onClick = {
+                        keyboard?.hide()
+                        viewModel.setMode(mode, query)
+                    },
+                    label = { Text(stringResource(mode.label)) },
+                )
+            }
+        }
+        if (state.results.isEmpty() && state.unsupported.isEmpty()) {
             EmptyState(
                 icon = Icons.Outlined.TravelExplore,
                 title = stringResource(R.string.feature_browse_global_search),
                 message = stringResource(R.string.feature_browse_global_search_message),
-                modifier = Modifier.padding(padding),
             )
-            return@Scaffold
+            return@Column
         }
-        LazyColumn(contentPadding = padding) {
+        LazyColumn {
             items(state.results, key = { it.first.id }) { (source, result) ->
                 Text(
                     source.fullName(),
@@ -111,6 +131,7 @@ internal fun GlobalSearchScreen(
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp, bottom = 8.dp),
                 )
                 when (result) {
+                    SourceResult.Unsupported -> Unit
                     SourceResult.Loading -> Box(Modifier.fillMaxWidth().height(64.dp), Alignment.Center) {
                         CircularProgressIndicator()
                     }
@@ -143,6 +164,32 @@ internal fun GlobalSearchScreen(
                     }
                 }
             }
+            if (state.unsupported.isNotEmpty()) {
+                item(key = "unsupported") {
+                    val names = state.unsupported.map { it.fullName() }
+                    Text(
+                        stringResource(
+                            if (state.mode == GlobalSearchMode.Author) {
+                                R.string.feature_browse_global_search_unsupported_author
+                            } else {
+                                R.string.feature_browse_global_search_unsupported_tag
+                            },
+                            names.joinToString(),
+                        ),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.padding(16.dp),
+                    )
+                }
+            }
+        }
         }
     }
 }
+
+private val GlobalSearchMode.label: Int
+    get() = when (this) {
+        GlobalSearchMode.Title -> R.string.feature_browse_global_search_mode_title
+        GlobalSearchMode.Tag -> R.string.feature_browse_global_search_mode_tag
+        GlobalSearchMode.Author -> R.string.feature_browse_global_search_mode_author
+    }

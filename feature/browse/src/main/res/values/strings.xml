@@ -37,4 +37,18 @@
     <string name="feature_browse_webview_open_in_browser">Open in browser</string>
     <string name="feature_browse_webview_close">Close</string>
     <string name="feature_browse_cloudflare_title">Cloudflare verification</string>
+    <string name="feature_browse_lookup_tag">Tags: %1$s</string>
+    <string name="feature_browse_lookup_author">Author: %1$s</string>
+    <string name="feature_browse_tag_unsupported">This source can\'t search by this tag</string>
+    <string name="feature_browse_author_unsupported">This source can\'t search by author</string>
+    <string name="feature_browse_global_search_mode_title">Title</string>
+    <string name="feature_browse_global_search_mode_tag">Tag</string>
+    <string name="feature_browse_global_search_mode_author">Author</string>
+    <string name="feature_browse_global_search_unsupported_tag">Can\'t search by tag: %1$s</string>
+    <string name="feature_browse_global_search_unsupported_author">Can\'t search by author: %1$s</string>
+    <string name="feature_browse_tags_title">Tags</string>
+    <string name="feature_browse_tags_filter">Find a tag</string>
+    <string name="feature_browse_tags_unsupported">This source can\'t search by tags</string>
+    <string name="feature_browse_tags_search">Search (%1$d)</string>
+    <string name="feature_browse_tags_show_all">Show all</string>
 </resources>

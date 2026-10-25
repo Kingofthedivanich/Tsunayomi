@@ -50,6 +50,13 @@ internal data class MangaAttributes(
 internal data class TagDto(val id: String, val attributes: TagAttributes)
 
 @Serializable
+internal data class TagListResponse(val data: List<TagDto>)
+
+/** Authors and artists share this shape; the API's author search covers both. */
+@Serializable
+internal data class AuthorListResponse(val data: List<RelationshipDto>)
+
+@Serializable
 internal data class TagAttributes(
     val name: LocalizedString = emptyMap(),
     val group: String? = null,

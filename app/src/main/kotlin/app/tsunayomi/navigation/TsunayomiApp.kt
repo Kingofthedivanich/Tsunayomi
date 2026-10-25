@@ -26,9 +26,12 @@ import app.tsunayomi.feature.extensions.navigateToExtensions
 import app.tsunayomi.feature.browse.catalogScreen
 import app.tsunayomi.feature.browse.globalSearchScreen
 import app.tsunayomi.feature.browse.navigateToCatalog
+import app.tsunayomi.feature.browse.navigateToCatalogLookup
+import app.tsunayomi.feature.browse.navigateToGlobalLookup
 import app.tsunayomi.feature.browse.navigateToGlobalSearch
 import app.tsunayomi.feature.browse.navigateToWebView
 import app.tsunayomi.feature.browse.webViewScreen
+import app.tsunayomi.feature.details.DetailsLookup
 import app.tsunayomi.feature.details.detailsScreen
 import app.tsunayomi.feature.details.navigateToDetails
 import app.tsunayomi.feature.history.HistoryRoute
@@ -120,6 +123,15 @@ fun TsunayomiApp(
                 onBack = navController::popBackStack,
                 onRead = navController::navigateToReader,
                 onOpenWebView = navController::navigateToWebView,
+                onLookup = { lookup, sourceId ->
+                    val tag = (lookup as? DetailsLookup.Tag)?.name
+                    val author = (lookup as? DetailsLookup.Author)?.name
+                    if (sourceId != null) {
+                        navController.navigateToCatalogLookup(sourceId, tag = tag, author = author)
+                    } else {
+                        navController.navigateToGlobalLookup(tag = tag, author = author)
+                    }
+                },
             )
             webViewScreen(
                 onClose = {

@@ -19,6 +19,7 @@ import okhttp3.Request
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.ZoneId
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * Built-in source for ReManga (remanga.org), a large Russian manga and manhwa catalog.
@@ -119,6 +120,60 @@ class RemangaSource(
         return fetchCatalogPage(urlBuilder.build(), page)
     }
 
+    // Remanga lists a creator's titles by id only; ids of the writers and artists seen on title pages are kept here,
+    // so tapping a name on such a page finds the right person. Names from other sources aren't known.
+    private val creatorIds = ConcurrentHashMap<String, Long>()
+
+    // Genre names to ids; the list rarely changes.
+    @Volatile
+    private var genreIds: Map<String, Int>? = null
+
+    override suspend fun searchByAuthor(author: String, page: Int): MangaPage? {
+        val id = creatorIds[author.lowercase()] ?: return null
+        // Only the v2 catalog filters by creator; its "-rating" puts barely rated titles first, "-avg_rating" doesn't.
+        val url = apiBaseUrl.newBuilder()
+            .addPathSegments("v2/search/catalog")
+            .addQueryParameter("creators", id.toString())
+            .addQueryParameter("ordering", "-avg_rating")
+            .addQueryParameter("page", page.toString())
+            .build()
+        val response = json.decodeFromString<RemangaV2CatalogResponse>(get(url))
+        return MangaPage(items = response.results.map { it.toSManga() }, hasNext = response.next != null)
+    }
+
+    private var genreNames: List<String> = emptyList()
+
+    private suspend fun loadGenreIds(): Map<String, Int> = genreIds ?: run {
+        val url = apiBaseUrl.newBuilder().addPathSegments("forms/titles").addQueryParameter("get", "genres").build()
+        val genres = json.decodeFromString<RemangaFormsResponse>(get(url)).content?.genres.orEmpty()
+        genreNames = genres.map { it.name }.sortedBy { it.lowercase() }
+        genres.associate { it.name.lowercase() to it.id }.also { genreIds = it }
+    }
+
+    override suspend fun searchableTags(): List<String> {
+        loadGenreIds()
+        return genreNames
+    }
+
+    override suspend fun searchByTags(tags: Set<String>, page: Int): MangaPage? {
+        val ids = loadGenreIds()
+        val wanted = tags.map { tag -> tag to (ids[tag.lowercase()] ?: return null) }
+        // Several genres in one request match any of them, so the catalog is asked for the first one and the rest are
+        // checked against each title's genres.
+        val url = apiBaseUrl.newBuilder()
+            .addPathSegment("search")
+            .addPathSegment("catalog")
+            .addQueryParameter("genres", wanted.first().second.toString())
+            .addQueryParameter("ordering", "-rating")
+            .addQueryParameter("count", PAGE_SIZE.toString())
+            .addQueryParameter("page", page.toString())
+            .build()
+        val result = fetchCatalogPage(url, page)
+        val others = wanted.drop(1).map { it.first.lowercase() }
+        if (others.isEmpty()) return result
+        return result.copy(items = result.items.filter { manga -> others.all { tag -> manga.genres.any { it.lowercase() == tag } } })
+    }
+
     private suspend fun fetchCatalogPage(url: HttpUrl, page: Int): MangaPage {
         val body = get(url)
         val response = json.decodeFromString<RemangaCatalogResponse>(body)
@@ -155,10 +210,16 @@ class RemangaSource(
             else -> SManga.Status.Unknown
         }
 
+        val writers = details.creators["1"].orEmpty()
+        val artists = details.creators["2"].orEmpty()
+        (writers + artists).forEach { if (it.name.isNotBlank()) creatorIds[it.name.lowercase()] = it.id }
+
         return manga.copy(
             title = preferredTitle,
             coverUrl = coverUrl,
             description = description,
+            author = writers.joinToString { it.name }.ifBlank { null } ?: manga.author,
+            artist = artists.joinToString { it.name }.ifBlank { null } ?: manga.artist,
             genres = details.genres.map { it.name },
             status = status,
             originalLang = PAGE_LANGUAGE,
