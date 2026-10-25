@@ -27,21 +27,9 @@ internal class AndroidMangaLoaderContext(
 
     override val httpClient: OkHttpClient = baseClient.newBuilder()
         .cookieJar(cookieJar)
-        .addInterceptor { chain ->
-            val req = chain.request()
-            val newReq = if (req.header("User-Agent") == null) {
-                req.newBuilder()
-                    .header("User-Agent", getDefaultUserAgent())
-                    .build()
-            } else {
-                req
-            }
-            chain.proceed(newReq)
-        }
         .build()
 
-    override fun getDefaultUserAgent(): String =
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    override fun getDefaultUserAgent(): String = NetworkHelper.defaultUserAgent()
 
     override fun getConfig(source: MangaSource): MangaSourceConfig {
         val prefs = context.getSharedPreferences(
