@@ -26,7 +26,7 @@ internal object UpdateNotifications {
     fun progress(context: Context, done: Int, total: Int): ForegroundInfo {
         ensureChannels(context)
         val notification = NotificationCompat.Builder(context, PROGRESS_CHANNEL)
-            .setSmallIcon(android.R.drawable.stat_notify_sync)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(context.getString(R.string.updates_progress_title))
             .setContentText(context.getString(R.string.updates_progress, done, total))
             .setProgress(total, done, total == 0)
@@ -53,7 +53,7 @@ internal object UpdateNotifications {
         NewChaptersText.lines(found).forEach(style::addLine)
         if (found.size > 5) style.setSummaryText(context.getString(R.string.updates_more_titles, found.size - 5))
         val notification = NotificationCompat.Builder(context, NEW_CHAPTERS_CHANNEL)
-            .setSmallIcon(android.R.drawable.stat_notify_more)
+            .setSmallIcon(R.drawable.ic_notification)
             .setContentTitle(context.resources.getQuantityString(R.plurals.updates_new_chapters, total, total))
             .setContentText(NewChaptersText.titles(found))
             .setStyle(style)

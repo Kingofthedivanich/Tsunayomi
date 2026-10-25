@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,10 +19,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.AutoStories
 import androidx.compose.material.icons.outlined.FolderZip
 import androidx.compose.material.icons.outlined.Security
 import androidx.compose.material.icons.outlined.Translate
@@ -43,13 +44,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import app.tsunayomi.core.designsystem.R as DesignR
 
 private enum class OnboardingStep {
     Welcome,
@@ -148,17 +152,17 @@ private fun WelcomeStep(
         ) {
             Spacer(Modifier.height(16.dp))
 
+            // On a white tile like the launcher icon, so the dark blue keeps its contrast in the dark theme.
             Surface(
-                shape = CircleShape,
-                color = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier.size(80.dp),
+                shape = RoundedCornerShape(28.dp),
+                color = Color.White,
+                modifier = Modifier.size(112.dp),
             ) {
-                Icon(
-                    imageVector = Icons.Outlined.AutoStories,
+                Image(
+                    painter = painterResource(DesignR.drawable.tsunayomi_logo),
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
-                        .padding(20.dp)
+                        .padding(14.dp)
                         .fillMaxSize(),
                 )
             }

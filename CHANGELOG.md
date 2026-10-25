@@ -5,6 +5,18 @@ All notable changes to Tsunayomi are documented in this file.
 
 ---
 
+## [0.11.1] - 2026-10-25
+
+### Русский
+
+- **Новая иконка** приложения: на рабочем столе, в тематических значках Android 13+, в мастере первого запуска и в уведомлениях о новых главах.
+
+### English
+
+- **New app icon** on the home screen, in Android 13+ themed icons, in the first-launch wizard and in new-chapter notifications.
+
+---
+
 ## [0.11.0] - 2026-10-25
 
 ### Русский
