@@ -186,7 +186,7 @@
         "locale": "ja",
         "domain": "klz9.com",
         "verifiedAt": "2026-10-24T20:13:28.751182Z",
-        "isNsfw": true
+        "isNsfw": false
     },
     {
         "name": "KSGROUPSCANS",

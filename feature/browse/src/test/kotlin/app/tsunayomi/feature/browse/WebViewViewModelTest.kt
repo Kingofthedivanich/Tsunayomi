@@ -8,6 +8,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
+import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
@@ -30,25 +31,25 @@ class WebViewViewModelTest {
     }
 
     @Test
-    fun `getHeaders returns source webHeaders when source is present`() {
+    fun `getHeaders returns source webHeaders when source is present`() = runTest {
         every { savedStateHandle.toRoute<WebViewRoute>() } returns WebViewRoute("https://example.com", 123L)
         every { mockSource.webHeaders() } returns mapOf("User-Agent" to "CustomUA", "Referer" to "https://example.com/")
         every { sourceManager.get(123L) } returns mockSource
 
         val viewModel = WebViewViewModel(savedStateHandle, sourceManager)
-        val headers = viewModel.getHeaders(123L)
+        val headers = viewModel.loadHeaders(123L)
 
         assertEquals("CustomUA", headers["User-Agent"])
         assertEquals("https://example.com/", headers["Referer"])
     }
 
     @Test
-    fun `getHeaders returns empty map when source not found`() {
+    fun `getHeaders returns empty map when source not found`() = runTest {
         every { savedStateHandle.toRoute<WebViewRoute>() } returns WebViewRoute("https://example.com", 999L)
         every { sourceManager.get(999L) } returns null
 
         val viewModel = WebViewViewModel(savedStateHandle, sourceManager)
-        val headers = viewModel.getHeaders(999L)
+        val headers = viewModel.loadHeaders(999L)
 
         assertEquals(emptyMap<String, String>(), headers)
     }

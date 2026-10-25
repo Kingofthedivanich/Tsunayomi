@@ -48,6 +48,13 @@ class KotatsuSourceManagerTest {
                 "locale": "ja",
                 "domain": "klz9.com",
                 "verifiedAt": "2026-10-24T12:00:00Z",
+                "isNsfw": false
+            },
+            {
+                "name": "MANGA18",
+                "locale": "en",
+                "domain": "manga18.club",
+                "verifiedAt": "2026-10-24T12:00:00Z",
                 "isNsfw": true
             }
         ]
@@ -70,14 +77,16 @@ class KotatsuSourceManagerTest {
             manager.awaitLoaded()
 
             val allSources = manager.sources.value
-            assertEquals(3, allSources.size)
+            assertEquals(4, allSources.size)
 
-            // With show_nsfw = false, KLZ9 (hentai) should be hidden from browsable
+            // With show_nsfw = false only the allowlist's flag hides a source: kotatsu tags Klz9 HENTAI,
+            // but we don't, so it stays visible.
             val browsableWithoutNsfw = manager.browsable.first { it.isNotEmpty() }
             val namesWithoutNsfw = browsableWithoutNsfw.map { it.name }
             assertTrue(namesWithoutNsfw.contains("Манга-тян"))
             assertTrue(namesWithoutNsfw.contains("LikeManga"))
-            assertFalse(namesWithoutNsfw.contains("KLZ9"))
+            assertTrue(namesWithoutNsfw.contains("Klz9"))
+            assertFalse(namesWithoutNsfw.contains("Manga18"))
         } finally {
             job.cancel()
         }

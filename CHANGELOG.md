@@ -12,7 +12,7 @@ All notable changes to Tsunayomi are documented in this file.
 #### Новое
 - **Экран WebView для Cloudflare:** встроенный экран браузера для ручной проверки капчи / Cloudflare challenge с сохранением cookies в `CookieManager`, кнопками обновления, открытия в браузере и автоматической перезагрузкой каталога/тайтла при возврате.
 - **Индивидуальная память перевода:** переключатель перевода теперь сохраняется для каждого тайтла отдельно в базе данных (миграция схемы БД 6 → 7).
-- **Офлайн manga-ocr для японского:** встроенная легковесная модель `manga-ocr` на ONNX Runtime для качественного распознавания вертикального японского текста. При автоопределении языка японский OCR запускается только на страницах с каной.
+- **Офлайн manga-ocr для японского:** модель `manga-ocr` на ONNX Runtime (около 130 МБ, скачивается отдельно по желанию) для качественного распознавания вертикального японского текста. При автоопределении языка японский OCR запускается только на страницах с каной.
 - **Прогресс чтения и категории в библиотеке:**
   - Отображение прогресса в бейдже карточки манги: «Прочитано / Всего».
   - Категории «Читаю», «Прочитано», «Буду читать», «Брошено».
@@ -22,7 +22,7 @@ All notable changes to Tsunayomi are documented in this file.
   - Режим инкогнито (главы не попадают в историю).
   - Биометрическая блокировка приложения (App Lock: отпечаток пальца / распознавание лица).
   - Полная блокировка сбора и отправки телеметрии/аналитики ML Kit в сервисы Google.
-- **Локальные файлы:** поддержка форматов CBR (.cbr, RAR4/RAR5) и EPUB для чтения локальных файлов наряду с CBZ.
+- **Локальные файлы:** поддержка форматов CBR (.cbr, только RAR4; RAR5 и архивы с паролем не поддерживаются) и EPUB для чтения локальных файлов наряду с CBZ.
 - **Новые движки перевода:**
   - DeepL API Free с визуальным отслеживанием лимита символов в месяц.
   - OpenAI-совместимый API (DeepSeek, OpenRouter, Groq, локальный Ollama).
@@ -38,7 +38,7 @@ All notable changes to Tsunayomi are documented in this file.
 #### New Features
 - **Cloudflare WebView Screen:** Built-in web view for manual Cloudflare challenge verification with shared `CookieManager` session, refresh/browser controls, and automatic catalog/details reload upon return.
 - **Per-title Translation Persistence:** Translation toggle state is now remembered per-title in the database (Room schema migration 6 → 7).
-- **Offline manga-ocr for Japanese:** Embedded lightweight ONNX Runtime `manga-ocr` model for vertical Japanese text recognition. When language is auto-detected, manga-ocr activates only on pages containing kana characters.
+- **Offline manga-ocr for Japanese:** Optional ONNX Runtime `manga-ocr` model (about 130 MB, downloaded on request) for vertical Japanese text recognition. When language is auto-detected, manga-ocr activates only on pages containing kana characters.
 - **Library Reading Progress & Categories:**
   - Badge counter showing "Read / Total" chapters.
   - Categories: Reading, Completed, Plan to read, Dropped.
@@ -48,7 +48,7 @@ All notable changes to Tsunayomi are documented in this file.
   - Incognito reading mode.
   - Biometric app lock (Fingerprint / Face Unlock).
   - Strict blocking of ML Kit telemetry and diagnostic logging to Google.
-- **Local Reading Support:** Added support for CBR (.cbr, RAR4/RAR5) and EPUB formats alongside CBZ.
+- **Local Reading Support:** Added support for CBR (.cbr, RAR4 only; RAR5 and password-protected archives are not supported) and EPUB formats alongside CBZ.
 - **New Translation Providers:**
   - DeepL API Free with real-time monthly character quota tracking.
   - OpenAI-compatible LLM endpoints (DeepSeek, OpenRouter, Groq, local Ollama).

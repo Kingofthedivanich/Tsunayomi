@@ -16,14 +16,9 @@ import org.koitharu.kotatsu.parsers.model.MangaSource
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
-import java.security.SecureRandom
-import java.security.cert.X509Certificate
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import javax.imageio.ImageIO
-import javax.net.ssl.SSLContext
-import javax.net.ssl.TrustManager
-import javax.net.ssl.X509TrustManager
 
 internal class JvmMangaLoaderContext : MangaLoaderContext() {
 
@@ -43,16 +38,6 @@ internal class JvmMangaLoaderContext : MangaLoaderContext() {
         }
     }
 
-    private val trustAllCertManager = object : X509TrustManager {
-        override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
-        override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
-        override fun getAcceptedIssuers(): Array<X509Certificate> = emptyArray()
-    }
-
-    private val sslContext = SSLContext.getInstance("TLS").apply {
-        init(null, arrayOf<TrustManager>(trustAllCertManager), SecureRandom())
-    }
-
     override val httpClient: OkHttpClient = OkHttpClient.Builder()
         .cookieJar(cookieJar)
         .addInterceptor { chain ->
@@ -66,8 +51,6 @@ internal class JvmMangaLoaderContext : MangaLoaderContext() {
             }
             chain.proceed(newReq)
         }
-        .sslSocketFactory(sslContext.socketFactory, trustAllCertManager)
-        .hostnameVerifier { _, _ -> true }
         .connectTimeout(10, TimeUnit.SECONDS)
         .readTimeout(15, TimeUnit.SECONDS)
         .callTimeout(25, TimeUnit.SECONDS)

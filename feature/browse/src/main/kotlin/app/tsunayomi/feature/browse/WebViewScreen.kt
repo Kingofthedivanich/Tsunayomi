@@ -30,6 +30,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -50,10 +51,14 @@ internal fun WebViewScreen(
     modifier: Modifier = Modifier,
     viewModel: WebViewViewModel = hiltViewModel(),
 ) {
-    val headers = remember(sourceId) { viewModel.getHeaders(sourceId) }
+    val headers by produceState<Map<String, String>?>(null, sourceId) {
+        value = viewModel.loadHeaders(sourceId)
+    }
+    // The User-Agent has to be set before the first request, so the page waits for the headers.
+    val loadedHeaders = headers ?: return
     WebViewScreenContent(
         url = url,
-        headers = headers,
+        headers = loadedHeaders,
         onClose = onClose,
         modifier = modifier,
     )

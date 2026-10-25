@@ -40,10 +40,12 @@ data class AllowlistEntry(
 )
 
 private val json = Json {
-    prettyPrint = true
     ignoreUnknownKeys = true
     encodeDefaults = true
 }
+
+// The allowlist is read by people too, but health.jsonl must stay one record per line to be resumable.
+private val prettyJson = Json(json) { prettyPrint = true }
 
 private val ADULT_TYPES = setOf(
     ContentType.HENTAI,
@@ -53,9 +55,14 @@ private val ADULT_TYPES = setOf(
     ContentType.GAME_CG,
 )
 
+// Our own call over kotatsu's classification: these parsers are tagged HENTAI upstream (which also marks
+// every title 18+), but the catalogs are general manga.
+private val NOT_ADULT = setOf(
+    "KLZ9",
+)
+
 private val ADULT_DOMAINS = setOf(
     "toonily.com",
-    "klz9.com",
     "hentai2read.com",
     "pururin.io",
     "nhentai.net",
@@ -158,7 +165,7 @@ suspend fun main() {
     val rootDir = File(".").let { if (it.canonicalPath.endsWith("kotatsu-health")) it.parentFile.parentFile else it }
     val allowlistFile = File(rootDir, "source/kotatsu/src/main/assets/allowlist.json")
     allowlistFile.parentFile.mkdirs()
-    allowlistFile.writeText(json.encodeToString(allowlistEntries))
+    allowlistFile.writeText(prettyJson.encodeToString(allowlistEntries))
     println("\nSaved ${allowlistEntries.size} verified sources to ${allowlistFile.path}")
 
     // Write PARSER_HEALTH_REPORT.md
@@ -283,9 +290,11 @@ private suspend fun checkSource(src: MangaParserSource, context: JvmMangaLoaderC
     }
 
     // 5. Check 18+
-    val isNsfw = src.contentType in ADULT_TYPES ||
-        ADULT_DOMAINS.any { domain.contains(it, ignoreCase = true) } ||
-        sampled.any { m -> m.isNsfw || m.contentRating == ContentRating.ADULT }
+    val isNsfw = src.name !in NOT_ADULT && (
+        src.contentType in ADULT_TYPES ||
+            ADULT_DOMAINS.any { domain.contains(it, ignoreCase = true) } ||
+            sampled.any { m -> m.isNsfw || m.contentRating == ContentRating.ADULT }
+        )
 
     return CheckResult(
         name = src.name,

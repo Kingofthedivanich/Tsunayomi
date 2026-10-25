@@ -4,7 +4,7 @@
 Общее число кандидатов (с учетом фильтра `!isBroken` и языков `en`, `ru`, `ja`, `ko`, `zh`): **337**
 Успешно прошли полную цепочку проверки: **66**
 Не прошли проверку: **271**
-Помечено как 18+ (NSFW): **30**
+Помечено как 18+ (NSFW): **29**
 Время полного параллельного прогона (32 потока): **48 сек**
 
 ## Критерии прохождения
@@ -57,7 +57,7 @@
 | `HOLOEARTH` | `` | `holoearth.com` | Нет |
 | `IMHENTAI` | `` | `imhentai.xxx` | Да (18+) |
 | `KIUTAKU` | `` | `kiutaku.com` | Да (18+) |
-| `KLZ9` | `ja` | `klz9.com` | Да (18+) |
+| `KLZ9` | `ja` | `klz9.com` | Нет |
 | `KSGROUPSCANS` | `en` | `ksgroupscans.com` | Нет |
 | `LHTRANSLATION` | `en` | `lhtranslation.net` | Нет |
 | `LIKEMANGA` | `en` | `likemanga.ink` | Нет |

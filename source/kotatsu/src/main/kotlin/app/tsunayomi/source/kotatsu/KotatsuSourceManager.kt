@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
-import org.koitharu.kotatsu.parsers.model.ContentType
 import org.koitharu.kotatsu.parsers.model.MangaParserSource
 import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
@@ -38,16 +37,20 @@ class KotatsuSourceManager @Inject constructor(
     private val _sources = MutableStateFlow<List<KotatsuCatalogSource>>(emptyList())
     override val sources: StateFlow<List<Source>> = _sources.asStateFlow()
 
-    internal fun getSource(sourceId: Long): KotatsuCatalogSource? = _sources.value.firstOrNull { it.id == sourceId }
+    /** Waits for the allowlist, so a reader opened right after a cold start still finds its source. */
+    internal fun getSource(sourceId: Long): KotatsuCatalogSource? {
+        awaitLoaded()
+        return _sources.value.firstOrNull { it.id == sourceId }
+    }
 
     private val _languages = MutableStateFlow(
-        prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko"),
+        prefs.getStringSet("languages", null)?.toSet() ?: DEFAULT_LANGUAGES,
     )
     private val _showNsfw = MutableStateFlow(prefs.getBoolean("show_nsfw", false))
 
     private val prefListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key == "languages") {
-            _languages.value = prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko")
+            _languages.value = prefs.getStringSet("languages", null)?.toSet() ?: DEFAULT_LANGUAGES
         } else if (key == "show_nsfw") {
             _showNsfw.value = prefs.getBoolean("show_nsfw", false)
         }
@@ -60,7 +63,8 @@ class KotatsuSourceManager @Inject constructor(
     ) { allSources, langs, nsfw ->
         allSources.filter { src ->
             val langMatches = src.lang in langs || src.lang.substringBefore('-') in langs
-            val nsfwAllowed = nsfw || !(src.isNsfw || src.parserSource.contentType in ADULT_TYPES)
+            // The allowlist's flag is our decision; kotatsu's own content type is only an input to it.
+            val nsfwAllowed = nsfw || !src.isNsfw
             langMatches && nsfwAllowed
         }
     }.stateIn(scope, SharingStarted.Eagerly, emptyList())
@@ -114,12 +118,8 @@ class KotatsuSourceManager @Inject constructor(
     }
 
     private companion object {
-        val ADULT_TYPES = setOf(
-            ContentType.HENTAI,
-            ContentType.DOUJINSHI,
-            ContentType.IMAGE_SET,
-            ContentType.ARTIST_CG,
-            ContentType.GAME_CG,
-        )
+        // Shares the "languages" preference with ExtensionManager, so the default has to match its
+        // DEFAULT_LANGUAGES; "multi" keeps multi-language parsers visible.
+        val DEFAULT_LANGUAGES = setOf("all", Source.MULTI_LANG, "en", "ja", "ko", "ru")
     }
 }
