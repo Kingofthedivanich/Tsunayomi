@@ -70,7 +70,7 @@ def main():
         print(f"Translating {len(items)} samples for {lang}...")
         
         for idx, item in enumerate(items, 1):
-            source_text = item["ocr_text"]
+            source_text = item.get("source_text") or item.get("ocr_text")
             
             # Translate to English
             trans_en, lat_en = translate(source_text, tok, model)

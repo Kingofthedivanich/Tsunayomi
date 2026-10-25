@@ -41,13 +41,13 @@ class KotatsuSourceManager @Inject constructor(
     internal fun getSource(sourceId: Long): KotatsuCatalogSource? = _sources.value.firstOrNull { it.id == sourceId }
 
     private val _languages = MutableStateFlow(
-        prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko"),
+        prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko", "zh"),
     )
     private val _showNsfw = MutableStateFlow(prefs.getBoolean("show_nsfw", false))
 
     private val prefListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
         if (key == "languages") {
-            _languages.value = prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko")
+            _languages.value = prefs.getStringSet("languages", null)?.toSet() ?: setOf("en", "ru", "ja", "ko", "zh")
         } else if (key == "show_nsfw") {
             _showNsfw.value = prefs.getBoolean("show_nsfw", false)
         }

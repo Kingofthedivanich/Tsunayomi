@@ -51,7 +51,7 @@ def main():
     print(f"Loading tokenizer {MODEL_NAME}...")
     tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
     print(f"Loading model {MODEL_NAME}...")
-    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME, use_safetensors=True)
+    model = AutoModelForSeq2SeqLM.from_pretrained(MODEL_NAME, use_safetensors=False)
     model.eval()
 
     with open(args.input, "r", encoding="utf-8") as f:
@@ -65,7 +65,7 @@ def main():
     for idx, item in enumerate(dataset, 1):
         lang = item["lang"]
         src_code = LANG_MAP[lang]
-        source_text = item["ocr_text"]
+        source_text = item.get("source_text") or item.get("ocr_text")
 
         # Direct into EN
         trans_en, lat_en = translate(source_text, src_code, LANG_MAP["en"], tokenizer, model)

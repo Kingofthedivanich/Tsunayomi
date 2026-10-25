@@ -1,1819 +1,1360 @@
 {
   "model": "Google ML Kit Translate",
-  "sample_count": 201,
-  "avg_bubble_latency_en_sec": 0.018272267203980102,
-  "avg_bubble_latency_ru_sec": 0.03103265690547264,
-  "simulated_page_12_bubbles_en_sec": 0.2192672064477612,
-  "simulated_page_12_bubbles_ru_sec": 0.3723918828656717,
+  "sample_count": 150,
+  "avg_bubble_latency_en_sec": 0.016086331966666666,
+  "avg_bubble_latency_ru_sec": 0.02835852114666667,
+  "simulated_page_12_bubbles_en_sec": 0.1930359836,
+  "simulated_page_12_bubbles_ru_sec": 0.34030225376,
   "translations": [
     {
       "id": "ja_001",
       "lang": "ja",
-      "source_text": "飯テロ注意！空腹必至の異世界グルメファンタジー！",
-      "mlkit_en": "Rice terrorist attention! Horrorgun Merely World Gourmet Fantasy!",
-      "mlkit_ru": "Рис Террорист! Horrorgun просто мировая фантазия для гурманов!",
-      "latency_en_sec": 0.189658833,
-      "latency_ru_sec": 0.24333475
+      "source_text": "魔物達が",
+      "mlkit_en": "Magic",
+      "mlkit_ru": "Магия",
+      "latency_en_sec": 0.310780459,
+      "latency_ru_sec": 1.008795834
     },
     {
       "id": "ja_002",
       "lang": "ja",
-      "source_text": "小田中さん、この書類の確認をお願いできますか？",
-      "mlkit_en": "Oda-san, can you confirm this document?",
-      "mlkit_ru": "ODA-SAN, вы можете подтвердить этот документ?",
-      "latency_en_sec": 0.013424083,
-      "latency_ru_sec": 0.032894708
+      "source_text": "向かわせた",
+      "mlkit_en": "Opposite",
+      "mlkit_ru": "Напротив",
+      "latency_en_sec": 0.052131042,
+      "latency_ru_sec": 0.056025167
     },
     {
       "id": "ja_003",
       "lang": "ja",
-      "source_text": "ふぅ…今日も残業か。コンビニ弁当じゃ味気ないよな。",
-      "mlkit_en": "Fu ... Is it overtime today? Convenience store lunch box is not good.",
-      "mlkit_ru": "Фу ... это сверхурочно сегодня? Удобство для хранения ланч-коробка не хороша.",
-      "latency_en_sec": 0.018153583,
-      "latency_ru_sec": 0.032816042
+      "source_text": "王都に",
+      "mlkit_en": "In the capital city",
+      "mlkit_ru": "В столице",
+      "latency_en_sec": 0.043526791,
+      "latency_ru_sec": 0.055903709
     },
     {
       "id": "ja_004",
       "lang": "ja",
-      "source_text": "大家さんからもらったこの古い鍵、一体何の鍵なんだろう。",
-      "mlkit_en": "This old key, which I got from a landlord, what kind of key is it.",
-      "mlkit_ru": "Этот старый ключ, который я получил от арендодателя, какой это ключ.",
-      "latency_en_sec": 0.016147208,
-      "latency_ru_sec": 0.037334042
+      "source_text": "まあのたち",
+      "mlkit_en": "Naughty",
+      "mlkit_ru": "Непослушный",
+      "latency_en_sec": 0.02498,
+      "latency_ru_sec": 0.030895833
     },
     {
       "id": "ja_005",
       "lang": "ja",
-      "source_text": "えっ！？扉の向こうが…見たこともない街並みになってる！？",
-      "mlkit_en": "Eh! ? The other side of the door is ... I have never seen it! ?",
-      "mlkit_ru": "Да! ? Другая сторона двери - ... Я никогда не видел этого! ?",
-      "latency_en_sec": 0.02165975,
-      "latency_ru_sec": 0.031212208
+      "source_text": "おうと",
+      "mlkit_en": "Add",
+      "mlkit_ru": "Добавлять",
+      "latency_en_sec": 0.0226615,
+      "latency_ru_sec": 0.033620334
     },
     {
       "id": "ja_006",
       "lang": "ja",
-      "source_text": "なんだこのいい匂いは…香ばしい肉の焼ける匂いだ！",
-      "mlkit_en": "What this good smell is ... a smell of fragrant meat!",
-      "mlkit_ru": "Какой это хороший запах ... запах ароматного мяса!",
-      "latency_en_sec": 0.015956666,
-      "latency_ru_sec": 0.025997417
+      "source_text": "大変です！！",
+      "mlkit_en": "It is difficult! !",
+      "mlkit_ru": "Это сложно! !",
+      "latency_en_sec": 0.023960042,
+      "latency_ru_sec": 0.054438041
     },
     {
       "id": "ja_007",
       "lang": "ja",
-      "source_text": "いらっしゃい！兄ちゃん、見ない顔だね。串焼き食べてくかい？",
-      "mlkit_en": "I'm sorry! My brother, a face I can not see. Do you eat skewers?",
-      "mlkit_ru": "Извините! Мой брат, лицо, которое я не вижу. Вы едите шампуры?",
-      "latency_en_sec": 0.0141105,
-      "latency_ru_sec": 0.029111958
+      "source_text": "たい",
+      "mlkit_en": "Like",
+      "mlkit_ru": "Подобно",
+      "latency_en_sec": 0.023065917,
+      "latency_ru_sec": 0.030923625
     },
     {
       "id": "ja_008",
       "lang": "ja",
-      "source_text": "う、うまい！外はカリッとしてるのに中は信じられないほどジューシーだ…！",
-      "mlkit_en": "Um, delicious! Outside is caulking but inside is incredible and juicy ...!",
-      "mlkit_ru": "Хм, вкусно! Снаружи - это котлы, но внутри невероятной и сочной ...!",
-      "latency_en_sec": 0.021913125,
-      "latency_ru_sec": 0.036944833
+      "source_text": "ぜんめつ",
+      "mlkit_en": "Wholesale",
+      "mlkit_ru": "Оптовые продажи",
+      "latency_en_sec": 0.024412583,
+      "latency_ru_sec": 0.034960875
     },
     {
       "id": "ja_009",
       "lang": "ja",
-      "source_text": "これ、何の肉ですか？",
-      "mlkit_en": "What meat is this?",
-      "mlkit_ru": "Что это мясо?",
-      "latency_en_sec": 0.010120833,
-      "latency_ru_sec": 0.013212
+      "source_text": "しました！！",
+      "mlkit_en": "I did! !",
+      "mlkit_ru": "Я сделал! !",
+      "latency_en_sec": 0.026685667,
+      "latency_ru_sec": 0.023593375
     },
     {
       "id": "ja_010",
       "lang": "ja",
-      "source_text": "ロック鳥のモモ肉さ！森で今朝獲れたてだから新鮮だよ。",
-      "mlkit_en": "Rock bird's momo meat! It is fresh because it was caught this morning in the forest.",
-      "mlkit_ru": "Рок птичье мясо Momo! Это свежо, потому что это было поймано сегодня утром в лесу.",
-      "latency_en_sec": 0.017914708,
-      "latency_ru_sec": 0.035774167
+      "source_text": "どうして",
+      "mlkit_en": "Why",
+      "mlkit_ru": "Почему",
+      "latency_en_sec": 0.002724,
+      "latency_ru_sec": 0.004267334
     },
     {
       "id": "ja_011",
       "lang": "ja",
-      "source_text": "貴殿、見慣れぬ身なりをしているが…何者だ？",
-      "mlkit_en": "You're familiar with your eyes ... Who is it?",
-      "mlkit_ru": "Вы знакомы с вашими глазами ... Кто это?",
-      "latency_en_sec": 0.013264083,
-      "latency_ru_sec": 0.022673292
+      "source_text": "そうなるのだ",
+      "mlkit_en": "Will",
+      "mlkit_ru": "Воля",
+      "latency_en_sec": 0.011083,
+      "latency_ru_sec": 0.015730834
     },
     {
       "id": "ja_012",
       "lang": "ja",
-      "source_text": "め、女騎士さん！？いや、ただの通りすがりの会社員です…！",
-      "mlkit_en": "Me, female knight! ? No, I'm just a company employee ...!",
-      "mlkit_ru": "Я, женщина рыцарь! ? Нет, я просто сотрудник компании ...!",
-      "latency_en_sec": 0.015927166,
-      "latency_ru_sec": 0.030942459
+      "source_text": "ああああ！！",
+      "mlkit_en": "Ah! !",
+      "mlkit_ru": "Ах! !",
+      "latency_en_sec": 0.016581167,
+      "latency_ru_sec": 0.009578208
     },
     {
       "id": "ja_013",
       "lang": "ja",
-      "source_text": "くっ…お腹の音が…すまぬ、任務続きで三日何も食しておらぬのだ。",
-      "mlkit_en": "... The sound of the stomach is ... I have to eat anything about the three days with a successful work.",
-      "mlkit_ru": "... Звук желудка ... Я должен есть что-либо о трех днях с успешной работой.",
-      "latency_en_sec": 0.019474334,
-      "latency_ru_sec": 0.033100291
+      "source_text": "思われたが",
+      "mlkit_en": "It seemed",
+      "mlkit_ru": "Показалось",
+      "latency_en_sec": 0.0168015,
+      "latency_ru_sec": 0.015804583
     },
     {
       "id": "ja_014",
       "lang": "ja",
-      "source_text": "よかったらこれ、半分食べますか？熱々ですよ。",
-      "mlkit_en": "If you like this, do you eat half? It is hot.",
-      "mlkit_ru": "Если вам это нравится, вы едите половину? Это жарко.",
-      "latency_en_sec": 0.015382666,
-      "latency_ru_sec": 0.024375791
+      "source_text": "始めは胡散臭い",
+      "mlkit_en": "The beginning of the first time",
+      "mlkit_ru": "Начало впервые",
+      "latency_en_sec": 0.025359708,
+      "latency_ru_sec": 0.05737525
     },
     {
       "id": "ja_015",
       "lang": "ja",
-      "source_text": "な、なんたる美味…！こんな料理、王宮でも口にしたことがない！",
-      "mlkit_en": "What a delicious taste ...! I have never been in such a dish and a royal palace!",
-      "mlkit_ru": "Какой вкусный вкус ...! Я никогда не был в таком блюде и королевском дворце!",
-      "latency_en_sec": 0.019098625,
-      "latency_ru_sec": 0.036084667
+      "source_text": "インチキ本かと",
+      "mlkit_en": "Inchki book",
+      "mlkit_ru": "Динки книга",
+      "latency_en_sec": 0.009911084,
+      "latency_ru_sec": 0.02724875
     },
     {
       "id": "ja_016",
       "lang": "ja",
-      "source_text": "圧倒的な力ってのは…つまらないもんだな。",
-      "mlkit_en": "Overwhelming power is ... I'm sorry.",
-      "mlkit_ru": "Подавляющая сила ... извините.",
-      "latency_en_sec": 0.013147542,
-      "latency_ru_sec": 0.019267291
+      "source_text": "「魔術書」ー",
+      "mlkit_en": "\"Magical Book\"",
+      "mlkit_ru": "«Волшебная книга»",
+      "latency_en_sec": 0.025558417,
+      "latency_ru_sec": 0.037759416
     },
     {
       "id": "ja_017",
       "lang": "ja",
-      "source_text": "趣味でヒーローをやっている者だ。",
-      "mlkit_en": "He is a hobby person doing hero.",
-      "mlkit_ru": "Он занимается хобби, занимающимся героем.",
-      "latency_en_sec": 0.009550792,
-      "latency_ru_sec": 0.019086833
+      "source_text": "発見された",
+      "mlkit_en": "It's been found",
+      "mlkit_ru": "Это было найдено",
+      "latency_en_sec": 0.005306125,
+      "latency_ru_sec": 0.007483375
     },
     {
       "id": "ja_018",
       "lang": "ja",
-      "source_text": "またワンパンで終わっちまった…！",
-      "mlkit_en": "It was over with one bread ...!",
-      "mlkit_ru": "Это было закончено с одним хлебом ...!",
-      "latency_en_sec": 0.00912275,
-      "latency_ru_sec": 0.016444
+      "source_text": "我が領地で",
+      "mlkit_en": "In our territory",
+      "mlkit_ru": "На нашей территории",
+      "latency_en_sec": 0.014837791,
+      "latency_ru_sec": 0.027663833
     },
     {
       "id": "ja_019",
       "lang": "ja",
-      "source_text": "先生！どうか私を弟子にしてください！",
-      "mlkit_en": "Teacher! Please make me a disciple!",
-      "mlkit_ru": "Учитель! Пожалуйста, сделайте меня учеником!",
-      "latency_en_sec": 0.010880375,
-      "latency_ru_sec": 0.020852375
+      "source_text": "そこに",
+      "mlkit_en": "There",
+      "mlkit_ru": "Там",
+      "latency_en_sec": 0.004862125,
+      "latency_ru_sec": 0.005256959
     },
     {
       "id": "ja_020",
       "lang": "ja",
-      "source_text": "いや、断る。面倒くさいし。",
-      "mlkit_en": "No, refuse. It is troublesome.",
-      "mlkit_ru": "Нет, отказываться. Это хлопотно.",
-      "latency_en_sec": 0.006805708,
-      "latency_ru_sec": 0.012791583
+      "source_text": "一魔物を操る呪術」",
+      "mlkit_en": "Merchaper to manipulate one demon",
+      "mlkit_ru": "Мерхудер, чтобы манипулировать одним демоном",
+      "latency_en_sec": 0.015678333,
+      "latency_ru_sec": 0.027902292
     },
     {
       "id": "ja_021",
       "lang": "ja",
-      "source_text": "家賃を折半で払うというのはどうでしょうか？",
-      "mlkit_en": "What about paying the rent in a half?",
-      "mlkit_ru": "Как насчет платежа в аренду по половине?",
-      "latency_en_sec": 0.012058083,
-      "latency_ru_sec": 0.022826833
+      "source_text": "書かれていた",
+      "mlkit_en": "It was written",
+      "mlkit_ru": "Было написано",
+      "latency_en_sec": 0.006440458,
+      "latency_ru_sec": 0.013241666
     },
     {
       "id": "ja_022",
       "lang": "ja",
-      "source_text": "よし、合格だ。明日からよろしくな。",
-      "mlkit_en": "OK, it is passed. Thank you from tomorrow.",
-      "mlkit_ru": "Хорошо, это передано. Спасибо завтра.",
-      "latency_en_sec": 0.009786417,
-      "latency_ru_sec": 0.012835375
+      "source_text": "遠跡主が遺した日誌から驚くべき事実が発覚した",
+      "mlkit_en": "Astonishing facts were discovered from the journals where the stations were heard",
+      "mlkit_ru": "Удивительные факты были обнаружены из журналов, где были услышаны станции",
+      "latency_en_sec": 0.023968166,
+      "latency_ru_sec": 0.035805667
     },
     {
       "id": "ja_023",
       "lang": "ja",
-      "source_text": "おいジェノス、スーパーの特売日忘れてた！急ぐぞ！",
-      "mlkit_en": "Hey Genos, the sales day of the supermarket forgot! Get hurry!",
-      "mlkit_ru": "Эй, генес, день продаж супермаркета забыл! Спешите!",
-      "latency_en_sec": 0.015815834,
-      "latency_ru_sec": 0.031312083
+      "source_text": "なんと",
+      "mlkit_en": "How",
+      "mlkit_ru": "Как",
+      "latency_en_sec": 0.004926708,
+      "latency_ru_sec": 0.0077945
     },
     {
       "id": "ja_024",
       "lang": "ja",
-      "source_text": "了解しました先生。最大出力で追従します。",
-      "mlkit_en": "OK teacher. Follow up at the maximum output.",
-      "mlkit_ru": "ОК Учитель. Следуйте на максимальном выходе.",
-      "latency_en_sec": 0.009012042,
-      "latency_ru_sec": 0.01615275
+      "source_text": "その魔術書こそ",
+      "mlkit_en": "That magic writing",
+      "mlkit_ru": "Это волшебное письмо",
+      "latency_en_sec": 0.007055667,
+      "latency_ru_sec": 0.013852042
     },
     {
       "id": "ja_025",
       "lang": "ja",
-      "source_text": "貴様ごときB級ヒーローが、この怪人協会に勝てると思うなよ！",
-      "mlkit_en": "Don't think that B-grade hero can win this monster association!",
-      "mlkit_ru": "Не думайте, что Герой B-класса может выиграть эту ассоциацию монстра!",
-      "latency_en_sec": 0.01673725,
-      "latency_ru_sec": 0.027509958
+      "source_text": "かの恐るべき”邪竜”を操った",
+      "mlkit_en": "I manipulated the \"evil dragon\"",
+      "mlkit_ru": "Я манипулировал \"злой дракон\"",
+      "latency_en_sec": 0.013198709,
+      "latency_ru_sec": 0.025555125
     },
     {
       "id": "ja_026",
       "lang": "ja",
-      "source_text": "うるせえな、キャベツ落としただろ弁償しろ。",
-      "mlkit_en": "I'm sorry, my cabbage dropped.",
-      "mlkit_ru": "Извините, моя капуста упала.",
-      "latency_en_sec": 0.012792709,
-      "latency_ru_sec": 0.019014667
+      "source_text": "本物の呪法を",
+      "mlkit_en": "Genuine curse",
+      "mlkit_ru": "Подлинное проклятие",
+      "latency_en_sec": 0.007933208,
+      "latency_ru_sec": 0.012845
     },
     {
       "id": "ja_027",
       "lang": "ja",
-      "source_text": "この遺跡の奥に伝説の金貨が眠っているはずだ。",
-      "mlkit_en": "The legendary gold coin should be asleep at the back of this ruins.",
-      "mlkit_ru": "Легендарная золотая монета должна спит на задней части этих руин.",
-      "latency_en_sec": 0.014968541,
-      "latency_ru_sec": 0.029936042
+      "source_text": "しる",
+      "mlkit_en": "Be",
+      "mlkit_ru": "Быть",
+      "latency_en_sec": 0.006787666,
+      "latency_ru_sec": 0.008731084
     },
     {
       "id": "ja_028",
       "lang": "ja",
-      "source_text": "罠だ！足元に気をつけろ！",
-      "mlkit_en": "It's a trap! Be careful with your feet!",
-      "mlkit_ru": "Это ловушка! Будьте осторожны с ногами!",
-      "latency_en_sec": 0.007605708,
-      "latency_ru_sec": 0.014536709
+      "source_text": "だったのだ！",
+      "mlkit_en": "It was!",
+      "mlkit_ru": "Это было!",
+      "latency_en_sec": 0.008369125,
+      "latency_ru_sec": 0.011509917
     },
     {
       "id": "ja_029",
       "lang": "ja",
-      "source_text": "へっ、オレの俊敏性をなめるなよ。",
-      "mlkit_en": "Don't give me too much agility.",
-      "mlkit_ru": "Не дай мне слишком много ловкости.",
-      "latency_en_sec": 0.009276292,
-      "latency_ru_sec": 0.018377
+      "source_text": "記した本",
+      "mlkit_en": "Book",
+      "mlkit_ru": "Книга",
+      "latency_en_sec": 0.00658925,
+      "latency_ru_sec": 0.00898375
     },
     {
       "id": "ja_030",
       "lang": "ja",
-      "source_text": "扉が開かない…何か古代の文字が刻まれているぞ。",
-      "mlkit_en": "The door does not open ... Ancient letters are engraved.",
-      "mlkit_ru": "Дверь не открывается ... Древние буквы выгравированы.",
-      "latency_en_sec": 0.01306225,
-      "latency_ru_sec": 0.034845875
+      "source_text": "ほんものじゃほう",
+      "mlkit_en": "Really",
+      "mlkit_ru": "Действительно",
+      "latency_en_sec": 0.007210292,
+      "latency_ru_sec": 0.007955041
     },
     {
       "id": "ja_031",
       "lang": "ja",
-      "source_text": "『真の勇気を持つ者のみ、黄金の道を進むべし』",
-      "mlkit_en": "\"A person with true courage only, go to the golden way\"",
-      "mlkit_ru": "«Только человек с истинным мужеством, иди к золотому пути»",
-      "latency_en_sec": 0.013526625,
-      "latency_ru_sec": 0.025907333
+      "source_text": "建国伝説に名を残す",
+      "mlkit_en": "Leave a name to the Legend of the National Legend",
+      "mlkit_ru": "Оставьте имя в легенду о национальной легенде",
+      "latency_en_sec": 0.011873833,
+      "latency_ru_sec": 0.022826292
     },
     {
       "id": "ja_032",
       "lang": "ja",
-      "source_text": "ふん、謎解きなら任せておけ！",
-      "mlkit_en": "Leave it if it is solved in mystery!",
-      "mlkit_ru": "Оставьте его, если он решен в тайне!",
-      "latency_en_sec": 0.011581333,
-      "latency_ru_sec": 0.021252583
+      "source_text": "驚きの事実！",
+      "mlkit_en": "The fact of surprise!",
+      "mlkit_ru": "Факт неожиданности!",
+      "latency_en_sec": 0.008164833,
+      "latency_ru_sec": 0.013889166
     },
     {
       "id": "ja_033",
       "lang": "ja",
-      "source_text": "目が覚めたら深い森の中だった。",
-      "mlkit_en": "When I woke up, it was in a deep forest.",
-      "mlkit_ru": "Когда я проснулся, это было в глубоком лесу.",
-      "latency_en_sec": 0.01136725,
-      "latency_ru_sec": 0.019228083
+      "source_text": "伝説の邪竜が実は人の手によって操られていたという",
+      "mlkit_en": "It is said that the legendary evil dragon was actually manipulated by the person's hand",
+      "mlkit_ru": "Говорят, что легендарный злой дракон был фактически манипулированный рукой человека",
+      "latency_en_sec": 0.019060708,
+      "latency_ru_sec": 0.033749083
     },
     {
       "id": "ja_034",
       "lang": "ja",
-      "source_text": "神様からもらったこの『万能農具』、本当に何でも耕せるな。",
-      "mlkit_en": "This \"all-purpose farming tool\", which came from God, really tills anything.",
-      "mlkit_ru": "Этот «универсальный фермерский инструмент», который пришел от Бога, действительно почти ничего.",
-      "latency_en_sec": 0.019700875,
-      "latency_ru_sec": 0.032260625
+      "source_text": "出来るという事！",
+      "mlkit_en": "That you can do it!",
+      "mlkit_ru": "Что вы можете сделать это!",
+      "latency_en_sec": 0.008701875,
+      "latency_ru_sec": 0.014617042
     },
     {
       "id": "ja_035",
       "lang": "ja",
-      "source_text": "まずは寝床と水源の確保から始めよう。",
-      "mlkit_en": "First of all, let's start with securing the bed and water sources.",
-      "mlkit_ru": "Прежде всего, давайте начнем с закрепления источников постели и воды.",
-      "latency_en_sec": 0.012031042,
-      "latency_ru_sec": 0.024288791
+      "source_text": "支配する事が",
+      "mlkit_en": "I rule",
+      "mlkit_ru": "Я правил",
+      "latency_en_sec": 0.007771833,
+      "latency_ru_sec": 0.010258542
     },
     {
       "id": "ja_036",
       "lang": "ja",
-      "source_text": "くぅ〜ん…怪我をした大きな犬？いや、狼か！？",
-      "mlkit_en": "Ku ぅ ... A big dog injured? No, wolf! ?",
-      "mlkit_ru": "Ку ぅ ... Большая собака ранен? Нет, волк! ?",
-      "latency_en_sec": 0.018606542,
-      "latency_ru_sec": 0.030793167
+      "source_text": "我等もまた邪竜を",
+      "mlkit_en": "Also we have an evil dragon",
+      "mlkit_ru": "Также у нас есть злой дракон",
+      "latency_en_sec": 0.008128584,
+      "latency_ru_sec": 0.015755875
     },
     {
       "id": "ja_037",
       "lang": "ja",
-      "source_text": "大丈夫だ、敵意はないよ。傷口を洗って手当てしてあげるからな。",
-      "mlkit_en": "All right, there is no hostility. I will wash my wounds and help.",
-      "mlkit_ru": "Хорошо, нет враждебности. Я помываю свои раны и помогите.",
-      "latency_en_sec": 0.017724625,
-      "latency_ru_sec": 0.025454917
+      "source_text": "本当なら",
+      "mlkit_en": "If it is true",
+      "mlkit_ru": "Если это правда",
+      "latency_en_sec": 0.00652225,
+      "latency_ru_sec": 0.011485209
     },
     {
       "id": "ja_038",
       "lang": "ja",
-      "source_text": "なついてくれたみたいだ。クロって名前にしよう。",
-      "mlkit_en": "It looks like you're happy. Let's name it.",
-      "mlkit_ru": "Похоже, ты счастлив. Давайте назовем это.",
-      "latency_en_sec": 0.013703958,
-      "latency_ru_sec": 0.022551209
+      "source_text": "ほんとう",
+      "mlkit_en": "Really",
+      "mlkit_ru": "Действительно",
+      "latency_en_sec": 0.005812167,
+      "latency_ru_sec": 0.009123334
     },
     {
       "id": "ja_039",
       "lang": "ja",
-      "source_text": "畑のトマトが赤く熟してきたぞ！",
-      "mlkit_en": "The tomato in the field has been red and ripened!",
-      "mlkit_ru": "Помидор в поле был красным и созрел!",
-      "latency_en_sec": 0.01095625,
-      "latency_ru_sec": 0.0240595
+      "source_text": "それが",
+      "mlkit_en": "That is",
+      "mlkit_ru": "Это",
+      "latency_en_sec": 0.00300425,
+      "latency_ru_sec": 0.0030495
     },
     {
       "id": "ja_040",
       "lang": "ja",
-      "source_text": "採れたてを丸かじり…甘くてみずみずしい！最高だ！",
-      "mlkit_en": "It is picking up and rolled ... sweet and easy! It is the best!",
-      "mlkit_ru": "Он собирает и проката ... Сладкий и легкий! Это лучшее!",
-      "latency_en_sec": 0.01464225,
-      "latency_ru_sec": 0.02691925
+      "source_text": "”アレ”だ！",
+      "mlkit_en": "\"Alle\"!",
+      "mlkit_ru": "\"Все в\"!",
+      "latency_en_sec": 0.007006708,
+      "latency_ru_sec": 0.007626584
     },
     {
       "id": "ja_041",
       "lang": "ja",
-      "source_text": "記憶を失う代わりに、神級のスキルを獲得しただと…？",
-      "mlkit_en": "Instead of losing memory, I won the self-class skill ...?",
-      "mlkit_ru": "Вместо того, чтобы потерять память, я выиграл навык самоклассных ...?",
-      "latency_en_sec": 0.018729666,
-      "latency_ru_sec": 0.030328
+      "source_text": "こうなったら",
+      "mlkit_en": "If this happens",
+      "mlkit_ru": "Если это произойдет",
+      "latency_en_sec": 0.006576292,
+      "latency_ru_sec": 0.011933917
     },
     {
       "id": "ja_042",
       "lang": "ja",
-      "source_text": "転生前のオレは、一体どれだけバトルジャンキーだったんだよ。",
-      "mlkit_en": "Ore before reincarnation was a battle Junkie.",
-      "mlkit_ru": "Руда перед реинкарнацией была битва, наркомана.",
-      "latency_en_sec": 0.016533667,
-      "latency_ru_sec": 0.027200208
+      "source_text": "４月２８日（金）朝行していたのか！？離室です！",
+      "mlkit_en": "April 28 (Fri) Did you get in the morning! ? It is an off room!",
+      "mlkit_ru": "28 апреля (пт) Вы получили утром! ? Это не в комнате!",
+      "latency_en_sec": 0.019987542,
+      "latency_ru_sec": 0.032703291
     },
     {
       "id": "ja_043",
       "lang": "ja",
-      "source_text": "メルフィーナ、お前の声は頭の中に直接響いてくるな。",
-      "mlkit_en": "Melphina, your voice does not seem directly in my head.",
-      "mlkit_ru": "Мельфина, ваш голос не кажется прямо в моей голове.",
-      "latency_en_sec": 0.014317417,
-      "latency_ru_sec": 0.025826958
+      "source_text": "上海に切り札を",
+      "mlkit_en": "True bid in Shanghai",
+      "mlkit_ru": "Истинная заявка в Шанхае",
+      "latency_en_sec": 0.008687,
+      "latency_ru_sec": 0.017157333
     },
     {
       "id": "ja_044",
       "lang": "ja",
-      "source_text": "冒険者ギルドの登録試験を受けに来ました。",
-      "mlkit_en": "I came to receive an adventurer guild registration test.",
-      "mlkit_ru": "Я пришел, чтобы получить проверку регистрации гильдии авантюриста.",
-      "latency_en_sec": 0.014280666,
-      "latency_ru_sec": 0.025358709
+      "source_text": "あらかじめ",
+      "mlkit_en": "In advance",
+      "mlkit_ru": "Заранее, авансом",
+      "latency_en_sec": 0.0051765,
+      "latency_ru_sec": 0.007287
     },
     {
       "id": "ja_045",
       "lang": "ja",
-      "source_text": "新人かい？死にたくなきゃゴブリン退治から地道にやることね。",
-      "mlkit_en": "Is it a newcomer? If you want to die, you will go to the ground from Gobrin.",
-      "mlkit_ru": "Это новичок? Если вы хотите умереть, вы пойдите на землю от Гибрина.",
-      "latency_en_sec": 0.018232458,
-      "latency_ru_sec": 0.034503791
+      "source_text": "動きを予測して",
+      "mlkit_en": "Predict movement",
+      "mlkit_ru": "Прогнозировать движение",
+      "latency_en_sec": 0.009302959,
+      "latency_ru_sec": 0.012658792
     },
     {
       "id": "ja_046",
       "lang": "ja",
-      "source_text": "出でよ、我が契約の魔獣――クロト！",
-      "mlkit_en": "Out, my contract monster-Croto!",
-      "mlkit_ru": "Мой контракт монстр-крото!",
-      "latency_en_sec": 0.01275525,
-      "latency_ru_sec": 0.021184875
+      "source_text": "まさか敵は我々の",
+      "mlkit_en": "The enemy is our",
+      "mlkit_ru": "Враг наш",
+      "latency_en_sec": 0.007970625,
+      "latency_ru_sec": 0.014820958
     },
     {
       "id": "ja_047",
       "lang": "ja",
-      "source_text": "スライムだと馬鹿にしていた相手が一瞬で消炭に…！？",
-      "mlkit_en": "If it was slime, the other party who was fooled by the other party is for parasites ...! ?",
-      "mlkit_ru": "Если это было слизь, другая сторона, которая была одурана другой стороной, предназначена для паразитов ...! ?",
-      "latency_en_sec": 0.019389833,
-      "latency_ru_sec": 0.037052458
+      "source_text": "アレを使うモーシロモノですよ！？",
+      "mlkit_en": "It is Mosillo Monomo that uses Alle! ?",
+      "mlkit_ru": "Это Мосильо Мономо, который использует ALLE! ?",
+      "latency_en_sec": 0.014817625,
+      "latency_ru_sec": 0.025983667
     },
     {
       "id": "ja_048",
       "lang": "ja",
-      "source_text": "さあ、次は誰が相手をしてくれるんだ？",
-      "mlkit_en": "Come on, who will do the other party?",
-      "mlkit_ru": "Давай, кто сделает другую партию?",
-      "latency_en_sec": 0.013387208,
-      "latency_ru_sec": 0.018475417
+      "source_text": "のですか！？",
+      "mlkit_en": "Is it? ?",
+      "mlkit_ru": "Это? ?",
+      "latency_en_sec": 0.009961958,
+      "latency_ru_sec": 0.008552083
     },
     {
       "id": "ja_049",
       "lang": "ja",
-      "source_text": "現代の調味料を持ってきたらもっと美味しくなるかもしれない。",
-      "mlkit_en": "It may be more delicious if you bring a modern seasoning.",
-      "mlkit_ru": "Это может быть более вкусным, если вы принесете современную приправу.",
-      "latency_en_sec": 0.013675917,
-      "latency_ru_sec": 0.02796725
+      "source_text": "．．．．．．まさかヤツを使う",
+      "mlkit_en": ". . . . . . Use a guy",
+      "mlkit_ru": ". . . . . . Использовать парня",
+      "latency_en_sec": 0.010219292,
+      "latency_ru_sec": 0.017787584
     },
     {
       "id": "ja_050",
       "lang": "ja",
-      "source_text": "醤油とマヨネーズは万国共通の最強タッグだな。",
-      "mlkit_en": "Soy sauce and mayonnaise are the strongest tags common to the country.",
-      "mlkit_ru": "Соевый соус и майонез - это самые сильные метки, общие для страны.",
-      "latency_en_sec": 0.01500125,
-      "latency_ru_sec": 0.037561833
-    },
-    {
-      "id": "ja_051",
-      "lang": "ja",
-      "source_text": "うわっ、なにこれ！？舌がとろけそう…！",
-      "mlkit_en": "Wow, what is this! ? The tongue seems to be melted ...!",
-      "mlkit_ru": "Вау, что это! ? Язык, кажется, растаял ...!",
-      "latency_en_sec": 0.008459834,
-      "latency_ru_sec": 0.021625792
-    },
-    {
-      "id": "ja_052",
-      "lang": "ja",
-      "source_text": "今日のおすすめはドワーフ特製の黒ビールと燻製肉だよ！",
-      "mlkit_en": "Today's recommendation is a dwarf special black beer and smoked meat!",
-      "mlkit_ru": "Сегодняшняя рекомендация - это карликовое специальное черное пиво и копченое мясо!",
-      "latency_en_sec": 0.017786667,
-      "latency_ru_sec": 0.034712042
-    },
-    {
-      "id": "ja_053",
-      "lang": "ja",
-      "source_text": "ぷはぁーっ！仕事終わりの一杯はどの世界でも至高だな！",
-      "mlkit_en": "Put! The end of work is the best in any world!",
-      "mlkit_ru": "Поставить! Конец работы - лучший в любом мире!",
-      "latency_en_sec": 0.014730875,
-      "latency_ru_sec": 0.027479375
-    },
-    {
-      "id": "ja_054",
-      "lang": "ja",
-      "source_text": "お前さん、いい飲みっぷりだ！気に入ったぞ！",
-      "mlkit_en": "Yofu, good drinking! I like it!",
-      "mlkit_ru": "Йофу, хорошо пить! Мне это нравится!",
-      "latency_en_sec": 0.014176792,
-      "latency_ru_sec": 0.023952625
-    },
-    {
-      "id": "ja_055",
-      "lang": "ja",
-      "source_text": "ヒーローネーム『ハゲマント』…なんだそのダサい名前は！",
-      "mlkit_en": "Hero name \"Bagemant\" ... What is that dash name!",
-      "mlkit_ru": "Название героя \"Bagemant\" ... Что это такое имя *",
-      "latency_en_sec": 0.017018584,
-      "latency_ru_sec": 0.023565417
-    },
-    {
-      "id": "ja_056",
-      "lang": "ja",
-      "source_text": "事実をありのままに表現した素晴らしい呼称かと。",
-      "mlkit_en": "A wonderful name that expressed the facts as it is.",
-      "mlkit_ru": "Прекрасное имя, которое выразило факты, как оно.",
-      "latency_en_sec": 0.015812833,
-      "latency_ru_sec": 0.023146917
-    },
-    {
-      "id": "ja_057",
-      "lang": "ja",
-      "source_text": "慰めになってねえよジェノス！",
-      "mlkit_en": "I'm comfortable to comfort Genos!",
-      "mlkit_ru": "Мне удобно комфортировать генес!",
-      "latency_en_sec": 0.026609917,
-      "latency_ru_sec": 0.021242708
-    },
-    {
-      "id": "ja_058",
-      "lang": "ja",
-      "source_text": "隕石が…Z市に向けて落下しているだと！？",
-      "mlkit_en": "Meteorites are ... and it is falling towards Z city! ?",
-      "mlkit_ru": "Метеориты ... И он падает в сторону Z город! ?",
-      "latency_en_sec": 0.019104667,
-      "latency_ru_sec": 0.051288125
-    },
-    {
-      "id": "ja_059",
-      "lang": "ja",
-      "source_text": "避難警報が鳴り響いている。全市民直ちに地下シェルターへ退避を！",
-      "mlkit_en": "Evacuation alarms are ringing. Every citizen get back to the underground shelter!",
-      "mlkit_ru": "Эвакуационные сигналы тревоги звонят. Каждый гражданин вернется к подземному укрытию!",
-      "latency_en_sec": 0.027398125,
-      "latency_ru_sec": 0.034534042
-    },
-    {
-      "id": "ja_060",
-      "lang": "ja",
-      "source_text": "オレの家が壊れるだろ。ちょっと止めてくるわ。",
-      "mlkit_en": "My house is broken. I will stop for a while.",
-      "mlkit_ru": "Мой дом сломан. Я останавливаюсь на некоторое время.",
-      "latency_en_sec": 0.013416875,
-      "latency_ru_sec": 0.030073375
-    },
-    {
-      "id": "ja_061",
-      "lang": "ja",
-      "source_text": "宝箱を発見したぞ！ミミックじゃないだろうな…？",
-      "mlkit_en": "I found a treasure chest! It will not be a mimic ...?",
-      "mlkit_ru": "Я нашел сундук с сокровищами! Это не будет имитироваться ...?",
-      "latency_en_sec": 0.012445041,
-      "latency_ru_sec": 0.02830925
-    },
-    {
-      "id": "ja_062",
-      "lang": "ja",
-      "source_text": "ツンツン…よし、動かない！開けるぞ！",
-      "mlkit_en": "Tsunzun ... good, not moving! I will open it!",
-      "mlkit_ru": "Цунзун ... Хорошо, не двигаясь! Я открою это!",
-      "latency_en_sec": 0.016650458,
-      "latency_ru_sec": 0.034279083
-    },
-    {
-      "id": "ja_063",
-      "lang": "ja",
-      "source_text": "金貨と…見たこともない輝きの魔石だ！大金星だぜ！",
-      "mlkit_en": "Gold coin and ... I have never seen a glow magic stone! It is a great Venus!",
-      "mlkit_ru": "Золотая монета и ... Я никогда не видел светлый волшебный камень! Это великая Венера!",
-      "latency_en_sec": 0.029667333,
-      "latency_ru_sec": 0.042953458
-    },
-    {
-      "id": "ja_064",
-      "lang": "ja",
-      "source_text": "エルフの村から移住希望者が来た？歓迎するよ。",
-      "mlkit_en": "Did you get migration from Elf village? I welcome you.",
-      "mlkit_ru": "Вы получили миграцию из деревни эльф? Я приветствую тебя.",
-      "latency_en_sec": 0.021675459,
-      "latency_ru_sec": 0.033879541
-    },
-    {
-      "id": "ja_065",
-      "lang": "ja",
-      "source_text": "村長さん、私たちは大工仕事と裁縫が得意です。",
-      "mlkit_en": "Mr. Mura, we are good at carpenter work and sewing.",
-      "mlkit_ru": "Г-н Муна, мы хорош в плотниках и шитье.",
-      "latency_en_sec": 0.019917417,
-      "latency_ru_sec": 0.032828875
-    },
-    {
-      "id": "ja_066",
-      "lang": "ja",
-      "source_text": "お前の強さは本物だ。だがこの先へ進むなら覚悟しろよ。",
-      "mlkit_en": "Your strength is genuine. But you will be prepared if you go ahead.",
-      "mlkit_ru": "Ваша сила подлина. Но вы будете готовы, если вы пойдете вперед.",
-      "latency_en_sec": 0.022667708,
-      "latency_ru_sec": 0.038973708
-    },
-    {
-      "id": "ja_067",
-      "lang": "ja",
-      "source_text": "望むところだ。強敵と戦えるならこれ以上の喜びはない！",
-      "mlkit_en": "I want to see it. There is no more pleasure if you can fight strong enemies!",
-      "mlkit_ru": "Я хочу увидеть это. Нет никакого удовольствия, если вы можете бороться с сильными врагами!",
-      "latency_en_sec": 0.018559625,
-      "latency_ru_sec": 0.03900775
+      "source_text": "夜に制御出来ない",
+      "mlkit_en": "I can not control at night",
+      "mlkit_ru": "Я не могу контролировать ночью",
+      "latency_en_sec": 0.014883833,
+      "latency_ru_sec": 0.01802875
     },
     {
       "id": "ko_001",
       "lang": "ko",
-      "source_text": "내가 여자 화장실에 몰카를 설치했다고? 말도 안 되는 소리야!",
-      "mlkit_en": "I installed Malka in a woman's toilet? It sounds a ridiculous!",
-      "mlkit_ru": "Я установил Малку в женском туалете? Это звучит смешно!",
-      "latency_en_sec": 0.197067084,
-      "latency_ru_sec": 0.157662167
+      "source_text": "두공, 자네의말대로일세.",
+      "mlkit_en": "Dead, you are your words.",
+      "mlkit_ru": "Мертвые, ты твои слова.",
+      "latency_en_sec": 0.095694125,
+      "latency_ru_sec": 0.082496376
     },
     {
       "id": "ko_002",
       "lang": "ko",
-      "source_text": "결국 무죄로 밝혀졌지만, 이미 사내 소문은 파다하게 퍼졌다.",
-      "mlkit_en": "Eventually, it was found to be innocent, but the in-house rumor has spread.",
-      "mlkit_ru": "В конце концов, было обнаружено, что он невиновен, но в домичном слух распространился.",
-      "latency_en_sec": 0.020108,
-      "latency_ru_sec": 0.036154
+      "source_text": "육감도 의히지못한 놈이 오대악인의재주를 빼앗다니.",
+      "mlkit_en": "A guy who did not do the seashell is also taken away from the Odon.",
+      "mlkit_ru": "Парень, который не делал морской раковины, также забрал от Одона.",
+      "latency_en_sec": 0.023437333,
+      "latency_ru_sec": 0.041064875
     },
     {
       "id": "ko_003",
       "lang": "ko",
-      "source_text": "호성 씨, 팀장님이 잠깐 회의실로 들어오시랍니다.",
-      "mlkit_en": "Mr. Ho Sung, a team leader comes in for a while.",
-      "mlkit_ru": "Мистер Хо Сен, руководитель команды на некоторое время приходит.",
-      "latency_en_sec": 0.024944208,
-      "latency_ru_sec": 0.023634209
+      "source_text": "착, 자네사위 말인데.",
+      "mlkit_en": "It's your tie, you're your son.",
+      "mlkit_ru": "Это твой галстук, ты твой сын.",
+      "latency_en_sec": 0.015427,
+      "latency_ru_sec": 0.018354541
     },
     {
       "id": "ko_004",
       "lang": "ko",
-      "source_text": "인사이동이라니요? 제가 왜 다른 부서로 가야 합니까?",
-      "mlkit_en": "Is it a greeting move? Why should I go to another department?",
-      "mlkit_ru": "Это приветствие хода? Почему я должен идти в другой отдел?",
-      "latency_en_sec": 0.017371041,
-      "latency_ru_sec": 0.022027417
+      "source_text": "운 하나만큼은기가 막힐 정도로타고났군.",
+      "mlkit_en": "It was ridiculous enough to have a lot of luck.",
+      "mlkit_ru": "Это было достаточно смешно, чтобы повезло.",
+      "latency_en_sec": 0.014360417,
+      "latency_ru_sec": 0.023385542
     },
     {
       "id": "ko_005",
       "lang": "ko",
-      "source_text": "위에서 결정된 사항이에요. 억울해도 어쩔 수 없어요.",
-      "mlkit_en": "It's what I decided above. I can not help it.",
-      "mlkit_ru": "Это то, что я решил выше. Я не могу помочь.",
-      "latency_en_sec": 0.012681209,
-      "latency_ru_sec": 0.01779175
+      "source_text": "그나저나",
+      "mlkit_en": "Anyway",
+      "mlkit_ru": "Тем не мение",
+      "latency_en_sec": 0.003267958,
+      "latency_ru_sec": 0.0030765
     },
     {
       "id": "ko_006",
       "lang": "ko",
-      "source_text": "정말 이렇게 일방적으로 당하고만 있어야 하는 건가…?",
-      "mlkit_en": "I really have to be doing this, ?",
-      "mlkit_ru": "Я действительно должен делать это,?",
-      "latency_en_sec": 0.015681083,
-      "latency_ru_sec": 0.028607792
+      "source_text": "또 그놈이야기인가?",
+      "mlkit_en": "And that's the story?",
+      "mlkit_ru": "И это история?",
+      "latency_en_sec": 0.008087417,
+      "latency_ru_sec": 0.01436125
     },
     {
       "id": "ko_007",
       "lang": "ko",
-      "source_text": "하지만 그 여자의 약점을 우연히 알게 된 순간, 판도는 뒤집혔다.",
-      "mlkit_en": "But when I learned about the weakness of the woman,",
-      "mlkit_ru": "Но когда я узнал о слабости женщины,",
-      "latency_en_sec": 0.027812167,
-      "latency_ru_sec": 0.022808208
+      "source_text": "그 도둑놈이그리 좋으면 자네사위 하시게.",
+      "mlkit_en": "If the thief is good, you will be your son.",
+      "mlkit_ru": "Если вор хорош, вы будете вашим сыном.",
+      "latency_en_sec": 0.016501833,
+      "latency_ru_sec": 0.024691083
     },
     {
       "id": "ko_008",
       "lang": "ko",
-      "source_text": "팀장님, 지난주 금요일 저녁에 어디 계셨는지 기억나십니까?",
-      "mlkit_en": "Team Leader, do you remember where you were on Friday evening last week?",
-      "mlkit_ru": "Лидер команды, вы помните, где вы были в пятницу вечером на прошлой неделе?",
-      "latency_en_sec": 0.015199625,
-      "latency_ru_sec": 0.030882917
+      "source_text": "이번에 온 녀석들은조금 까다롭겠구나.어찌할 테나냐?",
+      "mlkit_en": "The guys all this time will be a little tricky. How are you going?",
+      "mlkit_ru": "Ребята все это время будут немного сложными. Как дела?",
+      "latency_en_sec": 0.015965209,
+      "latency_ru_sec": 0.030249666
     },
     {
       "id": "ko_009",
       "lang": "ko",
-      "source_text": "너… 그걸 어떻게 알고 있는 거지?!",
-      "mlkit_en": "You ... How do you know that?!",
-      "mlkit_ru": "Вы ... Откуда вы знаете это?!",
-      "latency_en_sec": 0.012760375,
-      "latency_ru_sec": 0.020534833
+      "source_text": "허허, 자네도마음에 들어하면서말 한번 참 못나게하는군.",
+      "mlkit_en": "Huh, you have to do it, and you do not have to do it.",
+      "mlkit_ru": "Да, вы должны сделать это, и вам не нужно это делать.",
+      "latency_en_sec": 0.018435792,
+      "latency_ru_sec": 0.030546917
     },
     {
       "id": "ko_010",
       "lang": "ko",
-      "source_text": "이제 제 이야기를 들으실 준비가 되셨습니까?",
-      "mlkit_en": "Are you ready to listen to my story?",
-      "mlkit_ru": "Вы готовы слушать мою историю?",
-      "latency_en_sec": 0.01224925,
-      "latency_ru_sec": 0.018219792
+      "source_text": "다른게 아니고,내가 풍수지리나역술에도 재주가좀 있지 않은가?",
+      "mlkit_en": "Is not it different, and does not I have a lot of people on Feng Shui Na Limar?",
+      "mlkit_ru": "Разное это не разное, и у меня нет много людей на Feng Shui Na Limar?",
+      "latency_en_sec": 0.02455775,
+      "latency_ru_sec": 0.037981375
     },
     {
       "id": "ko_011",
       "lang": "ko",
-      "source_text": "[유료 서비스가 시작되었습니다.]",
-      "mlkit_en": "[Paid service started.]",
-      "mlkit_ru": "[Началась оплаченная служба.]",
-      "latency_en_sec": 0.010913875,
-      "latency_ru_sec": 0.016509042
+      "source_text": "수는 다섯.",
+      "mlkit_en": "The number is five.",
+      "mlkit_ru": "Число пять.",
+      "latency_en_sec": 0.015338125,
+      "latency_ru_sec": 0.011886291
     },
     {
       "id": "ko_012",
       "lang": "ko",
-      "source_text": "퇴근길 만원 지하철 안에서 익숙한 소설의 문장이 눈앞에 떠올랐다.",
-      "mlkit_en": "Only the sentence of a familiar novel in the subway was in front of the day.",
-      "mlkit_ru": "Только предложение знакомого романа в метро было перед днем.",
-      "latency_en_sec": 0.016630459,
-      "latency_ru_sec": 0.027756667
+      "source_text": "자네 사위의관상이 참 특이해.천기를 읽을 수 없을만큼기이한 상이야.",
+      "mlkit_en": "This is a very unusual.",
+      "mlkit_ru": "Это очень необычно.",
+      "latency_en_sec": 0.015977667,
+      "latency_ru_sec": 0.027665917
     },
     {
       "id": "ko_013",
       "lang": "ko",
-      "source_text": "설마… 10년 넘게 나 혼자 읽던 그 삼류 소설이 현실이 된다고?",
-      "mlkit_en": "I do not ... I have a reality that the three-way novels I read alone for more than ten years?",
-      "mlkit_ru": "Я не ... У меня есть реальность, что трехсторонние романы, которые я читал один уже более десяти лет?",
-      "latency_en_sec": 0.021010542,
-      "latency_ru_sec": 0.035613
+      "source_text": "초결정이 한명.나머지는 절정.",
+      "mlkit_en": "One of the second decisions. The remainder is climax.",
+      "mlkit_ru": "Одно из второго решения. Остальная часть - кульминация.",
+      "latency_en_sec": 0.012832042,
+      "latency_ru_sec": 0.022488291
     },
     {
       "id": "ko_014",
       "lang": "ko",
-      "source_text": "창밖 하늘에 거대한 도깨비가 나타났다.",
-      "mlkit_en": "A huge roadside appeared in the sky outside the window.",
-      "mlkit_ru": "Огромная придорожная оборота появилась в небе за пределами окна.",
-      "latency_en_sec": 0.013224209,
-      "latency_ru_sec": 0.022942333
+      "source_text": "자네 사위의 생은아마도 기상천외한 일이수도 없이 벌어질 걸세.",
+      "mlkit_en": "The life of your son's son is the one who will not be a day of the week.",
+      "mlkit_ru": "Жизнь сына вашего сына - это тот, кто не будет днем недели.",
+      "latency_en_sec": 0.018910958,
+      "latency_ru_sec": 0.037036917
     },
     {
       "id": "ko_015",
       "lang": "ko",
-      "source_text": "\"자자, 인간 여러분! 긴장 푸세요. 아주 간단한 게임입니다.\"",
-      "mlkit_en": "\"Just, humans!",
-      "mlkit_ru": "\"Просто, люди!",
-      "latency_en_sec": 0.016352583,
-      "latency_ru_sec": 0.017756125
+      "source_text": "전부 끄집어되겠느냐?",
+      "mlkit_en": "Should I get it all?",
+      "mlkit_ru": "Должен ли я получить все это?",
+      "latency_en_sec": 0.014573917,
+      "latency_ru_sec": 0.01605125
     },
     {
       "id": "ko_016",
       "lang": "ko",
-      "source_text": "[메인 시나리오 #1 - 가치 증명]",
-      "mlkit_en": "[Main Scenario # 1 - Value Certification]",
-      "mlkit_ru": "[Основной сценарий № 1 - Сертификация Value]",
-      "latency_en_sec": 0.012017834,
-      "latency_ru_sec": 0.023848041
+      "source_text": "내어주면",
+      "mlkit_en": "If you give me",
+      "mlkit_ru": "Если вы дадите мне",
+      "latency_en_sec": 0.005946792,
+      "latency_ru_sec": 0.011380166
     },
     {
       "id": "ko_017",
       "lang": "ko",
-      "source_text": "제한 시간 내에 하나 이상의 생명체를 죽이십시오.",
-      "mlkit_en": "Kill one or more creatures within a timeout.",
-      "mlkit_ru": "Убейте одно или несколько существ в таймере.",
-      "latency_en_sec": 0.011749083,
-      "latency_ru_sec": 0.019130916
+      "source_text": "아노.",
+      "mlkit_en": "Ano.",
+      "mlkit_ru": "АНО.",
+      "latency_en_sec": 0.004507709,
+      "latency_ru_sec": 0.0074345
     },
     {
       "id": "ko_018",
       "lang": "ko",
-      "source_text": "사람들이 서로를 향해 흉기를 휘두르기 시작했다.",
-      "mlkit_en": "People began to wield the weapons toward each other.",
-      "mlkit_ru": "Люди начали владеть оружием друг к другу.",
-      "latency_en_sec": 0.012152875,
-      "latency_ru_sec": 0.021141458
+      "source_text": "제가 하겠습니다.",
+      "mlkit_en": "I will.",
+      "mlkit_ru": "Я буду.",
+      "latency_en_sec": 0.008618833,
+      "latency_ru_sec": 0.011016792
     },
     {
       "id": "ko_019",
       "lang": "ko",
-      "source_text": "살기 위해선 반드시 룰의 틈새를 찾아야 해.",
-      "mlkit_en": "To live, you must find the gap of rules.",
-      "mlkit_ru": "Жить, вы должны найти разрыв правил.",
-      "latency_en_sec": 0.015884292,
-      "latency_ru_sec": 0.021824125
+      "source_text": "떠나진 않네?그래도 곁에서지켜보겠단 건가?",
+      "mlkit_en": "Do not you leave? Stay, let's watch it.",
+      "mlkit_ru": "Не уходите? Оставайтесь, давайте посмотрим на это.",
+      "latency_en_sec": 0.015331083,
+      "latency_ru_sec": 0.024612375
     },
     {
       "id": "ko_020",
       "lang": "ko",
-      "source_text": "메뚜기 채집통! 소년의 손에 들려 있던 곤충 채집통을 떠올렸다.",
-      "mlkit_en": "Grasshopper collector! I remembered the insect collectors that were heard in the hands of the boy.",
-      "mlkit_ru": "Кузнечик коллекционер! Я вспомнил коллекторов насекомых, которые были услышаны в руках мальчика.",
-      "latency_en_sec": 0.018361709,
-      "latency_ru_sec": 0.036742833
+      "source_text": "어떻게 하니보겠다는 거겠지.그리고 부탁이 있다했었으니까",
+      "mlkit_en": "I'll see you. And I had a favor.",
+      "mlkit_ru": "Увидимся. И у меня была одолжение.",
+      "latency_en_sec": 0.015318167,
+      "latency_ru_sec": 0.021461042
     },
     {
       "id": "ko_021",
       "lang": "ko",
-      "source_text": "\"꼬마야, 그 통 나한테 잠깐만 빌려줄래?\"",
-      "mlkit_en": "\"Could you lend me a little to the king,",
-      "mlkit_ru": "«Не могли бы вы одолжить мне немного для короля,",
-      "latency_en_sec": 0.015490042,
-      "latency_ru_sec": 0.022864875
+      "source_text": "그럼 어디철수련의 지식을최대한 써 볼까?",
+      "mlkit_en": "So let's use the knowledge of the iron seall?",
+      "mlkit_ru": "Итак, давайте будем использовать знания железа уплотнитель?",
+      "latency_en_sec": 0.013301667,
+      "latency_ru_sec": 0.024278459
     },
     {
       "id": "ko_022",
       "lang": "ko",
-      "source_text": "[생명체(메뚜기)를 살해하셨습니다. 100코인을 획득했습니다.]",
-      "mlkit_en": "[You have killed life (grasshoppers). 100 coins have been obtained.]",
-      "mlkit_ru": "[Вы убили жизнь (кузнечики). 100 монет были получены.]",
-      "latency_en_sec": 0.018842584,
-      "latency_ru_sec": 0.030670375
+      "source_text": "이곳으로 다가오는인기척 정도는 알 수있겠지?",
+      "mlkit_en": "Is it possible to know about the way to get here?",
+      "mlkit_ru": "Можно ли знать о том, как добраться сюда?",
+      "latency_en_sec": 0.018374875,
+      "latency_ru_sec": 0.034542375
     },
     {
       "id": "ko_023",
       "lang": "ko",
-      "source_text": "시나리오 클리어! 살아남은 사람은 우리 칸에서 단 세 명뿐이었다.",
-      "mlkit_en": "Scenario Clear! The person who survived was only three people in our Khan.",
-      "mlkit_ru": "Сценарий ясно! Человек, который выжил, было только три человека в нашем хане.",
-      "latency_en_sec": 0.016369625,
-      "latency_ru_sec": 0.034816417
+      "source_text": "네 수양아들들이도착했군.",
+      "mlkit_en": "Your ferns arrived.",
+      "mlkit_ru": "Ваши папоротники прибыли.",
+      "latency_en_sec": 0.010107625,
+      "latency_ru_sec": 0.018405292
     },
     {
       "id": "ko_024",
       "lang": "ko",
-      "source_text": "이 세계의 결말을 아는 사람은 오직 나 하나뿐이다.",
-      "mlkit_en": "There is only one person who knows the ending of this world.",
-      "mlkit_ru": "Существует только один человек, который знает окончание этого мира.",
-      "latency_en_sec": 0.012004334,
-      "latency_ru_sec": 0.022526875
+      "source_text": "잘 키웠다만당신의 자식들이 나를감당할 수 있을까?",
+      "mlkit_en": "Can you grow well, but can your children can be released?",
+      "mlkit_ru": "Можете ли вы расти хорошо, но могут ли ваши дети можно выпустить?",
+      "latency_en_sec": 0.019144084,
+      "latency_ru_sec": 0.028414875
     },
     {
       "id": "ko_025",
       "lang": "ko",
-      "source_text": "나는 멸망 이후의 세계를 살아가는 유일한 독자다.",
-      "mlkit_en": "I am the only reader to live a world after destruction.",
-      "mlkit_ru": "Я единственный читатель, чтобы жить мир после уничтожения.",
-      "latency_en_sec": 0.012264958,
-      "latency_ru_sec": 0.024621125
+      "source_text": "모습을드러내라.",
+      "mlkit_en": "Come on.",
+      "mlkit_ru": "Давай.",
+      "latency_en_sec": 0.008902458,
+      "latency_ru_sec": 0.012353375
     },
     {
       "id": "ko_026",
       "lang": "ko",
-      "source_text": "거울을 볼 때마다 죽고 싶다는 생각밖에 안 든다.",
-      "mlkit_en": "I only think I want to die every time I see a mirror.",
-      "mlkit_ru": "Я только думаю, что хочу умереть каждый раз, когда вижу зеркало.",
-      "latency_en_sec": 0.014444875,
-      "latency_ru_sec": 0.02569675
+      "source_text": "당신들의 에미가죽도록 내버려 둘참이냐?",
+      "mlkit_en": "Are you embarrassed by your emi leather?",
+      "mlkit_ru": "Вы смущаетесь вашей EMI кожи?",
+      "latency_en_sec": 0.012492791,
+      "latency_ru_sec": 0.020769
     },
     {
       "id": "ko_027",
       "lang": "ko",
-      "source_text": "뚱뚱하고 못생겼다는 이유로 날마다 매를 맞아야 했다.",
-      "mlkit_en": "I had to hit every day for a fat and ugly reason.",
-      "mlkit_ru": "Я должен был ударить каждый день для жира и уродливой причины.",
-      "latency_en_sec": 0.015450417,
-      "latency_ru_sec": 0.027817917
+      "source_text": "원작 한중월야 각색 김두루미 그림 티아이",
+      "mlkit_en": "Wonderful Multi-Moon",
+      "mlkit_ru": "Замечательная мультянка",
+      "latency_en_sec": 0.012758292,
+      "latency_ru_sec": 0.019232917
     },
     {
       "id": "ko_028",
       "lang": "ko",
-      "source_text": "엄마, 나 서울로 전학 보내줘. 제발 부탁이야.",
-      "mlkit_en": "Mom, send transfer to Seoul. Please, please.",
-      "mlkit_ru": "Мама, отправь трансфер в Сеул. Пожалуйста, пожалуйста.",
-      "latency_en_sec": 0.01191225,
-      "latency_ru_sec": 0.02136375
+      "source_text": "그대가 당대혈마구려.",
+      "mlkit_en": "You are glooming with your bloodmade.",
+      "mlkit_ru": "Вы мрамя с вашим крови.",
+      "latency_en_sec": 0.011212083,
+      "latency_ru_sec": 0.019848875
     },
     {
       "id": "ko_029",
       "lang": "ko",
-      "source_text": "자고 일어났더니… 내 앞에 또 다른 내가 누워있다?!",
-      "mlkit_en": "I woke up ... Another I lay down in front of me?!",
-      "mlkit_ru": "Я проснулся ... другой, я ложусь перед собой?!",
-      "latency_en_sec": 0.014996291,
-      "latency_ru_sec": 0.023094084
+      "source_text": "그 명성은 익히들었소이다.",
+      "mlkit_en": "The reputation was learned.",
+      "mlkit_ru": "Репутация была изучена.",
+      "latency_en_sec": 0.008878833,
+      "latency_ru_sec": 0.018998875
     },
     {
       "id": "ko_030",
       "lang": "ko",
-      "source_text": "키 크고 잘생긴 완벽한 몸… 이게 진짜 내 몸이라고?!",
-      "mlkit_en": "Tall and handsome perfect body ... This is my real body?!",
-      "mlkit_ru": "Высокое и красивое идеальное тело ... Это мое настоящее тело?!",
-      "latency_en_sec": 0.009091959,
-      "latency_ru_sec": 0.020445042
+      "source_text": "그대는 조음사마의맏형인 철음유겠구려.",
+      "mlkit_en": "You are a solid form of the eldest brother of the teacher.",
+      "mlkit_ru": "Вы солидная форма старшего брата Учителя.",
+      "latency_en_sec": 0.014252292,
+      "latency_ru_sec": 0.024488667
     },
     {
       "id": "ko_031",
       "lang": "ko",
-      "source_text": "한쪽 몸이 잠들면 다른 쪽 몸으로 의식이 옮겨가는 기묘한 2중 생활.",
-      "mlkit_en": "A strange two-life life that makes a ritual to the other body when one body is asleep.",
-      "mlkit_ru": "Странная двух жизненная жизнь, которая делает ритуал к другому телу, когда одно тело спит.",
-      "latency_en_sec": 0.018898958,
-      "latency_ru_sec": 0.03789575
+      "source_text": "어, 어떻게 30년 전별호와 이름을",
+      "mlkit_en": "Uh, how 30 years ago,",
+      "mlkit_ru": "Как 30 лет назад,",
+      "latency_en_sec": 0.009323791,
+      "latency_ru_sec": 0.016082875
     },
     {
       "id": "ko_032",
       "lang": "ko",
-      "source_text": "길을 걷는 것뿐인데 사람들의 시선이 전부 나에게 쏟아진다.",
-      "mlkit_en": "I'm just walking on the road, but all of the eyes are poured out to me.",
-      "mlkit_ru": "Я просто гуляю по дороге, но все глаза выливаются ко мне.",
-      "latency_en_sec": 0.017670625,
-      "latency_ru_sec": 0.026964417
+      "source_text": "조음사마?그게 뭐야?",
+      "mlkit_en": "Do you have anything? What is it?",
+      "mlkit_ru": "У вас есть что-нибудь? Что это?",
+      "latency_en_sec": 0.011144708,
+      "latency_ru_sec": 0.01526525
     },
     {
       "id": "ko_033",
       "lang": "ko",
-      "source_text": "세상이 이렇게 친절한 곳이었나? 외모 하나 바뀌었을 뿐인데.",
-      "mlkit_en": "Was the world are so kind? I just changed the appearance.",
-      "mlkit_ru": "Был ли мир так добр? Я только что изменил внешность.",
-      "latency_en_sec": 0.013326417,
-      "latency_ru_sec": 0.018309084
+      "source_text": "철수련의 기억을읽으면서 이들의정제를 알게 되었어.",
+      "mlkit_en": "As I read the memories of Iron, I learned these precisions.",
+      "mlkit_ru": "Как я читаю воспоминания о железе, я узнал об этих препаратах.",
+      "latency_en_sec": 0.01641925,
+      "latency_ru_sec": 0.03404175
     },
     {
       "id": "ko_034",
       "lang": "ko",
-      "source_text": "\"야, 전학생! 너 복싱 좀 배웠냐? 자세가 장난 아닌데?\"",
-      "mlkit_en": "\"Hey, a previous student! Did you learn to boxing?\"",
-      "mlkit_ru": "\"Эй, предыдущий студент! Вы научились боксерские?\"",
-      "latency_en_sec": 0.017738458,
-      "latency_ru_sec": 0.032298583
+      "source_text": "조음사마.",
+      "mlkit_en": "Drinking gas.",
+      "mlkit_ru": "Питьевой газ.",
+      "latency_en_sec": 0.013969125,
+      "latency_ru_sec": 0.014069917
     },
     {
       "id": "ko_035",
       "lang": "ko",
-      "source_text": "아니요, 저 싸움 같은 거 한 번도 안 해봤는데요…!",
-      "mlkit_en": "No, I did not even have a fight like that fight ... Hour!",
-      "mlkit_ru": "Нет, у меня даже не было драки, как этот бой ... час!",
-      "latency_en_sec": 0.012501792,
-      "latency_ru_sec": 0.028240584
+      "source_text": "악명을 떨졌던네 형제.",
+      "mlkit_en": "The brothers who tried to be invisible.",
+      "mlkit_ru": "Братья, которые пытались быть невидимыми.",
+      "latency_en_sec": 0.010829916,
+      "latency_ru_sec": 0.020721125
     },
     {
       "id": "ko_036",
       "lang": "ko",
-      "source_text": "위협적인 펀치가 슬로우 모션처럼 느리게 보인다.",
-      "mlkit_en": "Threatening punches look like slow motion.",
-      "mlkit_ru": "Угрожающие удары выглядят как медленное движение.",
-      "latency_en_sec": 0.013459917,
-      "latency_ru_sec": 0.025304375
+      "source_text": "인악면 사건처럼철수련의 명을 받아젊은 여인들을 납치했던놈들이야",
+      "mlkit_en": "I have been kidnapped by the young woman who received the Iron Surprise,",
+      "mlkit_ru": "Я был похищен молодой женщиной, которая получила удивление железа,",
+      "latency_en_sec": 0.0194515,
+      "latency_ru_sec": 0.043212958
     },
     {
       "id": "ko_037",
       "lang": "ko",
-      "source_text": "가볍게 피하고 내지른 주먹 한 방에 일진 짱이 쓰러졌다.",
-      "mlkit_en": "I was afraid that Il Jin-chan fell in a lightweight and blooming room.",
-      "mlkit_ru": "Я боялся, что Ил Джин-Чан упал в легкий и цветущий номер.",
-      "latency_en_sec": 0.019600042,
-      "latency_ru_sec": 0.028675542
+      "source_text": "무한제일검 백향묵이현역으로 명성을 떨치던당시와 활동이 겹쳐서",
+      "mlkit_en": "Infinite First Sword of the Republic",
+      "mlkit_ru": "Бесконечный первый меч республики",
+      "latency_en_sec": 0.016347792,
+      "latency_ru_sec": 0.0256315
     },
     {
       "id": "ko_038",
       "lang": "ko",
-      "source_text": "\"말도 안 돼… 바스코마저 저 녀석을 경계하고 있어!\"",
-      "mlkit_en": "\"I can not say ... I'm barely watching that guy!\"",
-      "mlkit_ru": "«Я не могу сказать ... я едва смотрю этот парень!»",
-      "latency_en_sec": 0.013620041,
-      "latency_ru_sec": 0.025468292
+      "source_text": "그에게 당하고자취를 감추었지만",
+      "mlkit_en": "He was told him,",
+      "mlkit_ru": "Ему было сказано,",
+      "latency_en_sec": 0.010147792,
+      "latency_ru_sec": 0.017421708
     },
     {
       "id": "ko_039",
       "lang": "ko",
-      "source_text": "배후성 선택의 시간입니다. 당신을 후원할 성좌를 고르세요.",
-      "mlkit_en": "The time of the rear-time selection. Get a chance to sponsor you.",
-      "mlkit_ru": "Время выбора заднего во времени. Получить шанс спонсировать вас.",
-      "latency_en_sec": 0.014759459,
-      "latency_ru_sec": 0.025638792
+      "source_text": "누구도 저들이악심파과가 키운 자들이라아는 자가 없었어.",
+      "mlkit_en": "Nobody did not have anyone who raised and raised.",
+      "mlkit_ru": "Никто не у него не было никого, кто поднял и поднял.",
+      "latency_en_sec": 0.014725375,
+      "latency_ru_sec": 0.030652042
     },
     {
       "id": "ko_040",
       "lang": "ko",
-      "source_text": "[성좌, '심연의 흑염룡'이 당신의 대담함에 흥미를 보입니다.]",
-      "mlkit_en": "[The castle, \"the black hose\" of the \"black infiltration\" is interested in your boldness.]",
-      "mlkit_ru": "[Замок, «черный шланг» из «черной инфильтрации» заинтересованы в вашей смедленности.]",
-      "latency_en_sec": 0.018575209,
-      "latency_ru_sec": 0.043256333
+      "source_text": "그럼 그나마어려보이는 저한 명은?",
+      "mlkit_en": "So what did you look like?",
+      "mlkit_ru": "Так что ты выглядел?",
+      "latency_en_sec": 0.01412825,
+      "latency_ru_sec": 0.016291792
     },
     {
       "id": "ko_041",
       "lang": "ko",
-      "source_text": "[성좌, '은밀한 모략가'가 당신의 선택을 관망합니다.]",
-      "mlkit_en": "[Castle, 'Coverty Tour' is your choice.]",
-      "mlkit_ru": "[Castle, «Корретный тур» - это ваш выбор.]",
-      "latency_en_sec": 0.018463084,
-      "latency_ru_sec": 0.023681208
+      "source_text": "나중에 거뒤들인수양 자식이야.",
+      "mlkit_en": "Later, it's a shameful child.",
+      "mlkit_ru": "Позже это позорный ребенок.",
+      "latency_en_sec": 0.011832375,
+      "latency_ru_sec": 0.01747275
     },
     {
       "id": "ko_042",
       "lang": "ko",
-      "source_text": "나는 어떤 성좌의 후원도 받지 않기로 결정했다.",
-      "mlkit_en": "I decided not to receive sponsorship of any statue.",
-      "mlkit_ru": "Я решил не получать спонсорство любой статуи.",
-      "latency_en_sec": 0.012695125,
-      "latency_ru_sec": 0.021443833
+      "source_text": "양정을 비롯해그날 영영이네를습격했던 놈들과같은 기수네.",
+      "mlkit_en": "It is the same as those who have done a sight of the day,",
+      "mlkit_ru": "Это так же, как те, кто сделал вид дня,",
+      "latency_en_sec": 0.018456791,
+      "latency_ru_sec": 0.03835975
     },
     {
       "id": "ko_043",
       "lang": "ko",
-      "source_text": "\"선택을 보류하겠습니다.\"",
-      "mlkit_en": "\"We will hold the selection.\"",
-      "mlkit_ru": "«Мы будем держать выбор».",
-      "latency_en_sec": 0.00875225,
-      "latency_ru_sec": 0.015890583
+      "source_text": "혈마여, 어머니를놓아주시오. 그러면그냥 돌아가도록하리다.",
+      "mlkit_en": "Bloodma, let's leave your mother. Then you just go back.",
+      "mlkit_ru": "Bloodma, давайте покинум свою мать. Тогда ты просто вернешься.",
+      "latency_en_sec": 0.012929417,
+      "latency_ru_sec": 0.025111833
     },
     {
       "id": "ko_044",
       "lang": "ko",
-      "source_text": "[모든 성좌들이 당신의 오만함에 경악을 금치 못합니다!]",
-      "mlkit_en": "[All the sons can not prove that your arrogance!]",
-      "mlkit_ru": "[Все сыновей не могут доказать, что ваше высокомерие!]",
-      "latency_en_sec": 0.012090125,
-      "latency_ru_sec": 0.027752083
+      "source_text": "그냥 돌아가지않으면 어쩔 참이오?",
+      "mlkit_en": "What if I do not just go back?",
+      "mlkit_ru": "Что если я не просто вернусь?",
+      "latency_en_sec": 0.010330458,
+      "latency_ru_sec": 0.017769584
     },
     {
       "id": "ko_045",
       "lang": "ko",
-      "source_text": "앞으로 닥쳐올 시나리오를 헤쳐나가려면 주인공 유중혁을 만나야 한다.",
-      "mlkit_en": "To get to achieve a scenario that will come back in the future, you must meet the main character Gunhyukhuk.",
-      "mlkit_ru": "Чтобы добиться сценария, который вернется в будущее, вы должны встретить главного героя Гунхюхука.",
-      "latency_en_sec": 0.020913042,
-      "latency_ru_sec": 0.039020042
+      "source_text": "막내야.",
+      "mlkit_en": "It must be young.",
+      "mlkit_ru": "Это должно быть молодым.",
+      "latency_en_sec": 0.007727583,
+      "latency_ru_sec": 0.011164166
     },
     {
       "id": "ko_046",
       "lang": "ko",
-      "source_text": "하지만 그 녀석은 3회차 회귀자… 성격이 완전히 파탄 나 있을 텐데.",
-      "mlkit_en": "But that guy is 3 times a regression ... I have a personality that I have to be completely sad.",
-      "mlkit_ru": "Но этот парень 3 раза регрессией ... У меня есть личность, которую я должен быть совершенно грустным.",
-      "latency_en_sec": 0.019712417,
-      "latency_ru_sec": 0.033210084
+      "source_text": "반시()들을조종하는 방을.",
+      "mlkit_en": "Room () the room to control the rooms.",
+      "mlkit_ru": "Комната () комната для управления комнатами.",
+      "latency_en_sec": 0.014065625,
+      "latency_ru_sec": 0.021176541
     },
     {
       "id": "ko_047",
       "lang": "ko",
-      "source_text": "\"너는 누구지? 내 회귀 정보를 어떻게 알고 있는 거냐?\"",
-      "mlkit_en": "\"Who are you? How do you know my regression information?\"",
-      "mlkit_ru": "\"Кто ты? Как вы знаете мою информацию регрессии?\"",
-      "latency_en_sec": 0.013114042,
-      "latency_ru_sec": 0.022657583
+      "source_text": "이걸로 혈마를압박한다",
+      "mlkit_en": "This is a hemorrhage.",
+      "mlkit_ru": "Это кровоизлияние.",
+      "latency_en_sec": 0.009108958,
+      "latency_ru_sec": 0.014547083
     },
     {
       "id": "ko_048",
       "lang": "ko",
-      "source_text": "목덜미를 틀어쥐는 손아귀 힘이 장난이 아니다.",
-      "mlkit_en": "The end of the neck is not a joke.",
-      "mlkit_ru": "Конец шеи не шутка.",
-      "latency_en_sec": 0.010574541,
-      "latency_ru_sec": 0.016868833
+      "source_text": "혼란을 틈어머니를 챙행길 수있을 것이다.",
+      "mlkit_en": "You will be able to take confusion.",
+      "mlkit_ru": "Вы сможете воспользоваться путаницей.",
+      "latency_en_sec": 0.012115292,
+      "latency_ru_sec": 0.02167875
     },
     {
       "id": "ko_049",
       "lang": "ko",
-      "source_text": "\"유중혁, 날 죽이면 너는 절대로 이 시나리오를 깰 수 없어.\"",
-      "mlkit_en": "\"Yu Nunhyuk, if you kill me, you can never break this scenario.\"",
-      "mlkit_ru": "«Ю Нуньхюк, если ты убьешь меня, ты никогда не сможешь нарушить этот сценарий».",
-      "latency_en_sec": 0.01538,
-      "latency_ru_sec": 0.037446083
+      "source_text": "한데 왜꿈쩍도 않는 거지?",
+      "mlkit_en": "Why do not you like it?",
+      "mlkit_ru": "Почему тебе не нравится?",
+      "latency_en_sec": 0.009637583,
+      "latency_ru_sec": 0.018960166
     },
     {
       "id": "ko_050",
       "lang": "ko",
-      "source_text": "업무 시간 외에 따로 연락하시는 건 자제해 주셨으면 합니다.",
-      "mlkit_en": "I would like to contact you separately in addition to business hours.",
-      "mlkit_ru": "Я хотел бы связаться с вами отдельно в дополнение к бизнес-часам.",
-      "latency_en_sec": 0.01325175,
-      "latency_ru_sec": 0.025843125
-    },
-    {
-      "id": "ko_051",
-      "lang": "ko",
-      "source_text": "네가 감히 날 협박해? 본사 감사팀에 찌르면 너만 다쳐!",
-      "mlkit_en": "Do you tie me dare? If you stick to the headquarters thank you,",
-      "mlkit_ru": "Ты обрезаешь меня? Если вы придерживаетесь в штаб-квартире, спасибо,",
-      "latency_en_sec": 0.022167333,
-      "latency_ru_sec": 0.031544666
-    },
-    {
-      "id": "ko_052",
-      "lang": "ko",
-      "source_text": "어디 한번 해보세요. 녹취 파일이 누구한테 더 치명적일지.",
-      "mlkit_en": "Dry it. Who recording files are more fatal.",
-      "mlkit_ru": "Высушите это. Кто записывающие файлы, являются более смертельными.",
-      "latency_en_sec": 0.013619916,
-      "latency_ru_sec": 0.025166667
-    },
-    {
-      "id": "ko_053",
-      "lang": "ko",
-      "source_text": "커피 한잔 사 올 테니까 여기서 잠깐 기다려요.",
-      "mlkit_en": "I'll buy a cup of coffee. Wait a minute here.",
-      "mlkit_ru": "Я куплю чашку кофе. Подождите минуту здесь.",
-      "latency_en_sec": 0.010668708,
-      "latency_ru_sec": 0.033617
-    },
-    {
-      "id": "ko_054",
-      "lang": "ko",
-      "source_text": "갑자기 태도가 이렇게 바뀌니 오히려 더 무섭네.",
-      "mlkit_en": "Suddenly, the attitude will change so rather than it.",
-      "mlkit_ru": "Внезапно отношение будет меняться так, скорее, чем оно.",
-      "latency_en_sec": 0.011745459,
-      "latency_ru_sec": 0.025992417
-    },
-    {
-      "id": "ko_055",
-      "lang": "ko",
-      "source_text": "보컬 트레이닝 수업에 참가하러 엔터테인먼트 사옥에 들어섰다.",
-      "mlkit_en": "I entered the entertainment office to participate in the vocal training class.",
-      "mlkit_ru": "Я вошел в развлекательный офис для участия в классе вокального учебного пособия.",
-      "latency_en_sec": 0.013905167,
-      "latency_ru_sec": 0.029717375
-    },
-    {
-      "id": "ko_056",
-      "lang": "ko",
-      "source_text": "\"와, 쟤 피지컬 좀 봐… 모델 지망생인가?\"",
-      "mlkit_en": "\"Wow, look at the patical ... Is it a model, is it?\"",
-      "mlkit_ru": "\"Ух ты, посмотри на патику ... это модель, это?\"",
-      "latency_en_sec": 0.01255325,
-      "latency_ru_sec": 0.029397959
-    },
-    {
-      "id": "ko_057",
-      "lang": "ko",
-      "source_text": "사람들의 칭찬이 아직도 어색하고 낯설기만 하다.",
-      "mlkit_en": "The praise of people is still awkward and unfamiliar.",
-      "mlkit_ru": "Похвала людей все еще неловко и незнакома.",
-      "latency_en_sec": 0.015135834,
-      "latency_ru_sec": 0.024856333
-    },
-    {
-      "id": "ko_058",
-      "lang": "ko",
-      "source_text": "원래 내 몸으로 돌아왔을 땐 편의점 야간 알바를 뛰어야 한다.",
-      "mlkit_en": "When I returned to my body, I have to run the convenience store night alba.",
-      "mlkit_ru": "Когда я вернулся в свое тело, я должен запустить магазин ночной elba.",
-      "latency_en_sec": 0.016786208,
-      "latency_ru_sec": 0.031572958
-    },
-    {
-      "id": "ko_059",
-      "lang": "ko",
-      "source_text": "손님, 계산 도와드리겠습니다. 도시락 데워드릴까요?",
-      "mlkit_en": "Guests, I will help you. Can I warm my lunch?",
-      "mlkit_ru": "Гости, я тебе помогу. Могу ли я согреть мой обед?",
-      "latency_en_sec": 0.016244292,
-      "latency_ru_sec": 0.022805208
-    },
-    {
-      "id": "ko_060",
-      "lang": "ko",
-      "source_text": "똑같은 나인데, 대하는 태도가 이렇게 극과 극이라니.",
-      "mlkit_en": "I am the same, but the attitude is so polished.",
-      "mlkit_ru": "Я такой же, но отношение так отполировано.",
-      "latency_en_sec": 0.012308583,
-      "latency_ru_sec": 0.020674709
-    },
-    {
-      "id": "ko_061",
-      "lang": "ko",
-      "source_text": "옥호교 다리 위에서 성운 구원자들과의 격전이 벌어졌다.",
-      "mlkit_en": "The angle of the Nebula was earned on the joyful bridge.",
-      "mlkit_ru": "Угол туманности был заработан на радостном мосту.",
-      "latency_en_sec": 0.016152833,
-      "latency_ru_sec": 0.02705525
-    },
-    {
-      "id": "ko_062",
-      "lang": "ko",
-      "source_text": "어이, 김독자! 등 뒤를 조심해라!",
-      "mlkit_en": "Hey, Kim Germany! Be careful after the back!",
-      "mlkit_ru": "Эй, Ким Германия! Будьте осторожны после спины!",
-      "latency_en_sec": 0.00716225,
-      "latency_ru_sec": 0.014627875
-    },
-    {
-      "id": "ko_063",
-      "lang": "ko",
-      "source_text": "[전용 스킬 '백청강기'를 발동합니다.]",
-      "mlkit_en": "[Activates the only skill \"Baek Cheonggang\".]",
-      "mlkit_ru": "[Активирует единственный навык «Baek Cheonggang».]",
-      "latency_en_sec": 0.011668084,
-      "latency_ru_sec": 0.0261965
-    },
-    {
-      "id": "ko_064",
-      "lang": "ko",
-      "source_text": "어둠 속에서 강철검이 푸른 섬광을 내뿜으며 몬스터를 베어 넘겼다.",
-      "mlkit_en": "In the dark, the steel sword blows blue flashes and broke the monster.",
-      "mlkit_ru": "В темноте стальной меч дует синие вспышки и сломал монстра.",
-      "latency_en_sec": 0.0145485,
-      "latency_ru_sec": 0.028397667
-    },
-    {
-      "id": "ko_065",
-      "lang": "ko",
-      "source_text": "우리는 끝까지 함께 살아남아서 이 빌어먹을 엔딩을 바꾼다.",
-      "mlkit_en": "We survive together to change this fucking ending.",
-      "mlkit_ru": "Мы выживем вместе, чтобы изменить этот чертовски.",
-      "latency_en_sec": 0.015178792,
-      "latency_ru_sec": 0.02546725
-    },
-    {
-      "id": "ko_066",
-      "lang": "ko",
-      "source_text": "내일 기획안 발표회 때 절대 실수하지 마라. 알겠지?",
-      "mlkit_en": "Do not make a mistake when you do not have a presentation of the planner tomorrow. Got it?",
-      "mlkit_ru": "Не ошибайтесь, когда у вас нет презентации планировщика завтра. Получил это?",
-      "latency_en_sec": 0.017501584,
-      "latency_ru_sec": 0.0281565
-    },
-    {
-      "id": "ko_067",
-      "lang": "ko",
-      "source_text": "걱정 마십시오. 완벽하게 준비해 두었습니다.",
-      "mlkit_en": "Do not worry. I prepared perfectly.",
-      "mlkit_ru": "Не волнуйтесь. Я подготовил идеально.",
-      "latency_en_sec": 0.008227,
-      "latency_ru_sec": 0.014638334
+      "source_text": "고작 이것들을 믿고그런 말을 했군.",
+      "mlkit_en": "I believed these things and said that.",
+      "mlkit_ru": "Я верил этим вещам и сказал это.",
+      "latency_en_sec": 0.011869083,
+      "latency_ru_sec": 0.022852667
     },
     {
       "id": "zh_001",
       "lang": "zh",
-      "source_text": "我竟然重生回到了十三岁的时候？！",
-      "mlkit_en": "I actually reborn back to 13 years old? ",
-      "mlkit_ru": "Я на самом деле возродился к 13 годам?",
-      "latency_en_sec": 0.079133917,
-      "latency_ru_sec": 0.080393375
+      "source_text": "2h简去以魔道具,",
+      "mlkit_en": "2h Jane with magic props,",
+      "mlkit_ru": "2ч Джейн с волшебными реквизитами,",
+      "latency_en_sec": 0.082575208,
+      "latency_ru_sec": 0.077258375
     },
     {
       "id": "zh_002",
       "lang": "zh",
-      "source_text": "圣帝、神宗…上一世的血海深仇，这一世定要你们百倍偿还！",
-      "mlkit_en": "The Holy Emperor, Shen Zong ... The blood sea of the first world is very enrilled, this will pay more than 100 times!",
-      "mlkit_ru": "Святой Император, Шэнь Зун ... Кровавое море первого мира очень охватывает, это будет платить более 100 раз!",
-      "latency_en_sec": 0.024278125,
-      "latency_ru_sec": 0.042226542
+      "source_text": "家迫出丁加れ",
+      "mlkit_en": "House forcing Ding plus",
+      "mlkit_ru": "Дом принудительный Дин плюс",
+      "latency_en_sec": 0.011264792,
+      "latency_ru_sec": 0.019426125
     },
     {
       "id": "zh_003",
       "lang": "zh",
-      "source_text": "聂离！课堂之上，你竟敢公然睡觉，成何体统！",
-      "mlkit_en": "Nie away! On the classroom, you dare to go to sleep, what is the body!",
-      "mlkit_ru": "Нижняя! В классе вы смеете идти спать, что такое тело!",
-      "latency_en_sec": 0.023146959,
-      "latency_ru_sec": 0.030694292
+      "source_text": "木蕾",
+      "mlkit_en": "Wood bud",
+      "mlkit_ru": "Древесный бутон",
+      "latency_en_sec": 0.006407125,
+      "latency_ru_sec": 0.010187083
     },
     {
       "id": "zh_004",
       "lang": "zh",
-      "source_text": "沈秀导师，你所讲的妖灵理论漏洞百出，听了不过是浪费时间罢了。",
-      "mlkit_en": "Shen Xiu tutor, the demon spirit of the demon spirit is full of loopholes, but listening is just a waste of time.",
-      "mlkit_ru": "Шень XIU репетитор, дух демона духа демона полон лазейки, но слушание - это просто пустая трата времени.",
-      "latency_en_sec": 0.023030167,
-      "latency_ru_sec": 0.049533542
+      "source_text": "1噬",
+      "mlkit_en": "1st",
+      "mlkit_ru": "1-й",
+      "latency_en_sec": 0.005228375,
+      "latency_ru_sec": 0.005908834
     },
     {
       "id": "zh_005",
       "lang": "zh",
-      "source_text": "放肆！区区红曜灵魂海的废物，也敢质疑本导师？",
-      "mlkit_en": "Let go! The waste of the Red Shou Sea in the district, dare to question the instructor?",
-      "mlkit_ru": "Отпусти! Отходы красного шоу моря в районе, осмеливают сомневаться в инструкторе?",
-      "latency_en_sec": 0.025387584,
-      "latency_ru_sec": 0.035838459
+      "source_text": "為什麽",
+      "mlkit_en": "Why",
+      "mlkit_ru": "Почему",
+      "latency_en_sec": 0.004241,
+      "latency_ru_sec": 0.005641333
     },
     {
       "id": "zh_006",
       "lang": "zh",
-      "source_text": "两个月后的年终测试，若我达到青铜三星，你便主动辞去导师之职！",
-      "mlkit_en": "Year-end test after two months, if I reach the bronze Samsung, you will take the initiative to resign to the tutor!",
-      "mlkit_ru": "Тест на конец года после двух месяцев, если я достигну от бронзового Samsung, вы возьмете инициативу в отставку на репетитор!",
-      "latency_en_sec": 0.03198225,
-      "latency_ru_sec": 0.059324458
+      "source_text": "差多停哭了不該止泣吧",
+      "mlkit_en": "Multiple stop crying, don't cry.",
+      "mlkit_ru": "Многократный перестань плакать, не плачь.",
+      "latency_en_sec": 0.010803167,
+      "latency_ru_sec": 0.01884975
     },
     {
       "id": "zh_007",
       "lang": "zh",
-      "source_text": "好！若是你做不到，就从圣兰学院彻底滚出去！",
-      "mlkit_en": "Ok! If you can't do it, you will completely roll out from the Shengli Lanni College!",
-      "mlkit_ru": "ОК! Если вы не можете это сделать, вы полностью откатитесь от колледжа Шэнгли Ланни!",
-      "latency_en_sec": 0.016914917,
-      "latency_ru_sec": 0.034035
+      "source_text": "用前受嫌作世舒1",
+      "mlkit_en": "Before using it",
+      "mlkit_ru": "Перед использованием его",
+      "latency_en_sec": 0.009391042,
+      "latency_ru_sec": 0.016786167
     },
     {
       "id": "zh_008",
       "lang": "zh",
-      "source_text": "陆飘、杜泽，放学后跟我去一趟古兰城遗迹。",
-      "mlkit_en": "Lu Dai, Duze, I will go to the ancient city of the Qur'an.",
-      "mlkit_ru": "Лу Дай, дуз, я пойду в древний город Корана.",
-      "latency_en_sec": 0.021300833,
-      "latency_ru_sec": 0.033806708
+      "source_text": "宛拔便主法,司",
+      "mlkit_en": "Wan to come to the main law, the company",
+      "mlkit_ru": "Ван пришел к главному закону, компания",
+      "latency_en_sec": 0.010271292,
+      "latency_ru_sec": 0.018536876
     },
     {
       "id": "zh_009",
       "lang": "zh",
-      "source_text": "聂离，你疯了吗？那里到处都是凶残的妖兽！",
-      "mlkit_en": "Nie left, are you crazy? It is a ferocious monster everywhere!",
-      "mlkit_ru": "Ни влево, ты сумасшедший? Это свирепые монстр везде!",
-      "latency_en_sec": 0.017963167,
-      "latency_ru_sec": 0.032449709
+      "source_text": "明的正兒受」竟點然威沒|覺都沒有嗎",
+      "mlkit_en": "Ming's affection is \"actually is not there |",
+      "mlkit_ru": "Привязанность Мин \"на самом деле не там |",
+      "latency_en_sec": 0.013385208,
+      "latency_ru_sec": 0.024008458
     },
     {
       "id": "zh_010",
       "lang": "zh",
-      "source_text": "相信我，兄弟之间有福同享，我绝不会害你们。",
-      "mlkit_en": "Believe in me, there is a blessing between the brothers, I will never harm you.",
-      "mlkit_ru": "Верьте в меня, между братьями есть благословение, я никогда не навреду.",
-      "latency_en_sec": 0.019603166,
-      "latency_ru_sec": 0.031006916
+      "source_text": "自女在苦",
+      "mlkit_en": "Bother",
+      "mlkit_ru": "Беспокоить",
+      "latency_en_sec": 0.005050709,
+      "latency_ru_sec": 0.00681175
     },
     {
       "id": "zh_011",
       "lang": "zh",
-      "source_text": "斗之力，三段！级别：低级！",
-      "mlkit_en": "Fighting, three paragraphs! Level: Low!",
-      "mlkit_ru": "Боевые действия, три абзаца! Уровень: низкий!",
-      "latency_en_sec": 0.01567225,
-      "latency_ru_sec": 0.017978042
+      "source_text": "這樣的話,伯爵應該也會認可我的實力吧!",
+      "mlkit_en": "In this way, the count should also recognize my strength!",
+      "mlkit_ru": "Таким образом, счет должен также признать мою силу!",
+      "latency_en_sec": 0.012377125,
+      "latency_ru_sec": 0.028180708
     },
     {
       "id": "zh_012",
       "lang": "zh",
-      "source_text": "测验魔石碑之上，闪亮得甚至有些刺眼的五个大字，再次无情刺痛着少年。",
-      "mlkit_en": "Test the magic stone monument, shiny some of the five big characters of some glare, once again ruthlessly stabbing teenagers.",
-      "mlkit_ru": "Тестируйте памятник Magic Stone, блестящие некоторые из пяти больших персонажей некоторых бликов, еще раз безжалостно натянув подростков.",
-      "latency_en_sec": 0.025369208,
-      "latency_ru_sec": 0.057369292
+      "source_text": "畢竟我是挑撃殺了雷要多重火力动能殺元的魔物,佩隆唔,唔",
+      "mlkit_en": "After all, I am picking out the murder of the thunder how to kill the magic, and Pelon, 唔",
+      "mlkit_ru": "В конце концов, я выбираю убийство Гром, как убить магию, а Пелон, 唔",
+      "latency_en_sec": 0.025912958,
+      "latency_ru_sec": 0.043106167
     },
     {
       "id": "zh_013",
       "lang": "zh",
-      "source_text": "哈哈，曾经的天才如今沦落为家族第一废物，真是大快人心！",
-      "mlkit_en": "Haha, once the genius now falls as the first waste of the family, it is really fun!",
-      "mlkit_ru": "Хаха, как только гений теперь падает как первая трата семьи, это действительно весело!",
-      "latency_en_sec": 0.023496542,
-      "latency_ru_sec": 0.030586084
+      "source_text": "不可能不",
+      "mlkit_en": "Be impossible",
+      "mlkit_ru": "Быть невозможным",
+      "latency_en_sec": 0.015639166,
+      "latency_ru_sec": 0.012207208
     },
     {
       "id": "zh_014",
       "lang": "zh",
-      "source_text": "萧炎哥哥，我相信你一定会重新站起来的。",
-      "mlkit_en": "Xiao Yan brother, I believe that you will stand up.",
-      "mlkit_ru": "Сяо Янь Брат, я верю, что вы будете встать.",
-      "latency_en_sec": 0.012139083,
-      "latency_ru_sec": 0.022129958
+      "source_text": "明明只是為了義務而製造的孩子",
+      "mlkit_en": "Obviously it is just a child made for obligations",
+      "mlkit_ru": "Очевидно, это просто ребенок, сделанный для обязательств",
+      "latency_en_sec": 0.013662416,
+      "latency_ru_sec": 0.023427958
     },
     {
       "id": "zh_015",
       "lang": "zh",
-      "source_text": "谢谢你，薰儿。无论别人怎么看，我都绝不会放弃。",
-      "mlkit_en": "Thank you, lake. No matter what others see, I will never give up.",
-      "mlkit_ru": "Спасибо, озеро. Независимо от того, что видят другие, я никогда не сдамся.",
-      "latency_en_sec": 0.01503225,
-      "latency_ru_sec": 0.035227083
+      "source_text": "二是責族家庭的孩子偶面會出現的症關係到性命",
+      "mlkit_en": "Second, the children who have coupons in the family members will appear to life.",
+      "mlkit_ru": "Во-вторых, детям, у которых купоны в членах семьи будут появляться в жизни.",
+      "latency_en_sec": 0.017685959,
+      "latency_ru_sec": 0.034897834
     },
     {
       "id": "zh_016",
       "lang": "zh",
-      "source_text": "云岚宗纳兰嫣然今日前来，只为一件事情——退婚！",
-      "mlkit_en": "Yun Zongnanolan came today, only for one thing - retreat!",
-      "mlkit_ru": "Юнь Зоннанолан пришел сегодня, только за одну вещь - отступить!",
-      "latency_en_sec": 0.016578625,
-      "latency_ru_sec": 0.031202
+      "source_text": "「體內魔力暴走」",
+      "mlkit_en": "\"Magic Route\"",
+      "mlkit_ru": "«Магический маршрут»",
+      "latency_en_sec": 0.010891084,
+      "latency_ru_sec": 0.015872334
     },
     {
       "id": "zh_017",
       "lang": "zh",
-      "source_text": "纳兰小姐，你如此行事，未免欺人太甚！",
-      "mlkit_en": "Miss Nalan, you do so, there is no big deception!",
-      "mlkit_ru": "Мисс Налан, ты делаешь это, нет большого обмана!",
-      "latency_en_sec": 0.013381625,
-      "latency_ru_sec": 0.025133625
+      "source_text": "啊,塔菲莉娜·",
+      "mlkit_en": "Ah, Tafilina",
+      "mlkit_ru": "Ах, тафилина",
+      "latency_en_sec": 0.007016833,
+      "latency_ru_sec": 0.012806833
     },
     {
       "id": "zh_018",
       "lang": "zh",
-      "source_text": "三十年河东，三十年河西，莫欺少年穷！",
-      "mlkit_en": "Thirty years of Hedong, 30 years of Hexi, Mo to deceive a boy!",
-      "mlkit_ru": "Тридцать лет Hedong, 30 лет Гекси, Мо, чтобы обмануть мальчика!",
-      "latency_en_sec": 0.016574958,
-      "latency_ru_sec": 0.03345025
+      "source_text": "女兒是妻子堅持要生的孩子",
+      "mlkit_en": "The daughter is a child who has been born.",
+      "mlkit_ru": "Дочь - это ребенок, который родился.",
+      "latency_en_sec": 0.011067041,
+      "latency_ru_sec": 0.019101458
     },
     {
       "id": "zh_019",
       "lang": "zh",
-      "source_text": "三年之后，我萧炎必上云岚宗，亲自领教纳兰小姐的高招！",
-      "mlkit_en": "Three years later, I must go to Yunzong, who personally lead the high trick of Miss Marland!",
-      "mlkit_ru": "Три года спустя я должен пойти в Юньцз, который лично приведет к высокой трюке в Мисс Марландию!",
-      "latency_en_sec": 0.019806625,
-      "latency_ru_sec": 0.043630375
+      "source_text": "原本是想生出第二個男嬰",
+      "mlkit_en": "Originally, I want to give birth to the second baby boy.",
+      "mlkit_ru": "Первоначально я хочу родить второго мальчика.",
+      "latency_en_sec": 0.013189958,
+      "latency_ru_sec": 0.022417208
     },
     {
       "id": "zh_020",
       "lang": "zh",
-      "source_text": "嘿嘿，小娃娃，吸了你三年的斗气，总算是把老夫给唤醒了。",
-      "mlkit_en": "Hey, small dolls, suck you three years of fighting, finally put the old man wake up.",
-      "mlkit_ru": "Эй, маленькие куклы, сосуйте вам три года боевых действий, наконец поставили старик просыпаться.",
-      "latency_en_sec": 0.021211916,
-      "latency_ru_sec": 0.037238834
+      "source_text": "發燒已經三天了…",
+      "mlkit_en": "Fever has been three days ...",
+      "mlkit_ru": "Лихорадка была три дня ...",
+      "latency_en_sec": 0.009534958,
+      "latency_ru_sec": 0.014194
     },
     {
       "id": "zh_021",
       "lang": "zh",
-      "source_text": "谁？！是谁在戒指里说话？！快给我滚出来！",
-      "mlkit_en": "Who?  Who talks in the ring?  Give me it!",
-      "mlkit_ru": "Кто? Кто разговаривает на ринге? Дай мне!",
-      "latency_en_sec": 0.01806925,
-      "latency_ru_sec": 0.02021575
+      "source_text": "她大概是想強化自己作為這家女主人地位吧",
+      "mlkit_en": "She probably wants to strengthen their position as this hostess.",
+      "mlkit_ru": "Она, вероятно, хочет укрепить свою позицию как эту хозяйку.",
+      "latency_en_sec": 0.0201175,
+      "latency_ru_sec": 0.026890833
     },
     {
       "id": "zh_022",
       "lang": "zh",
-      "source_text": "拜我为师，老夫保你在一年之内突破斗者，如何？",
-      "mlkit_en": "Worship me as a teacher, the old man will break the fight in one year, how?",
-      "mlkit_ru": "Поклонение мне как учитель, старик сломает борьбу за один год, как?",
-      "latency_en_sec": 0.015863208,
-      "latency_ru_sec": 0.033277583
+      "source_text": "e到通限了",
+      "mlkit_en": "e to the limit",
+      "mlkit_ru": "E до предела",
+      "latency_en_sec": 0.007666542,
+      "latency_ru_sec": 0.009989125
     },
     {
       "id": "zh_023",
       "lang": "zh",
-      "source_text": "炼药师？难道您是一位高贵的炼药大师？！",
-      "mlkit_en": "Refining pharmacist? Do you have a noble refining master? ",
-      "mlkit_ru": "Уточнение фармацевта? У вас есть благородный уточнительный мастер?",
-      "latency_en_sec": 0.013585459,
-      "latency_ru_sec": 0.027807708
+      "source_text": "那個、孩子不行了",
+      "mlkit_en": "That, children can't",
+      "mlkit_ru": "Что дети не могут",
+      "latency_en_sec": 0.007738959,
+      "latency_ru_sec": 0.012633208
     },
     {
       "id": "zh_024",
       "lang": "zh",
-      "source_text": "偷学唐门内门绝学，乃是死罪！你可知罪？",
-      "mlkit_en": "Stealing Tangmen Inner Gate, is a sin! Can you know?",
-      "mlkit_ru": "Кража внутренних ворот Тангемана, грех! Можете ли вы знать?",
-      "latency_en_sec": 0.016845709,
-      "latency_ru_sec": 0.033268709
+      "source_text": "“外面",
+      "mlkit_en": "\"",
+      "mlkit_ru": "\"",
+      "latency_en_sec": 0.004721417,
+      "latency_ru_sec": 0.007169625
     },
     {
       "id": "zh_025",
       "lang": "zh",
-      "source_text": "唐三从未将唐门暗器外传分毫，今日以死明志，跳崖谢罪！",
-      "mlkit_en": "Tang San never passed the Tangmen hidden in the Tangmen, today with death, jumping the cliff, sin!",
-      "mlkit_ru": "Тан Сан никогда не проходил Тангема, спрятанные в Тангенах, сегодня со смертью, прыгая на утес, грех!",
-      "latency_en_sec": 0.023292125,
-      "latency_ru_sec": 0.062812292
+      "source_text": "雖然私生子不.被允許進入費族學院-但有種叫作捷徑」的東西",
+      "mlkit_en": "Although the illegitimate child is not. It is allowed to enter the French Institute - but there is a shortcut.",
+      "mlkit_ru": "Хотя нелегитимным ребенком нет. Допускается войти в Французский институт - но есть ярлык.",
+      "latency_en_sec": 0.024461625,
+      "latency_ru_sec": 0.054569375
     },
     {
       "id": "zh_026",
       "lang": "zh",
-      "source_text": "鬼见愁深不见底，赤条条来，赤条条去！",
-      "mlkit_en": "The ghost is not seeing, the red strip is coming, the red stripe!",
-      "mlkit_ru": "Призрак не видит, красная полоса приближается, красная полоса!",
-      "latency_en_sec": 0.0246745,
-      "latency_ru_sec": 0.036505375
+      "source_text": "欧鬼",
+      "mlkit_en": "Eucalyptus",
+      "mlkit_ru": "Эвкалипта",
+      "latency_en_sec": 0.006436125,
+      "latency_ru_sec": 0.007082666
     },
     {
       "id": "zh_027",
       "lang": "zh",
-      "source_text": "斗罗大陆，圣魂村。武魂觉醒仪式正式开始。",
-      "mlkit_en": "Douro continent, Holy Soul Village. The martial arts awakening ceremony officially started.",
-      "mlkit_ru": "Дуро Континент, Деревня Святой Души. Церемония пробуждения боевых искусств официально началась.",
-      "latency_en_sec": 0.017097708,
-      "latency_ru_sec": 0.035166709
+      "source_text": "下達。",
+      "mlkit_en": "Next.",
+      "mlkit_ru": "Далее.",
+      "latency_en_sec": 0.005535125,
+      "latency_ru_sec": 0.0087015
     },
     {
       "id": "zh_028",
       "lang": "zh",
-      "source_text": "武魂：蓝银草，公认的标准废武魂。",
-      "mlkit_en": "Wu Sou: Blue Yinxia, the recognized standard scrap martial art.",
-      "mlkit_ru": "У SOU: Blue Yinxia, признанный стандартный лом боевого искусства.",
-      "latency_en_sec": 0.017054125,
-      "latency_ru_sec": 0.034400875
+      "source_text": "因為!是佩隆希希啊!",
+      "mlkit_en": "Because! It is Pelon Xi!",
+      "mlkit_ru": "Потому что! Это Пелон Си!",
+      "latency_en_sec": 0.018924042,
+      "latency_ru_sec": 0.023110042
     },
     {
       "id": "zh_029",
       "lang": "zh",
-      "source_text": "天啊！这颗水晶球的光芒怎么会如此耀眼？！",
-      "mlkit_en": "God! How does the light of this crystal ball be so dazzling? ",
-      "mlkit_ru": "Бог! Как света этого хрустального мяча будет таким ослепительным?",
-      "latency_en_sec": 0.0191865,
-      "latency_ru_sec": 0.024332333
+      "source_text": "那是單獨獵殺的嘱!?",
+      "mlkit_en": "That is a hunting !?",
+      "mlkit_ru": "Это охота!?",
+      "latency_en_sec": 0.012809875,
+      "latency_ru_sec": 0.020175084
     },
     {
       "id": "zh_030",
       "lang": "zh",
-      "source_text": "竟然是…先天满魂力！废武魂配满魂力，这怎么可能？！",
-      "mlkit_en": "It turned out to be ... congenital full of soul! How is the scrap martial arts? ",
-      "mlkit_ru": "Оказалось ... врожденный полный души! Как лома боевые искусства?",
-      "latency_en_sec": 0.011796917,
-      "latency_ru_sec": 0.027441708
+      "source_text": "再住裸面走一點也沒關係吧-喔喔喔!?",
+      "mlkit_en": "It doesn't matter if you live in naked, it's nothing.",
+      "mlkit_ru": "Неважно, если вы живете в голых, это ничего.",
+      "latency_en_sec": 0.01903275,
+      "latency_ru_sec": 0.039846042
     },
     {
       "id": "zh_031",
       "lang": "zh",
-      "source_text": "左手之中，似乎还有另一个锤子形状的武魂在隐隐躁动。",
-      "mlkit_en": "In the left hand, there seems to be another hammer shape of the martial arts.",
-      "mlkit_ru": "В левой руке, кажется, еще один молоток в форме боевых искусств.",
-      "latency_en_sec": 0.020667375,
-      "latency_ru_sec": 0.038389542
+      "source_text": "怎麼了?發生了什麼事!?",
+      "mlkit_en": "What's wrong? What happened!?",
+      "mlkit_ru": "Что не так? Что случилось!?",
+      "latency_en_sec": 0.011256292,
+      "latency_ru_sec": 0.016771917
     },
     {
       "id": "zh_032",
       "lang": "zh",
-      "source_text": "爸爸，我的另一个武魂是什么？",
-      "mlkit_en": "Dad, what is my other Wu Sheng?",
-      "mlkit_ru": "Папа, какой мой другой Ву Шэн?",
-      "latency_en_sec": 0.015588584,
-      "latency_ru_sec": 0.017488542
+      "source_text": "大小姐她…大小姐她…",
+      "mlkit_en": "Miss, her ... Miss, her ...",
+      "mlkit_ru": "Мисс, ее ... мисс, ее ...",
+      "latency_en_sec": 0.008941792,
+      "latency_ru_sec": 0.019239667
     },
     {
       "id": "zh_033",
       "lang": "zh",
-      "source_text": "昊天锤…在没有足够实力之前，千万不要向任何人展示它！",
-      "mlkit_en": "昊天锤 ... Before not enough strength, don't show it to anyone!",
-      "mlkit_ru": "昊天锤 昊天锤 ... До недостаточно силы, не показывать это никому!",
-      "latency_en_sec": 0.014614667,
-      "latency_ru_sec": 0.032692708
+      "source_text": "|總而言 則",
+      "mlkit_en": "In summary",
+      "mlkit_ru": "Кратко",
+      "latency_en_sec": 0.008190666,
+      "latency_ru_sec": 0.010320667
     },
     {
       "id": "zh_034",
       "lang": "zh",
-      "source_text": "紫岚草配合赤焰果汁，能够极大地淬炼肉身骨骼。",
-      "mlkit_en": "Purple grass with a red flame juice, it can greatly quenade bones.",
-      "mlkit_ru": "Фиолетовая трава с красным пламенем соком, он может значительно квенцировать кости.",
-      "latency_en_sec": 0.017595833,
-      "latency_ru_sec": 0.031969291
+      "source_text": "雖然之後會給予進入深度五的許可,但現在不行",
+      "mlkit_en": "Although it will give a license to enter the depth of 5, it will not",
+      "mlkit_ru": "Хотя это даст лицензию в войти в глубину 5, она не будет",
+      "latency_en_sec": 0.015776875,
+      "latency_ru_sec": 0.032726417
     },
     {
       "id": "zh_035",
       "lang": "zh",
-      "source_text": "这是失传已久的九转星辰诀！修炼速度是以往的十倍不止！",
-      "mlkit_en": "This is a long-lost nine turn! The practice of cultivation is ten times more than the past!",
-      "mlkit_ru": "Это давно потерянные девять поворот! Практика выращивания в десять раз больше, чем прошлое!",
-      "latency_en_sec": 0.013607334,
-      "latency_ru_sec": 0.034001375
+      "source_text": "為度?",
+      "mlkit_en": "What is the degree?",
+      "mlkit_ru": "Какова степень?",
+      "latency_en_sec": 0.008108667,
+      "latency_ru_sec": 0.012944542
     },
     {
       "id": "zh_036",
       "lang": "zh",
-      "source_text": "肖凝儿的寒毒…我有办法根治。",
-      "mlkit_en": "Xiao Xianer's cold poison ... I have a way to cure.",
-      "mlkit_ru": "Холодный яд Сяо Сяйяна ... У меня есть способ вылечить.",
-      "latency_en_sec": 0.014050334,
-      "latency_ru_sec": 0.029192375
+      "source_text": "雷拉,你幾歲了?",
+      "mlkit_en": "Rela, are you a few years old?",
+      "mlkit_ru": "Рель, ты несколько лет?",
+      "latency_en_sec": 0.009747042,
+      "latency_ru_sec": 0.020549833
     },
     {
       "id": "zh_037",
       "lang": "zh",
-      "source_text": "你真的能替我解除家族遗传的经脉寒症？",
-      "mlkit_en": "Can you really relieve my family's genus hypermain?",
-      "mlkit_ru": "Можете ли вы действительно снять родовый гипермайн моей семьи?",
-      "latency_en_sec": 0.013278083,
-      "latency_ru_sec": 0.024914083
+      "source_text": "是12歲吧?雖然下個生日就是13歲了…",
+      "mlkit_en": "Is it 12 years old? Although the next birthday is 13 years old ...",
+      "mlkit_ru": "Это 12 лет? Хотя следующий день рождения 13 лет ...",
+      "latency_en_sec": 0.013580709,
+      "latency_ru_sec": 0.027021
     },
     {
       "id": "zh_038",
       "lang": "zh",
-      "source_text": "盘膝坐好，调匀呼吸，可能会有些灼热感，忍耐一下。",
-      "mlkit_en": "Sitting on the knees, mix thoroughly, there may be a bit of burning, pat.",
-      "mlkit_ru": "Сидя на коленях, тщательно перемешать, может быть немного горения, патенты.",
-      "latency_en_sec": 0.018180042,
-      "latency_ru_sec": 0.036423958
+      "source_text": "你是社巴爾伯爵家的干金",
+      "mlkit_en": "You are the daughter of the Social Barjue home",
+      "mlkit_ru": "Вы дочь социальной бара",
+      "latency_en_sec": 0.014291083,
+      "latency_ru_sec": 0.020521833
     },
     {
       "id": "zh_039",
       "lang": "zh",
-      "source_text": "体内的寒气…竟然真的在消散！聂离，谢谢你！",
-      "mlkit_en": "The cold in the body ... It's really dissipated! Nie away, thank you!",
-      "mlkit_ru": "Холод в теле ... это действительно рассеивается! Да, спасибо!",
-      "latency_en_sec": 0.016465833,
-      "latency_ru_sec": 0.028145042
+      "source_text": "是啊",
+      "mlkit_en": "Yes",
+      "mlkit_ru": "Да",
+      "latency_en_sec": 0.004266708,
+      "latency_ru_sec": 0.002885292
     },
     {
       "id": "zh_040",
       "lang": "zh",
-      "source_text": "药老，这筑基灵液真的有那么神效吗？",
-      "mlkit_en": "Old medicine, is this Jiling liquid really effective?",
-      "mlkit_ru": "Старое лекарство, это речь идет с толчкой жидкостью действительно эффективной?",
-      "latency_en_sec": 0.013597125,
-      "latency_ru_sec": 0.022088334
+      "source_text": "雖然沒什麼實",
+      "mlkit_en": "Although there is nothing",
+      "mlkit_ru": "Хотя ничего нет",
+      "latency_en_sec": 0.010835041,
+      "latency_ru_sec": 0.0147045
     },
     {
       "id": "zh_041",
       "lang": "zh",
-      "source_text": "跳进木桶里去，运转功法，不要浪费半点药力。",
-      "mlkit_en": "Jump into the wooden barrel, run the exercise, don't waste some medicine.",
-      "mlkit_ru": "Перепрыгивайте в деревянную бочку, бегите на упражнение, не тратьте немного лекарства.",
-      "latency_en_sec": 0.016953125,
-      "latency_ru_sec": 0.034213709
+      "source_text": "瞳和頭髮",
+      "mlkit_en": "瞳和 and hair",
+      "mlkit_ru": "瞳 和 и волосы",
+      "latency_en_sec": 0.007074792,
+      "latency_ru_sec": 0.011190459
     },
     {
       "id": "zh_042",
       "lang": "zh",
-      "source_text": "好霸道的药力！经脉仿佛都要被撕裂开来了！",
-      "mlkit_en": "Overbearing medicine! The meridians seem to be torn!",
-      "mlkit_ru": "Дорогая медицина! Меридианы, кажется, порны!",
-      "latency_en_sec": 0.019634792,
-      "latency_ru_sec": 0.029566417
+      "source_text": "那是誰!我的塔費荊娜在哪!?",
+      "mlkit_en": "Who is it! Where is my Tama??",
+      "mlkit_ru": "Кто это! Где моя тама ??",
+      "latency_en_sec": 0.013521542,
+      "latency_ru_sec": 0.025167291
     },
     {
       "id": "zh_043",
       "lang": "zh",
-      "source_text": "米特尔拍卖场乃是加玛帝国最大的拍卖行，守卫森严。",
-      "mlkit_en": "The Mittel Auction is the largest auction house, the Mada Empire, guards.",
-      "mlkit_ru": "Аукцион Mittel является крупнейшим аукционным домом, империей MADA, охранники.",
-      "latency_en_sec": 0.017131917,
-      "latency_ru_sec": 0.037091458
+      "source_text": "顔色變了",
+      "mlkit_en": "Colors change",
+      "mlkit_ru": "Изменение цвета",
+      "latency_en_sec": 0.00582825,
+      "latency_ru_sec": 0.008852875
     },
     {
       "id": "zh_044",
       "lang": "zh",
-      "source_text": "这位大人，请问您是要拍卖丹药还是功法宝物？",
-      "mlkit_en": "This adult, what are you going to auction Dan?",
-      "mlkit_ru": "Этот взрослый, что вы собираетесь на аукцион Дэн?",
-      "latency_en_sec": 0.013516916,
-      "latency_ru_sec": 0.02620825
+      "source_text": "因為我一直在這裸長大所以我想我的身分可以說是來自佩隆的。",
+      "mlkit_en": "Because I have been growing naked, I think my identity can be said to be from Pelon.",
+      "mlkit_ru": "Потому что я рол голым, я думаю, что моя личность можно сказать, что из Пелона.",
+      "latency_en_sec": 0.020488959,
+      "latency_ru_sec": 0.047683708
     },
     {
       "id": "zh_045",
       "lang": "zh",
-      "source_text": "二品丹药筑基灵液，拿去给你们的鉴宝大师过目吧。",
-      "mlkit_en": "Two products Denni medicine base, take it to your Jianbao master.",
-      "mlkit_ru": "Двухкомнатная медицинская база Денни, возьми его на ваш мастер Цзянбао.",
-      "latency_en_sec": 0.0184835,
-      "latency_ru_sec": 0.028419208
+      "source_text": "佩隆是我們奥澤利亞王國北部邊境的領地。",
+      "mlkit_en": "Pelon is the territory of the northern border of the Kingdom of Ozilia.",
+      "mlkit_ru": "Пелон - это территория северной границы Королевства Озилии.",
+      "latency_en_sec": 0.024686625,
+      "latency_ru_sec": 0.03661725
     },
     {
       "id": "zh_046",
       "lang": "zh",
-      "source_text": "成色极佳！此等纯度的药液，唯有四品以上的大师方能炼制！",
-      "mlkit_en": "Excellent color! Such a purity of the drug, only the masters of the four products, can refine!",
-      "mlkit_ru": "Отличный цвет! Такая чистота препарата, только мастеров четырех продуктов, может уточнить!",
-      "latency_en_sec": 0.018631791,
-      "latency_ru_sec": 0.03671525
+      "source_text": "束側有魔物棲息的「魔之森林」。",
+      "mlkit_en": "There is a \"magic forest\" perched on the beam side.",
+      "mlkit_ru": "На стороне луча находится «волшебный лес».",
+      "latency_en_sec": 0.020082125,
+      "latency_ru_sec": 0.027507625
     },
     {
       "id": "zh_047",
       "lang": "zh",
-      "source_text": "没有废物的武魂，只有废物的魂师！",
-      "mlkit_en": "There is no waste of the martial arts, only the soul of the waste!",
-      "mlkit_ru": "Нет отходов боевых искусств, только душа отходов!",
-      "latency_en_sec": 0.017889958,
-      "latency_ru_sec": 0.02412325
+      "source_text": "那是處於魔物咸脅之中的土|地。",
+      "mlkit_en": "That is the soil in the tribute of the monster |",
+      "mlkit_ru": "Это почва в дани монстра |",
+      "latency_en_sec": 0.016931334,
+      "latency_ru_sec": 0.022067333
     },
     {
       "id": "zh_048",
       "lang": "zh",
-      "source_text": "大师，请收我为徒！我想真正了解武魂的奥秘！",
-      "mlkit_en": "Master, please accept me! I want to really understand the mystery of Wuhun!",
-      "mlkit_ru": "Мастер, пожалуйста, примите меня! Я хочу действительно понять тайну Ухунена!",
-      "latency_en_sec": 0.013370916,
-      "latency_ru_sec": 0.025188459
+      "source_text": "或許是因為這樣,領民每個人都郡致力於磨練自己的戦門力。",
+      "mlkit_en": "Perhaps because of this, each of the leaders is committed to hone their own mouth.",
+      "mlkit_ru": "Возможно, из-за этого каждый из лидеров стремится оттачивать свой рот.",
+      "latency_en_sec": 0.01998275,
+      "latency_ru_sec": 0.037520375
     },
     {
       "id": "zh_049",
       "lang": "zh",
-      "source_text": "好孩子，一日为师，终身为父。起来吧。",
-      "mlkit_en": "Good boy, one day is a teacher, lifelong is the father. Let's get up.",
-      "mlkit_ru": "Хороший мальчик, один день - учитель, пожизненный отца. Давайте встанем.",
-      "latency_en_sec": 0.01497275,
-      "latency_ru_sec": 0.031611458
+      "source_text": "·也就,是說回",
+      "mlkit_en": "· That's it",
+      "mlkit_ru": "· Вот это",
+      "latency_en_sec": 0.008296417,
+      "latency_ru_sec": 0.013183333
     },
     {
       "id": "zh_050",
       "lang": "zh",
-      "source_text": "猎魂森林危机四伏，四百年曼陀罗蛇正朝我们扑过来了！",
-      "mlkit_en": "The hunting soul forest crisis is four rows, and the four hundred years of Mandara snake is full of flock!",
-      "mlkit_ru": "Охотничий душ лесной кризис - четыре ряда, а четыреста лет змеи Мандара полны стада!",
-      "latency_en_sec": 0.020234917,
-      "latency_ru_sec": 0.038602834
-    },
-    {
-      "id": "zh_051",
-      "lang": "zh",
-      "source_text": "老师小心！看我的玄玉手和控鹤擒龙！",
-      "mlkit_en": "Teacher is careful! Look at my Xuan Yu hand and control crane!",
-      "mlkit_ru": "Учитель осторожен! Посмотри на мою руку Сюань Юй и управляющий краном!",
-      "latency_en_sec": 0.016407834,
-      "latency_ru_sec": 0.028741166
-    },
-    {
-      "id": "zh_052",
-      "lang": "zh",
-      "source_text": "第一魂环，吸收！一定要撑住精神震荡！",
-      "mlkit_en": "First soul ring, absorb! Be sure to support the spirit!",
-      "mlkit_ru": "Первое кольцо души, поглощать! Обязательно поддержите дух!",
-      "latency_en_sec": 0.015223875,
-      "latency_ru_sec": 0.02497225
-    },
-    {
-      "id": "zh_053",
-      "lang": "zh",
-      "source_text": "年终测试开始！第一个测试力量测力石碑！",
-      "mlkit_en": "Year-end test begins! The first test power measurement stone monument!",
-      "mlkit_ru": "Начинается тест на год! The first test power measurement stone monument!",
-      "latency_en_sec": 0.01269925,
-      "latency_ru_sec": 0.028306833
-    },
-    {
-      "id": "zh_054",
-      "lang": "zh",
-      "source_text": "沈越，拳力五百磅，青铜二星！成绩优异！",
-      "mlkit_en": "Sang Yue, Five hundred pounds of boxing, bronze two! Excellent results!",
-      "mlkit_ru": "Пень Юэ, пятьсот фунтов бокса, бронза двое! Отличные результаты!",
-      "latency_en_sec": 0.015379916,
-      "latency_ru_sec": 0.033646625
-    },
-    {
-      "id": "zh_055",
-      "lang": "zh",
-      "source_text": "轮到聂离了，这小子前两个月还只是个肉身孱弱的书生呢。",
-      "mlkit_en": "When the turn, Nie left, this little child is only a flesh of the weak.",
-      "mlkit_ru": "Когда поворот, Ни влево, этот маленький ребенок - только плоть слабых.",
-      "latency_en_sec": 0.017454625,
-      "latency_ru_sec": 0.035923042
-    },
-    {
-      "id": "zh_056",
-      "lang": "zh",
-      "source_text": "轰！石碑剧烈摇晃，数值直接突破一千二百磅！",
-      "mlkit_en": "Boom! The stone monument is shaking, the value directly exceeds a thousand two hundred pounds!",
-      "mlkit_ru": "Бум! Каменный памятник трясет, ценность напрямую превышает тысячу двести фунтов!",
-      "latency_en_sec": 0.01710125,
-      "latency_ru_sec": 0.030519291
-    },
-    {
-      "id": "zh_057",
-      "lang": "zh",
-      "source_text": "青铜三星…巅峰？！这绝对不可能！测力石坏了吧？！",
-      "mlkit_en": "Bronze Samsung ... is the peak?  This is absolutely impossible! Is the grade stone? ",
-      "mlkit_ru": "Бронза Samsung ... это пик? Это абсолютно невозможно! Это камень класса?",
-      "latency_en_sec": 0.014729416,
-      "latency_ru_sec": 0.024235083
-    },
-    {
-      "id": "zh_058",
-      "lang": "zh",
-      "source_text": "沈秀导师，胜负已分，按照赌约，你该兑现承诺了。",
-      "mlkit_en": "Shen Xiu Tutor, the winning and losses have been divided, according to the gambling, you should fulfill it.",
-      "mlkit_ru": "Shen Xiu репетитор, выигрыш и убытки были разделены, согласно азартным играм, вы должны выполнить его.",
-      "latency_en_sec": 0.018108875,
-      "latency_ru_sec": 0.040115708
-    },
-    {
-      "id": "zh_059",
-      "lang": "zh",
-      "source_text": "你…你作弊！神圣世家绝对不会放过你的！",
-      "mlkit_en": "You ... you cheat! The sacred world will never let you go!",
-      "mlkit_ru": "Ты ... ты обманываешься! Священный мир никогда не отпустит тебя!",
-      "latency_en_sec": 0.020055583,
-      "latency_ru_sec": 0.024012125
-    },
-    {
-      "id": "zh_060",
-      "lang": "zh",
-      "source_text": "异火榜第十九位，青莲地心火…藏在大沙漠地底千丈深处。",
-      "mlkit_en": "The nineteenth place in the fire list, Qinglian's heart ... hidden in the depths of the big desert.",
-      "mlkit_ru": "Шеянадцатое место в списке пожаров, сердце Цинлия ... скрыто в глубинах большой пустыни.",
-      "latency_en_sec": 0.020518916,
-      "latency_ru_sec": 0.044108166
-    },
-    {
-      "id": "zh_061",
-      "lang": "zh",
-      "source_text": "想要吞噬异火进化焚诀，必须要有九死一生的决心。",
-      "mlkit_en": "If you want to swallow the extraction of the extraction, you must have the determination of nine deaths and life.",
-      "mlkit_ru": "Если вы хотите проглотить добычу извлечения, вы должны иметь определение девяти смертей и жизни.",
-      "latency_en_sec": 0.019681125,
-      "latency_ru_sec": 0.041712958
-    },
-    {
-      "id": "zh_062",
-      "lang": "zh",
-      "source_text": "连这点痛苦都承受不住，我还谈什么三年之约！给我收！",
-      "mlkit_en": "Even this pain can't bear it, I still talk about what three years! Give me!",
-      "mlkit_ru": "Даже эта боль не может нести ее, я до сих пор говорю о том, какие три года! Дай мне!",
-      "latency_en_sec": 0.016983417,
-      "latency_ru_sec": 0.040040833
-    },
-    {
-      "id": "zh_063",
-      "lang": "zh",
-      "source_text": "美杜莎女王正在借助异火尝试进化成七彩吞天蟒。",
-      "mlkit_en": "The Queen of Medusa is trying to evolve into a seven-color swallowing.",
-      "mlkit_ru": "Королева Медузы пытается развиваться в семицветное глотание.",
-      "latency_en_sec": 0.021555875,
-      "latency_ru_sec": 0.036156583
-    },
-    {
-      "id": "zh_064",
-      "lang": "zh",
-      "source_text": "蛇人族八大部落首领皆在护法，绝不能轻举妄动。",
-      "mlkit_en": "The first leaders of the Snake People's Ethnic Tribe are protecting the law and must not be active.",
-      "mlkit_ru": "Первые лидеры этнического племени змеи народных людей защищают закон и не должны быть активны.",
-      "latency_en_sec": 0.020992875,
-      "latency_ru_sec": 0.047548708
-    },
-    {
-      "id": "zh_065",
-      "lang": "zh",
-      "source_text": "第一魂技：缠绕！蓝银草带着曼陀罗蛇的毒素疯狂蔓延！",
-      "mlkit_en": "First soul skill: entangle! Blue and silver grass is crazy with the toxins of the Mandara snake!",
-      "mlkit_ru": "Первый навык души: запутать! Синяя и серебристая трава сумасшедшая с токсинами мандарной змеи!",
-      "latency_en_sec": 0.025051959,
-      "latency_ru_sec": 0.043820208
-    },
-    {
-      "id": "zh_066",
-      "lang": "zh",
-      "source_text": "小舞，你的武魂是柔骨兔？以后哥保护你！",
-      "mlkit_en": "Little dance, your martial art is a soft bone rabbit? Later brother protect you!",
-      "mlkit_ru": "Маленький танец, ваше боевое искусство - мягкий костный кролик? Позже брат защищает тебя!",
-      "latency_en_sec": 0.018913833,
-      "latency_ru_sec": 0.032674083
-    },
-    {
-      "id": "zh_067",
-      "lang": "zh",
-      "source_text": "嘻嘻，要是有人欺负小舞，三哥可得替我狠狠揍他哦！",
-      "mlkit_en": "Hey, if someone is bullying a small dance, the three brothers can be 狠狠 揍 狠狠!",
-      "mlkit_ru": "Эй, если кто-то запугивает небольшой танец, три братья могут быть 狠狠 揍 狠狠!",
-      "latency_en_sec": 0.019150959,
-      "latency_ru_sec": 0.0426215
+      "source_text": "這個領地是戦鬥民族的领地。",
+      "mlkit_en": "This territory is the territory of the embarrassment.",
+      "mlkit_ru": "Эта территория - это территория смущения.",
+      "latency_en_sec": 0.013929792,
+      "latency_ru_sec": 0.024654292
     }
   ]
 }
