@@ -10,6 +10,7 @@ import app.tsunayomi.source.api.Source
 import app.tsunayomi.source.api.sourceIdOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.jsoup.Jsoup
 import org.koitharu.kotatsu.parsers.MangaParser
 import org.koitharu.kotatsu.parsers.model.ContentRating
 import org.koitharu.kotatsu.parsers.model.Manga
@@ -172,8 +173,8 @@ internal class KotatsuCatalogSource(
         url = url,
         title = title,
         coverUrl = largeCoverUrl ?: coverUrl,
-        author = authors.joinToString(", ").takeIf { it.isNotBlank() },
-        description = description?.takeIf { it.isNotBlank() },
+        author = authors.flatMap(::authorNames).distinct().joinToString(", ").takeIf { it.isNotBlank() },
+        description = description?.let(::plainText)?.takeIf { it.isNotBlank() },
         genres = tags.map { it.title },
         status = when (state) {
             MangaState.ONGOING -> SManga.Status.Ongoing
@@ -216,4 +217,21 @@ internal class KotatsuCatalogSource(
         }
         return map
     }
+}
+
+/** Some parsers hand over a JSON array as one author, e.g. `["Markellaha"]`; this gives the names inside. */
+internal fun authorNames(raw: String): List<String> =
+    raw.trim().removeSurrounding("[", "]")
+        .split(',')
+        .map { it.trim().removeSurrounding("\"").trim() }
+        .filter { it.isNotEmpty() }
+
+/** Parsers return descriptions as HTML; paragraphs and line breaks become new lines. */
+internal fun plainText(html: String): String {
+    if ('<' !in html && '&' !in html) return html.trim()
+    val document = Jsoup.parse(html)
+    document.select("br").append("\\n")
+    document.select("p, div, li").prepend("\\n\\n")
+    return document.text().replace("\\n", "\n").replace(Regex("[ \t]*\n[ \t]*"), "\n")
+        .replace(Regex("\n{3,}"), "\n\n").trim()
 }

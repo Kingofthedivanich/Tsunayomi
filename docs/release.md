@@ -39,11 +39,14 @@ APK: `app/build.nosync/outputs/apk/release/app-<abi>-release.apk` (для тел
 
 ## 4. Перед выпуском — проверка
 
-- Перегенерировать allowlist парсеров Kotatsu по живым источникам:
+- По желанию — перепроверить парсеры Kotatsu по живым сайтам (около двух минут):
   ```bash
-  ./gradlew :source:kotatsu:testDebugUnitTest --tests "*testParserHealthAndGenerateAllowlist*" -Dkotatsu.healthcheck=true
+  ./gradlew :tools:kotatsu-health:run
   ```
-  Проверить сформированный `source/kotatsu/src/main/assets/allowlist.json` и отчёт `source/kotatsu/PARSER_HEALTH_REPORT.md`.
+  Утилита перезапишет `source/kotatsu/src/main/assets/allowlist.json` и `source/kotatsu/PARSER_HEALTH_REPORT.md`;
+  посмотреть разницу в `git diff`. Результат зависит от сети: сайты, заблокированные у провайдера, не пройдут.
+  Повторный запуск продолжает с места остановки; чтобы проверить всё заново, удалить
+  `tools/kotatsu-health/build/health.jsonl`. Решения о 18+ поверх Kotatsu — список `NOT_ADULT` в `Main.kt`.
 - `./gradlew lintDebug test testDebugUnitTest`
 - Подписанный release на телефоне: каталог MangaDex, детали, чтение, перевод (ML Kit и Gemini), загрузка главы.
   R8 в release может вырезать то, что в debug работает (так было с регистрацией компонентов ML Kit).

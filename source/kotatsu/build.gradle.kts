@@ -11,10 +11,6 @@ android {
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
-        unitTests.all {
-            it.systemProperty("kotatsu.healthcheck", System.getProperty("kotatsu.healthcheck") ?: "false")
-            it.environment("KOTATSU_HEALTHCHECK", System.getenv("KOTATSU_HEALTHCHECK") ?: "false")
-        }
     }
 }
 

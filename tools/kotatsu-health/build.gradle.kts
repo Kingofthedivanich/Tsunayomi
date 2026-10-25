@@ -15,3 +15,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.jsoup)
 }
+
+// Paths in the tool (allowlist, report, resume file) are relative to the repository root.
+tasks.named<JavaExec>("run") {
+    workingDir = rootDir
+}

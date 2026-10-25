@@ -30,8 +30,4 @@ captures/
 *.keystore
 keystore.properties
 
-# Python / MT Eval
-tools/mt-eval/venv/
-tools/mt-eval/models/
-tools/mt-eval/__pycache__/
 *.onnx

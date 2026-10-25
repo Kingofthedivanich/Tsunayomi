@@ -251,6 +251,9 @@ internal fun CatalogScreen(
             initiallySelected = (state.lookup as? CatalogLookup.Tags)?.names.orEmpty(),
             onSearch = {
                 showTags = false
+                // Tags replace a text search, so its field closes and the title shows the tags.
+                searching = false
+                query = ""
                 viewModel.searchTags(it)
             },
             onDismiss = { showTags = false },
