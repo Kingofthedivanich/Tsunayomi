@@ -14,6 +14,10 @@
     <string name="feature_extensions_section_available">Available</string>
     <string name="feature_extensions_update">Update</string>
     <string name="feature_extensions_install">Install</string>
+    <string name="feature_extensions_install_all">Install all</string>
+    <string name="feature_extensions_update_all">Update all</string>
+    <string name="feature_extensions_install_all_title">Install all extensions in the list (%1$d)?</string>
+    <string name="feature_extensions_install_all_message">They are downloaded one by one. The list follows the chosen languages, the search and the 18+ setting. Keep this screen open until it finishes.</string>
     <string name="feature_extensions_uninstall">Remove</string>
     <string name="feature_extensions_uninstall_title">Remove %1$s?</string>
     <string name="feature_extensions_uninstall_message">Titles from its sources stay in the library but can\'t be opened until it is installed again.</string>

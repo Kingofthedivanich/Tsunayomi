@@ -14,6 +14,10 @@
     <string name="feature_extensions_section_available">Доступные</string>
     <string name="feature_extensions_update">Обновить</string>
     <string name="feature_extensions_install">Установить</string>
+    <string name="feature_extensions_install_all">Установить все</string>
+    <string name="feature_extensions_update_all">Обновить все</string>
+    <string name="feature_extensions_install_all_title">Установить все расширения из списка (%1$d)?</string>
+    <string name="feature_extensions_install_all_message">Они скачаются по очереди. Список учитывает выбранные языки, поиск и настройку 18+. Не закрывайте экран, пока установка не закончится.</string>
     <string name="feature_extensions_uninstall">Удалить</string>
     <string name="feature_extensions_uninstall_title">Удалить %1$s?</string>
     <string name="feature_extensions_uninstall_message">Тайтлы из его источников останутся в библиотеке, но открыть их можно будет только после повторной установки.</string>

@@ -124,6 +124,32 @@ internal class ExtensionsViewModel @Inject constructor(private val manager: Exte
         runBusy(row.pkgName) { manager.install(extension) }
     }
 
+    /** Installs or updates [rows] one by one; one failing extension doesn't stop the rest. */
+    fun installAll(rows: List<ExtensionRow>) {
+        if (INSTALL_ALL_KEY in busy.value) return
+        viewModelScope.launch {
+            busy.update { it + INSTALL_ALL_KEY }
+            try {
+                for (row in rows) {
+                    val extension = row.available ?: continue
+                    if (row.pkgName in busy.value) continue
+                    busy.update { it + row.pkgName }
+                    try {
+                        manager.install(extension)
+                    } catch (e: CancellationException) {
+                        throw e
+                    } catch (e: Exception) {
+                        messages.send("${row.name}: ${e.message ?: e}")
+                    } finally {
+                        busy.update { it - row.pkgName }
+                    }
+                }
+            } finally {
+                busy.update { it - INSTALL_ALL_KEY }
+            }
+        }
+    }
+
     fun uninstall(row: ExtensionRow) = runBusy(row.pkgName) { manager.uninstall(row.pkgName) }
 
     fun addRepo(url: String) = runBusy(REPO_KEY) {
@@ -155,5 +181,6 @@ internal class ExtensionsViewModel @Inject constructor(private val manager: Exte
 
     companion object {
         const val REPO_KEY = "#repo"
+        const val INSTALL_ALL_KEY = "#install-all"
     }
 }

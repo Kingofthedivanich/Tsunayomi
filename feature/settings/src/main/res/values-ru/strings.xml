@@ -149,8 +149,8 @@
     <string name="api_config_engine_mlkit_desc">Работает локально на телефоне, без интернета и без API-ключей</string>
     <string name="api_config_verify_key">Проверить</string>
     <string name="api_config_verifying">Проверка…</string>
-    <string name="api_config_key_valid">✓ Ключ активен и проверен</string>
-    <string name="api_config_model_valid">✓ Модель отвечает и готова к работе</string>
+    <string name="api_config_key_valid">Ключ активен и проверен</string>
+    <string name="api_config_model_valid">Модель отвечает и готова к работе</string>
     <string name="api_config_model_failed">Модель недоступна: %s</string>
     <string name="api_config_suggest_alternative">Предлагаем переключиться на другую бесплатную модель:</string>
     <string name="api_config_fetch_free_models">Обновить список моделей</string>

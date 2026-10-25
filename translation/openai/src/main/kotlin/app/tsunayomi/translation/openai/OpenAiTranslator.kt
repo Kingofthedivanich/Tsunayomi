@@ -75,7 +75,9 @@ class OpenAiTranslator(
         val body = response.use { it.body.string() }
 
         when {
-            response.code == 401 || response.code == 403 -> throw TranslationException.InvalidApiKey(engine)
+            // 403 from OpenRouter is a region block or a flagged request, not a bad key; it falls through to the
+            // generic error below so the provider's message is shown.
+            response.code == 401 -> throw TranslationException.InvalidApiKey(engine)
             response.code == 429 -> throw TranslationException.QuotaExceeded(engine)
             !response.isSuccessful -> {
                 val errorMsg = errorMessage(body)

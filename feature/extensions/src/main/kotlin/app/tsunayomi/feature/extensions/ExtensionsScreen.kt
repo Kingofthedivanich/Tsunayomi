@@ -67,6 +67,7 @@ internal fun ExtensionsScreen(onBack: () -> Unit, viewModel: ExtensionsViewModel
     var showRepos by rememberSaveable { mutableStateOf(false) }
     var showLanguages by rememberSaveable { mutableStateOf(false) }
     var confirmUninstall by remember { mutableStateOf<ExtensionRow?>(null) }
+    var confirmInstallAll by remember { mutableStateOf(false) }
 
     LaunchedEffect(viewModel) {
         viewModel.messageEvents.collect { snackbar.showSnackbar(it) }
@@ -127,7 +128,21 @@ internal fun ExtensionsScreen(onBack: () -> Unit, viewModel: ExtensionsViewModel
                             modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
                         )
                     }
-                    section(R.string.feature_extensions_section_updates, state.updates, state.busy) { row ->
+                    val installingAll = ExtensionsViewModel.INSTALL_ALL_KEY in state.busy
+                    section(
+                        R.string.feature_extensions_section_updates,
+                        state.updates,
+                        state.busy,
+                        headerAction = if (state.updates.size > 1) {
+                            {
+                                TextButton(onClick = { viewModel.installAll(state.updates) }, enabled = !installingAll) {
+                                    Text(stringResource(R.string.feature_extensions_update_all))
+                                }
+                            }
+                        } else {
+                            null
+                        },
+                    ) { row ->
                         FilledTonalButton(onClick = { viewModel.install(row) }) {
                             Text(stringResource(R.string.feature_extensions_update))
                         }
@@ -137,7 +152,20 @@ internal fun ExtensionsScreen(onBack: () -> Unit, viewModel: ExtensionsViewModel
                             Icon(Icons.Outlined.Delete, stringResource(R.string.feature_extensions_uninstall))
                         }
                     }
-                    section(R.string.feature_extensions_section_available, state.available, state.busy) { row ->
+                    section(
+                        R.string.feature_extensions_section_available,
+                        state.available,
+                        state.busy,
+                        headerAction = if (state.available.size > 1) {
+                            {
+                                TextButton(onClick = { confirmInstallAll = true }, enabled = !installingAll) {
+                                    Text(stringResource(R.string.feature_extensions_install_all))
+                                }
+                            }
+                        } else {
+                            null
+                        },
+                    ) { row ->
                         TextButton(onClick = { viewModel.install(row) }) {
                             Text(stringResource(R.string.feature_extensions_install))
                         }
@@ -166,6 +194,22 @@ internal fun ExtensionsScreen(onBack: () -> Unit, viewModel: ExtensionsViewModel
             onDismiss = { showLanguages = false },
         )
     }
+    if (confirmInstallAll) {
+        AlertDialog(
+            onDismissRequest = { confirmInstallAll = false },
+            title = { Text(stringResource(R.string.feature_extensions_install_all_title, state.available.size)) },
+            text = { Text(stringResource(R.string.feature_extensions_install_all_message)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    viewModel.installAll(state.available)
+                    confirmInstallAll = false
+                }) { Text(stringResource(R.string.feature_extensions_install_all)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { confirmInstallAll = false }) { Text(stringResource(R.string.feature_extensions_cancel)) }
+            },
+        )
+    }
     confirmUninstall?.let { row ->
         AlertDialog(
             onDismissRequest = { confirmUninstall = null },
@@ -188,16 +232,23 @@ private fun LazyListScope.section(
     title: Int,
     rows: List<ExtensionRow>,
     busy: Set<String>,
+    headerAction: (@Composable () -> Unit)? = null,
     action: @Composable (ExtensionRow) -> Unit,
 ) {
     if (rows.isEmpty()) return
     item(key = "header-$title") {
-        Text(
-            stringResource(title),
-            style = MaterialTheme.typography.titleSmall,
-            color = MaterialTheme.colorScheme.primary,
-            modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 4.dp),
-        )
+        Row(
+            Modifier.fillMaxWidth().padding(start = 16.dp, end = 8.dp, top = 16.dp, bottom = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                stringResource(title),
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.weight(1f),
+            )
+            headerAction?.invoke()
+        }
     }
     items(rows, key = { "$title-${it.pkgName}" }) { row ->
         ListItem(

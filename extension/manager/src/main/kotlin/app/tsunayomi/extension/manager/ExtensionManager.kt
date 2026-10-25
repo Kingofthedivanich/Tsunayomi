@@ -77,7 +77,7 @@ class ExtensionManager @Inject constructor(
     override val sources: StateFlow<List<Source>> = catalogSources
 
     override val browsable: StateFlow<List<Source>> = combine(catalogSources, _languages) { sources, languages ->
-        sources.filter { it.lang in languages || it.lang.substringBefore('-') in languages }
+        sources.filter { it.lang in languages || it.lang.substringBefore('-') in languages }.withoutLanguageCopies()
     }.stateIn(scope, SharingStarted.Eagerly, emptyList())
 
     init {

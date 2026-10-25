@@ -220,6 +220,16 @@ internal suspend fun <T> guard(block: suspend () -> T): T = try {
 
 class ExtensionException(cause: Throwable) : Exception(cause.toString(), cause)
 
+/**
+ * Multi-language extensions often ship a source per language next to an all-languages one that picks the language
+ * in its filters. Browse offers only the latter; the per-language copies still open titles already in the library.
+ */
+internal fun List<ExtensionCatalogSource>.withoutLanguageCopies(): List<ExtensionCatalogSource> {
+    // Sources of one extension share its icon, so icon and name tell an extension's copies apart from another's.
+    val allLanguages = filter { it.lang == Source.MULTI_LANG }.map { it.iconUri to it.name }.toSet()
+    return filter { it.lang == Source.MULTI_LANG || (it.iconUri to it.name) !in allLanguages }
+}
+
 /** Tachiyomi uses "all" and "other" for multi-language sources and regional codes like "pt-BR". */
 internal fun String.toAppLang(): String = when (this) {
     "all", "other", "" -> Source.MULTI_LANG

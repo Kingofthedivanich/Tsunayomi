@@ -121,7 +121,7 @@ class OpenAiTranslatorTest {
     }
 
     @Test
-    fun `translate throws InvalidApiKey on 401 or 403`() = runTest {
+    fun `translate throws InvalidApiKey on 401`() = runTest {
         server.enqueue(MockResponse.Builder().code(401).body("""{"error": {"message": "Invalid API key"}}""").build())
 
         val ex = assertThrows(TranslationException.InvalidApiKey::class.java) {
@@ -130,6 +130,18 @@ class OpenAiTranslatorTest {
             }
         }
         assertEquals(TranslationEngine.OpenAiCompatible, ex.engine)
+    }
+
+    @Test
+    fun `translate reports the provider's message on 403 instead of a bad key`() = runTest {
+        server.enqueue(MockResponse.Builder().code(403).body("""{"error": {"message": "This model is not available in your region."}}""").build())
+
+        val ex = assertThrows(TranslationException.Engine::class.java) {
+            kotlinx.coroutines.runBlocking {
+                translator.translate(listOf(SourceText("Hi")), "en", "ru")
+            }
+        }
+        assertTrue(ex.message.orEmpty().contains("not available in your region"))
     }
 
     @Test

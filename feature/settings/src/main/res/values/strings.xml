@@ -152,8 +152,8 @@
     <string name="api_config_engine_mlkit_desc">Runs locally on device, no internet or API keys required</string>
     <string name="api_config_verify_key">Verify</string>
     <string name="api_config_verifying">Verifying…</string>
-    <string name="api_config_key_valid">✓ Key is valid and active</string>
-    <string name="api_config_model_valid">✓ Model is responding and ready</string>
+    <string name="api_config_key_valid">Key is valid and active</string>
+    <string name="api_config_model_valid">Model is responding and ready</string>
     <string name="api_config_model_failed">Model unavailable: %s</string>
     <string name="api_config_suggest_alternative">Suggested alternative free models:</string>
     <string name="api_config_fetch_free_models">Refresh models list</string>

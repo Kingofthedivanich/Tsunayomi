@@ -420,6 +420,8 @@ private fun StatusView(status: VerificationState) {
                     modifier = Modifier.size(18.dp),
                 )
                 Spacer(Modifier.width(4.dp))
+                // The server's own message (after "HTTP nnn: ") explains more than our short reason does.
+                val serverMessage = status.detail?.substringAfter(": ", missingDelimiterValue = "")?.takeIf { it.isNotBlank() }
                 Text(
                     text = when (status.reason) {
                         ApiCheckException.Reason.NoKey -> stringResource(R.string.api_config_error_no_key)
@@ -428,6 +430,10 @@ private fun StatusView(status: VerificationState) {
                         ApiCheckException.Reason.ModelNotFound -> stringResource(R.string.api_config_error_model)
                         ApiCheckException.Reason.Http, null ->
                             stringResource(R.string.api_config_error_other, status.detail.orEmpty())
+                    } + if (status.reason != ApiCheckException.Reason.Http && status.reason != null && serverMessage != null) {
+                        "\n$serverMessage"
+                    } else {
+                        ""
                     },
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.error,

@@ -180,13 +180,16 @@ class ServerSettingsRepository @Inject constructor(
                 if (response.isSuccessful) {
                     Result.success(Unit)
                 } else {
+                    // Only 401 means a bad key: OpenRouter answers 403 for a model blocked in the user's region or
+                    // a flagged request, so the server's own message is what tells the user what to do.
                     val reason = when (response.code) {
-                        401, 403 -> ApiCheckException.Reason.InvalidKey
+                        401 -> ApiCheckException.Reason.InvalidKey
                         404 -> ApiCheckException.Reason.ModelNotFound
                         429 -> ApiCheckException.Reason.QuotaExceeded
                         else -> ApiCheckException.Reason.Http
                     }
-                    Result.failure(ApiCheckException(reason, "HTTP ${response.code}"))
+                    val message = errorMessage(response.body.string())
+                    Result.failure(ApiCheckException(reason, listOfNotNull("HTTP ${response.code}", message).joinToString(": ")))
                 }
             }
         } catch (e: CancellationException) {
@@ -196,6 +199,13 @@ class ServerSettingsRepository @Inject constructor(
         }
     }
 }
+
+/** The error text of an OpenAI-compatible error body, preferring the upstream provider's own words. */
+internal fun errorMessage(body: String): String? = runCatching {
+    val error = Json.parseToJsonElement(body).jsonObject["error"]?.jsonObject ?: return null
+    val raw = error["metadata"]?.jsonObject?.get("raw")?.jsonPrimitive?.content
+    (raw ?: error["message"]?.jsonPrimitive?.content)?.take(300)
+}.getOrNull()
 
 /** Why checking an API key or model failed; the settings screen words it in the UI language. */
 class ApiCheckException(val reason: Reason, detail: String? = null) : IOException(listOfNotNull(reason.name, detail).joinToString(": ")) {
